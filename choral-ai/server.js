@@ -64,7 +64,7 @@ app.post('/api/compose', async (req, res) => {
     });
   } catch (err) {
     console.error('Error en /api/compose:', err);
-    const status = /ANTHROPIC_API_KEY|cuadran|inválid|rechazó|esperaban/i.test(
+    const status = /ANTHROPIC_API_KEY|cuadran|inválid|rechazó|esperaban|cortó|longitud/i.test(
       err.message,
     )
       ? 400

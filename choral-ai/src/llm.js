@@ -13,14 +13,32 @@ export function extractJson(message) {
   if (message.parsed_output) return message.parsed_output;
   for (const block of message.content) {
     if (block.type === 'text') {
-      const text = block.text.trim();
+      // Quita posibles vallas de código ```json ... ```
+      const text = block.text
+        .trim()
+        .replace(/^```(?:json)?/i, '')
+        .replace(/```$/, '')
+        .trim();
       try {
         return JSON.parse(text);
       } catch {
         const match = text.match(/\{[\s\S]*\}/);
-        if (match) return JSON.parse(match[0]);
+        if (match) {
+          try {
+            return JSON.parse(match[0]);
+          } catch {
+            /* sigue intentando con otros bloques */
+          }
+        }
       }
     }
+  }
+  // Si la generación se cortó por longitud, el JSON queda incompleto.
+  if (message.stop_reason === 'max_tokens') {
+    throw new Error(
+      'La respuesta se cortó por longitud (demasiado larga). Prueba con menos ' +
+        'compases o menos voces.',
+    );
   }
   throw new Error('No se pudo extraer JSON de la respuesta del modelo.');
 }

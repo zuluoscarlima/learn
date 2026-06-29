@@ -90,7 +90,7 @@ export async function composeChoral(params, parts, texture, harmonyText) {
 
   const stream = client.messages.stream({
     model: MODEL,
-    max_tokens: 16000,
+    max_tokens: 64000,
     thinking: { type: 'adaptive' },
     output_config: {
       effort: 'high',
