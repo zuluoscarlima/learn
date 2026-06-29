@@ -18,7 +18,9 @@ Reglas musicales que DEBES respetar:
 - Armoniza siguiendo la tonalidad y el modo dados. Usa progresiones funcionales y
   termina con una cadencia clara (típicamente V–I / V–i).
 - Conducción de voces: prefiere movimiento por grados conjuntos, evita quintas y
-  octavas paralelas entre voces, y evita cruces de voces.
+  octavas paralelas entre voces, y evita cruces de voces innecesarios.
+- Respeta la TEXTURA o técnica solicitada (homofonía, contrapunto, canon, fuga…);
+  es la que gobierna cómo se relacionan las voces entre sí.
 - Si hay letra, distribúyela en sílabas sobre las notas (campo "lyric"); en
   textura homofónica todas las voces comparten las mismas sílabas. En doble coro,
   los dos coros pueden dialogar (antifonía).
@@ -28,7 +30,7 @@ Reglas musicales que DEBES respetar:
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;
 
-function buildUserPrompt(params, parts) {
+function buildUserPrompt(params, parts, texture) {
   const {
     theme,
     lyrics,
@@ -52,6 +54,7 @@ function buildUserPrompt(params, parts) {
     `- Voces (${parts.length}), en este orden exacto:`,
     voiceList,
   ];
+  if (texture) lines.push(`- Textura / técnica: ${texture.label}\n  ${texture.prompt}`);
   if (theme) lines.push(`- Tema o carácter: ${theme}`);
   if (lyrics) {
     lines.push(`- Letra para cantar:\n"""${lyrics}"""`);
@@ -84,7 +87,7 @@ function extractJson(message) {
 
 // Genera la composición. `parts` es la lista de voces resuelta del voicing.
 // Devuelve el objeto JSON validado.
-export async function composeChoral(params, parts) {
+export async function composeChoral(params, parts, texture) {
   if (!process.env.ANTHROPIC_API_KEY) {
     throw new Error('Falta ANTHROPIC_API_KEY en el entorno.');
   }
@@ -99,7 +102,7 @@ export async function composeChoral(params, parts) {
       format: { type: 'json_schema', schema: COMPOSITION_SCHEMA },
     },
     system: SYSTEM_PROMPT,
-    messages: [{ role: 'user', content: buildUserPrompt(params, parts) }],
+    messages: [{ role: 'user', content: buildUserPrompt(params, parts, texture) }],
   });
 
   const message = await stream.finalMessage();

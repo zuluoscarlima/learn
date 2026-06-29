@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { composeChoral } from './src/compose.js';
 import { render, hasLilyPond } from './src/lilypond.js';
 import { resolveVoicing, voicingOptions, DEFAULT_VOICING } from './src/voicings.js';
+import { resolveTexture, textureOptions, DEFAULT_TEXTURE } from './src/textures.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = path.join(__dirname, 'output');
@@ -29,13 +30,19 @@ app.get('/api/voicings', (_req, res) => {
   res.json({ voicings: voicingOptions(), default: DEFAULT_VOICING });
 });
 
+// Catálogo de texturas / técnicas.
+app.get('/api/textures', (_req, res) => {
+  res.json({ textures: textureOptions(), default: DEFAULT_TEXTURE });
+});
+
 // Genera una composición coral y la renderiza a PDF + MIDI.
 app.post('/api/compose', async (req, res) => {
   try {
     const params = req.body || {};
     const parts = resolveVoicing(params.voicing || DEFAULT_VOICING);
+    const texture = resolveTexture(params.texture || DEFAULT_TEXTURE);
 
-    const composition = await composeChoral(params, parts);
+    const composition = await composeChoral(params, parts, texture);
 
     const id = randomUUID();
     const outDir = path.join(OUTPUT_DIR, id);
@@ -45,6 +52,7 @@ app.post('/api/compose', async (req, res) => {
     res.json({
       composition,
       voices: parts.map((p) => p.name),
+      texture: texture.label,
       pdfUrl: url(result.pdfPath),
       midiUrl: url(result.midiPath),
       lyUrl: url(result.lyPath),

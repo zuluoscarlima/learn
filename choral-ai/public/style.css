@@ -66,6 +66,12 @@ textarea { resize: vertical; }
   gap: 0.85rem;
 }
 
+.two {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.85rem;
+}
+
 button {
   font: inherit;
   font-weight: bold;

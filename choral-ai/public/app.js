@@ -42,10 +42,13 @@ form.addEventListener('submit', async (e) => {
 });
 
 function renderResult(payload) {
-  const { composition, pdfUrl, midiUrl, lyUrl, voices } = payload;
+  const { composition, pdfUrl, midiUrl, lyUrl, voices, texture } = payload;
   const title = composition.title || 'Pieza coral';
-  const voiceList = voices && voices.length ? ` · ${voices.join(', ')}` : '';
-  document.getElementById('result-title').textContent = title + voiceList;
+  const bits = [];
+  if (texture) bits.push(texture);
+  if (voices && voices.length) bits.push(voices.join(', '));
+  const subtitle = bits.length ? ` · ${bits.join(' · ')}` : '';
+  document.getElementById('result-title').textContent = title + subtitle;
 
   const downloads = document.getElementById('downloads');
   downloads.innerHTML = '';
@@ -81,20 +84,28 @@ function renderResult(payload) {
   result.hidden = false;
 }
 
-// Pobla el desplegable de voces desde el catálogo del servidor.
+// Rellena un <select> con una lista de {id, label}, marcando el por defecto.
+function fillSelect(elId, items, def) {
+  const sel = document.getElementById(elId);
+  sel.innerHTML = '';
+  for (const it of items) {
+    const opt = document.createElement('option');
+    opt.value = it.id;
+    opt.textContent = it.label;
+    if (it.id === def) opt.selected = true;
+    sel.appendChild(opt);
+  }
+}
+
+// Pobla los desplegables de voces y de textura desde el catálogo del servidor.
 fetch('/api/voicings')
   .then((r) => r.json())
-  .then(({ voicings, default: def }) => {
-    const sel = document.getElementById('voicing');
-    sel.innerHTML = '';
-    for (const v of voicings) {
-      const opt = document.createElement('option');
-      opt.value = v.id;
-      opt.textContent = v.label;
-      if (v.id === def) opt.selected = true;
-      sel.appendChild(opt);
-    }
-  })
+  .then(({ voicings, default: def }) => fillSelect('voicing', voicings, def))
+  .catch(() => {});
+
+fetch('/api/textures')
+  .then((r) => r.json())
+  .then(({ textures, default: def }) => fillSelect('texture', textures, def))
   .catch(() => {});
 
 // Aviso temprano si falta configuración del servidor.
