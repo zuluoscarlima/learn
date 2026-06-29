@@ -1,11 +1,9 @@
-// JSON schema de la composición coral SATB y utilidades de validación.
+// JSON schema de la composición coral (N voces) y utilidades de validación.
 //
 // Claude devuelve una representación ABSTRACTA de la música (altura por
 // nombre de nota + octava, duración por denominador), nunca sintaxis LilyPond.
 // Así evitamos depender de que el modelo escriba `.ly` sin errores: la
 // traducción a LilyPond es determinista (ver lilypond.js).
-
-export const VOICE_NAMES = ['soprano', 'alto', 'tenor', 'bass'];
 
 // Schema compatible con structured outputs (`output_config.format`):
 // requiere additionalProperties:false y `required` en cada objeto.
@@ -49,9 +47,20 @@ const noteSchema = {
 };
 
 const voiceSchema = {
-  type: 'array',
-  items: noteSchema,
-  description: 'Secuencia de notas/silencios de una voz, en orden',
+  type: 'object',
+  additionalProperties: false,
+  properties: {
+    name: {
+      type: 'string',
+      description: 'Nombre de la voz (p. ej. "Soprano", "Tenor 1", "Bajo")',
+    },
+    notes: {
+      type: 'array',
+      items: noteSchema,
+      description: 'Secuencia de notas/silencios de la voz, en orden',
+    },
+  },
+  required: ['name', 'notes'],
 };
 
 export const COMPOSITION_SCHEMA = {
@@ -72,15 +81,9 @@ export const COMPOSITION_SCHEMA = {
     tempo: { type: 'integer', description: 'Pulsos por minuto (negra = bpm)' },
     measures: { type: 'integer', description: 'Número de compases' },
     voices: {
-      type: 'object',
-      additionalProperties: false,
-      properties: {
-        soprano: voiceSchema,
-        alto: voiceSchema,
-        tenor: voiceSchema,
-        bass: voiceSchema,
-      },
-      required: VOICE_NAMES,
+      type: 'array',
+      items: voiceSchema,
+      description: 'Lista ordenada de voces, una por parte solicitada',
     },
   },
   required: ['title', 'key', 'mode', 'timeSignature', 'tempo', 'measures', 'voices'],
@@ -102,14 +105,18 @@ export function beatsPerMeasure(timeSignature) {
 }
 
 // Valida estructura y cuadre rítmico. Lanza Error con mensaje legible.
-export function validateComposition(comp) {
+// expectedVoices: nº de voces esperado (del voicing elegido); opcional.
+export function validateComposition(comp, expectedVoices) {
   if (!comp || typeof comp !== 'object') {
     throw new Error('La composición no es un objeto válido.');
   }
-  for (const v of VOICE_NAMES) {
-    if (!Array.isArray(comp.voices?.[v]) || comp.voices[v].length === 0) {
-      throw new Error(`Falta la voz "${v}" o está vacía.`);
-    }
+  if (!Array.isArray(comp.voices) || comp.voices.length === 0) {
+    throw new Error('La composición no contiene voces.');
+  }
+  if (expectedVoices && comp.voices.length !== expectedVoices) {
+    throw new Error(
+      `Se esperaban ${expectedVoices} voces pero la composición trae ${comp.voices.length}.`,
+    );
   }
 
   const bpm = beatsPerMeasure(comp.timeSignature);
@@ -117,14 +124,18 @@ export function validateComposition(comp) {
 
   const expectedBeats = bpm * comp.measures;
   const tolerance = 1e-6;
-  for (const v of VOICE_NAMES) {
-    const total = comp.voices[v].reduce((sum, n) => sum + noteBeats(n), 0);
+  comp.voices.forEach((voice, i) => {
+    const label = voice.name || `voz ${i + 1}`;
+    if (!Array.isArray(voice.notes) || voice.notes.length === 0) {
+      throw new Error(`La voz "${label}" está vacía.`);
+    }
+    const total = voice.notes.reduce((sum, n) => sum + noteBeats(n), 0);
     if (Math.abs(total - expectedBeats) > tolerance) {
       throw new Error(
-        `La voz "${v}" suma ${total} negras pero el compás ${comp.timeSignature} ` +
+        `La voz "${label}" suma ${total} negras pero el compás ${comp.timeSignature} ` +
           `con ${comp.measures} compases requiere ${expectedBeats}. Los compases no cuadran.`,
       );
     }
-  }
+  });
   return comp;
 }

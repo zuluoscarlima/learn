@@ -1,12 +1,12 @@
-// Traducción determinista de la composición (JSON) a LilyPond y renderizado a
-// PDF + MIDI. Un único archivo .ly con bloques \layout y \midi produce ambos.
+// Traducción determinista de la composición (JSON, N voces) a LilyPond y
+// renderizado a PDF + MIDI. Un único archivo .ly con bloques \layout y \midi
+// produce ambos. Se genera "score abierto": un pentagrama por voz con su clave.
 import { execFile } from 'node:child_process';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
-import { VOICE_NAMES } from './schema.js';
 
 const execFileAsync = promisify(execFile);
 
@@ -48,26 +48,34 @@ function voiceToLily(notes) {
   return notes.map(pitchToLily).join(' ');
 }
 
-// Sílabas de la voz principal (soprano) para \lyricsto. Se omiten los
-// silencios (LilyPond los salta) y las notas sin texto reciben un "_".
+// Sílabas de una voz para \lyricsto. Se omiten los silencios (LilyPond los
+// salta) y las notas sin texto reciben un "_". Devuelve "" si no hay letra.
 function lyricsToLily(notes) {
   const tokens = [];
+  let any = false;
   for (const n of notes) {
     if (n.rest) continue;
     const syl = (n.lyric || '').trim();
     if (!syl) {
       tokens.push('_');
     } else {
+      any = true;
       tokens.push('"' + syl.replace(/"/g, '\\"') + '"');
     }
   }
-  return tokens.join(' ');
+  return any ? tokens.join(' ') : '';
 }
 
 const KEY_MODE = { major: '\\major', minor: '\\minor' };
 
+// Identificadores LilyPond solo admiten letras: índice 0 -> A, 1 -> B, ...
+function letterFor(i) {
+  return String.fromCharCode(65 + i);
+}
+
 // Construye el documento LilyPond completo.
-export function jsonToLily(comp) {
+// `parts` (del voicing) aporta clave y nombre por voz; se empareja por índice.
+export function jsonToLily(comp, parts = []) {
   const key = comp.key.toLowerCase();
   const mode = KEY_MODE[comp.mode] || '\\major';
   const [num, den] = comp.timeSignature.split('/');
@@ -79,11 +87,28 @@ export function jsonToLily(comp) {
   \\tempo 4 = ${comp.tempo}
 }`;
 
-  const parts = VOICE_NAMES.map(
-    (v) => `${v}Music = { \\global ${voiceToLily(comp.voices[v])} }`,
-  ).join('\n');
+  const defs = [];
+  const staves = [];
 
-  const sopWords = `sopranoWords = \\lyricmode { ${lyricsToLily(comp.voices.soprano)} }`;
+  comp.voices.forEach((voice, i) => {
+    const L = letterFor(i);
+    const part = parts[i] || {};
+    const clef = part.clef || 'treble';
+    const name = (part.name || voice.name || `Voz ${i + 1}`).replace(/"/g, '\\"');
+    const lyr = lyricsToLily(voice.notes);
+
+    defs.push(`music${L} = { \\global \\clef "${clef}" ${voiceToLily(voice.notes)} }`);
+    if (lyr) defs.push(`words${L} = \\lyricmode { ${lyr} }`);
+
+    const lyricsLine = lyr
+      ? `\n    \\new Lyrics \\lyricsto "v${L}" \\words${L}`
+      : '';
+    staves.push(
+      `    \\new Staff \\with { instrumentName = "${name} " } <<\n` +
+        `      \\new Voice = "v${L}" { \\music${L} }\n` +
+        `    >>${lyricsLine}`,
+    );
+  });
 
   return `\\version "2.24.0"
 
@@ -94,22 +119,11 @@ export function jsonToLily(comp) {
 
 ${global}
 
-${parts}
-
-${sopWords}
+${defs.join('\n')}
 
 \\score {
   \\new ChoirStaff <<
-    \\new Staff <<
-      \\new Voice = "soprano" { \\voiceOne \\sopranoMusic }
-      \\new Voice = "alto" { \\voiceTwo \\altoMusic }
-    >>
-    \\new Lyrics \\lyricsto "soprano" \\sopranoWords
-    \\new Staff <<
-      \\clef bass
-      \\new Voice = "tenor" { \\voiceOne \\tenorMusic }
-      \\new Voice = "bass" { \\voiceTwo \\bassMusic }
-    >>
+${staves.join('\n')}
   >>
   \\layout { }
   \\midi { }
@@ -129,9 +143,9 @@ export async function hasLilyPond() {
 
 // Renderiza el .ly a PDF + MIDI dentro de outDir. Devuelve rutas absolutas.
 // Si lilypond no está instalado, devuelve pdf/midi = null con un aviso.
-export async function render(comp, outDir, baseName = 'piece') {
+export async function render(comp, parts, outDir, baseName = 'piece') {
   await mkdir(outDir, { recursive: true });
-  const ly = jsonToLily(comp);
+  const ly = jsonToLily(comp, parts);
   const lyPath = path.join(outDir, `${baseName}.ly`);
   await writeFile(lyPath, ly, 'utf8');
 
@@ -142,7 +156,7 @@ export async function render(comp, outDir, baseName = 'piece') {
       midiPath: null,
       warning:
         'LilyPond no está instalado: se generó solo el archivo .ly. ' +
-        'Instálalo (apt-get install lilypond) para obtener PDF y MIDI.',
+        'Instálalo (npm run setup:lilypond) para obtener PDF y MIDI.',
     };
   }
 

@@ -42,9 +42,10 @@ form.addEventListener('submit', async (e) => {
 });
 
 function renderResult(payload) {
-  const { composition, pdfUrl, midiUrl, lyUrl } = payload;
-  document.getElementById('result-title').textContent =
-    composition.title || 'Pieza coral';
+  const { composition, pdfUrl, midiUrl, lyUrl, voices } = payload;
+  const title = composition.title || 'Pieza coral';
+  const voiceList = voices && voices.length ? ` · ${voices.join(', ')}` : '';
+  document.getElementById('result-title').textContent = title + voiceList;
 
   const downloads = document.getElementById('downloads');
   downloads.innerHTML = '';
@@ -79,6 +80,22 @@ function renderResult(payload) {
 
   result.hidden = false;
 }
+
+// Pobla el desplegable de voces desde el catálogo del servidor.
+fetch('/api/voicings')
+  .then((r) => r.json())
+  .then(({ voicings, default: def }) => {
+    const sel = document.getElementById('voicing');
+    sel.innerHTML = '';
+    for (const v of voicings) {
+      const opt = document.createElement('option');
+      opt.value = v.id;
+      opt.textContent = v.label;
+      if (v.id === def) opt.selected = true;
+      sel.appendChild(opt);
+    }
+  })
+  .catch(() => {});
 
 // Aviso temprano si falta configuración del servidor.
 fetch('/api/health')
