@@ -48,10 +48,23 @@ src/lilypond.js JSON -> .ly -> PDF + MIDI
 cd choral-ai
 npm install
 npm run setup:lilypond          # instala LilyPond portable (Linux/macOS)
-export ANTHROPIC_API_KEY=sk-ant-...
+cp .env.example .env            # pega tu clave en .env (ANTHROPIC_API_KEY=...)
 npm start
 # abre http://localhost:3000
 ```
+
+### ¿Dónde va la clave de API?
+
+La app lee `ANTHROPIC_API_KEY` del entorno. Lo más cómodo es el archivo
+**`choral-ai/.env`** (lo carga `npm start` con `--env-file`, sin dependencias):
+
+```bash
+cp .env.example .env
+# edita .env y pon: ANTHROPIC_API_KEY=sk-ant-...
+```
+
+El `.env` está en `.gitignore`, así que tu clave no se sube al repositorio.
+Alternativa puntual: `export ANTHROPIC_API_KEY=sk-ant-...` antes de `npm start`.
 
 ### Probar la cadena de render sin gastar API
 

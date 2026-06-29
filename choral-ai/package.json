@@ -4,7 +4,7 @@
   "description": "Composición coral SATB con IA (Claude) renderizada a partitura PDF y MIDI con LilyPond",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
+    "start": "node --env-file-if-exists=.env server.js",
     "setup:lilypond": "node scripts/setup-lilypond.js",
     "test:lily": "node scripts/test-lily.js"
   },
