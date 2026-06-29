@@ -64,12 +64,19 @@ app.post('/api/compose', async (req, res) => {
     });
   } catch (err) {
     console.error('Error en /api/compose:', err);
-    const status = /ANTHROPIC_API_KEY|cuadran|inválid|rechazó|esperaban|cortó|longitud/i.test(
-      err.message,
+    let message = err.message;
+    // Cortes de conexión / timeout: mensaje claro y accionable.
+    if (/terminated|timeout|ETIMEDOUT|ECONNRESET|aborted/i.test(message)) {
+      message =
+        'La conexión con el servicio se interrumpió (la pieza era larga). ' +
+        'Vuelve a intentarlo; si se repite, reduce el número de compases o de voces.';
+    }
+    const status = /ANTHROPIC_API_KEY|cuadran|inválid|rechazó|esperaban|cortó|longitud|interrumpió/i.test(
+      message,
     )
       ? 400
       : 500;
-    res.status(status).json({ error: err.message });
+    res.status(status).json({ error: message });
   }
 });
 

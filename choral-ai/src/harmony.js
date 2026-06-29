@@ -144,7 +144,7 @@ export async function planHarmony(params) {
   const stream = client.messages.stream({
     model: MODEL,
     max_tokens: 12000,
-    thinking: { type: 'adaptive' },
+    thinking: { type: 'adaptive', display: 'summarized' },
     output_config: {
       effort: 'medium',
       format: { type: 'json_schema', schema: HARMONY_SCHEMA },

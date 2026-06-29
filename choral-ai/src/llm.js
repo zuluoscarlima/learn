@@ -5,7 +5,9 @@ export function getClient() {
   if (!process.env.ANTHROPIC_API_KEY) {
     throw new Error('Falta ANTHROPIC_API_KEY en el entorno.');
   }
-  return new Anthropic();
+  // Las composiciones largas pueden tardar varios minutos: timeout amplio y
+  // reintentos para sobrevivir a cortes de conexión transitorios.
+  return new Anthropic({ timeout: 15 * 60 * 1000, maxRetries: 3 });
 }
 
 // Extrae el JSON de la respuesta, tolerando structured outputs o texto plano.

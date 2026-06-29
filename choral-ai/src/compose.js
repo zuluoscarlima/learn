@@ -91,7 +91,9 @@ export async function composeChoral(params, parts, texture, harmonyText) {
   const stream = client.messages.stream({
     model: MODEL,
     max_tokens: 64000,
-    thinking: { type: 'adaptive' },
+    // display:summarized hace que el razonamiento fluya en streaming y evita
+    // que la conexión se corte por inactividad durante el "pensar".
+    thinking: { type: 'adaptive', display: 'summarized' },
     output_config: {
       effort: 'high',
       format: { type: 'json_schema', schema: COMPOSITION_SCHEMA },
