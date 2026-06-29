@@ -27,13 +27,19 @@ src/lilypond.js JSON -> .ly -> PDF + MIDI
 
 - **Node.js ≥ 20**
 - **`ANTHROPIC_API_KEY`** en el entorno (clave de la API de Claude).
-- **LilyPond** instalado para generar PDF/MIDI:
+- **LilyPond** para generar PDF/MIDI. La forma más fácil (sin root, sin tocar el
+  PATH) es el instalador incluido, que descarga el binario portable a
+  `vendor/lilypond/` y la app lo detecta sola:
 
   ```bash
-  sudo apt-get update && sudo apt-get install -y lilypond
+  npm run setup:lilypond     # Linux x86_64 y macOS
   ```
 
-  Si LilyPond no está instalado, la app sigue funcionando pero devuelve solo el
+  Alternativas: `sudo apt-get install -y lilypond` (Debian/Ubuntu),
+  `brew install lilypond` (macOS), o el instalador de
+  https://lilypond.org/download.html (Windows).
+
+  Si LilyPond no está disponible, la app sigue funcionando pero devuelve solo el
   archivo `.ly` (con un aviso), que puedes renderizar en otro sitio.
 
 ## Uso
@@ -41,6 +47,7 @@ src/lilypond.js JSON -> .ly -> PDF + MIDI
 ```bash
 cd choral-ai
 npm install
+npm run setup:lilypond          # instala LilyPond portable (Linux/macOS)
 export ANTHROPIC_API_KEY=sk-ant-...
 npm start
 # abre http://localhost:3000

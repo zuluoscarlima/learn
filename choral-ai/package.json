@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
+    "setup:lilypond": "node scripts/setup-lilypond.js",
     "test:lily": "node scripts/test-lily.js"
   },
   "engines": {

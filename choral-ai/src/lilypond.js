@@ -4,10 +4,27 @@ import { execFile } from 'node:child_process';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 import { VOICE_NAMES } from './schema.js';
 
 const execFileAsync = promisify(execFile);
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// Binario instalado por `npm run setup:lilypond` (sin tocar el PATH).
+const VENDOR_LILYPOND = path.join(
+  __dirname,
+  '..',
+  'vendor',
+  'lilypond',
+  'bin',
+  'lilypond',
+);
+
+// Usa el binario vendored si existe; si no, busca `lilypond` en el PATH.
+function lilypondBin() {
+  return existsSync(VENDOR_LILYPOND) ? VENDOR_LILYPOND : 'lilypond';
+}
 
 // --- Traducción de una nota abstracta a notación LilyPond absoluta ---
 // LilyPond absoluto: `c` = C3; cada ' sube una octava, cada , la baja.
@@ -102,7 +119,7 @@ ${sopWords}
 // ¿Está disponible el binario lilypond?
 export async function hasLilyPond() {
   try {
-    await execFileAsync('lilypond', ['--version']);
+    await execFileAsync(lilypondBin(), ['--version']);
     return true;
   } catch {
     return false;
@@ -130,7 +147,7 @@ export async function render(comp, outDir, baseName = 'piece') {
 
   const outBase = path.join(outDir, baseName);
   // -dno-point-and-click hace el PDF más limpio y reproducible.
-  await execFileAsync('lilypond', [
+  await execFileAsync(lilypondBin(), [
     '-dno-point-and-click',
     '-o',
     outBase,
