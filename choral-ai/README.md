@@ -32,7 +32,7 @@ src/lilypond.js JSON -> .ly -> PDF + MIDI
   `vendor/lilypond/` y la app lo detecta sola:
 
   ```bash
-  npm run setup:lilypond     # Linux x86_64 y macOS
+  npm run setup:lilypond     # Linux x86_64, macOS y Windows 10/11
   ```
 
   Alternativas: `sudo apt-get install -y lilypond` (Debian/Ubuntu),

@@ -23,7 +23,15 @@ function assetFor() {
   if (platform === 'darwin') {
     return `lilypond-${VERSION}-darwin-x86_64.tar.gz`; // funciona en Apple Silicon vía Rosetta
   }
-  return null; // Windows u otros: instalación manual
+  if (platform === 'win32') {
+    return `lilypond-${VERSION}-mingw-x86_64.zip`;
+  }
+  return null;
+}
+
+// Nombre del ejecutable según la plataforma.
+function binName() {
+  return process.platform === 'win32' ? 'lilypond.exe' : 'lilypond';
 }
 
 function has(cmd) {
@@ -56,14 +64,13 @@ async function main() {
   if (!asset) {
     console.error(
       `\nPlataforma "${process.platform}" no soportada por este instalador automático.\n` +
-        'En Windows, descarga el instalador desde https://lilypond.org/download.html\n' +
-        'o usa WSL/Homebrew según tu sistema.\n',
+        'Descarga LilyPond desde https://lilypond.org/download.html\n',
     );
     process.exit(1);
   }
 
   const destDir = path.join(ROOT, 'vendor', 'lilypond');
-  const binPath = path.join(destDir, 'bin', 'lilypond');
+  const binPath = path.join(destDir, 'bin', binName());
 
   if (existsSync(binPath)) {
     console.log(`LilyPond ya está instalado en ${binPath}`);
@@ -81,8 +88,9 @@ async function main() {
 
   console.log('Extrayendo…');
   await mkdir(destDir, { recursive: true });
-  // --strip-components=1 deja el contenido directo en vendor/lilypond/
-  await execFileAsync('tar', ['xzf', tmp, '-C', destDir, '--strip-components=1']);
+  // `tar -xf` autodetecta gzip; en Windows 10+ el tar incluido (bsdtar) también
+  // extrae ZIP. --strip-components=1 deja el contenido directo en vendor/lilypond/.
+  await execFileAsync('tar', ['-xf', tmp, '-C', destDir, '--strip-components=1']);
   await rm(tmp, { force: true });
 
   await access(binPath);

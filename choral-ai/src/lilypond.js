@@ -12,13 +12,14 @@ const execFileAsync = promisify(execFile);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // Binario instalado por `npm run setup:lilypond` (sin tocar el PATH).
+const LILY_EXE = process.platform === 'win32' ? 'lilypond.exe' : 'lilypond';
 const VENDOR_LILYPOND = path.join(
   __dirname,
   '..',
   'vendor',
   'lilypond',
   'bin',
-  'lilypond',
+  LILY_EXE,
 );
 
 // Usa el binario vendored si existe; si no, busca `lilypond` en el PATH.
