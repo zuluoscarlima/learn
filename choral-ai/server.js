@@ -4,6 +4,7 @@ import { randomUUID } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { composeChoral } from './src/compose.js';
+import { planHarmony } from './src/harmony.js';
 import { render, hasLilyPond } from './src/lilypond.js';
 import { resolveVoicing, voicingOptions, DEFAULT_VOICING } from './src/voicings.js';
 import { resolveTexture, textureOptions, DEFAULT_TEXTURE } from './src/textures.js';
@@ -42,7 +43,9 @@ app.post('/api/compose', async (req, res) => {
     const parts = resolveVoicing(params.voicing || DEFAULT_VOICING);
     const texture = resolveTexture(params.texture || DEFAULT_TEXTURE);
 
-    const composition = await composeChoral(params, parts, texture);
+    // Fase 1: plan armónico. Fase 2: realización de las voces sobre él.
+    const harmony = await planHarmony(params);
+    const composition = await composeChoral(params, parts, texture, harmony.text);
 
     const id = randomUUID();
     const outDir = path.join(OUTPUT_DIR, id);
@@ -53,6 +56,7 @@ app.post('/api/compose', async (req, res) => {
       composition,
       voices: parts.map((p) => p.name),
       texture: texture.label,
+      harmony: { progression: harmony.chords.map((c) => c.roman), cadence: harmony.cadence },
       pdfUrl: url(result.pdfPath),
       midiUrl: url(result.midiPath),
       lyUrl: url(result.lyPath),

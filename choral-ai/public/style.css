@@ -97,6 +97,12 @@ button:disabled { opacity: 0.6; cursor: progress; }
 section#result { margin-top: 1.5rem; }
 section#result h2 { margin-bottom: 0.5rem; }
 
+.harmony {
+  color: var(--muted);
+  font-style: italic;
+  margin: 0.2rem 0 0.8rem;
+}
+
 .downloads { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
 .downloads a {
   color: var(--accent);

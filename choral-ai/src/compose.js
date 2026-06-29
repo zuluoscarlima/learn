@@ -1,36 +1,49 @@
-// Integración con Claude: genera una pieza coral (N voces) como JSON estructurado.
-import Anthropic from '@anthropic-ai/sdk';
+// Fase 2 del proceso compositivo: realización de las voces sobre el plan armónico.
+import { getClient, extractJson } from './llm.js';
 import { COMPOSITION_SCHEMA, validateComposition } from './schema.js';
 
 const MODEL = 'claude-opus-4-8';
 
-const SYSTEM_PROMPT = `Eres un compositor coral experto. Compones música vocal
-con conducción de voces correcta y de calidad de concierto, para el conjunto de
-voces que se te indique (dúos, tríos, SATB, SSAATTBB, doble coro, voces iguales,
-etc.).
+const SYSTEM_PROMPT = `Eres un compositor coral experto. Realizas las voces sobre un
+plan armónico dado, con conducción de voces impecable y melodías cantábiles, para
+el conjunto de voces y la textura solicitados.
 
-Reglas musicales que DEBES respetar:
-- Compón EXACTAMENTE las voces solicitadas, en el mismo orden y con los mismos
-  nombres que se indican, y mantén cada voz dentro de su tesitura.
-- Cada voz debe sumar exactamente los compases pedidos en el compás indicado.
-  Para cada compás, las duraciones de cada voz deben completar el compás sin
-  exceso ni defecto.
-- Armoniza siguiendo la tonalidad y el modo dados. Usa progresiones funcionales y
-  termina con una cadencia clara (típicamente V–I / V–i).
-- Conducción de voces: prefiere movimiento por grados conjuntos, evita quintas y
-  octavas paralelas entre voces, y evita cruces de voces innecesarios.
-- Respeta la TEXTURA o técnica solicitada (homofonía, contrapunto, canon, fuga…);
-  es la que gobierna cómo se relacionan las voces entre sí.
-- Si hay letra, distribúyela en sílabas sobre las notas (campo "lyric"); en
-  textura homofónica todas las voces comparten las mismas sílabas. En doble coro,
-  los dos coros pueden dialogar (antifonía).
-- Las alturas se expresan de forma abstracta: step (A-G), alter (-1 bemol,
-  0 natural, 1 sostenido), octave (octava científica), duration (denominador:
-  4=negra, 8=corchea...) y dotted (puntillo). Usa rest=true para silencios.
+PROCESO Y REGLAS (síguelas estrictamente):
+
+1. Adherencia al plan armónico:
+   - En cada compás, las notas de los TIEMPOS FUERTES de todas las voces deben
+     pertenecer al acorde indicado para ese compás.
+   - El bajo canta la nota de bajo indicada (fundamental o la nota de la inversión).
+   - Cubre entre todas las voces las notas del acorde (no dupliques en exceso la
+     sensible ni la séptima; resuelve la sensible ascendiendo a la tónica y la
+     séptima descendiendo por grado conjunto).
+
+2. Tratamiento de las disonancias (clave: NADA de segundas sin resolver):
+   - Las notas ajenas al acorde (de paso, bordaduras, apoyaturas, retardos) solo
+     en tiempos DÉBILES, SIEMPRE aproximadas y abandonadas por grado conjunto, y
+     resueltas a una nota del acorde.
+   - Los retardos resuelven DESCENDIENDO por grado conjunto al tiempo siguiente.
+   - En los tiempos fuertes, entre voces deben sonar consonancias (3as, 5as, 6as,
+     8as, unísonos); evita 2as, 7as y tritones sin preparar ni resolver.
+   - Evita quintas y octavas paralelas y directas; prefiere movimiento contrario u oblicuo.
+
+3. Melodía (que sea MELÓDICA, no relleno):
+   - Cada voz es una línea cantábile con dirección y un único clímax por frase.
+   - Movimiento mayoritariamente por grados conjuntos; los saltos (especialmente
+     los grandes) se resuelven por grado conjunto en dirección contraria.
+   - Evita notas repetidas estáticas, giros sin sentido y ámbitos demasiado amplios.
+   - Encamina cada frase hacia la cadencia; el final debe sonar conclusivo.
+
+4. Respeta la TEXTURA solicitada (homofonía, contrapunto, canon, fuga…): es la que
+   gobierna la independencia rítmica y la relación entre las voces, pero SIEMPRE
+   sobre el plan armónico y con las disonancias resueltas.
+
+5. Cada voz debe cuadrar exactamente los compases pedidos en el compás indicado, y
+   permanecer dentro de su tesitura. Usa silencios para entradas/finales escalonados.
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;
 
-function buildUserPrompt(params, parts, texture) {
+function buildUserPrompt(params, parts, texture, harmonyText) {
   const {
     theme,
     lyrics,
@@ -42,11 +55,11 @@ function buildUserPrompt(params, parts, texture) {
   } = params;
 
   const voiceList = parts
-    .map((p) => `  ${parts.indexOf(p) + 1}. ${p.name} (tesitura ${p.low}–${p.high})`)
+    .map((p, i) => `  ${i + 1}. ${p.name} (tesitura ${p.low}–${p.high})`)
     .join('\n');
 
   const lines = [
-    `Compón una pieza coral con estas características:`,
+    `Realiza las voces de una pieza coral sobre el plan armónico dado:`,
     `- Tonalidad: ${key} ${mode === 'minor' ? 'menor' : 'mayor'}`,
     `- Compás: ${timeSignature}`,
     `- Tempo: ${tempo} (negra = bpm)`,
@@ -61,6 +74,9 @@ function buildUserPrompt(params, parts, texture) {
   } else {
     lines.push(`- Sin letra: usa una vocalización (p. ej. "Ah") o silabea con "la".`);
   }
+  if (harmonyText) {
+    lines.push(`\nPLAN ARMÓNICO (un acorde por compás — respétalo):\n${harmonyText}`);
+  }
   lines.push(
     `\nDevuelve un array "voices" con EXACTAMENTE ${parts.length} voces, en ese ` +
       `orden y con esos nombres. Cada voz debe sumar ${measures} compases en ${timeSignature}.`,
@@ -68,30 +84,9 @@ function buildUserPrompt(params, parts, texture) {
   return lines.join('\n');
 }
 
-// Extrae el JSON de la respuesta del SDK, tolerando structured outputs o texto.
-function extractJson(message) {
-  if (message.parsed_output) return message.parsed_output;
-  for (const block of message.content) {
-    if (block.type === 'text') {
-      const text = block.text.trim();
-      try {
-        return JSON.parse(text);
-      } catch {
-        const match = text.match(/\{[\s\S]*\}/);
-        if (match) return JSON.parse(match[0]);
-      }
-    }
-  }
-  throw new Error('No se pudo extraer JSON de la respuesta del modelo.');
-}
-
-// Genera la composición. `parts` es la lista de voces resuelta del voicing.
-// Devuelve el objeto JSON validado.
-export async function composeChoral(params, parts, texture) {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    throw new Error('Falta ANTHROPIC_API_KEY en el entorno.');
-  }
-  const client = new Anthropic();
+// Realiza las voces sobre el plan armónico. Devuelve el objeto JSON validado.
+export async function composeChoral(params, parts, texture, harmonyText) {
+  const client = getClient();
 
   const stream = client.messages.stream({
     model: MODEL,
@@ -102,7 +97,9 @@ export async function composeChoral(params, parts, texture) {
       format: { type: 'json_schema', schema: COMPOSITION_SCHEMA },
     },
     system: SYSTEM_PROMPT,
-    messages: [{ role: 'user', content: buildUserPrompt(params, parts, texture) }],
+    messages: [
+      { role: 'user', content: buildUserPrompt(params, parts, texture, harmonyText) },
+    ],
   });
 
   const message = await stream.finalMessage();

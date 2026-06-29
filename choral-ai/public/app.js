@@ -42,13 +42,22 @@ form.addEventListener('submit', async (e) => {
 });
 
 function renderResult(payload) {
-  const { composition, pdfUrl, midiUrl, lyUrl, voices, texture } = payload;
+  const { composition, pdfUrl, midiUrl, lyUrl, voices, texture, harmony } = payload;
   const title = composition.title || 'Pieza coral';
   const bits = [];
   if (texture) bits.push(texture);
   if (voices && voices.length) bits.push(voices.join(', '));
   const subtitle = bits.length ? ` · ${bits.join(' · ')}` : '';
   document.getElementById('result-title').textContent = title + subtitle;
+
+  const harmonyEl = document.getElementById('harmony');
+  if (harmony && harmony.progression && harmony.progression.length) {
+    const prog = harmony.progression.join(' · ');
+    const cad = harmony.cadence ? ` — cadencia: ${harmony.cadence}` : '';
+    harmonyEl.textContent = `Plan armónico: ${prog}${cad}`;
+  } else {
+    harmonyEl.textContent = '';
+  }
 
   const downloads = document.getElementById('downloads');
   downloads.innerHTML = '';
