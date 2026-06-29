@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Choral AI · Composición coral con IA</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Reproductor MIDI en el navegador (con soundfont y visualizador) -->
+    <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.77,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>
+  </head>
+  <body>
+    <header>
+      <h1>🎼 Choral AI</h1>
+      <p>Composición coral SATB con IA · partitura PDF + MIDI</p>
+    </header>
+
+    <main>
+      <form id="compose-form">
+        <div class="row">
+          <label>
+            Tema / carácter
+            <input name="theme" type="text" placeholder="Ej.: canto sereno de despedida" />
+          </label>
+        </div>
+
+        <label>
+          Letra (opcional)
+          <textarea name="lyrics" rows="3" placeholder="Una sílaba por nota se distribuye automáticamente"></textarea>
+        </label>
+
+        <div class="grid">
+          <label>
+            Tónica
+            <select name="key">
+              <option>C</option><option>G</option><option>D</option><option>A</option>
+              <option>E</option><option>B</option><option>F</option>
+            </select>
+          </label>
+          <label>
+            Modo
+            <select name="mode">
+              <option value="major">Mayor</option>
+              <option value="minor">Menor</option>
+            </select>
+          </label>
+          <label>
+            Compás
+            <select name="timeSignature">
+              <option>4/4</option><option>3/4</option><option>2/4</option><option>6/8</option>
+            </select>
+          </label>
+          <label>
+            Tempo (bpm)
+            <input name="tempo" type="number" value="72" min="30" max="200" />
+          </label>
+          <label>
+            Compases
+            <input name="measures" type="number" value="8" min="2" max="32" />
+          </label>
+        </div>
+
+        <button type="submit" id="submit-btn">Componer</button>
+      </form>
+
+      <p id="status" class="status" hidden></p>
+
+      <section id="result" hidden>
+        <h2 id="result-title"></h2>
+        <div class="downloads" id="downloads"></div>
+
+        <h3>Reproducción (MIDI)</h3>
+        <midi-player id="player" sound-font visualizer="#vis"></midi-player>
+        <midi-visualizer id="vis" type="staff"></midi-visualizer>
+
+        <h3>Partitura (PDF)</h3>
+        <iframe id="pdf" title="Partitura PDF"></iframe>
+      </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

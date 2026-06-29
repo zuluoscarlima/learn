@@ -1,0 +1,17 @@
+{
+  "name": "choral-ai",
+  "version": "0.1.0",
+  "description": "Composición coral SATB con IA (Claude) renderizada a partitura PDF y MIDI con LilyPond",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test:lily": "node scripts/test-lily.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.69.0",
+    "express": "^5.1.0"
+  }
+}

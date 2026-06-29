@@ -1,0 +1,112 @@
+:root {
+  --bg: #14171c;
+  --panel: #1d2128;
+  --ink: #e8e6e0;
+  --muted: #9aa0aa;
+  --accent: #c8794f;
+  --accent-ink: #fff;
+  --border: #2c313a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+header {
+  padding: 2rem 1.5rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+header h1 { margin: 0; font-size: 2.2rem; }
+header p { margin: 0.4rem 0 0; color: var(--muted); }
+
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+form {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+input, select, textarea {
+  font: inherit;
+  background: #11141a;
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+}
+textarea { resize: vertical; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.85rem;
+}
+
+button {
+  font: inherit;
+  font-weight: bold;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  align-self: flex-start;
+}
+button:disabled { opacity: 0.6; cursor: progress; }
+
+.status {
+  margin: 1rem 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.status.warn { border-color: #8a6d3b; color: #f0c674; }
+.status.error { border-color: #a3403a; color: #f08c84; }
+
+section#result { margin-top: 1.5rem; }
+section#result h2 { margin-bottom: 0.5rem; }
+
+.downloads { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.downloads a {
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.7rem;
+}
+.downloads a:hover { background: var(--panel); }
+
+midi-player, midi-visualizer { width: 100%; display: block; margin-bottom: 1rem; }
+
+iframe#pdf {
+  width: 100%;
+  height: 600px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+}
