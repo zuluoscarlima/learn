@@ -110,11 +110,13 @@ Reglas:
   tónica. Usa I, ii, iii, IV, V, vi y la dominante con séptima (V7) para reforzar la
   dirección; puedes emplear alguna dominante secundaria.
 - Diseña tensión creciente hacia el final.
-- Cadencia FINAL: auténtica perfecta convincente (V o V7 → I/i). Evita terminar en
-  semicadencia.
+- Cadencia FINAL: auténtica perfecta — penúltimo acorde V o V7 y último I/i, ambos
+  en estado fundamental. Para reforzarla puedes precederla con el 6/4 CADENCIAL
+  (tónica en 2ª inversión sobre tiempo fuerte): I6/4 → V(7) → I/i. Evita terminar
+  en semicadencia.
 - La cadencia auténtica perfecta NO debe aparecer en mitad de la pieza: resérvala
   para el final. En el interior usa semicadencias (reposo en V), cadencias rotas
-  (V→vi) o evitadas para mantener el discurso.
+  (V→vi) o evitadas para mantener el discurso; la cadencia rota nunca como final.
 - Bajo melódico: usa inversiones (acordes de sexta, y de cuarta y sexta de paso)
   para que el bajo se mueva por grados conjuntos en lugar de saltar siempre.
 - Procura un esquema que evite quintas y octavas paralelas; en el paso IV→V (sin

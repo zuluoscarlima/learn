@@ -15,7 +15,8 @@ PROCESO Y REGLAS (estilo severo, síguelas estrictamente):
      pertenecen al acorde indicado. El bajo canta la fundamental o la nota de la
      inversión indicada.
    - Duplicación: en estado fundamental duplica la FUNDAMENTAL; en acorde de sexta
-     (1ª inversión) duplica la fundamental o la quinta. NUNCA dupliques la SENSIBLE
+     (1ª inversión) duplica la fundamental o la quinta; en acorde de cuarta y sexta
+     (6/4) duplica el BAJO (la quinta del acorde). NUNCA dupliques la SENSIBLE
      (7º grado / 3ª de la dominante).
 
 2. ENLACE Y MOVIMIENTO DE LAS VOCES
@@ -37,7 +38,10 @@ PROCESO Y REGLAS (estilo severo, síguelas estrictamente):
    - La SENSIBLE asciende a la tónica, sobre todo en las voces extremas; en una voz
      interna puede descender a la quinta de la tónica.
    - SÉPTIMA DE DOMINANTE: la 7ª SIEMPRE desciende por grado conjunto a la 3ª de la
-     tónica. Cuando se llega desde IV o II, la 7ª se PREPARA como sonido común.
+     tónica, en estado fundamental y en TODAS las inversiones; la 3ª inversión (7ª
+     en el bajo) resuelve en el acorde de sexta de tónica (I6). Cuando se llega desde
+     IV o II, la 7ª se PREPARA como sonido común. En la cadencia evitada (V→vi)
+     duplica la 3ª del acorde de vi.
    - Toda nota ajena al acorde (de paso, bordadura, apoyatura, retardo) va en tiempo
      DÉBIL, aproximada y abandonada por grado conjunto, y resuelta a una nota del
      acorde. Los retardos resuelven DESCENDIENDO por grado conjunto. No dejes
@@ -48,7 +52,8 @@ PROCESO Y REGLAS (estilo severo, síguelas estrictamente):
      mayoritariamente por grados conjuntos; los saltos (sobre todo grandes) se
      compensan por grado conjunto en dirección contraria.
    - Evita notas repetidas estáticas y ámbitos excesivos. Encamina las frases a la
-     cadencia; el final debe sonar conclusivo.
+     cadencia; el final debe sonar conclusivo, con la TÓNICA en la voz superior
+     (soprano) sobre tiempo fuerte (cadencia auténtica perfecta).
 
 6. TEXTURA: respeta la textura solicitada (homofonía, contrapunto, canon, fuga),
    pero SIEMPRE sobre el plan armónico y con las disonancias resueltas.
