@@ -24,10 +24,15 @@ sucesión de ACORDES POR CUARTAS (superposición de intervalos de cuarta), de
 carácter NO funcional.
 
 Reglas:
-- Cada acorde es una estructura por cuartas: usa las calidades "quartal3" (tres
-  sonidos), "quartal4" (cuatro) o "quartal5" (cinco). El de CINCO sonidos tiene
-  sabor PENTÁFONO (contiene una escala pentatónica) — úsalo para color abierto.
-  inversion = 0 siempre (la disposición la decide la fase de realización).
+- Cada acorde es una estructura por cuartas. Calidades disponibles:
+  · quartal3 (tres sonidos, cuartas justa-justa),
+  · quartal4 (cuatro), quartal5 (cinco; sabor PENTÁFONO, color abierto),
+  · quartal3ja (justa-aumentada) y quartal3aj (aumentada-justa): acordes de tres
+    sonidos con UNA cuarta aumentada. Úsalos para dar variedad y para encajar en un
+    modo (las estructuras de solo cuartas justas son muy cromáticas).
+- INVERSIONES: puedes usar inversion 0, 1 o 2 para variar el bajo, romper la
+  monotonía de los intervalos uniformes y exponer la QUINTA JUSTA resonante (añade
+  color). Alterna posiciones a lo largo de la pieza.
 - AMBIGÜEDAD: estos acordes carecen de fundamental real (cualquier nota puede
   funcionar como tal), por lo que la "root" que indiques es solo una REFERENCIA. El
   centro tonal no lo fija el bajo, sino la línea melódica más activa (fase 2).
@@ -52,6 +57,10 @@ REGLAS (estilo cuartal, síguelas estrictamente):
      se pueda; evita disponerlos por terceras (sonaría tonal) y evita que el acorde
      suene como oncena o trecena tonal.
    - En los tiempos fuertes suenan las notas del acorde por cuartas indicado.
+   - DISPOSICIONES ABIERTAS y variadas para más expresividad; aprovecha las
+     inversiones para que aflore la QUINTA JUSTA resonante (da color). Una segunda
+     mayor resultante puede actuar como sonido añadido. Evita la monotonía de
+     mantener siempre la misma disposición uniforme de cuartas.
 
 2. ARMONÍA NO FUNCIONAL
    - No hay sensible que resuelva ni cadencias V–I. El discurso es modal/estático o
