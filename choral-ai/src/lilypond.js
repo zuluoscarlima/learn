@@ -7,6 +7,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
+import { metersOf } from './schema.js';
 
 const execFileAsync = promisify(execFile);
 
@@ -62,6 +63,15 @@ function timeDirective(timeSignature) {
     return `\\compoundMeter #'((${groups.join(' ')} ${den}))`;
   }
   return `\\time ${num}/${den}`;
+}
+
+// Skip (silencio invisible) que rellena EXACTAMENTE un compás del compás dado.
+// La duración de un compás num/den como fracción de redonda es num/den (los
+// términos aditivos se suman). P. ej. "3/4" -> s1*3/4; "2+3+3/8" -> s1*8/8.
+function measureSpacer(meter) {
+  const [numStr, den] = String(meter).split('/');
+  const num = numStr.split('+').reduce((s, x) => s + Number(x), 0);
+  return `s1*${num}/${den}`;
 }
 
 // Notas de una voz. Los MELISMAS (una sílaba sostenida sobre varias notas: una
@@ -127,7 +137,19 @@ export function jsonToLily(comp, parts = []) {
   const mode = KEY_MODE[comp.mode] || '\\major';
   const title = (comp.title || 'Pieza coral').replace(/"/g, '\\"');
 
-  const global = `global = {
+  // ¿Métrica cambiante? (comp.meters con compases distintos por bar). En ese
+  // caso, `global` define la sucesión de compases (directiva + skip por bar) y
+  // corre en PARALELO con cada voz; las voces no incluyen \time.
+  const list = metersOf(comp);
+  const changing = Array.isArray(comp.meters) && comp.meters.length > 0;
+
+  const global = changing
+    ? `global = {
+  \\key ${key} ${mode}
+  \\tempo 4 = ${comp.tempo}
+  ${list.map((m) => `${timeDirective(m)} ${measureSpacer(m)}`).join('\n  ')}
+}`
+    : `global = {
   \\key ${key} ${mode}
   ${timeDirective(comp.timeSignature)}
   \\tempo 4 = ${comp.tempo}
@@ -143,15 +165,20 @@ export function jsonToLily(comp, parts = []) {
     const name = (part.name || voice.name || `Voz ${i + 1}`).replace(/"/g, '\\"');
     const lyr = lyricsToLily(voice.notes);
 
-    defs.push(`music${L} = { \\global \\clef "${clef}" ${voiceToLily(voice.notes)} }`);
+    // Con métrica cambiante, \global va en paralelo a la voz (no dentro de ella).
+    const inlineGlobal = changing ? '' : '\\global ';
+    defs.push(`music${L} = { ${inlineGlobal}\\clef "${clef}" ${voiceToLily(voice.notes)} }`);
     if (lyr) defs.push(`words${L} = \\lyricmode { ${lyr} }`);
 
     const lyricsLine = lyr
       ? `\n    \\new Lyrics \\lyricsto "v${L}" \\words${L}`
       : '';
+    const voiceBody = changing
+      ? `\\global \\new Voice = "v${L}" { \\music${L} }`
+      : `\\new Voice = "v${L}" { \\music${L} }`;
     staves.push(
       `    \\new Staff \\with { instrumentName = "${name} " } <<\n` +
-        `      \\new Voice = "v${L}" { \\music${L} }\n` +
+        `      ${voiceBody}\n` +
         `    >>${lyricsLine}`,
     );
   });

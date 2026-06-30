@@ -90,7 +90,16 @@ export const COMPOSITION_SCHEMA = {
     mode: { type: 'string', enum: ['major', 'minor'] },
     timeSignature: {
       type: 'string',
-      description: 'Compás, p. ej. "4/4", "3/4", "6/8"',
+      description: 'Compás por defecto, p. ej. "4/4", "3/4", "6/8", o aditivo "3+3+2/8"',
+    },
+    meters: {
+      type: 'array',
+      items: { type: 'string' },
+      description:
+        'OPCIONAL. Lista de compases, UNO por cada compás (longitud = measures), ' +
+        'para MÉTRICA CAMBIANTE/aditiva estilo báltico (p. ej. ' +
+        '["3/4","2+3+3/8","2+3/8","2+2/8"]). Si se omite, se usa timeSignature para ' +
+        'todos los compases.',
     },
     tempo: { type: 'integer', description: 'Pulsos por minuto (negra = bpm)' },
     measures: { type: 'integer', description: 'Número de compases' },
@@ -123,6 +132,27 @@ export function beatsPerMeasure(timeSignature) {
   return num * (4 / den);
 }
 
+// Lista de compases efectiva: usa comp.meters si viene (métrica cambiante,
+// uno por compás), recortada/rellenada a comp.measures; si no, repite
+// timeSignature en todos los compases. Devuelve siempre un array de longitud
+// comp.measures.
+export function metersOf(comp) {
+  const n = Number(comp.measures) || 0;
+  const def = comp.timeSignature;
+  const list = Array.isArray(comp.meters) && comp.meters.length ? comp.meters : null;
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    out.push(list ? list[i] || list[list.length - 1] || def : def);
+  }
+  return out;
+}
+
+// Total de negras de la pieza, sumando el cuadre de CADA compás. Soporta
+// métrica cambiante (comp.meters) y compases simples/aditivos.
+export function totalBeats(comp) {
+  return metersOf(comp).reduce((sum, m) => sum + (beatsPerMeasure(m) || 0), 0);
+}
+
 // Valida estructura y cuadre rítmico. Lanza Error con mensaje legible.
 // expectedVoices: nº de voces esperado (del voicing elegido); opcional.
 export function validateComposition(comp, expectedVoices) {
@@ -140,6 +170,12 @@ export function validateComposition(comp, expectedVoices) {
 
   const bpm = beatsPerMeasure(comp.timeSignature);
   if (!bpm) throw new Error(`Compás inválido: "${comp.timeSignature}".`);
+  // Si hay métrica cambiante, cada compás de la lista debe ser válido.
+  if (Array.isArray(comp.meters)) {
+    for (const m of comp.meters) {
+      if (!beatsPerMeasure(m)) throw new Error(`Compás inválido en la lista: "${m}".`);
+    }
+  }
 
   comp.voices.forEach((voice, i) => {
     const label = voice.name || `voz ${i + 1}`;
@@ -180,7 +216,8 @@ function beatsToRests(beats) {
 export function repairRhythm(comp) {
   const bpm = beatsPerMeasure(comp.timeSignature);
   if (!bpm || !Array.isArray(comp.voices)) return false;
-  const expected = bpm * comp.measures;
+  // Total esperado = suma del cuadre de cada compás (soporta métrica cambiante).
+  const expected = totalBeats(comp);
   const tol = 1e-6;
   let repaired = false;
 

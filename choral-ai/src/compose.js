@@ -141,9 +141,22 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
   if (harmonyText) {
     lines.push(`\nPLAN ARMÓNICO (un acorde por compás — respétalo):\n${harmonyText}`);
   }
+  // En estilos báltico/impresionista la métrica suele CAMBIAR de compás a compás.
+  if (params.system === 'impresionista' || params.system === 'contemporaneo') {
+    lines.push(
+      `\nMÉTRICA CAMBIANTE (opcional, estilo báltico/impresionista): si la prosodia ` +
+        `del texto lo pide, puedes devolver además un campo "meters" con UN compás ` +
+        `por cada uno de los ${measures} compases (longitud exacta = ${measures}), ` +
+        `mezclando compases simples y aditivos según el acento natural de las ` +
+        `palabras (p. ej. ["3/4","2+3+3/8","2+3/8","2+2/8"]). El primero de la lista ` +
+        `debe coincidir con "timeSignature". Si la pieza mantiene un compás fijo, ` +
+        `omite "meters".`,
+    );
+  }
   lines.push(
     `\nDevuelve un array "voices" con EXACTAMENTE ${parts.length} voces, en ese ` +
-      `orden y con esos nombres. Cada voz debe sumar ${measures} compases en ${timeSignature}.`,
+      `orden y con esos nombres. Cada voz debe sumar ${measures} compases (usando ` +
+      `"meters" si lo incluyes, o "${timeSignature}" en todos si no).`,
   );
   return lines.join('\n');
 }

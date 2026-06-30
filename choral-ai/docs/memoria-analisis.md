@@ -25,8 +25,11 @@ basada en partituras analizadas.
 
 ### Funciones derivadas — ESTADO
 - [x] **Compases aditivos/compuestos** (3+3+2/8, 5/8, 7/8…): `beatsPerMeasure` suma
-      el numerador con '+'; LilyPond `\compoundMeter`. ⚠️ Pendiente: meter MIXTA que
-      CAMBIE por compás (requiere rediseño con barras explícitas).
+      el numerador con '+'; LilyPond `\compoundMeter`.
+- [x] **Métrica MIXTA que cambia por compás**: campo opcional `meters` (un compás por
+      bar). `metersOf`/`totalBeats` en schema.js; render con `global` (directiva +
+      skip por compás) en PARALELO a cada voz en lilypond.js. Verificado: 3/4 →
+      2+3+3/8 → 2+3/8 rebarra y alinea correctamente (PDF+MIDI, sin warnings).
 - [x] **Rol "tarareo/Mm"**: textura `tarareo` (voces en zumbido cerrado "Mm" como
       colchón mientras otras llevan el texto).
 - [x] **Dinámicas ppp y fff** en `DYN`; campo `text` por nota para marcas expresivas
@@ -42,3 +45,23 @@ basada en partituras analizadas.
   reparación rítmica y render). Abordarla primero si se prioriza este estilo.
 - El "Mm" encaja bien con la textura "Solistas sobre coro sostenido" ya existente,
   invirtiendo roles (el coro tararea, una voz lleva el texto).
+
+---
+
+## Obra 2 — Ešenvalds, "Rasa" (MB2236), análisis completo
+
+- **Plantilla**: SSAATTBB a cappella con divisi; "Ar impresionistisku vieglumu".
+- **Métrica**: el compás CAMBIA casi cada bar (3/4, 2+3+3/8, 2+3/8, 2+2/8,
+  2+2+2/8…) siguiendo el acento natural del letón → confirma la necesidad de
+  métrica mixta por compás.
+- **Color vocal**: colchones de tarareo no solo en "Mm" cerrado, sino en vocales
+  abiertas "Oh"/"Oo"/"Ah" que se abren al crecer la dinámica (cresc. poco a poco).
+- **Dinámica/expresión**: ppp de base; "maigi", "Skanīgāk" (más sonoro), "allarg.",
+  "a tempo", "cresc. poco a poco".
+
+### Funciones derivadas — ESTADO
+- [x] **Métrica mixta por compás** (`meters`) — ver Obra 1.
+- [x] **Tarareo con vocal variable** (Mm/Oh/Oo/Ah): textura `tarareo` generalizada
+      para abrir el color de la vocal al crecer hacia el clímax.
+- [x] **Sugerencia de `meters` en el prompt** para sistemas impresionista/contemporáneo
+      (la prosodia del texto guía los cambios de compás).
