@@ -1,6 +1,6 @@
 // Fase 2 del proceso compositivo: realización de las voces sobre el plan armónico.
 import { getClient, extractJson } from './llm.js';
-import { COMPOSITION_SCHEMA, validateComposition } from './schema.js';
+import { COMPOSITION_SCHEMA, validateComposition, repairRhythm } from './schema.js';
 import { QUARTAL_COMPOSE_SYSTEM, CONTEMPORARY_COMPOSE_SYSTEM } from './systems.js';
 
 const MODEL = 'claude-opus-4-8';
@@ -171,5 +171,7 @@ export async function composeChoral(params, parts, texture, harmonyText) {
   const composition = extractJson(message);
   if (!composition.title && params.theme) composition.title = params.theme;
   validateComposition(composition, parts.length);
+  // Repara descuadres rítmicos menores (recorta/rellena) en vez de fallar.
+  repairRhythm(composition);
   return composition;
 }

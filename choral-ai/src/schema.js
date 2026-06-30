@@ -129,20 +129,72 @@ export function validateComposition(comp, expectedVoices) {
   const bpm = beatsPerMeasure(comp.timeSignature);
   if (!bpm) throw new Error(`Compás inválido: "${comp.timeSignature}".`);
 
-  const expectedBeats = bpm * comp.measures;
-  const tolerance = 1e-6;
   comp.voices.forEach((voice, i) => {
     const label = voice.name || `voz ${i + 1}`;
     if (!Array.isArray(voice.notes) || voice.notes.length === 0) {
       throw new Error(`La voz "${label}" está vacía.`);
     }
-    const total = voice.notes.reduce((sum, n) => sum + noteBeats(n), 0);
-    if (Math.abs(total - expectedBeats) > tolerance) {
-      throw new Error(
-        `La voz "${label}" suma ${total} negras pero el compás ${comp.timeSignature} ` +
-          `con ${comp.measures} compases requiere ${expectedBeats}. Los compases no cuadran.`,
-      );
-    }
   });
   return comp;
+}
+
+// Figuras válidas: [negras, denominador, conPuntillo], de mayor a menor.
+const FIGURES = [
+  [4, 1, false], [3, 2, true], [2, 2, false], [1.5, 4, true], [1, 4, false],
+  [0.75, 8, true], [0.5, 8, false], [0.375, 16, true], [0.25, 16, false],
+];
+
+function makeRest(duration, dotted) {
+  return { rest: true, step: 'C', alter: 0, octave: 4, duration, dotted, lyric: '', dynamic: '' };
+}
+
+// Descompone una cantidad de negras en silencios de figuras válidas (greedy).
+function beatsToRests(beats) {
+  const out = [];
+  let rem = Math.round(beats * 4) / 4; // cuantiza a semicorchea (0.25)
+  const tol = 1e-6;
+  while (rem > tol) {
+    const fig = FIGURES.find(([b]) => b <= rem + tol);
+    if (!fig) break;
+    out.push(makeRest(fig[1], fig[2]));
+    rem -= fig[0];
+  }
+  return out;
+}
+
+// Ajusta cada voz para que sume EXACTAMENTE los compases pedidos: recorta lo que
+// sobra y rellena lo que falta con silencios. Evita el fallo "los compases no
+// cuadran" reparando descuadres menores del modelo. Devuelve true si reparó algo.
+export function repairRhythm(comp) {
+  const bpm = beatsPerMeasure(comp.timeSignature);
+  if (!bpm || !Array.isArray(comp.voices)) return false;
+  const expected = bpm * comp.measures;
+  const tol = 1e-6;
+  let repaired = false;
+
+  for (const voice of comp.voices) {
+    if (!Array.isArray(voice.notes)) voice.notes = [];
+    const total = voice.notes.reduce((s, n) => s + noteBeats(n), 0);
+    if (Math.abs(total - expected) <= tol) continue;
+    repaired = true;
+
+    if (total > expected) {
+      // Recorta: conserva notas hasta llegar a expected; rellena el resto.
+      const kept = [];
+      let run = 0;
+      for (const n of voice.notes) {
+        const nb = noteBeats(n);
+        if (run + nb <= expected + tol) {
+          kept.push(n);
+          run += nb;
+        } else break;
+      }
+      if (expected - run > tol) kept.push(...beatsToRests(expected - run));
+      voice.notes = kept;
+    } else {
+      // Alarga: añade silencios al final.
+      voice.notes.push(...beatsToRests(expected - total));
+    }
+  }
+  return repaired;
 }
