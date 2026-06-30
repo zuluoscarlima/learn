@@ -176,7 +176,11 @@ export async function composeChoral(params, parts, texture, harmonyText) {
 
   const stream = client.messages.stream({
     model: MODEL,
-    max_tokens: 32000,
+    // Techo alto de salida (Opus 4.8 admite hasta 128k con streaming). Las
+    // piezas largas a varias voces generan un JSON muy extenso; 64k da margen
+    // para evitar que la respuesta se corte por longitud. Aun así, piezas muy
+    // grandes (32 compases × 4+ voces) pueden necesitar dividirse.
+    max_tokens: 64000,
     // display:summarized hace que el razonamiento fluya en streaming y evita
     // que la conexión se corte por inactividad durante el "pensar".
     thinking: { type: 'adaptive', display: 'summarized' },
