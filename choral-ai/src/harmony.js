@@ -268,10 +268,11 @@ export async function planHarmony(params) {
   const stream = client.messages.stream({
     model: MODEL,
     max_tokens: 5000,
-    // La progresión es una tarea acotada: sin "pensar" y esfuerzo bajo = rápido.
+    // La progresión es una tarea acotada: sin "pensar" para ir rápido. En alta
+    // calidad subimos un poco el esfuerzo del plan armónico.
     thinking: { type: 'disabled' },
     output_config: {
-      effort: 'low',
+      effort: params.quality === 'alta' ? 'medium' : 'low',
       format: { type: 'json_schema', schema: HARMONY_SCHEMA },
     },
     system: systemPrompt,

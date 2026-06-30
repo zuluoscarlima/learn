@@ -10,6 +10,12 @@ export function getClient() {
   return new Anthropic({ timeout: 8 * 60 * 1000, maxRetries: 1 });
 }
 
+// Mapea el nivel de calidad/velocidad elegido al parámetro effort del modelo.
+// Más esfuerzo = más calidad y precisión rítmica, pero más lento.
+export function effortForQuality(quality) {
+  return { rapida: 'low', equilibrada: 'medium', alta: 'high' }[quality] || 'low';
+}
+
 // Extrae el JSON de la respuesta, tolerando structured outputs o texto plano.
 export function extractJson(message) {
   if (message.parsed_output) return message.parsed_output;

@@ -1,5 +1,5 @@
 // Fase 2 del proceso compositivo: realización de las voces sobre el plan armónico.
-import { getClient, extractJson } from './llm.js';
+import { getClient, extractJson, effortForQuality } from './llm.js';
 import { COMPOSITION_SCHEMA, validateComposition, repairRhythm } from './schema.js';
 import {
   QUARTAL_COMPOSE_SYSTEM,
@@ -168,9 +168,9 @@ export async function composeChoral(params, parts, texture, harmonyText) {
     // que la conexión se corte por inactividad durante el "pensar".
     thinking: { type: 'adaptive', display: 'summarized' },
     output_config: {
-      // 'low' prioriza la velocidad; las reglas detalladas del prompt mantienen
-      // la calidad. (Antes 'high'/'medium' eran demasiado lentos.)
-      effort: 'low',
+      // El esfuerzo lo decide el selector de calidad/velocidad: low (rápida),
+      // medium (equilibrada) o high (alta calidad, más lento y preciso).
+      effort: effortForQuality(params.quality),
       format: { type: 'json_schema', schema: COMPOSITION_SCHEMA },
     },
     system: systemPrompt,
