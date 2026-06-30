@@ -5,6 +5,7 @@
 // (deletreo diatónico correcto), para dar a la fase 2 un esqueleto exacto sobre
 // el que realizar las voces.
 import { getClient, extractJson } from './llm.js';
+import { QUARTAL_HARMONY_SYSTEM } from './systems.js';
 
 const MODEL = 'claude-opus-4-8';
 
@@ -22,6 +23,9 @@ const QUALITIES = {
   major7: [[0, 0], [2, 4], [4, 7], [6, 11]],
   half_diminished7: [[0, 0], [2, 3], [4, 6], [6, 10]],
   diminished7: [[0, 0], [2, 3], [4, 6], [6, 9]],
+  // Acordes por cuartas (siglo XX): superposición de cuartas justas.
+  quartal3: [[0, 0], [3, 5], [6, 10]],
+  quartal4: [[0, 0], [3, 5], [6, 10], [9, 15]],
 };
 
 const QUALITY_LABEL = {
@@ -34,6 +38,8 @@ const QUALITY_LABEL = {
   major7: 'maj7',
   half_diminished7: 'ø7',
   diminished7: 'º7',
+  quartal3: ' (4ª·3)',
+  quartal4: ' (4ª·4)',
 };
 
 // Deletrea un grado del acorde con la letra y alteración correctas.
@@ -139,7 +145,14 @@ function buildUserPrompt(params) {
     `- Número de compases: ${measures} (un acorde por compás → ${measures} acordes)`,
   ];
   if (theme) lines.push(`- Carácter: ${theme}`);
-  if (modulate && measures >= 8) {
+  const isQuartal = params.system === 'cuartal';
+  if (isQuartal) {
+    lines.push(
+      '- SISTEMA: armonía POR CUARTAS (no funcional). Usa calidades quartal3/quartal4 ' +
+        'e inversion = 0. Sin cadencias tonales.',
+    );
+  }
+  if (!isQuartal && modulate && measures >= 8) {
     lines.push(
       '- MODULACIÓN (estilo severo): en el desarrollo, modula a una tonalidad VECINA ' +
         '(1er grado de vecindad: relativo, dominante, subdominante o sus relativos). ' +
@@ -151,7 +164,8 @@ function buildUserPrompt(params) {
         'a la tonalidad vigente en cada momento.',
     );
   }
-  lines.push(`\nDevuelve exactamente ${measures} acordes (measure 1..${measures}) y la cadencia final.`);
+  const closing = isQuartal ? 'el gesto de cierre' : 'la cadencia final';
+  lines.push(`\nDevuelve exactamente ${measures} acordes (measure 1..${measures}) y ${closing}.`);
   return lines.join('\n');
 }
 
@@ -170,6 +184,9 @@ export async function planHarmony(params) {
   const client = getClient();
   const measures = params.measures || 8;
 
+  const systemPrompt =
+    params.system === 'cuartal' ? QUARTAL_HARMONY_SYSTEM : SYSTEM_PROMPT;
+
   const stream = client.messages.stream({
     model: MODEL,
     max_tokens: 12000,
@@ -178,7 +195,7 @@ export async function planHarmony(params) {
       effort: 'medium',
       format: { type: 'json_schema', schema: HARMONY_SCHEMA },
     },
-    system: SYSTEM_PROMPT,
+    system: systemPrompt,
     messages: [{ role: 'user', content: buildUserPrompt(params) }],
   });
 

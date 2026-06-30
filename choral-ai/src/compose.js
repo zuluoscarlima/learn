@@ -1,6 +1,7 @@
 // Fase 2 del proceso compositivo: realización de las voces sobre el plan armónico.
 import { getClient, extractJson } from './llm.js';
 import { COMPOSITION_SCHEMA, validateComposition } from './schema.js';
+import { QUARTAL_COMPOSE_SYSTEM } from './systems.js';
 
 const MODEL = 'claude-opus-4-8';
 
@@ -112,6 +113,9 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
 export async function composeChoral(params, parts, texture, harmonyText) {
   const client = getClient();
 
+  const systemPrompt =
+    params.system === 'cuartal' ? QUARTAL_COMPOSE_SYSTEM : SYSTEM_PROMPT;
+
   const stream = client.messages.stream({
     model: MODEL,
     max_tokens: 64000,
@@ -122,7 +126,7 @@ export async function composeChoral(params, parts, texture, harmonyText) {
       effort: 'high',
       format: { type: 'json_schema', schema: COMPOSITION_SCHEMA },
     },
-    system: SYSTEM_PROMPT,
+    system: systemPrompt,
     messages: [
       { role: 'user', content: buildUserPrompt(params, parts, texture, harmonyText) },
     ],

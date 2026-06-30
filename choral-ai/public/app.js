@@ -43,9 +43,10 @@ form.addEventListener('submit', async (e) => {
 });
 
 function renderResult(payload) {
-  const { composition, pdfUrl, midiUrl, lyUrl, voices, texture, harmony } = payload;
+  const { composition, pdfUrl, midiUrl, lyUrl, voices, texture, harmony, system } = payload;
   const title = composition.title || 'Pieza coral';
   const bits = [];
+  if (system) bits.push(system);
   if (texture) bits.push(texture);
   if (voices && voices.length) bits.push(voices.join(', '));
   const subtitle = bits.length ? ` · ${bits.join(' · ')}` : '';
@@ -107,7 +108,12 @@ function fillSelect(elId, items, def) {
   }
 }
 
-// Pobla los desplegables de voces y de textura desde el catálogo del servidor.
+// Pobla los desplegables (sistema, voces, textura) desde el catálogo del servidor.
+fetch('/api/systems')
+  .then((r) => r.json())
+  .then(({ systems, default: def }) => fillSelect('system', systems, def))
+  .catch(() => {});
+
 fetch('/api/voicings')
   .then((r) => r.json())
   .then(({ voicings, default: def }) => fillSelect('voicing', voicings, def))

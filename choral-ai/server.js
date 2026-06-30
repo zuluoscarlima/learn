@@ -8,6 +8,7 @@ import { planHarmony } from './src/harmony.js';
 import { render, hasLilyPond } from './src/lilypond.js';
 import { resolveVoicing, voicingOptions, DEFAULT_VOICING } from './src/voicings.js';
 import { resolveTexture, textureOptions, DEFAULT_TEXTURE } from './src/textures.js';
+import { SYSTEMS, systemOptions, resolveSystem, DEFAULT_SYSTEM } from './src/systems.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = path.join(__dirname, 'output');
@@ -36,10 +37,16 @@ app.get('/api/textures', (_req, res) => {
   res.json({ textures: textureOptions(), default: DEFAULT_TEXTURE });
 });
 
+// Catálogo de sistemas armónicos.
+app.get('/api/systems', (_req, res) => {
+  res.json({ systems: systemOptions(), default: DEFAULT_SYSTEM });
+});
+
 // Genera una composición coral y la renderiza a PDF + MIDI.
 app.post('/api/compose', async (req, res) => {
   try {
     const params = req.body || {};
+    params.system = resolveSystem(params.system);
     const parts = resolveVoicing(params.voicing || DEFAULT_VOICING);
     const texture = resolveTexture(params.texture || DEFAULT_TEXTURE);
 
@@ -55,6 +62,7 @@ app.post('/api/compose', async (req, res) => {
     res.json({
       composition,
       voices: parts.map((p) => p.name),
+      system: SYSTEMS[params.system].label,
       texture: texture.label,
       harmony: { progression: harmony.chords.map((c) => c.roman), cadence: harmony.cadence },
       pdfUrl: url(result.pdfPath),
