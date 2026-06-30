@@ -1,7 +1,11 @@
 // Fase 2 del proceso compositivo: realización de las voces sobre el plan armónico.
 import { getClient, extractJson } from './llm.js';
 import { COMPOSITION_SCHEMA, validateComposition, repairRhythm } from './schema.js';
-import { QUARTAL_COMPOSE_SYSTEM, CONTEMPORARY_COMPOSE_SYSTEM } from './systems.js';
+import {
+  QUARTAL_COMPOSE_SYSTEM,
+  CONTEMPORARY_COMPOSE_SYSTEM,
+  IMPRESSIONIST_COMPOSE_SYSTEM,
+} from './systems.js';
 
 const MODEL = 'claude-opus-4-8';
 
@@ -153,7 +157,9 @@ export async function composeChoral(params, parts, texture, harmonyText) {
       ? QUARTAL_COMPOSE_SYSTEM
       : params.system === 'contemporaneo'
         ? CONTEMPORARY_COMPOSE_SYSTEM
-        : SYSTEM_PROMPT;
+        : params.system === 'impresionista'
+          ? IMPRESSIONIST_COMPOSE_SYSTEM
+          : SYSTEM_PROMPT;
 
   const stream = client.messages.stream({
     model: MODEL,

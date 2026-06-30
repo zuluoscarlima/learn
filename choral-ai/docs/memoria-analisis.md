@@ -23,22 +23,19 @@ basada en partituras analizadas.
 6. **Armonía impresionista**: estática, modal, por color (paralelismos, añadidos),
    sin funcionalidad tonal.
 
-### Funciones derivadas a implementar (pendiente)
-- [ ] **Compases aditivos/compuestos y mixtos** (p. ej. 2+3+3/8, cambios por compás).
-      Requiere: campo de compás por compás (o lista de compases), ajuste de
-      `beatsPerMeasure`, validación/reparación por compás, y agrupación de corcheas
-      en LilyPond (`\set Staff.beatStructure` / `\time 8/8` con `\tuplet`/`beamExceptions`).
-- [ ] **Rol "tarareo/Mm"** por voz: voces de zumbido cerrado (lyric "Mm", notas largas)
-      como colchón. Podría ser un flag de voz o una textura nueva.
-- [ ] **Dinámicas ppp y fff** en el mapa de dinámicas (`DYN`) y matices expresivos
-      (texto bajo la nota, p. ej. "maigi", "dolce").
-- [ ] **Sistema/estética "Impresionista"**: modal, acordes paralelos (planing de
-      tríadas/7as), notas añadidas, armonía estática "ligera" (distinto del
-      contemporáneo pandiatónico ya existente: aquí más paralelismo y modalidad
-      tipo Debussy/báltico).
-- [ ] **Rubato / cambios de tempo** (rall., accel., a tempo) como marcas.
-- [ ] **Divisi explícito** (SI/SII, TI/TII, BI/BII) ya cubierto por voicings;
-      añadir un voicing SSAATTBB con nombres divididos y entradas escalonadas.
+### Funciones derivadas — ESTADO
+- [x] **Compases aditivos/compuestos** (3+3+2/8, 5/8, 7/8…): `beatsPerMeasure` suma
+      el numerador con '+'; LilyPond `\compoundMeter`. ⚠️ Pendiente: meter MIXTA que
+      CAMBIE por compás (requiere rediseño con barras explícitas).
+- [x] **Rol "tarareo/Mm"**: textura `tarareo` (voces en zumbido cerrado "Mm" como
+      colchón mientras otras llevan el texto).
+- [x] **Dinámicas ppp y fff** en `DYN`; campo `text` por nota para marcas expresivas
+      ("maigi", "dolce", "rall.", "a tempo") → markup en cursiva sobre la nota.
+- [x] **Sistema "Impresionista / modal"** (Debussy–báltico): modal, paralelismo
+      (planing), añadidos, ligereza; en el selector "Sistema armónico".
+- [x] **Rubato / cambios de tempo** vía el campo `text` (rall., accel., a tempo).
+- [x] **Divisi SSAATTBB** (voicing `ssaattbb` ya existente) + entradas escalonadas
+      por prompt (texturas tarareo / solistas / contemporáneo).
 
 ### Notas de implementación
 - La métrica aditiva es el cambio más estructural (toca schema, validación,

@@ -5,7 +5,11 @@
 // (deletreo diatónico correcto), para dar a la fase 2 un esqueleto exacto sobre
 // el que realizar las voces.
 import { getClient, extractJson } from './llm.js';
-import { QUARTAL_HARMONY_SYSTEM, CONTEMPORARY_HARMONY_SYSTEM } from './systems.js';
+import {
+  QUARTAL_HARMONY_SYSTEM,
+  CONTEMPORARY_HARMONY_SYSTEM,
+  IMPRESSIONIST_HARMONY_SYSTEM,
+} from './systems.js';
 
 const MODEL = 'claude-opus-4-8';
 
@@ -187,6 +191,8 @@ function buildUserPrompt(params) {
   if (theme) lines.push(`- Carácter: ${theme}`);
   const isQuartal = params.system === 'cuartal';
   const isContemporary = params.system === 'contemporaneo';
+  const isImpressionist = params.system === 'impresionista';
+  const nonFunctional = isQuartal || isContemporary || isImpressionist;
   if (isQuartal) {
     lines.push(
       '- SISTEMA: armonía POR CUARTAS (no funcional). Usa calidades quartal3/quartal4/' +
@@ -198,8 +204,14 @@ function buildUserPrompt(params) {
         'calidades major_add9/minor_add9/major_add6/sus2/sus4 además de major/minor. ' +
         'Ritmo armónico lento, no funcional; reposo final en la tónica con añadidos.',
     );
+  } else if (isImpressionist) {
+    lines.push(
+      '- SISTEMA: armonía IMPRESIONISTA modal (no funcional). Color modal y ' +
+        'PARALELISMO (planing); usa major/minor/major7/minor7/major_add9/sus2/sus4. ' +
+        'Ritmo armónico lento; cierre suspendido, no por dominante.',
+    );
   }
-  if (!isQuartal && !isContemporary && modulate && measures >= 8) {
+  if (!nonFunctional && modulate && measures >= 8) {
     lines.push(
       '- MODULACIÓN (estilo severo): en el desarrollo, modula a una tonalidad VECINA ' +
         '(1er grado de vecindad: relativo, dominante, subdominante o sus relativos). ' +
@@ -222,7 +234,7 @@ function buildUserPrompt(params) {
   }
   const closing = isQuartal
     ? 'el gesto de cierre'
-    : isContemporary
+    : isContemporary || isImpressionist
       ? 'el reposo final'
       : 'la cadencia final';
   lines.push(`\nDevuelve exactamente ${measures} acordes (measure 1..${measures}) y ${closing}.`);
@@ -249,7 +261,9 @@ export async function planHarmony(params) {
       ? QUARTAL_HARMONY_SYSTEM
       : params.system === 'contemporaneo'
         ? CONTEMPORARY_HARMONY_SYSTEM
-        : SYSTEM_PROMPT;
+        : params.system === 'impresionista'
+          ? IMPRESSIONIST_HARMONY_SYSTEM
+          : SYSTEM_PROMPT;
 
   const stream = client.messages.stream({
     model: MODEL,

@@ -40,6 +40,16 @@ export const TEXTURES = {
       'Usa silencios al principio de las voces que entran tarde y al final de la guía, de ' +
       'modo que TODAS las voces cuadren el mismo número de compases.',
   },
+  tarareo: {
+    label: 'Coro con tarareo (Mm)',
+    prompt:
+      'Textura báltica/impresionista de COLCHÓN con tarareo: ALGUNAS voces (p. ej. ' +
+      'las graves o las internas) sostienen un ZUMBIDO CERRADO en "Mm" — notas largas, ' +
+      'sin texto silábico (pon "Mm" en la primera nota y deja vacío el lyric en las ' +
+      'siguientes para sostener) — formando un colchón armónico muy suave. Las DEMÁS ' +
+      'voces llevan el TEXTO de forma más activa por encima. Entradas escalonadas; ' +
+      'dinámicas muy tenues (ppp/pp); las capas se superponen y se intercambian.',
+  },
   solistas_coro: {
     label: 'Solistas sobre coro sostenido',
     prompt:

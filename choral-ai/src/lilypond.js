@@ -36,8 +36,8 @@ function durString(note) {
 
 // Matices y reguladores admitidos → sintaxis LilyPond.
 const DYN = {
-  pp: '\\pp', p: '\\p', mp: '\\mp', mf: '\\mf', f: '\\f', ff: '\\ff',
-  '<': '\\<', '>': '\\>', '!': '\\!',
+  ppp: '\\ppp', pp: '\\pp', p: '\\p', mp: '\\mp', mf: '\\mf', f: '\\f',
+  ff: '\\ff', fff: '\\fff', '<': '\\<', '>': '\\>', '!': '\\!',
 };
 
 function pitchToLily(note) {
@@ -49,7 +49,19 @@ function pitchToLily(note) {
   const marks = n > 0 ? "'".repeat(n) : ','.repeat(-n);
   // Las dinámicas solo se adjuntan a notas reales (no a silencios).
   const dyn = note.dynamic && DYN[note.dynamic] ? DYN[note.dynamic] : '';
-  return name + suffix + marks + durString(note) + dyn;
+  const t = (note.text || '').trim().replace(/"/g, '');
+  const txt = t ? `^\\markup { \\italic "${t}" }` : '';
+  return name + suffix + marks + durString(note) + dyn + txt;
+}
+
+// Directiva de compás: simple (\time 3/4) o aditivo/compuesto (\compoundMeter).
+function timeDirective(timeSignature) {
+  const [num, den] = String(timeSignature).split('/');
+  if (num.includes('+')) {
+    const groups = num.split('+').map((x) => x.trim());
+    return `\\compoundMeter #'((${groups.join(' ')} ${den}))`;
+  }
+  return `\\time ${num}/${den}`;
 }
 
 // Notas de una voz. Los MELISMAS (una sílaba sostenida sobre varias notas: una
@@ -113,12 +125,11 @@ function letterFor(i) {
 export function jsonToLily(comp, parts = []) {
   const key = comp.key.toLowerCase();
   const mode = KEY_MODE[comp.mode] || '\\major';
-  const [num, den] = comp.timeSignature.split('/');
   const title = (comp.title || 'Pieza coral').replace(/"/g, '\\"');
 
   const global = `global = {
   \\key ${key} ${mode}
-  \\time ${num}/${den}
+  ${timeDirective(comp.timeSignature)}
   \\tempo 4 = ${comp.tempo}
 }`;
 

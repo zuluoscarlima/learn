@@ -45,12 +45,19 @@ const noteSchema = {
     dynamic: {
       type: 'string',
       description:
-        'Matiz en esta nota: "" (ninguno), pp, p, mp, mf, f, ff, o reguladores ' +
-        '"<" (crescendo), ">" (diminuendo), "!" (fin de regulador). Úsalo con ' +
-        'MODERACIÓN: solo en inicios de frase, clímax y cierres. No en silencios.',
+        'Matiz en esta nota: "" (ninguno), ppp, pp, p, mp, mf, f, ff, fff, o ' +
+        'reguladores "<" (crescendo), ">" (diminuendo), "!" (fin de regulador). Úsalo ' +
+        'con MODERACIÓN: solo en inicios de frase, clímax y cierres. No en silencios.',
+    },
+    text: {
+      type: 'string',
+      description:
+        'Marca expresiva o de tempo sobre la nota: "" (ninguna), o p. ej. "rall.", ' +
+        '"a tempo", "accel.", "dolce", "maigi". Úsalo MUY rara vez (cambios de ' +
+        'sección/tempo), normalmente "".',
     },
   },
-  required: ['rest', 'step', 'alter', 'octave', 'duration', 'dotted', 'lyric', 'dynamic'],
+  required: ['rest', 'step', 'alter', 'octave', 'duration', 'dotted', 'lyric', 'dynamic', 'text'],
 };
 
 const voiceSchema = {
@@ -103,11 +110,16 @@ export function noteBeats(note) {
   return note.dotted ? base * 1.5 : base;
 }
 
-// Negras por compás según el numerador/denominador del compás.
-// p. ej. 4/4 -> 4, 3/4 -> 3, 6/8 -> 3 (6 corcheas = 3 negras).
+// Negras por compás. Admite compases simples (4/4), de subdivisión (6/8) y
+// ADITIVOS (p. ej. "3+3+2/8" = 8 corcheas = 4 negras; "5/8" = 2.5 negras).
 export function beatsPerMeasure(timeSignature) {
-  const [num, den] = String(timeSignature).split('/').map(Number);
-  if (!num || !den) return null;
+  const [numStr, denStr] = String(timeSignature).split('/');
+  const den = Number(denStr);
+  if (!den) return null;
+  const num = String(numStr)
+    .split('+')
+    .reduce((sum, x) => sum + Number(x), 0);
+  if (!num) return null;
   return num * (4 / den);
 }
 
@@ -145,7 +157,7 @@ const FIGURES = [
 ];
 
 function makeRest(duration, dotted) {
-  return { rest: true, step: 'C', alter: 0, octave: 4, duration, dotted, lyric: '', dynamic: '' };
+  return { rest: true, step: 'C', alter: 0, octave: 4, duration, dotted, lyric: '', dynamic: '', text: '' };
 }
 
 // Descompone una cantidad de negras en silencios de figuras válidas (greedy).
