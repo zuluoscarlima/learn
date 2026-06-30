@@ -141,6 +141,10 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
   if (harmonyText) {
     lines.push(`\nPLAN ARMÓNICO (un acorde por compás — respétalo):\n${harmonyText}`);
   }
+  // Continuación (Opción B): material temático y enlace con la parte 1.
+  if (params.continuation) {
+    lines.push('\n' + params.continuation);
+  }
   // En estilos báltico/impresionista la métrica suele CAMBIAR de compás a compás.
   if (params.system === 'impresionista' || params.system === 'contemporaneo') {
     lines.push(

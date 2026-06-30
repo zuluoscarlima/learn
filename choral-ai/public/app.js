@@ -13,16 +13,31 @@ function setStatus(msg, kind = 'info') {
   statusEl.className = `status ${kind}`;
 }
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
+// Última composición generada (para «Componer continuación»).
+let lastComposition = null;
+
+// Lee los valores actuales del formulario como objeto para la petición.
+function readForm() {
   const data = Object.fromEntries(new FormData(form).entries());
   data.tempo = Number(data.tempo);
   data.measures = Number(data.measures);
   data.modulate = document.getElementById('modulate').checked;
+  return data;
+}
 
+// Envía la petición de composición y pinta el resultado. `data.continueFrom`,
+// si está, hace que la IA compona una continuación coherente de esa pieza.
+async function compose(data) {
+  const continueBtn = document.getElementById('continue-btn');
   submitBtn.disabled = true;
+  if (continueBtn) continueBtn.disabled = true;
   result.hidden = true;
-  setStatus('Componiendo con IA… (suele tardar entre 30 s y 2 min).', 'info');
+  setStatus(
+    data.continueFrom
+      ? 'Componiendo la continuación (parte 2)…'
+      : 'Componiendo con IA… (suele tardar entre 30 s y 2 min).',
+    'info',
+  );
 
   try {
     const res = await fetch('/api/compose', {
@@ -39,11 +54,28 @@ form.addEventListener('submit', async (e) => {
     setStatus('Error: ' + err.message, 'error');
   } finally {
     submitBtn.disabled = false;
+    if (continueBtn) continueBtn.disabled = false;
   }
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  compose(readForm());
+});
+
+// «Componer continuación»: reenvía el formulario actual adjuntando la pieza
+// anterior como contexto, para que la IA encadene una 2ª parte coherente.
+document.getElementById('continue-btn').addEventListener('click', () => {
+  if (!lastComposition) return;
+  const data = readForm();
+  data.continueFrom = lastComposition;
+  compose(data);
 });
 
 function renderResult(payload) {
   const { composition, pdfUrl, midiUrl, lyUrl, voices, texture, harmony, system } = payload;
+  // Recuerda esta pieza para poder pedir una continuación coherente.
+  lastComposition = composition;
   const title = composition.title || 'Pieza coral';
   const bits = [];
   if (system) bits.push(system);

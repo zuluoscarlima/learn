@@ -232,6 +232,15 @@ function buildUserPrompt(params) {
         'a la tonalidad vigente en cada momento.',
     );
   }
+  // Continuación (Opción B): el plan debe partir del final de la parte 1 y
+  // conducir a un cierre conclusivo de toda la obra.
+  if (params.continuation) {
+    lines.push('\n' + params.continuation);
+    lines.push(
+      'Empieza la progresión enlazando con el acorde final de la primera parte y ' +
+        'reserva la cadencia conclusiva para el final de ESTA parte.',
+    );
+  }
   const closing = isQuartal
     ? 'el gesto de cierre'
     : isContemporary || isImpressionist
