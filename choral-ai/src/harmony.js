@@ -24,8 +24,10 @@ const QUALITIES = {
   half_diminished7: [[0, 0], [2, 3], [4, 6], [6, 10]],
   diminished7: [[0, 0], [2, 3], [4, 6], [6, 9]],
   // Acordes por cuartas (siglo XX): superposición de cuartas justas.
+  // El de 5 sonidos tiene sabor pentáfono (contiene una escala pentatónica).
   quartal3: [[0, 0], [3, 5], [6, 10]],
   quartal4: [[0, 0], [3, 5], [6, 10], [9, 15]],
+  quartal5: [[0, 0], [3, 5], [6, 10], [9, 15], [12, 20]],
 };
 
 const QUALITY_LABEL = {
@@ -40,6 +42,7 @@ const QUALITY_LABEL = {
   diminished7: 'º7',
   quartal3: ' (4ª·3)',
   quartal4: ' (4ª·4)',
+  quartal5: ' (4ª·5, pentáfono)',
 };
 
 // Deletrea un grado del acorde con la letra y alteración correctas.

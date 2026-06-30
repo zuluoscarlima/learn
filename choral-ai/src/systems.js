@@ -25,9 +25,13 @@ carácter NO funcional.
 
 Reglas:
 - Cada acorde es una estructura por cuartas: usa las calidades "quartal3" (tres
-  sonidos) o "quartal4" (cuatro sonidos). inversion = 0 siempre (la disposición la
-  decide la fase de realización).
-- Discurso NO funcional: mueve las raíces con libertad (a menudo por grados
+  sonidos), "quartal4" (cuatro) o "quartal5" (cinco). El de CINCO sonidos tiene
+  sabor PENTÁFONO (contiene una escala pentatónica) — úsalo para color abierto.
+  inversion = 0 siempre (la disposición la decide la fase de realización).
+- AMBIGÜEDAD: estos acordes carecen de fundamental real (cualquier nota puede
+  funcionar como tal), por lo que la "root" que indiques es solo una REFERENCIA. El
+  centro tonal no lo fija el bajo, sino la línea melódica más activa (fase 2).
+- Discurso NO funcional: mueve las referencias con libertad (a menudo por grados
   conjuntos, por cuarta o por quinta), SIN cadencias tonales V–I ni sensibles.
 - Mantén coherencia modal (puedes basarte en un modo: dórico, frigio, lidio,
   mixolidio o eólico) y un centro tonal sostenido por permanencia/reiteración, no
@@ -54,7 +58,11 @@ REGLAS (estilo cuartal, síguelas estrictamente):
      por DESPLAZAMIENTO PARALELO (planing) de la estructura por cuartas.
    - Las cuartas y quintas PARALELAS están PERMITIDAS y son idiomáticas (no las evites).
 
-3. MELODÍA Y CONDUCCIÓN
+3. MELODÍA Y CENTRO TONAL
+   - Como los acordes por cuartas son AMBIGUOS (carecen de fundamental), el peso de
+     la referencia tonal recae en la VOZ MÁS ACTIVA (normalmente la superior): haz
+     esa línea melódicamente clara, directa y con perfil definido, para fijar el
+     centro. Las demás voces acompañan con la estructura por cuartas (planing).
    - Líneas cantábiles con dirección y un punto culminante; movimiento
      mayoritariamente por grados conjuntos o por cuartas; evita saltos disonantes
      bruscos. Evita notas repetidas estáticas.
