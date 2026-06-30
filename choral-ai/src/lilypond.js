@@ -52,26 +52,53 @@ function pitchToLily(note) {
   return name + suffix + marks + durString(note) + dyn;
 }
 
+// Notas de una voz. Los MELISMAS (una sílaba sostenida sobre varias notas: una
+// nota con letra seguida de notas sin letra) se ligan con un slur ( ... ), para
+// que \lyricsto alinee una sola sílaba sobre todo el grupo.
 function voiceToLily(notes) {
-  return notes.map(pitchToLily).join(' ');
+  const out = [];
+  let i = 0;
+  while (i < notes.length) {
+    const note = notes[i];
+    if (note.rest) {
+      out.push(pitchToLily(note));
+      i++;
+      continue;
+    }
+    const hasLyric = (note.lyric || '').trim() !== '';
+    if (hasLyric) {
+      // Grupo: esta nota + notas siguientes sin letra (continuación del melisma).
+      let j = i + 1;
+      while (j < notes.length && !notes[j].rest && !(notes[j].lyric || '').trim()) {
+        j++;
+      }
+      const group = notes.slice(i, j).map(pitchToLily);
+      if (group.length > 1) {
+        group[0] += '(';
+        group[group.length - 1] += ')';
+      }
+      out.push(group.join(' '));
+      i = j;
+    } else {
+      // Nota sin letra que no continúa una sílaba (p. ej. voz sin texto): suelta.
+      out.push(pitchToLily(note));
+      i++;
+    }
+  }
+  return out.join(' ');
 }
 
-// Sílabas de una voz para \lyricsto. Se omiten los silencios (LilyPond los
-// salta) y las notas sin texto reciben un "_". Devuelve "" si no hay letra.
+// Sílabas de una voz para \lyricsto: UNA sílaba por nota con texto. Las notas de
+// continuación del melisma (sin letra) se omiten: el slur las absorbe. Devuelve ""
+// si la voz no tiene letra.
 function lyricsToLily(notes) {
   const tokens = [];
-  let any = false;
   for (const n of notes) {
     if (n.rest) continue;
     const syl = (n.lyric || '').trim();
-    if (!syl) {
-      tokens.push('_');
-    } else {
-      any = true;
-      tokens.push('"' + syl.replace(/"/g, '\\"') + '"');
-    }
+    if (syl) tokens.push('"' + syl.replace(/"/g, '\\"') + '"');
   }
-  return any ? tokens.join(' ') : '';
+  return tokens.length ? tokens.join(' ') : '';
 }
 
 const KEY_MODE = { major: '\\major', minor: '\\minor' };
