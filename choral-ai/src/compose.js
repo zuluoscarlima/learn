@@ -43,6 +43,15 @@ PROCESO Y REGLAS (estilo severo, síguelas estrictamente):
      en el bajo) resuelve en el acorde de sexta de tónica (I6). Cuando se llega desde
      IV o II, la 7ª se PREPARA como sonido común. En la cadencia evitada (V→vi)
      duplica la 3ª del acorde de vi.
+   - SÉPTIMA DE SENSIBLE (VII7): resuelve en la tónica con la 3ª DUPLICADA — la
+     sensible asciende a la tónica y la 7ª desciende a la 5ª de la tónica.
+   - SÉPTIMA DEL II GRADO (ii7, predominante): la 7ª va PREPARADA (sonido común desde
+     I/I6/IV/IV6/VI); al seguir V o V7 desciende un semitono; si sigue el 6/4
+     cadencial, permanece fija formando su cuarta.
+   - ACORDE DE NOVENA (V9): la novena desciende por grado conjunto al resolver; las
+     demás voces, como en la séptima de dominante.
+   - Estilo CORAL: prefiere las INVERSIONES de la 7ª de dominante (6/5, 2); evita el
+     V7 en estado fundamental con la 7ª en la voz superior (salvo séptima de paso).
    - Toda nota ajena al acorde (de paso, bordadura, apoyatura, retardo) va en tiempo
      DÉBIL, aproximada y abandonada por grado conjunto, y resuelta a una nota del
      acorde. Los retardos resuelven DESCENDIENDO por grado conjunto. No dejes

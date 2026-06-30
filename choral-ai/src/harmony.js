@@ -23,6 +23,9 @@ const QUALITIES = {
   major7: [[0, 0], [2, 4], [4, 7], [6, 11]],
   half_diminished7: [[0, 0], [2, 3], [4, 6], [6, 10]],
   diminished7: [[0, 0], [2, 3], [4, 6], [6, 9]],
+  // Acorde de novena de dominante (cinco sonidos; solo sobre el V grado).
+  dominant9: [[0, 0], [2, 4], [4, 7], [6, 10], [1, 2]], // novena mayor (C-E-G-B♭-D)
+  dominant9min: [[0, 0], [2, 4], [4, 7], [6, 10], [1, 1]], // novena menor (C-E-G-B♭-D♭)
   // Acordes por cuartas (siglo XX): superposición de cuartas justas.
   // El de 5 sonidos tiene sabor pentáfono (contiene una escala pentatónica).
   quartal3: [[0, 0], [3, 5], [6, 10]], // justa-justa
@@ -49,6 +52,8 @@ const QUALITY_LABEL = {
   major7: 'maj7',
   half_diminished7: 'ø7',
   diminished7: 'º7',
+  dominant9: '9',
+  dominant9min: '7♭9',
   quartal3: ' (4ª·3 J-J)',
   quartal4: ' (4ª·4)',
   quartal5: ' (4ª·5, pentáfono)',
@@ -134,6 +139,11 @@ Reglas:
 - Armonía funcional T–S–D–T. Un acorde por compás, empezando y terminando en la
   tónica. Usa I, ii, iii, IV, V, vi y la dominante con séptima (V7) para reforzar la
   dirección; puedes emplear alguna dominante secundaria.
+- Disonancias funcionales opcionales para más color: séptima de SENSIBLE (VII7,
+  calidad half_diminished7 en modo mayor o diminished7 en menor armónico, función
+  dominante); séptima del II grado (ii7 = minor7, función predominante, con la 7ª
+  preparada); y el acorde de NOVENA de dominante (dominant9 / dominant9min) SOLO
+  sobre el V grado.
 - Diseña tensión creciente hacia el final.
 - Cadencia FINAL: auténtica perfecta — penúltimo acorde V o V7 y último I/i, ambos
   en estado fundamental. Para reforzarla puedes precederla con el 6/4 CADENCIAL
