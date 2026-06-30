@@ -53,6 +53,11 @@ PROCESO Y REGLAS (estilo severo, síguelas estrictamente):
      cadencial, permanece fija formando su cuarta.
    - ACORDE DE NOVENA (V9): la novena desciende por grado conjunto al resolver; las
      demás voces, como en la séptima de dominante.
+   - NAPOLITANA (♭II6): se usa con la 3ª duplicada; el ♭2 (su fundamental) desciende
+     al resolver a V o al 6/4 cadencial.
+   - SEXTA AUMENTADA (italiana/francesa/alemana): la 6ª aumentada se EXPANDE hacia
+     afuera (a la octava de la dominante) y nunca se duplica; resuelve en V o en el
+     6/4 cadencial.
    - Estilo CORAL: prefiere las INVERSIONES de la 7ª de dominante (6/5, 2); evita el
      V7 en estado fundamental con la 7ª en la voz superior (salvo séptima de paso).
    - Toda nota ajena al acorde (de paso, bordadura, apoyatura, retardo) va en tiempo

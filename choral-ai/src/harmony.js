@@ -26,6 +26,7 @@ const QUALITIES = {
   // Acorde de novena de dominante (cinco sonidos; solo sobre el V grado).
   dominant9: [[0, 0], [2, 4], [4, 7], [6, 10], [1, 2]], // novena mayor (C-E-G-B♭-D)
   dominant9min: [[0, 0], [2, 4], [4, 7], [6, 10], [1, 1]], // novena menor (C-E-G-B♭-D♭)
+  dominant7b5: [[0, 0], [2, 4], [4, 6], [6, 10]], // 7ª con 5ª rebajada (C-E-G♭-B♭)
   // Acordes por cuartas (siglo XX): superposición de cuartas justas.
   // El de 5 sonidos tiene sabor pentáfono (contiene una escala pentatónica).
   quartal3: [[0, 0], [3, 5], [6, 10]], // justa-justa
@@ -54,6 +55,7 @@ const QUALITY_LABEL = {
   diminished7: 'º7',
   dominant9: '9',
   dominant9min: '7♭9',
+  dominant7b5: '7♭5',
   quartal3: ' (4ª·3 J-J)',
   quartal4: ' (4ª·4)',
   quartal5: ' (4ª·5, pentáfono)',
@@ -147,6 +149,12 @@ Reglas:
   dominante); séptima del II grado (ii7 = minor7, función predominante, con la 7ª
   preparada); y el acorde de NOVENA de dominante (dominant9 / dominant9min) SOLO
   sobre el V grado.
+- Acordes ALTERADOS cromáticos (uso moderado, color avanzado): NAPOLITANA (tríada
+  mayor sobre el II rebajado = ♭II, normalmente como acorde de sexta ♭II6, función
+  subdominante); tríada AUMENTADA (augmented, #5); acordes de SEXTA AUMENTADA
+  (italiana/francesa/alemana, bajo en el ♭6 — puedes cifrarlos enarmónicamente como
+  una 7ª de dominante o dominant7b5). Todos resuelven en la DOMINANTE (V) o en el
+  6/4 cadencial.
 - Diseña tensión creciente hacia el final.
 - Cadencia FINAL: auténtica perfecta — penúltimo acorde V o V7 y último I/i, ambos
   en estado fundamental. Para reforzarla puedes precederla con el 6/4 CADENCIAL
@@ -201,6 +209,12 @@ function buildUserPrompt(params) {
         'o CROMÁTICA (alterando una voz por semitono, breve y espontánea, con el ' +
         'cromatismo en la MISMA voz para no crear falsas relaciones). AFIRMA el nuevo ' +
         'tono con una cadencia (no termines la modulación en un acorde de sexta). ' +
+        'Para tonos más LEJANOS (2º grado de vecindad), modula por TONOS INTERMEDIOS ' +
+        'vecinos (cada paso a una tonalidad vecina); evita encadenar tres tonos del ' +
+        'mismo modo seguidos (interpón uno del modo contrario). ' +
+        'También puedes usar la modulación ENARMÓNICA: reinterpreta un acorde de ' +
+        'sexta aumentada como séptima de dominante (o una séptima disminuida) para ' +
+        'girar a un tono lejano. ' +
         'Luego REGRESA a la tonalidad de partida para la cadencia FINAL ' +
         '(auténtica perfecta en el tono de partida). Usa los grados (roman) referidos ' +
         'a la tonalidad vigente en cada momento.',
