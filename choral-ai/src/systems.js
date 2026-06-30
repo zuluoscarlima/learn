@@ -126,7 +126,16 @@ REGLAS (estilo contemporáneo, síguelas):
    - Líneas cantábiles, con la voz superior bien perfilada. Ritmo predominantemente
      lento y sostenido (blancas/redondas), salvo que la textura pida líneas floridas.
 
-4. Respeta la textura solicitada, las tesituras y el cuadre de compases. Usa
+4. ARCO Y CIERRE
+   - Construye un ARCO de toda la pieza: comienza suave y con textura ESCASA, crece
+     en densidad (incorporando voces gradualmente) hacia un punto culminante, y
+     recede hacia el final. Usa silencios para las entradas escalonadas.
+   - Cierre SERENO y SOSTENIDO (tipo "Amen" en textos sacros): acorde final largo,
+     homofónico, suave, conclusivo por permanencia (tónica con añadidos).
+   - Resalta las palabras importantes del texto (text painting): melismas o el punto
+     culminante melódico sobre ellas.
+
+5. Respeta la textura solicitada, las tesituras y el cuadre de compases. Usa
    silencios para entradas/finales escalonados.
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;

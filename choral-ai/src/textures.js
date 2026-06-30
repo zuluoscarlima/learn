@@ -43,14 +43,17 @@ export const TEXTURES = {
   solistas_coro: {
     label: 'Solistas sobre coro sostenido',
     prompt:
-      'Estratificación en dos capas (estilo Ešenvalds): la voz (o las dos voces) ' +
-      'SUPERIOR(ES) actúan como SOLISTAS con líneas FLORIDAS, ornamentadas y ' +
-      'melismáticas — ritmos más rápidos y varias notas por sílaba (en un melisma, ' +
-      'pon la sílaba en la primera nota y deja VACÍO el campo lyric en las notas ' +
-      'siguientes) — que flotan por encima. Las voces RESTANTES forman un COLCHÓN ' +
-      'homofónico SOSTENIDO de acordes en notas largas (blancas/redondas), muy suave. ' +
-      'Contrasta claramente las dos velocidades: capa lenta (coro) y capa florida ' +
-      '(solistas). Si hay voces graves, pueden entrar más tarde para abrir el registro.',
+      'Estratificación en dos capas (estilo Ešenvalds). CAPA SOLISTA: la(s) voz(ces) ' +
+      'SUPERIOR(ES) cantan líneas FLORIDAS, ornamentadas y MELISMÁTICAS — ritmos más ' +
+      'rápidos y varias notas por sílaba (en un melisma, pon la sílaba en la primera ' +
+      'nota y deja VACÍO el campo lyric en las notas siguientes) — flotando por encima; ' +
+      'alarga las PALABRAS IMPORTANTES con melismas (text painting). CAPA CORO: las ' +
+      'voces restantes forman un COLCHÓN homofónico SOSTENIDO de acordes en notas ' +
+      'largas (blancas/redondas), muy suave. Contrasta claramente las dos velocidades. ' +
+      'ACUMULACIÓN TEXTURAL: empieza con textura ESCASA (voces agudas + solistas; las ' +
+      'graves en silencio) e incorpora las voces graves GRADUALMENTE para crecer hacia ' +
+      'un clímax, aclarando luego la textura hacia el final (arco de densidad). Usa ' +
+      'silencios para las entradas escalonadas.',
   },
   fuga: {
     label: 'Fuga (exposición)',
