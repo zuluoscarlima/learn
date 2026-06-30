@@ -40,6 +40,18 @@ export const TEXTURES = {
       'Usa silencios al principio de las voces que entran tarde y al final de la guía, de ' +
       'modo que TODAS las voces cuadren el mismo número de compases.',
   },
+  solistas_coro: {
+    label: 'Solistas sobre coro sostenido',
+    prompt:
+      'Estratificación en dos capas (estilo Ešenvalds): la voz (o las dos voces) ' +
+      'SUPERIOR(ES) actúan como SOLISTAS con líneas FLORIDAS, ornamentadas y ' +
+      'melismáticas — ritmos más rápidos y varias notas por sílaba (en un melisma, ' +
+      'pon la sílaba en la primera nota y deja VACÍO el campo lyric en las notas ' +
+      'siguientes) — que flotan por encima. Las voces RESTANTES forman un COLCHÓN ' +
+      'homofónico SOSTENIDO de acordes en notas largas (blancas/redondas), muy suave. ' +
+      'Contrasta claramente las dos velocidades: capa lenta (coro) y capa florida ' +
+      '(solistas). Si hay voces graves, pueden entrar más tarde para abrir el registro.',
+  },
   fuga: {
     label: 'Fuga (exposición)',
     prompt:

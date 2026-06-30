@@ -5,7 +5,7 @@
 // (deletreo diatónico correcto), para dar a la fase 2 un esqueleto exacto sobre
 // el que realizar las voces.
 import { getClient, extractJson } from './llm.js';
-import { QUARTAL_HARMONY_SYSTEM } from './systems.js';
+import { QUARTAL_HARMONY_SYSTEM, CONTEMPORARY_HARMONY_SYSTEM } from './systems.js';
 
 const MODEL = 'claude-opus-4-8';
 
@@ -31,6 +31,12 @@ const QUALITIES = {
   // Acordes de 3 sonidos con una cuarta aumentada (variedad, encaje modal).
   quartal3ja: [[0, 0], [3, 5], [6, 11]], // justa-aumentada (p. ej. C-F-B)
   quartal3aj: [[0, 0], [3, 6], [6, 11]], // aumentada-justa (p. ej. C-F♯-B)
+  // Tríadas con sonidos AÑADIDOS / suspensiones (estilo coral contemporáneo).
+  major_add9: [[0, 0], [2, 4], [4, 7], [1, 2]], // p. ej. C-E-G-D
+  minor_add9: [[0, 0], [2, 3], [4, 7], [1, 2]],
+  major_add6: [[0, 0], [2, 4], [4, 7], [5, 9]], // p. ej. C-E-G-A
+  sus2: [[0, 0], [1, 2], [4, 7]], // p. ej. C-D-G
+  sus4: [[0, 0], [3, 5], [4, 7]], // p. ej. C-F-G
 };
 
 const QUALITY_LABEL = {
@@ -48,6 +54,11 @@ const QUALITY_LABEL = {
   quartal5: ' (4ª·5, pentáfono)',
   quartal3ja: ' (4ª·3 J-A)',
   quartal3aj: ' (4ª·3 A-J)',
+  major_add9: ' add9',
+  minor_add9: 'm add9',
+  major_add6: ' 6',
+  sus2: ' sus2',
+  sus4: ' sus4',
 };
 
 // Deletrea un grado del acorde con la letra y alteración correctas.
@@ -154,13 +165,20 @@ function buildUserPrompt(params) {
   ];
   if (theme) lines.push(`- Carácter: ${theme}`);
   const isQuartal = params.system === 'cuartal';
+  const isContemporary = params.system === 'contemporaneo';
   if (isQuartal) {
     lines.push(
-      '- SISTEMA: armonía POR CUARTAS (no funcional). Usa calidades quartal3/quartal4 ' +
-        'e inversion = 0. Sin cadencias tonales.',
+      '- SISTEMA: armonía POR CUARTAS (no funcional). Usa calidades quartal3/quartal4/' +
+        'quartal5 (y mixtas quartal3ja/quartal3aj). Sin cadencias tonales.',
+    );
+  } else if (isContemporary) {
+    lines.push(
+      '- SISTEMA: armonía CONTEMPORÁNEA pandiatónica (añadidos y suspensiones). Usa ' +
+        'calidades major_add9/minor_add9/major_add6/sus2/sus4 además de major/minor. ' +
+        'Ritmo armónico lento, no funcional; reposo final en la tónica con añadidos.',
     );
   }
-  if (!isQuartal && modulate && measures >= 8) {
+  if (!isQuartal && !isContemporary && modulate && measures >= 8) {
     lines.push(
       '- MODULACIÓN (estilo severo): en el desarrollo, modula a una tonalidad VECINA ' +
         '(1er grado de vecindad: relativo, dominante, subdominante o sus relativos). ' +
@@ -172,7 +190,11 @@ function buildUserPrompt(params) {
         'a la tonalidad vigente en cada momento.',
     );
   }
-  const closing = isQuartal ? 'el gesto de cierre' : 'la cadencia final';
+  const closing = isQuartal
+    ? 'el gesto de cierre'
+    : isContemporary
+      ? 'el reposo final'
+      : 'la cadencia final';
   lines.push(`\nDevuelve exactamente ${measures} acordes (measure 1..${measures}) y ${closing}.`);
   return lines.join('\n');
 }
@@ -193,7 +215,11 @@ export async function planHarmony(params) {
   const measures = params.measures || 8;
 
   const systemPrompt =
-    params.system === 'cuartal' ? QUARTAL_HARMONY_SYSTEM : SYSTEM_PROMPT;
+    params.system === 'cuartal'
+      ? QUARTAL_HARMONY_SYSTEM
+      : params.system === 'contemporaneo'
+        ? CONTEMPORARY_HARMONY_SYSTEM
+        : SYSTEM_PROMPT;
 
   const stream = client.messages.stream({
     model: MODEL,
