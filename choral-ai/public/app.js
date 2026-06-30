@@ -22,7 +22,7 @@ form.addEventListener('submit', async (e) => {
 
   submitBtn.disabled = true;
   result.hidden = true;
-  setStatus('Componiendo con IA… esto puede tardar hasta un minuto.', 'info');
+  setStatus('Componiendo con IA… (suele tardar entre 30 s y 2 min).', 'info');
 
   try {
     const res = await fetch('/api/compose', {

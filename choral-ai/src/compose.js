@@ -118,14 +118,14 @@ export async function composeChoral(params, parts, texture, harmonyText) {
 
   const stream = client.messages.stream({
     model: MODEL,
-    max_tokens: 64000,
+    max_tokens: 32000,
     // display:summarized hace que el razonamiento fluya en streaming y evita
     // que la conexión se corte por inactividad durante el "pensar".
     thinking: { type: 'adaptive', display: 'summarized' },
     output_config: {
-      // 'medium' es bastante más rápido que 'high' y, con las reglas detalladas
-      // del prompt, mantiene una calidad muy alta. (Antes 'high' → muy lento.)
-      effort: 'medium',
+      // 'low' prioriza la velocidad; las reglas detalladas del prompt mantienen
+      // la calidad. (Antes 'high'/'medium' eran demasiado lentos.)
+      effort: 'low',
       format: { type: 'json_schema', schema: COMPOSITION_SCHEMA },
     },
     system: systemPrompt,

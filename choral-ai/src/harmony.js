@@ -189,10 +189,11 @@ export async function planHarmony(params) {
 
   const stream = client.messages.stream({
     model: MODEL,
-    max_tokens: 12000,
-    thinking: { type: 'adaptive', display: 'summarized' },
+    max_tokens: 5000,
+    // La progresión es una tarea acotada: sin "pensar" y esfuerzo bajo = rápido.
+    thinking: { type: 'disabled' },
     output_config: {
-      effort: 'medium',
+      effort: 'low',
       format: { type: 'json_schema', schema: HARMONY_SCHEMA },
     },
     system: systemPrompt,
