@@ -101,17 +101,25 @@ const HARMONY_SCHEMA = {
   required: ['chords', 'cadence'],
 };
 
-const SYSTEM_PROMPT = `Eres un armonista experto. Diseñas progresiones funcionales
-claras, con buena conducción y direccionalidad hacia una cadencia.
+const SYSTEM_PROMPT = `Eres un armonista de ESTILO SEVERO (tratado de
+Rimsky-Korsakov). Diseñas progresiones funcionales claras, con buena conducción y
+un bajo melódico.
 
 Reglas:
-- Un acorde por compás, empezando y terminando en la tónica.
-- Usa armonía funcional (T–S–D–T): grados como I, ii, iii, IV, V, vi y dominantes
-  con séptima cuando refuercen la dirección. Puedes usar dominantes secundarias.
-- Diseña una progresión con sentido y tensión creciente hacia el final.
-- Termina con una cadencia auténtica perfecta convincente (V o V7 → I/i), o una
-  cadencia rota seguida de auténtica; evita terminar en semicadencia.
-- Usa inversiones para lograr un bajo melódico (movimiento por grados conjuntos).`;
+- Armonía funcional T–S–D–T. Un acorde por compás, empezando y terminando en la
+  tónica. Usa I, ii, iii, IV, V, vi y la dominante con séptima (V7) para reforzar la
+  dirección; puedes emplear alguna dominante secundaria.
+- Diseña tensión creciente hacia el final.
+- Cadencia FINAL: auténtica perfecta convincente (V o V7 → I/i). Evita terminar en
+  semicadencia.
+- La cadencia auténtica perfecta NO debe aparecer en mitad de la pieza: resérvala
+  para el final. En el interior usa semicadencias (reposo en V), cadencias rotas
+  (V→vi) o evitadas para mantener el discurso.
+- Bajo melódico: usa inversiones (acordes de sexta, y de cuarta y sexta de paso)
+  para que el bajo se mueva por grados conjuntos en lugar de saltar siempre.
+- Procura un esquema que evite quintas y octavas paralelas; en el paso IV→V (sin
+  nota común) las voces se moverán en dirección contraria al bajo (lo realizará la
+  fase 2).`;
 
 function buildUserPrompt(params) {
   const { theme, key = 'C', mode = 'major', timeSignature = '4/4', measures = 8 } = params;
