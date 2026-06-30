@@ -60,10 +60,16 @@ PROCESO Y REGLAS (estilo severo, síguelas estrictamente):
      6/4 cadencial.
    - Estilo CORAL: prefiere las INVERSIONES de la 7ª de dominante (6/5, 2); evita el
      V7 en estado fundamental con la 7ª en la voz superior (salvo séptima de paso).
-   - Toda nota ajena al acorde (de paso, bordadura, apoyatura, retardo) va en tiempo
-     DÉBIL, aproximada y abandonada por grado conjunto, y resuelta a una nota del
-     acorde. Los retardos resuelven DESCENDIENDO por grado conjunto. No dejes
-     ninguna 2ª ni 7ª sin resolver.
+   - NOTAS EXTRAÑAS al acorde: notas de PASO y BORDADURAS por grado conjunto en
+     tiempo débil; APOYATURAS (notas extrañas acentuadas, en tiempo fuerte) que
+     resuelven por grado conjunto; RETARDOS preparados que resuelven DESCENDIENDO por
+     grado conjunto; ANTICIPACIONES (una nota del acorde SIGUIENTE sonada antes, en
+     tiempo débil); y notas CAMBIADAS/escapadas (dejadas por salto, justificadas por
+     la nota de paso omitida o por pertenecer al acorde siguiente). No dejes 2ª ni 7ª
+     sin sentido ni sin resolver.
+   - PEDAL (nota pedal / bajo de órgano): una voz —normalmente el bajo— puede
+     SOSTENER la tónica o la dominante mientras las demás voces se mueven con otras
+     armonías por encima; empieza y termina el pedal en consonancia.
 
 5. MELODÍA (líneas cantábiles, no relleno)
    - Cada voz tiene dirección y un único clímax por frase; movimiento
