@@ -58,7 +58,11 @@ PROCESO Y REGLAS (estilo severo, síguelas estrictamente):
 6. TEXTURA: respeta la textura solicitada (homofonía, contrapunto, canon, fuga),
    pero SIEMPRE sobre el plan armónico y con las disonancias resueltas.
 
-7. Cada voz cuadra exactamente los compases en el compás indicado y permanece en su
+7. MODULACIÓN: el plan armónico puede modular a tonalidades vecinas. Sigue los
+   acordes dados con sus alteraciones exactas y aplica las mismas reglas de
+   resolución a la dominante de CADA tonalidad (sensible al alza, 7ª a la baja).
+
+8. Cada voz cuadra exactamente los compases en el compás indicado y permanece en su
    tesitura. Usa silencios para entradas/finales escalonados.
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;

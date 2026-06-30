@@ -124,14 +124,33 @@ Reglas:
   fase 2).`;
 
 function buildUserPrompt(params) {
-  const { theme, key = 'C', mode = 'major', timeSignature = '4/4', measures = 8 } = params;
+  const {
+    theme,
+    key = 'C',
+    mode = 'major',
+    timeSignature = '4/4',
+    measures = 8,
+    modulate = false,
+  } = params;
   const lines = [
     `Diseña la progresión armónica de una pieza coral:`,
-    `- Tonalidad: ${key} ${mode === 'minor' ? 'menor' : 'mayor'}`,
+    `- Tonalidad de partida: ${key} ${mode === 'minor' ? 'menor' : 'mayor'}`,
     `- Compás: ${timeSignature}`,
     `- Número de compases: ${measures} (un acorde por compás → ${measures} acordes)`,
   ];
   if (theme) lines.push(`- Carácter: ${theme}`);
+  if (modulate && measures >= 8) {
+    lines.push(
+      '- MODULACIÓN (estilo severo): en el desarrollo, modula a una tonalidad VECINA ' +
+        '(1er grado de vecindad: relativo, dominante, subdominante o sus relativos). ' +
+        'Procedimiento: reinterpreta el acorde de tónica como un grado del nuevo tono ' +
+        '(acorde PIVOTE común) y confírmalo con una cadencia en el nuevo tono (su V7 ' +
+        'y/o 6/4 cadencial). Esa cadencia confirmatoria en el tono vecino es válida ' +
+        'y necesaria. Luego REGRESA a la tonalidad de partida para la cadencia FINAL ' +
+        '(auténtica perfecta en el tono de partida). Usa los grados (roman) referidos ' +
+        'a la tonalidad vigente en cada momento.',
+    );
+  }
   lines.push(`\nDevuelve exactamente ${measures} acordes (measure 1..${measures}) y la cadencia final.`);
   return lines.join('\n');
 }

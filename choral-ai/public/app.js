@@ -18,6 +18,7 @@ form.addEventListener('submit', async (e) => {
   const data = Object.fromEntries(new FormData(form).entries());
   data.tempo = Number(data.tempo);
   data.measures = Number(data.measures);
+  data.modulate = document.getElementById('modulate').checked;
 
   submitBtn.disabled = true;
   result.hidden = true;
