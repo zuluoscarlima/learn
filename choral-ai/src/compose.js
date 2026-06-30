@@ -34,6 +34,9 @@ PROCESO Y REGLAS (estilo severo, síguelas estrictamente):
      movimiento directo entre las voces extremas).
    - PROHIBIDOS los intervalos melódicos AUMENTADOS (en especial la 2ª aumentada
      del modo menor/mayor armónico y la 4ª aumentada).
+   - El cromatismo debe ocurrir en la MISMA voz: si la nota natural y su alteración
+     (p. ej. fa y fa♯) aparecen en VOCES DISTINTAS en acordes contiguos, surge una
+     FALSA RELACIÓN, prohibida.
 
 4. RESOLUCIÓN DE DISONANCIAS (clave: NADA sin resolver)
    - La SENSIBLE asciende a la tónica, sobre todo en las voces extremas; en una voz

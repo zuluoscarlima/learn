@@ -139,6 +139,9 @@ Reglas:
 - Armonía funcional T–S–D–T. Un acorde por compás, empezando y terminando en la
   tónica. Usa I, ii, iii, IV, V, vi y la dominante con séptima (V7) para reforzar la
   dirección; puedes emplear alguna dominante secundaria.
+- MODULACIONES PASAJERAS (tonizaciones): puedes tonizar brevemente un grado con su
+  dominante secundaria (V7/x → x) y volver enseguida, para dar color sin abandonar
+  la tonalidad. Son momentáneas (a veces un solo acorde).
 - Disonancias funcionales opcionales para más color: séptima de SENSIBLE (VII7,
   calidad half_diminished7 en modo mayor o diminished7 en menor armónico, función
   dominante); séptima del II grado (ii7 = minor7, función predominante, con la 7ª
@@ -194,8 +197,11 @@ function buildUserPrompt(params) {
         '(1er grado de vecindad: relativo, dominante, subdominante o sus relativos). ' +
         'Procedimiento: reinterpreta el acorde de tónica como un grado del nuevo tono ' +
         '(acorde PIVOTE común) y confírmalo con una cadencia en el nuevo tono (su V7 ' +
-        'y/o 6/4 cadencial). Esa cadencia confirmatoria en el tono vecino es válida ' +
-        'y necesaria. Luego REGRESA a la tonalidad de partida para la cadencia FINAL ' +
+        'y/o 6/4 cadencial). Puedes modular de forma DIATÓNICA (acorde pivote común) ' +
+        'o CROMÁTICA (alterando una voz por semitono, breve y espontánea, con el ' +
+        'cromatismo en la MISMA voz para no crear falsas relaciones). AFIRMA el nuevo ' +
+        'tono con una cadencia (no termines la modulación en un acorde de sexta). ' +
+        'Luego REGRESA a la tonalidad de partida para la cadencia FINAL ' +
         '(auténtica perfecta en el tono de partida). Usa los grados (roman) referidos ' +
         'a la tonalidad vigente en cada momento.',
     );
