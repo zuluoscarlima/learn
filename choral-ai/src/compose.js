@@ -123,7 +123,9 @@ export async function composeChoral(params, parts, texture, harmonyText) {
     // que la conexión se corte por inactividad durante el "pensar".
     thinking: { type: 'adaptive', display: 'summarized' },
     output_config: {
-      effort: 'high',
+      // 'medium' es bastante más rápido que 'high' y, con las reglas detalladas
+      // del prompt, mantiene una calidad muy alta. (Antes 'high' → muy lento.)
+      effort: 'medium',
       format: { type: 'json_schema', schema: COMPOSITION_SCHEMA },
     },
     system: systemPrompt,
