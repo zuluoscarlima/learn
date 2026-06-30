@@ -55,6 +55,8 @@ PROCESO Y REGLAS (estilo severo, síguelas estrictamente):
    - Evita notas repetidas estáticas y ámbitos excesivos. Encamina las frases a la
      cadencia; el final debe sonar conclusivo, con la TÓNICA en la voz superior
      (soprano) sobre tiempo fuerte (cadencia auténtica perfecta).
+   - Moldea las frases con DINÁMICAS (campo dynamic), con moderación: regulador "<"
+     hacia el punto culminante y ">" al relajar; matiz al inicio de cada sección.
 
 6. TEXTURA: respeta la textura solicitada (homofonía, contrapunto, canon, fuga),
    pero SIEMPRE sobre el plan armónico y con las disonancias resueltas.
@@ -79,8 +81,12 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
     measures = 8,
   } = params;
 
+  const hasSoloists = parts.some((p) => p.solo);
   const voiceList = parts
-    .map((p, i) => `  ${i + 1}. ${p.name} (tesitura ${p.low}–${p.high})`)
+    .map((p, i) => {
+      const role = p.solo ? ' [SOLISTA: línea florida/melismática por encima]' : '';
+      return `  ${i + 1}. ${p.name} (tesitura ${p.low}–${p.high})${role}`;
+    })
     .join('\n');
 
   const lines = [
@@ -92,6 +98,12 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
     `- Voces (${parts.length}), en este orden exacto:`,
     voiceList,
   ];
+  if (hasSoloists) {
+    lines.push(
+      '- Hay SOLISTAS: esas voces cantan líneas floridas, ornamentadas y melismáticas ' +
+        'que flotan por encima; las demás voces forman el coro/colchón sostenido.',
+    );
+  }
   if (texture) lines.push(`- Textura / técnica: ${texture.label}\n  ${texture.prompt}`);
   if (theme) lines.push(`- Tema o carácter: ${theme}`);
   if (lyrics) {

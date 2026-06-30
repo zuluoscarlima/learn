@@ -34,6 +34,12 @@ function durString(note) {
   return String(note.duration) + (note.dotted ? '.' : '');
 }
 
+// Matices y reguladores admitidos → sintaxis LilyPond.
+const DYN = {
+  pp: '\\pp', p: '\\p', mp: '\\mp', mf: '\\mf', f: '\\f', ff: '\\ff',
+  '<': '\\<', '>': '\\>', '!': '\\!',
+};
+
 function pitchToLily(note) {
   if (note.rest) return 'r' + durString(note);
   const name = note.step.toLowerCase();
@@ -41,7 +47,9 @@ function pitchToLily(note) {
     note.alter > 0 ? 'is'.repeat(note.alter) : 'es'.repeat(-note.alter);
   const n = note.octave - 3;
   const marks = n > 0 ? "'".repeat(n) : ','.repeat(-n);
-  return name + suffix + marks + durString(note);
+  // Las dinámicas solo se adjuntan a notas reales (no a silencios).
+  const dyn = note.dynamic && DYN[note.dynamic] ? DYN[note.dynamic] : '';
+  return name + suffix + marks + durString(note) + dyn;
 }
 
 function voiceToLily(notes) {

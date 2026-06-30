@@ -134,6 +134,8 @@ REGLAS (estilo contemporáneo, síguelas):
      homofónico, suave, conclusivo por permanencia (tónica con añadidos).
    - Resalta las palabras importantes del texto (text painting): melismas o el punto
      culminante melódico sobre ellas.
+   - Moldea el arco con DINÁMICAS (campo dynamic): empieza p/pp, reguladores "<"
+     hacia el clímax (mf), y ">" hacia un cierre pp. Úsalas con moderación.
 
 5. Respeta la textura solicitada, las tesituras y el cuadre de compases. Usa
    silencios para entradas/finales escalonados.

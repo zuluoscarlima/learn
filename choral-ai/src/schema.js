@@ -42,8 +42,15 @@ const noteSchema = {
       type: 'string',
       description: 'Sílaba cantada en esta nota (vacío si no aplica o es silencio)',
     },
+    dynamic: {
+      type: 'string',
+      description:
+        'Matiz en esta nota: "" (ninguno), pp, p, mp, mf, f, ff, o reguladores ' +
+        '"<" (crescendo), ">" (diminuendo), "!" (fin de regulador). Úsalo con ' +
+        'MODERACIÓN: solo en inicios de frase, clímax y cierres. No en silencios.',
+    },
   },
-  required: ['rest', 'step', 'alter', 'octave', 'duration', 'dotted', 'lyric'],
+  required: ['rest', 'step', 'alter', 'octave', 'duration', 'dotted', 'lyric', 'dynamic'],
 };
 
 const voiceSchema = {

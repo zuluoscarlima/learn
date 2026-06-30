@@ -13,8 +13,8 @@ export const VOICE_TYPES = {
   bass: { label: 'Bajo', clef: 'bass', low: 'E2', high: 'C4' },
 };
 
-// part = { name: etiqueta visible, type: clave en VOICE_TYPES, group?: nº de coro }
-const p = (name, type, group) => ({ name, type, group });
+// part = { name, type (clave en VOICE_TYPES), group?: nº de coro, solo?: bool }
+const p = (name, type, group, solo = false) => ({ name, type, group, solo });
 
 export const VOICINGS = {
   satb: {
@@ -81,6 +81,17 @@ export const VOICINGS = {
     label: 'Unísono · 1 voz',
     parts: [p('Melodía', 'soprano')],
   },
+  soli_satb: {
+    label: 'Solistas (2) + coro SATB',
+    parts: [
+      p('Solo I', 'soprano', null, true),
+      p('Solo II', 'soprano', null, true),
+      p('Soprano', 'soprano'),
+      p('Contralto', 'alto'),
+      p('Tenor', 'tenor'),
+      p('Bajo', 'bass'),
+    ],
+  },
 };
 
 export const DEFAULT_VOICING = 'satb';
@@ -94,6 +105,7 @@ export function resolveVoicing(id) {
       name: part.name,
       type: part.type,
       group: part.group || null,
+      solo: part.solo || false,
       clef: t.clef,
       low: t.low,
       high: t.high,
