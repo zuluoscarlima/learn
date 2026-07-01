@@ -536,3 +536,23 @@ equivocada.
 - **server.js / app.js**: la respuesta incluye `harmonized` + `melodyInfo` (compases,
   tonalidad, nº de notas) y la UI muestra "🎵 TU melodía armonizada (…)". Así se ve al
   instante si el modo armonizar-melodía se aplicó (diagnóstico + UX).
+
+---
+
+## FIX importación MusicXML (caso real "Pop ballad" de Sibelius): fusas + ligaduras + anacrusa
+Con el archivo real del usuario (Sibelius, voz "Lead Vocals" + piano + cuerdas) se vio que la
+melodía importada se desalineaba ("las medidas desaparecen de la realidad"). Causas y fix:
+1. **Fusas (1/32)**: el enum de duración solo llegaba a 1/16; las fusas del c.8 se convertían
+   en semicorcheas → el compás se pasaba de duración → repairRhythm recortaba → desalineación.
+   Fix: añadido 32 al enum de `duration` (y a `FIGURES`/cuantización a 0.125); TYPE_DENOM mapea
+   32nd→32, 64th/128th→32.
+2. **Ligaduras de valor (tie)**: se convertían en notas repetidas. Fix: nuevo campo `tie`
+   (booleano, en required) → LilyPond añade `~`; musicxml lee `<tie type="start">`.
+3. **Compás de ANACRUSA/pickup**: el c.1 del archivo era de 1 pulso (negra de silencio) con
+   cifra 4/4 → descuadre. Fix: `parseMelody` calcula el compás REAL de cada barra por su
+   contenido (`beatsToMeter`); a los compases incompletos les asigna su cifra real (p. ej.
+   "1/4") vía el array `meters`, así el render y el cuadre no se desalinean.
+Verificado con el archivo real: los 17 compases cuadran; la soprano queda INTACTA (65 pulsos,
+sin cambios tras repair); el tresillo (c.7), las fusas y las ligaduras (c.8) se renderizan
+correctos en LilyPond. Nota: la selección de pista por nombre/notas ya estaba; aquí la voz era
+la primera igualmente.

@@ -9,6 +9,7 @@
 // Se toma la PRIMERA parte y su PRIMERA voz; se ignoran acordes (solo la línea
 // melódica), notas de adorno y tresillos exóticos. Evita compases de anacrusa.
 import { XMLParser } from 'fast-xml-parser';
+import { noteBeats, beatsPerMeasure } from './schema.js';
 
 const parser = new XMLParser({
   ignoreAttributes: false,
@@ -31,7 +32,7 @@ const num = (v) => {
 // [1,2,4,8,16]: figuras más rápidas que la semicorchea → 16; más lentas → 1.
 const TYPE_DENOM = {
   maxima: 1, long: 1, breve: 1, whole: 1, half: 2, quarter: 4,
-  eighth: 8, '16th': 16, '32nd': 16, '64th': 16, '128th': 16,
+  eighth: 8, '16th': 16, '32nd': 32, '64th': 32, '128th': 32,
 };
 
 // Figuras representables [negras, denominador, conPuntillo] de mayor a menor.
@@ -102,6 +103,12 @@ function convertNote(noteEl, divisions) {
     if (actual && [2, 3, 4, 5, 6, 7, 9].includes(actual)) tuplet = actual;
   }
 
+  // Ligadura de valor: <tie type="start"> une esta nota con la siguiente (misma
+  // altura). Puede venir una (start o stop) o dos (stop y start). Nos interesa si
+  // ARRANCA una ligadura hacia la nota siguiente.
+  const ties = asArray(noteEl.tie);
+  const tie = ties.some((t) => t && t['@_type'] === 'start');
+
   const note = {
     rest: isRest,
     step: 'C',
@@ -109,6 +116,7 @@ function convertNote(noteEl, divisions) {
     octave: 4,
     duration,
     dotted,
+    tie,
     tuplet,
     lyric: '',
     dynamic: '',
@@ -277,8 +285,17 @@ export function parseMelody(xmlText) {
 
   const { tonalityName, keyLetter, mode } = keyFromFifths(fifths, keyMode);
   const timeSignature = meters[0];
-  // meters solo si el compás CAMBIA a lo largo de la pieza.
-  const changing = meters.some((mt) => mt !== meters[0]);
+  // Ajuste por CONTENIDO REAL: si un compás no suma lo que dice su cifra (compás
+  // de ANACRUSA/pickup incompleto, o restos que no cuadran), le damos un compás
+  // que refleje su duración real, para que el render y el cuadre NO se desalineen.
+  const realMeters = bars.map((bar, i) => {
+    const actual = bar.reduce((s, n) => s + noteBeats(n), 0);
+    const nominalBeats = beatsPerMeasure(meters[i]);
+    if (nominalBeats != null && Math.abs(actual - nominalBeats) < 1e-6) return meters[i];
+    return beatsToMeter(actual) || meters[i];
+  });
+  // meters solo si el compás CAMBIA a lo largo de la pieza (o hay pickups).
+  const changing = realMeters.some((mt) => mt !== timeSignature);
 
   const title =
     textOf(score.work && score.work['work-title']) ||
@@ -291,12 +308,23 @@ export function parseMelody(xmlText) {
     keyLetter,
     mode,
     timeSignature,
-    meters: changing ? meters : null,
+    meters: changing ? realMeters : null,
     tempo,
     measures: bars.length,
     notes,
     bars,
   };
+}
+
+// Expresa una duración en negras como cifra de compás "num/den" (den ∈ 4,8,16),
+// para dar a un compás incompleto (pickup) su longitud real. P. ej. 1 → "1/4",
+// 2.5 → "5/8". Devuelve null si no se puede representar de forma limpia.
+function beatsToMeter(beats) {
+  for (const den of [4, 8, 16]) {
+    const num = (beats * den) / 4;
+    if (num > 0 && Math.abs(num - Math.round(num)) < 1e-6) return `${Math.round(num)}/${den}`;
+  }
+  return null;
 }
 
 // Nombre legible de una nota (p. ej. "Eb5", "F#4").

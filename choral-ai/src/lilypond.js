@@ -52,7 +52,9 @@ function pitchToLily(note) {
   const dyn = note.dynamic && DYN[note.dynamic] ? DYN[note.dynamic] : '';
   const t = (note.text || '').trim().replace(/"/g, '');
   const txt = t ? `^\\markup { \\italic "${t}" }` : '';
-  return name + suffix + marks + durString(note) + dyn + txt;
+  // Ligadura de valor: '~' une esta nota con la siguiente (misma altura).
+  const tie = note.tie ? '~' : '';
+  return name + suffix + marks + durString(note) + tie + dyn + txt;
 }
 
 // Directiva de compás: simple (\time 3/4) o aditivo/compuesto (\compoundMeter).

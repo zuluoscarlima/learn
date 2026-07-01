@@ -31,12 +31,19 @@ const noteSchema = {
     },
     duration: {
       type: 'integer',
-      enum: [1, 2, 4, 8, 16],
-      description: 'Denominador de la figura: 4 = negra, 8 = corchea, etc.',
+      enum: [1, 2, 4, 8, 16, 32],
+      description: 'Denominador de la figura: 1 = redonda, 2 = blanca, 4 = negra, 8 = corchea, 16 = semicorchea, 32 = fusa.',
     },
     dotted: {
       type: 'boolean',
       description: 'true si la figura va con puntillo',
+    },
+    tie: {
+      type: 'boolean',
+      description:
+        'true si esta nota se LIGA (ligadura de valor) a la siguiente nota, que debe ser la ' +
+        'MISMA altura: el sonido se prolonga sin volver a atacar. Úsalo para sostener una nota ' +
+        'más allá del pulso o del compás. En la GRAN MAYORÍA de las notas es false.',
     },
     tuplet: {
       type: 'integer',
@@ -69,7 +76,7 @@ const noteSchema = {
         'expresiva); VARÍA el término y no lo pongas en cada nota (la mayoría van con "").',
     },
   },
-  required: ['rest', 'step', 'alter', 'octave', 'duration', 'dotted', 'tuplet', 'lyric', 'dynamic', 'text'],
+  required: ['rest', 'step', 'alter', 'octave', 'duration', 'dotted', 'tie', 'tuplet', 'lyric', 'dynamic', 'text'],
 };
 
 const voiceSchema = {
@@ -261,16 +268,17 @@ export function validateComposition(comp, expectedVoices) {
 const FIGURES = [
   [4, 1, false], [3, 2, true], [2, 2, false], [1.5, 4, true], [1, 4, false],
   [0.75, 8, true], [0.5, 8, false], [0.375, 16, true], [0.25, 16, false],
+  [0.1875, 32, true], [0.125, 32, false],
 ];
 
 function makeRest(duration, dotted) {
-  return { rest: true, step: 'C', alter: 0, octave: 4, duration, dotted, tuplet: 1, lyric: '', dynamic: '', text: '' };
+  return { rest: true, step: 'C', alter: 0, octave: 4, duration, dotted, tie: false, tuplet: 1, lyric: '', dynamic: '', text: '' };
 }
 
 // Descompone una cantidad de negras en silencios de figuras válidas (greedy).
 function beatsToRests(beats) {
   const out = [];
-  let rem = Math.round(beats * 4) / 4; // cuantiza a semicorchea (0.25)
+  let rem = Math.round(beats * 8) / 8; // cuantiza a fusa (0.125)
   const tol = 1e-6;
   while (rem > tol) {
     const fig = FIGURES.find(([b]) => b <= rem + tol);
