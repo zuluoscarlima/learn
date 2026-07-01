@@ -772,3 +772,25 @@ copas afinadas con agua.
 - systems.js CONTEMPORARY_COMPOSE_SYSTEM: añadido el "halo de copas" (pedal vocal abierto y
   resonante, ligado, por debajo del coro).
 (Van 6 obras de Ešenvalds: Rasa, O Salutaris, Only in Sleep, Trees, Stars.)
+
+---
+
+## DIVISI en cualquier voz (petición del usuario) — APLICADO
+Motivado por "Lux Aeterna" (Ešenvalds, coro femenino SSMsAA, muy divisi). El usuario pide que
+CUALQUIER voz (S/A/T/B) pueda dividirse en su propio pentagrama.
+- **schema.js**: nuevo campo OPCIONAL `chord` en la nota = array de alturas ADICIONALES
+  {step,alter,octave} que suenan a la vez (mismo ritmo). Opcional (como meters/keyChanges), sin
+  inflar cada nota.
+- **lilypond.js**: `pitchToLily` escribe un ACORDE `<main extra...>` cuando la nota trae `chord`;
+  helper `pitchName` (altura sin duración). Duración/ligadura/dinámica/slur van tras el `>`.
+- **compose.js**: instrucción de DIVISI en el prompt (cualquier voz; usar con intención en
+  clímax/aperturas/colchones, respetando tesitura).
+- Verificado con render real: soprano divisi a2 (`<e'' c'''>`) y bajo a octavas (`<c c,>`) →
+  PDF + MIDI correctos, cada divisi en su pentagrama.
+- Nota: es divisi HOMORRÍTMICO (acorde). Para líneas divisi con RITMOS independientes sigue el
+  voicing SSAATTBB (pentagramas separados).
+
+## Obra 7 (parcial) — Ešenvalds, "Lux Aeterna" (coro FEMENINO SSMsAA, 2017)
+Texto sacro (Lux aeterna/requiem). Mib mayor aprox., "Con anima" ♩=52. Homofonía cálida y
+fluida, rubato, muy divisi, con opción de pasar el texto a "Mm" gradualmente. Motiva: (a) el
+DIVISI (ya hecho) y (b) un voicing de CORO FEMENINO (SSAA / SSMsAA) — pendiente de añadir.

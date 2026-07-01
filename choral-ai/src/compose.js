@@ -321,6 +321,15 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
   lines.push('\n' + PHRASE_CONSTRUCTION);
   }
   lines.push('\n' + EXPRESSIVE_PALETTE);
+  // DIVISI: cualquier voz puede dividirse en un acorde en su propio pentagrama.
+  lines.push(
+    '\nDIVISI (cualquier voz puede dividirse): para DIVIDIR una voz en su pentagrama (divisi ' +
+      'a2/a3), añade a la nota el campo "chord" con las alturas ADICIONALES que suenan a la vez ' +
+      '(mismo ritmo). Sirve para cualquier voz (Soprano, Contralto, Tenor o Bajo). Úsalo para ' +
+      'ENRIQUECER acordes en los clímax, aperturas o colchones (p. ej. una soprano divisi a 2, ' +
+      'un bajo que abre a octavas), respetando la tesitura de esa voz. No abuses: divisi con ' +
+      'intención, no en toda la pieza.',
+  );
   // COHERENCIA HASTA EL FINAL: evita el error de que, cuando la melodía ya
   // terminó, las voces sigan con cromatismo sin criterio hasta rellenar los
   // compases pedidos. La pieza debe cerrar con lógica, no con "relleno".

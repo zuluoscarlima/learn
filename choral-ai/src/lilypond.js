@@ -41,20 +41,31 @@ const DYN = {
   ff: '\\ff', fff: '\\fff', '<': '\\<', '>': '\\>', '!': '\\!',
 };
 
+// Altura absoluta LilyPond (sin duración) a partir de step/alter/octave.
+function pitchName(step, alter, octave) {
+  const name = String(step || 'C').toLowerCase();
+  const a = Number(alter) || 0;
+  const suffix = a > 0 ? 'is'.repeat(a) : 'es'.repeat(-a);
+  const n = (Number(octave) || 4) - 3;
+  const marks = n > 0 ? "'".repeat(n) : ','.repeat(-n);
+  return name + suffix + marks;
+}
+
 function pitchToLily(note) {
   if (note.rest) return 'r' + durString(note);
-  const name = note.step.toLowerCase();
-  const suffix =
-    note.alter > 0 ? 'is'.repeat(note.alter) : 'es'.repeat(-note.alter);
-  const n = note.octave - 3;
-  const marks = n > 0 ? "'".repeat(n) : ','.repeat(-n);
+  // DIVISI: si la nota trae alturas adicionales, se escribe como acorde <...>.
+  const extra = Array.isArray(note.chord)
+    ? note.chord.filter((c) => c && c.step).map((c) => pitchName(c.step, c.alter, c.octave))
+    : [];
+  const main = pitchName(note.step, note.alter, note.octave);
+  const head = extra.length ? `<${[main, ...extra].join(' ')}>` : main;
   // Las dinámicas solo se adjuntan a notas reales (no a silencios).
   const dyn = note.dynamic && DYN[note.dynamic] ? DYN[note.dynamic] : '';
   const t = (note.text || '').trim().replace(/"/g, '');
   const txt = t ? `^\\markup { \\italic "${t}" }` : '';
   // Ligadura de valor: '~' une esta nota con la siguiente (misma altura).
   const tie = note.tie ? '~' : '';
-  return name + suffix + marks + durString(note) + tie + dyn + txt;
+  return head + durString(note) + tie + dyn + txt;
 }
 
 // Directiva de compás: simple (\time 3/4) o aditivo/compuesto (\compoundMeter).

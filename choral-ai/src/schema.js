@@ -29,6 +29,26 @@ const noteSchema = {
       type: 'integer',
       description: 'Octava científica (C4 = do central)',
     },
+    chord: {
+      type: 'array',
+      description:
+        'OPCIONAL. DIVISI: alturas ADICIONALES que suenan A LA VEZ que esta nota (mismo ritmo), ' +
+        'para DIVIDIR la voz en un acorde dentro de SU pentagrama. CUALQUIER voz (S, A, T o B) ' +
+        'puede dividirse. Cada elemento es {step, alter, octave}. Vacío o ausente = una sola ' +
+        'nota. P. ej. una soprano divisi a 2 lleva su nota principal + [{"step":"E","alter":0,' +
+        '"octave":5}]. Úsalo para enriquecer acordes (divisi a2/a3) en clímax o colchones, ' +
+        'respetando la tesitura de la voz.',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          step: { type: 'string', enum: ['A', 'B', 'C', 'D', 'E', 'F', 'G'] },
+          alter: { type: 'integer', enum: [-2, -1, 0, 1, 2] },
+          octave: { type: 'integer' },
+        },
+        required: ['step', 'alter', 'octave'],
+      },
+    },
     duration: {
       type: 'integer',
       enum: [1, 2, 4, 8, 16, 32],
