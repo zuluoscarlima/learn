@@ -28,6 +28,21 @@
           <textarea name="lyrics" rows="3" placeholder="Una sílaba por nota se distribuye automáticamente"></textarea>
         </label>
 
+        <div class="field melody-field">
+          <span class="field-label">🎵 Armonizar MI melodía (opcional · MusicXML)</span>
+          <input type="file" id="melodyFile" name="melodyFile" accept=".xml,.musicxml" />
+          <small>
+            Sube tu melodía en <strong>MusicXML</strong> (exportada de MuseScore, Sibelius o
+            Finale, <strong>sin comprimir</strong>: extensión <code>.musicxml</code> o
+            <code>.xml</code>). La IA fijará TU melodía EXACTA en la voz superior y compondrá
+            las demás voces por debajo para armonizarla. La tonalidad, el compás, el tempo, el
+            nº de compases y la letra se toman del archivo (los campos de abajo se ignoran).
+            Sí se respetan el <strong>Sistema armónico</strong>, las <strong>Voces</strong> y la
+            <strong>Textura</strong> que elijas.
+          </small>
+          <div id="melody-info" class="melody-info" hidden></div>
+        </div>
+
         <div class="two">
           <div class="field">
             <span class="field-label">Sistema armónico (elige uno o varios)</span>

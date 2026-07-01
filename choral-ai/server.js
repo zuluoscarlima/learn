@@ -10,13 +10,15 @@ import { resolveVoicing, voicingOptions, DEFAULT_VOICING } from './src/voicings.
 import { resolveTexture, textureOptions, DEFAULT_TEXTURE } from './src/textures.js';
 import { SYSTEMS, systemOptions, resolveSystems, DEFAULT_SYSTEM } from './src/systems.js';
 import { continuationBrief } from './src/continuation.js';
+import { parseMelody } from './src/musicxml.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = path.join(__dirname, 'output');
 const PORT = process.env.PORT || 3000;
 
 const app = express();
-app.use(express.json({ limit: '1mb' }));
+// Los MusicXML (sin comprimir) pueden ocupar bastante; damos margen holgado.
+app.use(express.json({ limit: '12mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/output', express.static(OUTPUT_DIR));
 
@@ -51,6 +53,22 @@ app.post('/api/compose', async (req, res) => {
     params.systems = resolveSystems(params.systems ?? params.system);
     const parts = resolveVoicing(params.voicing || DEFAULT_VOICING);
     const texture = resolveTexture(params.texture || DEFAULT_TEXTURE);
+
+    // Modo "armonizar mi melodía": si llega un MusicXML, extraemos la melodía del
+    // usuario y la fijamos como voz superior; su tonalidad/compás/tempo/nº de
+    // compases MANDAN sobre lo que diga el formulario (la fija el archivo).
+    if (params.melodyXml) {
+      const melody = parseMelody(params.melodyXml);
+      params.melody = melody;
+      params.key = melody.keyLetter;
+      params.mode = melody.mode;
+      params.timeSignature = melody.timeSignature;
+      params.measures = melody.measures;
+      if (melody.tempo) params.tempo = melody.tempo;
+      // Con melodía fija no tiene sentido modular libremente ni continuar.
+      params.modulate = false;
+    }
+    delete params.melodyXml;
 
     // Continuación (Opción B): si llega la pieza anterior, deriva el brief de
     // coherencia y fuerza el enlace musical — misma tonalidad y compás que la
@@ -94,7 +112,7 @@ app.post('/api/compose', async (req, res) => {
         'La conexión con el servicio se interrumpió (la pieza era larga). ' +
         'Vuelve a intentarlo; si se repite, reduce el número de compases o de voces.';
     }
-    const status = /ANTHROPIC_API_KEY|cuadran|inválid|rechazó|esperaban|cortó|longitud|interrumpió/i.test(
+    const status = /ANTHROPIC_API_KEY|cuadran|inválid|rechazó|esperaban|cortó|longitud|interrumpió|MusicXML|melodía|comprimido/i.test(
       message,
     )
       ? 400

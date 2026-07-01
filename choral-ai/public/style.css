@@ -83,6 +83,20 @@ textarea { resize: vertical; }
 
 .field { display: flex; flex-direction: column; gap: 0.35rem; }
 .field-label { font-size: 0.95rem; color: var(--muted); }
+
+.melody-field {
+  background: #11141a;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+.melody-field small { color: var(--muted); line-height: 1.4; }
+.melody-field code { font-size: 0.85em; }
+.melody-info {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--accent, #7bd88f);
+}
 .checkbox-group {
   display: flex;
   flex-direction: column;

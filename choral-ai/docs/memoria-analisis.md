@@ -418,3 +418,41 @@ Causa: mucha guía de armonía/textura/métrica, pero casi ninguna de escritura 
   unísono, eco/pregunta-respuesta, no estricto como canon) y un BAJO más LIBRE e independiente
   (cimiento armónico con su propia línea, sin obligación de imitar).
 - [x] src/textures.js: prompt de `contrapunto_libre` reescrito con imitación + bajo libre.
+
+---
+
+## Modo "Armonizar MI melodía" (MusicXML) — APLICADO
+Petición del usuario: poder introducir SU propia melodía y que la IA solo la armonice
+(primera versión; "luego iremos haciendo todas las cosas"). Entrada elegida: **MusicXML**
+(exportado de MuseScore/Sibelius/Finale), que conserva notas, ritmo y letra.
+
+Flujo:
+- El usuario sube un `.musicxml`/`.xml` (sin comprimir). En el navegador se lee como texto
+  y se envía en el body como `melodyXml` (límite JSON del servidor subido a 12mb).
+- **src/musicxml.js** (`parseMelody`): parser determinista con `fast-xml-parser`. Toma la
+  PRIMERA parte y su PRIMERA voz; ignora acordes (solo la línea melódica), notas de adorno
+  y descarta compresión .mxl con mensaje claro. Extrae: tonalidad (fifths→tónica+modo),
+  compás (y `meters` si cambia por compás), tempo (`<sound tempo>`/`<metronome>`), nº de
+  compases, y las notas (step/alter/octave/duración/puntillo/lyric) → nuestro modelo abstracto.
+  Octava científica coincide con la nuestra. `melodyByMeasures` lista la melodía compás a
+  compás para inyectarla en los prompts.
+- **server.js**: si llega `melodyXml`, `parseMelody` MANDA sobre el formulario en
+  tonalidad/compás/tempo/nº de compases; `modulate=false`. Errores de parseo → 400.
+- **harmony.js** (fase 1): si hay melodía, el plan debe SOPORTARLA (notas en tiempo fuerte
+  = notas del acorde o extrañas justificables); se le pasa la melodía compás a compás y la
+  tonalidad real (p. ej. "Eb mayor").
+- **compose.js** (fase 2): se le da la melodía como VOZ 1 fija ("cópiala exacta, compón solo
+  las demás voces por debajo"); se omiten los bloques de invención melódica (artesanía,
+  motivo, fraseo, melisma) porque la melodía no se inventa; se conserva la paleta expresiva.
+  Tras la respuesta, `applyGivenMelody` **sobrescribe la voz 1 con la melodía EXACTA** y fija
+  la metadata (key/mode/timeSignature/meters/tempo/measures/title) desde el archivo → la
+  melodía del usuario queda intacta pase lo que pase.
+- Limitación v1 (documentada): la armadura LilyPond solo admite letra natural (A–G), así que
+  en tonalidades con bemoles/sostenidos (p. ej. Mib) la ARMADURA visual puede no mostrarse,
+  pero las alteraciones van explícitas en cada nota → el sonido y las alturas son correctos.
+  Evitar por ahora compases de anacrusa (pickup) y tresillos exóticos.
+- [x] Frontend: campo de subida de archivo + aviso del nombre cargado; readForm ahora es
+      async (lee el texto del archivo). Verificado extremo a extremo el parseo + render .ly
+      con la melodía fija en soprano (Mib se rinde como `ees''`, letra con melisma correcta).
+- Próximo (cuando lo pida): soporte de armadura con bemoles/sostenidos, anacrusa, ligaduras
+  de valor, y opción de elegir en qué voz va la melodía (no solo la superior).

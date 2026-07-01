@@ -16,8 +16,9 @@ function setStatus(msg, kind = 'info') {
 // Última composición generada (para «Componer continuación»).
 let lastComposition = null;
 
-// Lee los valores actuales del formulario como objeto para la petición.
-function readForm() {
+// Lee los valores actuales del formulario como objeto para la petición. Es async
+// porque, si hay un MusicXML seleccionado, lee su texto para enviarlo.
+async function readForm() {
   const data = Object.fromEntries(new FormData(form).entries());
   data.tempo = Number(data.tempo);
   data.measures = Number(data.measures);
@@ -25,6 +26,10 @@ function readForm() {
   // Sistemas: una o varias casillas marcadas (o "mixto" = combinar todo).
   data.systems = [...document.querySelectorAll('#system input:checked')].map((c) => c.value);
   delete data.system;
+  // Modo "armonizar mi melodía": adjunta el contenido del MusicXML si lo hay.
+  delete data.melodyFile;
+  const file = document.getElementById('melodyFile').files[0];
+  if (file) data.melodyXml = await file.text();
   return data;
 }
 
@@ -38,7 +43,9 @@ async function compose(data) {
   setStatus(
     data.continueFrom
       ? 'Componiendo la continuación (parte 2)…'
-      : 'Componiendo con IA… (suele tardar entre 30 s y 2 min).',
+      : data.melodyXml
+        ? 'Armonizando tu melodía con IA… (suele tardar entre 30 s y 2 min).'
+        : 'Componiendo con IA… (suele tardar entre 30 s y 2 min).',
     'info',
   );
 
@@ -61,16 +68,28 @@ async function compose(data) {
   }
 }
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  compose(readForm());
+  compose(await readForm());
+});
+
+// Muestra el nombre del MusicXML elegido para armonizar.
+document.getElementById('melodyFile').addEventListener('change', (e) => {
+  const info = document.getElementById('melody-info');
+  const file = e.target.files[0];
+  if (file) {
+    info.textContent = `Melodía cargada: ${file.name}. Al pulsar «Componer» se armonizará.`;
+    info.hidden = false;
+  } else {
+    info.hidden = true;
+  }
 });
 
 // «Componer continuación»: reenvía el formulario actual adjuntando la pieza
 // anterior como contexto, para que la IA encadene una 2ª parte coherente.
-document.getElementById('continue-btn').addEventListener('click', () => {
+document.getElementById('continue-btn').addEventListener('click', async () => {
   if (!lastComposition) return;
-  const data = readForm();
+  const data = await readForm();
   data.continueFrom = lastComposition;
   compose(data);
 });

@@ -16,6 +16,7 @@ import {
   MIXTO_COMPOSE_SYSTEM,
   resolveSystems,
 } from './systems.js';
+import { melodyByMeasures } from './musicxml.js';
 
 const MODEL = 'claude-opus-4-8';
 
@@ -151,15 +152,41 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
   if (harmonyText) {
     lines.push(`\nPLAN ARMÓNICO (un acorde por compás — respétalo):\n${harmonyText}`);
   }
+  // Modo "armonizar melodía dada": la voz 1 es la melodía del usuario, INTOCABLE.
+  if (params.melody) {
+    const mainName = parts[0] ? parts[0].name : 'voz superior';
+    lines.push(
+      `\nMELODÍA FIJA DEL USUARIO — tu tarea es SOLO ARMONIZARLA:\n` +
+        `- La VOZ 1 (${mainName}) YA está dada: es esta melodía. Cópiala EXACTAMENTE nota ` +
+        `por nota (misma altura, octava, ritmo y letra); NO añadas, quites ni cambies ` +
+        `ninguna nota de la voz 1.\n` +
+        `- Tu trabajo es COMPONER las demás voces por DEBAJO para armonizarla siguiendo el ` +
+        `plan armónico, con conducción de voces impecable (evita 5as/8as paralelas, resuelve ` +
+        `las disonancias, buen bajo). Ajusta el ritmo de las voces de acompañamiento a la ` +
+        `melodía y la textura pedida.\n` +
+        `- Melodía compás por compás (nota+octava/figura; 4=negra, 8=corchea, 2=blanca, ` +
+        `"."=puntillo):\n` +
+        melodyByMeasures(params.melody, { withDuration: true }),
+    );
+    if (params.melody.meters) {
+      lines.push(
+        `- El COMPÁS cambia por compás (respeta estos compases exactos en TODAS las voces): [` +
+          params.melody.meters.join(', ') + `].`,
+      );
+    }
+  }
   // Cambio de armadura solo en modulaciones LARGAS (no en tonicizaciones breves).
-  lines.push(
-    '\nARMADURA: si la pieza MODULA a una nueva tonalidad que se SOSTIENE varios ' +
-      'compases (aprox. 4 o más), declara el cambio de armadura en "keyChanges" con el ' +
-      'compás donde empieza la nueva tonalidad, su tónica y su modo (puede haber varios). ' +
-      'Mantén "key"/"mode" como la tonalidad INICIAL. Para tonicizaciones o desvíos ' +
-      'BREVES (1–2 compases) NO cambies la armadura: deja las alteraciones sueltas en las ' +
-      'notas. Si no hay modulación prolongada, omite "keyChanges".',
-  );
+  // Con melodía fija, la tonalidad la manda el archivo: no invitamos a modular.
+  if (!params.melody) {
+    lines.push(
+      '\nARMADURA: si la pieza MODULA a una nueva tonalidad que se SOSTIENE varios ' +
+        'compases (aprox. 4 o más), declara el cambio de armadura en "keyChanges" con el ' +
+        'compás donde empieza la nueva tonalidad, su tónica y su modo (puede haber varios). ' +
+        'Mantén "key"/"mode" como la tonalidad INICIAL. Para tonicizaciones o desvíos ' +
+        'BREVES (1–2 compases) NO cambies la armadura: deja las alteraciones sueltas en las ' +
+        'notas. Si no hay modulación prolongada, omite "keyChanges".',
+    );
+  }
   // Continuación (Opción B): material temático y enlace con la parte 1.
   if (params.continuation) {
     lines.push('\n' + params.continuation);
@@ -167,7 +194,7 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
   // En estilos del s.XX la métrica suele CAMBIAR de compás a compás (no en tonal puro).
   const systems = resolveSystems(params.systems ?? params.system);
   const nonTonal = !(systems.length === 1 && systems[0] === 'tonal');
-  if (nonTonal) {
+  if (nonTonal && !params.melody) {
     lines.push(
       `\nMÉTRICA CAMBIANTE (opcional, estilo báltico/impresionista): si la prosodia ` +
         `del texto lo pide, puedes devolver además un campo "meters" con UN compás ` +
@@ -180,6 +207,10 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
   }
   // Artesanía melódica: lo que separa una melodía lograda de una plana. Aplica a
   // TODOS los sistemas (a la voz que lleva el canto y, en lo posible, a todas).
+  // Con melodía FIJA del usuario, este bloque no aplica (la melodía no se inventa):
+  // se omite junto al motivo, el fraseo y el melisma; solo se conserva la paleta
+  // expresiva (matices/carácter) para las voces de acompañamiento.
+  if (!params.melody) {
   lines.push(
     '\nMELODÍA (ARTESANÍA — esto es lo que evita melodías planas; aplícalo sobre todo a la ' +
       'voz que lleva el canto):\n' +
@@ -233,6 +264,7 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
   }
   lines.push('\n' + MOTIVE_DEVELOPMENT);
   lines.push('\n' + PHRASE_CONSTRUCTION);
+  }
   lines.push('\n' + EXPRESSIVE_PALETTE);
   lines.push(
     `\nDevuelve un array "voices" con EXACTAMENTE ${parts.length} voces, en ese ` +
@@ -304,8 +336,31 @@ export async function composeChoral(params, parts, texture, harmonyText) {
 
   const composition = extractJson(message);
   if (!composition.title && params.theme) composition.title = params.theme;
+  // Modo "armonizar mi melodía": la voz superior la manda el usuario, no la IA.
+  // Sobrescribimos la voz 1 con la melodía dada EXACTA y fijamos la metadata
+  // (tonalidad/compás/tempo/compases) desde el archivo, para que nada la altere.
+  if (params.melody) applyGivenMelody(composition, params.melody, parts);
   validateComposition(composition, parts.length);
   // Repara descuadres rítmicos menores (recorta/rellena) en vez de fallar.
   repairRhythm(composition);
   return composition;
+}
+
+// Fija la melodía del usuario como voz 1 (intacta) y alinea la metadata de la
+// composición con el MusicXML. La IA solo aporta las voces de acompañamiento.
+function applyGivenMelody(composition, melody, parts) {
+  composition.key = melody.keyLetter;
+  composition.mode = melody.mode;
+  composition.timeSignature = melody.timeSignature;
+  composition.measures = melody.measures;
+  if (melody.tempo) composition.tempo = melody.tempo;
+  if (melody.meters) composition.meters = melody.meters;
+  else delete composition.meters;
+  if (melody.title && !composition.title) composition.title = melody.title;
+
+  if (!Array.isArray(composition.voices)) composition.voices = [];
+  const mainName = parts[0] ? parts[0].name : 'Soprano';
+  // Copia profunda de las notas para no compartir referencias con params.
+  const notes = melody.notes.map((n) => ({ ...n }));
+  composition.voices[0] = { name: mainName, notes };
 }

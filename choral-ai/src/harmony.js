@@ -17,6 +17,7 @@ import {
   MIXTO_HARMONY_SYSTEM,
   resolveSystems,
 } from './systems.js';
+import { melodyByMeasures } from './musicxml.js';
 
 const MODEL = 'claude-opus-4-8';
 
@@ -209,13 +210,27 @@ function buildUserPrompt(params) {
     measures = 8,
     modulate = false,
   } = params;
+  const tonalityLabel = params.melody
+    ? params.melody.tonalityName
+    : `${key} ${mode === 'minor' ? 'menor' : 'mayor'}`;
   const lines = [
     `Diseña la progresión armónica de una pieza coral:`,
-    `- Tonalidad de partida: ${key} ${mode === 'minor' ? 'menor' : 'mayor'}`,
+    `- Tonalidad de partida: ${tonalityLabel}`,
     `- Compás: ${timeSignature}`,
     `- Número de compases: ${measures} (un acorde por compás → ${measures} acordes)`,
   ];
   if (theme) lines.push(`- Carácter: ${theme}`);
+  // Modo "armonizar melodía dada": el plan debe SOPORTAR la melodía del usuario.
+  if (params.melody) {
+    lines.push(
+      '\nARMONIZA ESTA MELODÍA DADA (es la voz superior FIJA; NO la cambies). Elige un ' +
+        'acorde por compás que la sostenga: las notas de la melodía en TIEMPO FUERTE deben ' +
+        'pertenecer al acorde (o ser notas de paso/bordadura/apoyatura/retardo claramente ' +
+        'justificables). Prioriza una buena línea de bajo y una armonía coherente con la ' +
+        'melodía. Melodía compás por compás (nombre de nota + octava):\n' +
+        melodyByMeasures(params.melody),
+    );
+  }
   const systems = resolveSystems(params.systems ?? params.system);
   const isMixto = systems.includes('mixto');
   const multi = isMixto || systems.length > 1;

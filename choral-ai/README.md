@@ -66,6 +66,21 @@ cp .env.example .env
 El `.env` está en `.gitignore`, así que tu clave no se sube al repositorio.
 Alternativa puntual: `export ANTHROPIC_API_KEY=sk-ant-...` antes de `npm start`.
 
+### Armonizar TU propia melodía (MusicXML)
+
+En el formulario hay un campo **«Armonizar MI melodía (MusicXML)»**. Sube tu
+melodía exportada como **MusicXML sin comprimir** (`.musicxml` o `.xml`) desde
+MuseScore, Sibelius o Finale. La app fija TU melodía **exacta** en la voz
+superior y la IA compone las demás voces por debajo para armonizarla.
+
+- La tonalidad, el compás, el tempo, el nº de compases y la letra se toman del
+  archivo (los campos del formulario para eso se ignoran en este modo).
+- Sí se respetan el **Sistema armónico**, las **Voces** y la **Textura** elegidos.
+- En MuseScore: *Archivo → Exportar → MusicXML sin comprimir* (no `.mxl`).
+- Limitaciones v1: evita compás de anacrusa y tresillos exóticos; en tonalidades
+  con bemoles/sostenidos la armadura puede no dibujarse, pero las alteraciones van
+  explícitas en cada nota, así que el sonido y las alturas son correctos.
+
 ### Probar la cadena de render sin gastar API
 
 ```bash
