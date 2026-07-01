@@ -90,6 +90,11 @@ PROCESO Y REGLAS (estilo severo, síguelas estrictamente):
    - Cada voz tiene dirección y un único clímax por frase; movimiento
      mayoritariamente por grados conjuntos; los saltos (sobre todo grandes) se
      compensan por grado conjunto en dirección contraria.
+   - RITMO REALISTA: el canto expresivo NO es todo binario. Usa TRESILLOS
+     ("tuplet":3) y a veces seisillos con frecuencia en la voz melódica — es lo que
+     da naturalidad; una melodía sin ningún tresillo suena mecánica. Recuerda que un
+     tresillo de 3 corcheas ocupa 1 negra (el espacio de 2 corcheas), no 1½, para que
+     el compás siga cuadrando.
    - Evita notas repetidas estáticas y ámbitos excesivos. Encamina las frases a la
      cadencia; el final debe sonar conclusivo, con la TÓNICA en la voz superior
      (soprano) sobre tiempo fuerte (cadencia auténtica perfecta).
@@ -265,6 +270,27 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
         'en las notas siguientes.',
     );
   }
+  // TRESILLOS/SEISILLOS: refuerzo FUERTE. Sin grupos irregulares las melodías
+  // suenan mecánicas y "cuadriculadas"; el canto lírico real (baladas, coral
+  // expresivo) los usa constantemente. Va con ejemplo y regla de conteo.
+  lines.push(
+    '\nGRUPOS IRREGULARES — TRESILLOS (¡ÚSALOS!): una melodía expresiva NUNCA es todo ' +
+      'binario. El canto lírico real (balada, coral romántico/báltico) está LLENO de ' +
+      'TRESILLOS y a veces seisillos. Es OBLIGATORIO que la voz principal (y las que llevan ' +
+      'melodía) usen tresillos con FRECUENCIA — varios por frase — donde el fraseo lo pida: ' +
+      'grupos de 3 notas ágiles, anacrusas en tresillo, subdivisiones que "respiran". Sin ' +
+      'ellos la melodía suena mecánica y no se parece a la música real.\n' +
+      '- CÓMO: marca cada nota del grupo con "tuplet":3 (tresillo) o "tuplet":6 (seisillo), ' +
+      'en figuras IGUALES y en número igual al grupo (3 notas para un tresillo).\n' +
+      '- CONTEO (clave para que el compás cuadre): un TRESILLO de 3 corcheas ("duration":8, ' +
+      '"tuplet":3) ocupa el espacio de 2 corcheas = 1 NEGRA (no 1½). Un tresillo de 3 negras ' +
+      '("duration":4,"tuplet":3) ocupa 2 negras. Cuenta siempre así para que cada compás sume ' +
+      'exactamente sus pulsos.\n' +
+      '- EJEMPLO (un tresillo de corcheas do–re–mi que dura 1 negra, seguido de una blanca): ' +
+      '[{"step":"C","octave":5,"duration":8,"tuplet":3,...},{"step":"D","octave":5,' +
+      '"duration":8,"tuplet":3,...},{"step":"E","octave":5,"duration":8,"tuplet":3,...},' +
+      '{"step":"D","octave":5,"duration":2,"tuplet":1,...}].',
+  );
   lines.push('\n' + MOTIVE_DEVELOPMENT);
   lines.push('\n' + PHRASE_CONSTRUCTION);
   }
