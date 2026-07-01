@@ -150,6 +150,24 @@ Sistema NUEVO `terceras` ("Triádico por ciclos · 2as/3as/5as").
 - Pendiente (siguiente en cap. 3): acordes de 7ª/9ª/11ª/13ª por terceras, tríadas con
   añadidos, y espesamiento triádico → puede requerir ampliar el enum.
 
+### Cap. 3 (pág. 70–73): tríadas cromáticas libres y recursos — APLICADO
+- Movimiento CROMÁTICO LIBRE: sin escala que gobierne, cualquier tríada → cualquier
+  otra; fundamentales sobre todo por 2ª/3ª (evitar 5as, tonalizan; tritono ocasional);
+  tríadas mayormente mayores/menores.
+- Anclaje del cromatismo con MELODÍA o BAJO DIATÓNICOS; cada voz con dirección; el
+  centro puede ser claro sin modo gobernante ("Centro Fa").
+- Armonización flexible: cualquier nota = fundamental/3ª/5ª de tríada mayor o menor
+  (3+3 posibilidades por sonido).
+- QUINTAS PARALELAS en las 2 voces graves (fund.+5ª), compensadas con movimiento
+  contrario arriba; inversión periódica las realza/rompe.
+- Acorde de 6/4 (2ª inv., 4ª característica, tensión moderada) para puntuar cadencias
+  periódicas y articular el arco formal.
+- [x] Añadido a TERTIAN_HARMONY_SYSTEM (cromático libre, forma con 6/4/cadencias) y a
+      TERTIAN_COMPOSE_SYSTEM (anclaje diatónico, armonización flexible, quintas
+      paralelas, 6/4 de puntuación).
+- (PROCEDENCIA DEL MATERIAL: solo referencias de repertorio — Barber, Britten, Bartók,
+  Copland, Prokofiev…; no se codifica.)
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.

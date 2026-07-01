@@ -354,6 +354,15 @@ Reglas:
   libertad total de movimiento de las fundamentales; cualquier relación interválica de
   fundamentales vale (2ª/3ª/5ª equivalen por inversión a 7ª/6ª/4ª), de modo que los
   doce sonidos quedan disponibles.
+- MOVIMIENTO CROMÁTICO LIBRE (opcional): cuando ninguna escala gobierna, CUALQUIER
+  tríada puede seguir a cualquier otra. En ese contexto mueve las fundamentales sobre
+  todo por 2ª y 3ª (mayores o menores); EVITA las 5as justas (tienden a fijar
+  tonalidad) y reserva el TRITONO como color ocasional. Las tríadas suelen ser mayores
+  o menores. El centro se mantiene por afirmación/reiteración o por un ancla diatónica,
+  no por una escala prevaleciente.
+- FORMA: articula los pasajes triádicos largos con CADENCIAS PERIÓDICAS y con el acorde
+  de 6/4 (segunda inversión, tensión moderada) como puntuación; las relaciones de 2ª y
+  3ª viven en esas cadencias modales circundantes (usa inversion 2 para el 6/4).
 - ESCALA: construye los ciclos en CUALQUIER escala —mayor, modal (dórico, frigio,
   lidio, mixolidio, eólico) o SINTÉTICA—. Los colores de los primarios los fija la
   intervalica de la escala (en Do mayor: I mayor, III menor, VI menor; en un modo o
@@ -385,6 +394,13 @@ REGLAS (síguelas):
      equilibran el centro.
    - No fuerces sensibles ni resoluciones de 5ª si el ciclo vigente es de 2as o 3as;
      confirma el centro por reiteración y por la cadencia propia del ciclo.
+   - MOVIMIENTO CROMÁTICO LIBRE: si el plan mueve tríadas cromáticamente (any→any), dale
+     sentido dando a CADA voz una dirección clara. Ancla la vaguedad con una MELODÍA
+     DIATÓNICA en la voz superior o un BAJO DIATÓNICO que traigan el cromatismo a un
+     foco claro (centro audible aunque no gobierne ninguna escala).
+   - HARMONIZACIÓN FLEXIBLE: cualquier nota melódica prominente puede ser fundamental,
+     3ª o 5ª de una tríada mayor o menor (3 mayores + 3 menores por sonido). Aprovecha
+     esa libertad para variar el color bajo la melodía.
 
 3. CONDUCCIÓN
    - Conducción limpia de tríadas: mantén notas comunes, mueve las voces por grado
@@ -392,6 +408,12 @@ REGLAS (síguelas):
      válido como recurso de color.
    - Duplica según la tríada (fundamental en mayores/menores); evita duplicar la
      sensible o las notas alteradas características.
+   - QUINTAS PARALELAS idiomáticas: las dos voces graves pueden llevar fundamental+5ª de
+     tríadas en estado fundamental moviéndose en QUINTAS PARALELAS, siempre que un amplio
+     MOVIMIENTO CONTRARIO en las voces superiores desvíe la atención; la INVERSIÓN
+     periódica de las tríadas realza o rompe ese paralelismo.
+   - Usa el acorde de 6/4 (segunda inversión, su 4ª característica, tensión moderada)
+     para PUNTUAR cadencias periódicas y articular el arco formal.
 
 4. MELODÍA Y TEXTURA
    - Voz superior con perfil claro que ayude a fijar el centro; líneas cantábiles.
