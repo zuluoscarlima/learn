@@ -1,4 +1,4 @@
-# Choral AI
+# ChorAI
 
 App web de **composición coral SATB con IA**. Describes el tema, la tonalidad y el
 compás; Claude compone una pieza a cuatro voces (soprano, contralto, tenor, bajo)
