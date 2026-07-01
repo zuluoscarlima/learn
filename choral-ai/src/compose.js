@@ -186,25 +186,27 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
       );
     }
   }
-  // MOVIMIENTO RÍTMICO de las voces de acompañamiento. Salvo en texturas de
-  // COLCHÓN (sustained), ninguna voz —y menos el BAJO— debe ir solo en redondas y
-  // blancas: deben tener vida rítmica e IMITAR las figuras de la melodía.
-  if (!(texture && texture.sustained)) {
+  // OPCIÓN "escritura coherente con la soprano": solo si el usuario la elige, y
+  // nunca en texturas de COLCHÓN (sustained). El movimiento se logra DENTRO de las
+  // reglas de armonía y conducción de voces (notas extrañas legítimas), sin
+  // transgredir ninguna prohibición del sistema/contrapunto activo.
+  if (params.voiceRhythm === 'coherente' && !(texture && texture.sustained)) {
     lines.push(
-      '\nMOVIMIENTO RÍTMICO DE TODAS LAS VOCES (¡IMPRESCINDIBLE!): NINGUNA voz puede ir solo ' +
-        'en redondas y blancas. El CONTRALTO, el TENOR y —SOBRE TODO— el BAJO deben tener VIDA ' +
-        'rítmica igual que la soprano: negras, corcheas, ritmos con puntillo, síncopas, notas ' +
-        'de paso y bordaduras, arpegios del acorde y silencios que dejan respirar.\n' +
-        '- IMITACIÓN (sobre todo en CONTRAPUNTO): las voces de acompañamiento RETOMAN e IMITAN ' +
-        'las FIGURAS rítmico-melódicas (el MOTIVO) de la soprano/contralto — un diseño aparece ' +
-        'en una voz y REAPARECE en otra poco después (eco/pregunta-respuesta). En HOMOFONÍA, ' +
-        'las voces se mueven JUNTAS pero con ese mismo ritmo ACTIVO (no en redondas).\n' +
-        '- BAJO ESPECÍFICAMENTE: NO se limita a sostener la fundamental una nota por compás. ' +
-        'Camina por grados conjuntos (bajo "andante"/walking), arpegia fundamental–quinta– ' +
-        'tercera, usa notas de paso entre un acorde y el siguiente, y dibuja su propia ' +
-        'contramelodía con movimiento. Es una LÍNEA, no un pedal.\n' +
-        '- Reserva las notas LARGAS para puntos de reposo, finales de frase y cadencias — no ' +
-        'para toda la pieza. Contrasta densidades: cuando una voz se para, otra se mueve.',
+      '\nESCRITURA COHERENTE CON LA SOPRANO (opción elegida por el usuario): TODAS las voces ' +
+        'deben tener VIDA rítmica comparable a la de la soprano — el contralto, el tenor y el ' +
+        'BAJO no van en solo redondas y blancas.\n' +
+        '- MUY IMPORTANTE: esto NO cambia ni relaja NINGUNA regla armónica ni de conducción de ' +
+        'voces. El movimiento se consigue DENTRO de las reglas, con los recursos que la propia ' +
+        'armonía permite: notas de PASO, BORDADURAS, RETARDOS (suspensiones), ANTICIPACIONES, ' +
+        'notas cambiadas/escapadas y ARPEGIOS del acorde vigente. Sigue estando PROHIBIDO todo ' +
+        'lo prohibido (5as/8as paralelas y directas, disonancias sin preparar/resolver, falsas ' +
+        'relaciones, 2as aumentadas melódicas, duplicar la sensible…).\n' +
+        '- BAJO: se mueve como una LÍNEA (grados conjuntos, arpegio de las notas del acorde, ' +
+        'notas de paso hacia el acorde siguiente), NO como un pedal; pero en los TIEMPOS ' +
+        'FUERTES sigue cantando la fundamental o la nota de la inversión indicada por el plan.\n' +
+        '- IMITACIÓN (en CONTRAPUNTO): las voces RETOMAN las FIGURAS rítmico-melódicas de la ' +
+        'soprano/contralto (eco/pregunta-respuesta). En HOMOFONÍA se mueven JUNTAS con ese ' +
+        'mismo ritmo activo. Reserva las notas largas para reposos y cadencias.',
     );
   }
   // Cambio de armadura solo en modulaciones LARGAS (no en tonicizaciones breves).

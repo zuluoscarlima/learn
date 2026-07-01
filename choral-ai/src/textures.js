@@ -22,9 +22,8 @@ export const TEXTURES = {
       'unísono, uno o dos tiempos más tarde) — un juego de eco/pregunta-respuesta que ' +
       'recorre la pieza; no hace falta que la imitación sea estricta como en un canon, ' +
       'basta con que el diseño se RECONOZCA al reaparecer en otra voz. El BAJO es una VOZ ' +
-      'MÁS, con su propia línea ACTIVA y cantábile (negras y corcheas, notas de paso, ' +
-      'arpegios, contramelodía) — NO un pedal de redondas; es más libre e independiente pero ' +
-      'igual de vivo rítmicamente que las demás. Combina las voces con buena conducción: trata ' +
+      'MÁS, con su propia línea INDEPENDIENTE y cantábile, más libre que las demás y sin ' +
+      'obligación de imitarlas. Combina las voces con buena conducción: trata ' +
       'las disonancias por grado conjunto (notas de paso, bordaduras, retardos que ' +
       'resuelven hacia abajo), evita quintas y octavas paralelas y directas, y prefiere ' +
       'el movimiento contrario u oblicuo entre voces.',

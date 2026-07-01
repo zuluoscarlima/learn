@@ -618,3 +618,19 @@ siempre en redondas y blancas; deben moverse e IMITAR las figuras de soprano/alt
   camina/arpegia/usa notas de paso (línea, no pedal); imitación de las figuras de las voces
   agudas (en contrapunto) o mismo ritmo activo junto a ellas (en homofonía); notas largas solo
   en reposos/cadencias. Verificado que el flag fluye (contrapunto/homofonía aplican; colchones no).
+
+---
+
+## "Vida rítmica en las voces" pasa a ser OPCIÓN (no romper reglas del contrapunto)
+El usuario avisa (con razón) de que forzar el movimiento del bajo puede transgredir las reglas
+de conducción de voces. Se convierte en una ELECCIÓN suya y se garantiza que respeta las reglas.
+- **index.html**: nuevo desplegable "Escritura de las voces" (`voiceRhythm`): "Según la textura
+  (respeta el contrapunto)" [por defecto] / "Coherente con la soprano (todas activas)".
+- **compose.js**: el bloque de movimiento rítmico SOLO se añade si `voiceRhythm==='coherente'`
+  (y nunca en texturas sustained). Reescrito para dejar CLARO que NO relaja ninguna regla: el
+  movimiento se logra con notas extrañas legítimas (paso, bordadura, retardo, anticipación,
+  arpegio) y siguen prohibidas 5as/8as paralelas, disonancias sin resolver, falsas relaciones,
+  etc.; el bajo se mueve como línea pero canta fundamental/inversión en tiempos fuertes.
+- **textures.js**: `contrapunto_libre` vuelve a una descripción NEUTRA del bajo (voz
+  independiente), sin prescribir ni "notas largas" ni "negras/corcheas": por defecto se mantiene
+  el contrapunto previo; el empuje de "todas activas" vive solo en la opción.
