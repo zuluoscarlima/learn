@@ -11,6 +11,7 @@ import {
   IMPRESSIONIST_HARMONY_SYSTEM,
   PERSICHETTI_HARMONY_SYSTEM,
   TERTIAN_HARMONY_SYSTEM,
+  ADDED_HARMONY_SYSTEM,
   MIXTO_HARMONY_SYSTEM,
   resolveSystems,
 } from './systems.js';
@@ -213,6 +214,7 @@ function buildUserPrompt(params) {
   const isImpressionist = only('impresionista');
   const isPersichetti = only('sigloxx');
   const isTertian = only('terceras');
+  const isAdded = only('anadidos');
   const isTonal = only('tonal');
   // Solo la tonal pura es funcional; cualquier técnica del s.XX o combinación no lo es.
   const nonFunctional = !isTonal;
@@ -263,6 +265,14 @@ function buildUserPrompt(params) {
         'fundamentales. Válido en cualquier escala (mayor, modal o sintética); indica ' +
         'la calidad real de cada tríada (major/minor/diminished/augmented).',
     );
+  } else if (isAdded) {
+    lines.push(
+      '- SISTEMA: SONIDOS AÑADIDOS (Persichetti, no funcional). Parte de acordes básicos y ' +
+        'pégales 2as mayores/menores como MIEMBROS DE COLOR (no adornos): usa las calidades ' +
+        'major_add9/minor_add9/major_add6/sus2/sus4 (y major/minor de base). Cuanto más ' +
+        'grave el añadido, menos resonante. El color manda; centro por reiteración; reposo ' +
+        'por permanencia.',
+    );
   }
   if (!nonFunctional && modulate && measures >= 8) {
     lines.push(
@@ -302,7 +312,7 @@ function buildUserPrompt(params) {
         ? 'el cierre por distensión'
         : isTertian
           ? 'la confirmación del centro (cadencia del ciclo)'
-          : isContemporary || isImpressionist
+          : isContemporary || isImpressionist || isAdded
             ? 'el reposo final'
             : 'la cadencia final';
   lines.push(`\nDevuelve exactamente ${measures} acordes (measure 1..${measures}) y ${closing}.`);
@@ -328,6 +338,7 @@ function selectHarmonySystem(ids) {
     impresionista: IMPRESSIONIST_HARMONY_SYSTEM,
     sigloxx: PERSICHETTI_HARMONY_SYSTEM,
     terceras: TERTIAN_HARMONY_SYSTEM,
+    anadidos: ADDED_HARMONY_SYSTEM,
   };
   if (ids.includes('mixto')) return MIXTO_HARMONY_SYSTEM;
   if (ids.length === 1) return map[ids[0]] || SYSTEM_PROMPT;

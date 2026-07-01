@@ -241,6 +241,34 @@ quartal3/4/5 y quartal3ja/aj; los compuestos (cuartas+3ª) se realizan como voic
 - [x] Añadido a QUARTAL_HARMONY_SYSTEM y QUARTAL_COMPOSE_SYSTEM (nueva sección CADENCIA;
       registro/pedal, compuestos, enlace tonal, inversiones/tritono).
 
+### Cap. 4 final (pág. 106–109): multisonidos por cuartas — APLICADO (a `cuartal`)
+- Cuartas en QUINTAS: si las quintas dominan, las cuartas se vuelven inestables → resolver
+  la 4ª en la 3ª de un compuesto antes de volver al puro por cuartas.
+- Multisonidos: consonante hasta 5 sonidos; con 6+ aparece 4ª aum → cambio de categoría de
+  tensión; contrastar grupo disonante vs consonante. Axis si nº de 3as = nº de 4as.
+- Densidad ↓ potencia lineal ("asfixia") → aliviar con amago de paralelo, unísono
+  interrumpido o dominante enriquecida; para no enturbiar, intervalos grandes en la base y
+  omitir un miembro.
+
+## Persichetti cap. 5 "Acordes con sonidos añadidos" (pág. 111–115) — SISTEMA NUEVO
+Sistema `anadidos` ("Sonidos añadidos (Persichetti)"). Técnica general: pegar 2as
+mayores/menores a cualquier acorde (terciario o por cuartas) como MIEMBROS DE COLOR (no
+adornos); modifican textura más que función.
+- Colocar la 2ª una 2ª por encima/debajo de un miembro (evitar que se vuelva 7ª/9ª real).
+- RESONANCIA: cuanto más grave el añadido, menos resonante.
+- Qué acordes: may/men lo aceptan bien (sobre 3ª mayor el color se difumina); disminuida →
+  2as menores (variedad); aumentada → textura fuerte. A 7as/9as, sobre todo 2as mayores.
+- El añadido NO compite con la 7ª/9ª por resolver; se pega en fund./invertido; se puede
+  duplicar (octavas acopladas en voces externas, colchón con añadidos).
+- Cuartas: orden de sonoridad — blandas = 2ª mayor (debajo 7ª, encima/debajo 4ª, encima
+  fund.); fuertes = 2ª menor en esos lugares.
+- 6ª aumentada con sonidos añadidos (5 tipos básicos) y la tónica cadencial 6/5 como
+  ejemplos tradicionales → NO se codifican como calidades (funcionales/enarmónicas); el
+  sistema tonal ya cubre las 6as aumentadas.
+- [x] systems.js: ADDED_HARMONY_SYSTEM + ADDED_COMPOSE_SYSTEM. harmony.js/compose.js:
+      mapas, branch de prompt (isAdded) y cierre por reposo. Enum sin cambios (add9/add6/
+      sus2/sus4 ya existen; los añadidos libres se realizan como voicing).
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.
