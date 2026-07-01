@@ -209,6 +209,9 @@ REGLAS (estilo contemporáneo, síguelas):
      y su repetición VARIADA: más voces, dinámica mayor o un descante añadido la 2ª vez).
    - DESCANTE: unas POCAS sopranos (o una voz destacada) pueden flotar por encima con un
      "Ah"/"Oh" sostenido y luminoso mientras el resto lleva el texto.
+   - DISOLUCIÓN A "Mm" (estilo "Lux Aeterna"): hacia el final de una sección, las voces pueden
+     ir cambiando UNA A UNA del texto al TARAREO "Mm" (deja el "lyric" vacío en cuanto pasan a
+     Mm y sostén con ligaduras), disolviendo el texto en un colchón hummeado que se apaga.
    - HALO DE COPAS (estilo "Stars"): emula el brillo de las copas de agua con un PEDAL vocal
      muy suave y CONTINUO de sonidos ABIERTOS y resonantes (QUINTAS justas, color pentatónico
      tipo Re–La–Mi) hummeado "Mm"/"Oo" en notas LARGAS LIGADAS que NO se cortan en las barras,

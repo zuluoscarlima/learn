@@ -55,6 +55,25 @@ export const VOICINGS = {
       p('Contralto', 'alto'),
     ],
   },
+  ssaa: {
+    label: 'SSAA · coro femenino a 4',
+    parts: [
+      p('Soprano 1', 'soprano'),
+      p('Soprano 2', 'soprano'),
+      p('Contralto 1', 'alto'),
+      p('Contralto 2', 'alto'),
+    ],
+  },
+  ssmsaa: {
+    label: 'SSMsAA · coro femenino a 5 (Ešenvalds "Lux Aeterna")',
+    parts: [
+      p('Soprano 1', 'soprano'),
+      p('Soprano 2', 'soprano'),
+      p('Mezzosoprano', 'mezzo'),
+      p('Contralto 1', 'alto'),
+      p('Contralto 2', 'alto'),
+    ],
+  },
   ttbb: {
     label: 'TTBB · voces graves',
     parts: [

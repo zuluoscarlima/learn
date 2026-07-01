@@ -794,3 +794,19 @@ CUALQUIER voz (S/A/T/B) pueda dividirse en su propio pentagrama.
 Texto sacro (Lux aeterna/requiem). Mib mayor aprox., "Con anima" ♩=52. Homofonía cálida y
 fluida, rubato, muy divisi, con opción de pasar el texto a "Mm" gradualmente. Motiva: (a) el
 DIVISI (ya hecho) y (b) un voicing de CORO FEMENINO (SSAA / SSMsAA) — pendiente de añadir.
+
+## Obra 7 (completa) — Ešenvalds, "Lux Aeterna" (coro FEMENINO SSMsAA, 2017) — APLICADO
+Comisión del International Baltic Sea Choir Competition. Texto sacro "Lux aeterna luceat eis…".
+Mib mayor, "Con anima" ♩=52 (luego "Sonante" ♩=80-84). Homofonía cálida y fluida, rubato
+(rall.), dinámicas p→f(ff)→p, MUY divisi, cierre sereno sostenido en p.
+- Rasgos: coro femenino a 5 (S I, S II, Mezzo, A I, A II); homofonía expresiva con el texto;
+  DIVISI frecuente (acordes por voz); cambio GRADUAL del texto a "Mm" (una voz tras otra,
+  m.29-36 opcional) que disuelve en colchón hummeado; final rall./p.
+- Aplicado:
+  - voicings.js: NUEVOS voicings `ssaa` (SSAA, coro femenino a 4) y `ssmsaa` (SSMsAA a 5, el de
+    esta obra). Verificado render a 5 pentagramas de agudos + divisi → PDF+MIDI OK.
+  - systems.js CONTEMPORARY_COMPOSE_SYSTEM: añadida la "disolución a Mm" (voces que pasan del
+    texto al tarareo una a una, con ligaduras, apagándose).
+  - (El divisi ya se implementó en el commit anterior; esta obra lo motivó.)
+Con esto van 7 obras de Ešenvalds analizadas (Rasa, O Salutaris, Only in Sleep, Trees, Stars,
+Lux Aeterna) — el acervo báltico/Ešenvalds está muy completo.
