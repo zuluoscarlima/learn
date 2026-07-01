@@ -729,3 +729,25 @@ del siglo XX "NO funcional", contradiciendo a la tonal (que sí es funcional). A
 - compose.js: `selectComposeSystem` igual (base tonal + color); la MÉTRICA CAMBIANTE ya no se
   ofrece si hay tonal (`nonTonal = !systems.includes('tonal')`), para mantener compás estable.
 - "Combinar todo" (mixto) y las combinaciones solo-s.XX siguen igual (no funcionales).
+
+---
+
+## Obra 5 — Ešenvalds, "Trees" (Joyce Kilmer; coro + saxo alto + copas de agua) — ANÁLISIS
+Sol mayor, 4/4, ♩=69-76. Instrumentación singular: SAXO ALTO solista + COPAS AFINADAS CON AGUA
+(water-tuned glasses, capa de brillo sostenido tipo crotales) + CORO.
+### Rasgos
+- **Colchón VOCALISE**: el coro va casi todo SIN TEXTO, tarareando acordes lentos muy
+  SOSTENIDOS y LIGADOS entre compases, CAMBIANDO la vocal con la armonía (Mm→Oo/Oh→Ah), con
+  divisi (S div., B div.) y dinámicas muy suaves (p/mp).
+- **Solista instrumental**: el SAXO lleva la melodía LÍRICA y libre (silencios, puntillos,
+  síncopas) por encima del colchón — en nuestra app equivale a la voz superior/solista como
+  línea lírica libre.
+- **Capa de brillo sostenido** (copas de agua): sonoridad campana/cristalina sostenida (no
+  reproducible en SATB puro; inspira el colchón brillante).
+### Aplicado
+- systems.js CONTEMPORARY_COMPOSE_SYSTEM: añadido el "colchón vocalise" tipo Trees (coro sin
+  texto, acordes ligados con "tie", vocal que cambia con la armonía, una línea lírica libre
+  por encima).
+- textures.js `tarareo`: el colchón usa notas largas LIGADAS ("tie":true) y cambia la vocal
+  con la armonía; la voz activa puede ser texto o una línea lírica libre.
+(Con esto van 5 obras de Ešenvalds analizadas: Rasa, O Salutaris, Only in Sleep, Trees.)

@@ -209,6 +209,12 @@ REGLAS (estilo contemporáneo, síguelas):
      y su repetición VARIADA: más voces, dinámica mayor o un descante añadido la 2ª vez).
    - DESCANTE: unas POCAS sopranos (o una voz destacada) pueden flotar por encima con un
      "Ah"/"Oh" sostenido y luminoso mientras el resto lleva el texto.
+   - COLCHÓN VOCALISE (estilo "Trees"): en pasajes largos el coro entero puede ir SIN TEXTO,
+     tarareando un colchón lento de acordes muy SOSTENIDOS y LIGADOS entre compases
+     ("tie":true), CAMBIANDO la VOCAL con la armonía — "Mm" (cerrado, íntimo) → "Oo"/"Oh" →
+     "Ah" (abierto, al crecer) — con divisi suave, mientras UNA sola línea (la voz superior o
+     una solista, a modo de instrumento LÍRICO) lleva la melodía libre por encima, con silencios,
+     puntillos y síncopas. Ritmo armónico muy lento; dinámicas p/mp; brillo sereno y suspendido.
    - Las tonalidades con BEMOLES (Reb, Lab, Mib…) dan una calidez especial a este estilo.
 
 4. ARCO Y CIERRE

@@ -55,9 +55,10 @@ export const TEXTURES = {
       'las graves o las internas) sostienen notas largas sin texto silábico cantadas ' +
       'sobre una VOCAL/SÍLABA abierta o cerrada — alterna "Mm" (cerrado), "Oh", "Oo" o ' +
       '"Ah" (abiertos) según el color buscado: cerrado y velado en lo íntimo, abierto y ' +
-      'sonoro al crecer hacia el clímax — formando un colchón armónico muy suave (pon la ' +
-      'sílaba en la primera nota del grupo y deja VACÍO el lyric en las siguientes para ' +
-      'sostenerla). Las DEMÁS voces llevan el TEXTO de forma más activa por encima. ' +
+      'sonoro al crecer hacia el clímax; CAMBIA la vocal cuando cambia la armonía. Forma un ' +
+      'colchón armónico muy suave con notas LARGAS LIGADAS entre compases ("tie":true; pon la ' +
+      'sílaba en la primera nota y deja VACÍO el lyric en las siguientes para sostenerla). ' +
+      'Las DEMÁS voces llevan el TEXTO (o una línea lírica libre) de forma más activa por encima. ' +
       'Entradas escalonadas; dinámicas muy tenues (ppp/pp) que abren el color de la ' +
       'vocal al crecer; las capas se superponen y se intercambian.',
   },
