@@ -10,6 +10,7 @@ import {
   CONTEMPORARY_HARMONY_SYSTEM,
   IMPRESSIONIST_HARMONY_SYSTEM,
   PERSICHETTI_HARMONY_SYSTEM,
+  TERTIAN_HARMONY_SYSTEM,
 } from './systems.js';
 
 const MODEL = 'claude-opus-4-8';
@@ -194,7 +195,9 @@ function buildUserPrompt(params) {
   const isContemporary = params.system === 'contemporaneo';
   const isImpressionist = params.system === 'impresionista';
   const isPersichetti = params.system === 'sigloxx';
-  const nonFunctional = isQuartal || isContemporary || isImpressionist || isPersichetti;
+  const isTertian = params.system === 'terceras';
+  const nonFunctional =
+    isQuartal || isContemporary || isImpressionist || isPersichetti || isTertian;
   if (isQuartal) {
     lines.push(
       '- SISTEMA: armonía POR CUARTAS (no funcional). Usa calidades quartal3/quartal4/' +
@@ -220,6 +223,16 @@ function buildUserPrompt(params) {
         '2as/7as/tritones (sus2/add9/minor7 → major7/dominant7b5/diminished7/' +
         'half_diminished7/augmented) y RELAJA al final. Sin cadencias tonales; centro ' +
         'por reiteración. Cierre por distensión (regreso a consonancia abierta/blanda).',
+    );
+  } else if (isTertian) {
+    lines.push(
+      '- SISTEMA: TRIÁDICO POR CICLOS (Persichetti). Organiza las TRÍADAS por un CICLO ' +
+        'de fundamentales elegido —2as, 3as o 5as— alrededor del centro. Primarios: ' +
+        'ciclo de 3as → I/III/VI (mandan III–I, VI–I); ciclo de 2as → I/II/VII (mandan ' +
+        'II–I, VII–I); ciclo de 5as → I/IV/V. Confirma el centro con movimientos de ' +
+        'paso y cadenciales del ciclo; puedes MEZCLAR ciclos para libertad de ' +
+        'fundamentales. Válido en cualquier escala (mayor, modal o sintética); indica ' +
+        'la calidad real de cada tríada (major/minor/diminished/augmented).',
     );
   }
   if (!nonFunctional && modulate && measures >= 8) {
@@ -256,9 +269,11 @@ function buildUserPrompt(params) {
     ? 'el gesto de cierre'
     : isPersichetti
       ? 'el cierre por distensión'
-      : isContemporary || isImpressionist
-        ? 'el reposo final'
-        : 'la cadencia final';
+      : isTertian
+        ? 'la confirmación del centro (cadencia del ciclo)'
+        : isContemporary || isImpressionist
+          ? 'el reposo final'
+          : 'la cadencia final';
   lines.push(`\nDevuelve exactamente ${measures} acordes (measure 1..${measures}) y ${closing}.`);
   return lines.join('\n');
 }
@@ -287,7 +302,9 @@ export async function planHarmony(params) {
           ? IMPRESSIONIST_HARMONY_SYSTEM
           : params.system === 'sigloxx'
             ? PERSICHETTI_HARMONY_SYSTEM
-            : SYSTEM_PROMPT;
+            : params.system === 'terceras'
+              ? TERTIAN_HARMONY_SYSTEM
+              : SYSTEM_PROMPT;
 
   const stream = client.messages.stream({
     model: MODEL,

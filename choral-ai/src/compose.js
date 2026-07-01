@@ -6,6 +6,7 @@ import {
   CONTEMPORARY_COMPOSE_SYSTEM,
   IMPRESSIONIST_COMPOSE_SYSTEM,
   PERSICHETTI_COMPOSE_SYSTEM,
+  TERTIAN_COMPOSE_SYSTEM,
 } from './systems.js';
 
 const MODEL = 'claude-opus-4-8';
@@ -183,7 +184,9 @@ export async function composeChoral(params, parts, texture, harmonyText) {
           ? IMPRESSIONIST_COMPOSE_SYSTEM
           : params.system === 'sigloxx'
             ? PERSICHETTI_COMPOSE_SYSTEM
-            : SYSTEM_PROMPT;
+            : params.system === 'terceras'
+              ? TERTIAN_COMPOSE_SYSTEM
+              : SYSTEM_PROMPT;
 
   const stream = client.messages.stream({
     model: MODEL,

@@ -128,6 +128,28 @@ Estudio incremental para construir el sistema **"Siglo XX · control de tensión
 - Nota: acordes por 3as/4as/enteros construidos desde la serie (1-3-5, 1-3-5-7,
   1-3-5-7-9, tonos enteros 7–11, cuartas 6-8-9) → pendiente al ampliar el enum.
 
+---
+
+## Tratado 2 — Persichetti, cap. 3 "Acordes por terceras" (pág. 65–69) — APLICADO
+
+Sistema NUEVO `terceras` ("Triádico por ciclos · 2as/3as/5as").
+- Armonía TRIÁDICA organizada por un CICLO de fundamentales elegido, alrededor de un
+  centro (no por la sintaxis tonal V–I habitual).
+- Ciclo de 5as → primarios I/IV/V (V–I, IV–I). Ciclo de 3as → I/III/VI (III–I, VI–I;
+  mediante/submediante). Ciclo de 2as → I/II/VII (II–I, VII–I; supertónica/sensible).
+- Plantillas de fundamentales: 5as = I III IV VI V I; 3as = I II VI VII III I;
+  2as = I V VII IV II I.
+- Se pueden MEZCLAR ciclos (libertad total de fundamentales; 2ª/3ª/5ª ≡ 7ª/6ª/4ª por
+  inversión → los 12 sonidos). Construible en cualquier escala (mayor, modal,
+  sintética); colores de los primarios según la intervalica de la escala.
+- Ojo: tríadas con 3ª aumentada/disminuida suenan a 4ª/2ª (problema de ortografía).
+- [x] systems.js: TERTIAN_HARMONY_SYSTEM + TERTIAN_COMPOSE_SYSTEM.
+      harmony.js/compose.js: ramas de selección, línea de sistema y cierre por
+      confirmación del centro. El enum de calidades existente (major/minor/diminished/
+      augmented) ya cubre las tríadas; no requiere ampliación.
+- Pendiente (siguiente en cap. 3): acordes de 7ª/9ª/11ª/13ª por terceras, tríadas con
+  añadidos, y espesamiento triádico → puede requerir ampliar el enum.
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.
