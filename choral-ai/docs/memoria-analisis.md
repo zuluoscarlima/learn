@@ -342,6 +342,19 @@ Sistema `policordes` ("Policordes / bitonalidad"). Combinación simultánea de 2
 - Nota: enum de calidades NO cubre "dos tríadas"; si se quisiera plan determinista de la
   unidad superior, habría que añadir un campo `poly` al HARMONY_SCHEMA (pendiente, opcional).
 
+## Mejora de MELODÍAS (feedback: sonaban primitivas) — HECHO
+Causa: mucha guía de armonía/textura/métrica, pero casi ninguna de escritura melódica.
+- compose.js buildUserPrompt: bloque "MELODÍA (ARTESANÍA)" que aplica a TODOS los sistemas
+  (motivo + desarrollo; fraseo en arco con antecedente/consecuente y respiración; un solo
+  clímax; contorno con saltos expresivos compensados; ritmo con vida —anacrusas, síncopas,
+  puntillos, ligaduras, no "una nota por pulso"—; notas extrañas expresivas —apoyaturas,
+  retardos— sin limitarse a arpegiar el acorde; text painting y acento del texto).
+- systems.js CONTEMPORARY_COMPOSE_SYSTEM: rasgos melódicos Ešenvalds/báltico (arco
+  ascendente a cima luminosa, suspensiones/apoyaturas de anhelo, salto expresivo en el
+  clímax, motivo que pasa entre secciones/voice exchange).
+- Pendiente si sigue plano: variar el RITMO ARMÓNICO y las progresiones en fase 1
+  (harmony.js) para dar más apoyo melódico.
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.

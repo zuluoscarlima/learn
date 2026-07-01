@@ -197,6 +197,11 @@ REGLAS (estilo contemporáneo, síguelas):
 3. MELODÍA Y TEXTURA
    - Líneas cantábiles, con la voz superior bien perfilada. Ritmo predominantemente
      lento y sostenido (blancas/redondas), salvo que la textura pida líneas floridas.
+   - ESTILO ESENVALDS/báltico: la soprano traza un ARCO amplio y ASCENDENTE hacia una nota
+     culminante luminosa y luego desciende; crea ANHELO con SUSPENSIONES y APOYATURAS que
+     resuelven despacio por grado conjunto, y algún SALTO expresivo (6ª/8ª) en el clímax.
+     Emplea un MOTIVO recurrente que se desarrolla y PASA entre secciones (voice exchange).
+     Sobre el colchón de tarareo, líneas que fluyen con naturalidad prosódica del texto.
 
 4. ARCO Y CIERRE
    - Construye un ARCO de toda la pieza: comienza suave y con textura ESCASA, crece

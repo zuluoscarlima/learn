@@ -175,6 +175,33 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
         `omite "meters".`,
     );
   }
+  // Artesanía melódica: lo que separa una melodía lograda de una plana. Aplica a
+  // TODOS los sistemas (a la voz que lleva el canto y, en lo posible, a todas).
+  lines.push(
+    '\nMELODÍA (ARTESANÍA — esto es lo que evita melodías planas; aplícalo sobre todo a la ' +
+      'voz que lleva el canto):\n' +
+      '- MOTIVO: crea al principio una CÉLULA melódico-rítmica breve y reconocible y ' +
+      'DESARRÓLLALA a lo largo de la pieza (repetición, secuencia/transposición, inversión, ' +
+      'ampliación, fragmentación). NO inventes material nuevo y sin relación en cada compás.\n' +
+      '- FRASEO en ARCO: agrupa en frases (2, 4 u 8 compases), cada una con UNA sola cima a ' +
+      'la que se asciende y desde la que se relaja; encadena antecedente–consecuente ' +
+      '(pregunta/respuesta) y RESPIRA entre frases (silencios o notas largas). La pieza ' +
+      'entera tiene UN clímax, preparado y luego liberado.\n' +
+      '- CONTORNO: mayormente por grados conjuntos, pero con algún SALTO EXPRESIVO (6ª, 8ª o ' +
+      'un intervalo llamativo) en el punto emotivo, COMPENSADO después por grado conjunto en ' +
+      'dirección contraria (rellena el hueco). Evita el vagar sin rumbo y las notas ' +
+      'repetidas estáticas.\n' +
+      '- RITMO con VIDA: no muevas todas las voces con el MISMO ritmo ni todo en negras. ' +
+      'Contrasta notas LARGAS sostenidas con figuras que fluyen; usa anacrusas, síncopas, ' +
+      'puntillos y ligaduras; aprovecha el vaivén de la métrica. Evita el "una nota por ' +
+      'pulso" monótono.\n' +
+      '- NOTAS EXTRAÑAS expresivas: usa apoyaturas, RETARDOS (suspensiones), notas de paso y ' +
+      'bordaduras para dar anhelo y dirección; la melodía NO debe limitarse a arpegiar el ' +
+      'acorde (respeta las reglas de resolución del sistema activo).\n' +
+      '- TEXTO: coloca la CIMA melódica y las notas largas sobre las sílabas ACENTUADAS o ' +
+      'palabras importantes; usa MELISMAS para resaltar palabras clave (text painting); ' +
+      'respeta el acento natural del texto.',
+  );
   lines.push(
     `\nDevuelve un array "voices" con EXACTAMENTE ${parts.length} voces, en ese ` +
       `orden y con esos nombres. Cada voz debe sumar ${measures} compases (usando ` +
