@@ -5,6 +5,7 @@ import {
   QUARTAL_COMPOSE_SYSTEM,
   CONTEMPORARY_COMPOSE_SYSTEM,
   IMPRESSIONIST_COMPOSE_SYSTEM,
+  PERSICHETTI_COMPOSE_SYSTEM,
 } from './systems.js';
 
 const MODEL = 'claude-opus-4-8';
@@ -146,7 +147,11 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
     lines.push('\n' + params.continuation);
   }
   // En estilos báltico/impresionista la métrica suele CAMBIAR de compás a compás.
-  if (params.system === 'impresionista' || params.system === 'contemporaneo') {
+  if (
+    params.system === 'impresionista' ||
+    params.system === 'contemporaneo' ||
+    params.system === 'sigloxx'
+  ) {
     lines.push(
       `\nMÉTRICA CAMBIANTE (opcional, estilo báltico/impresionista): si la prosodia ` +
         `del texto lo pide, puedes devolver además un campo "meters" con UN compás ` +
@@ -176,7 +181,9 @@ export async function composeChoral(params, parts, texture, harmonyText) {
         ? CONTEMPORARY_COMPOSE_SYSTEM
         : params.system === 'impresionista'
           ? IMPRESSIONIST_COMPOSE_SYSTEM
-          : SYSTEM_PROMPT;
+          : params.system === 'sigloxx'
+            ? PERSICHETTI_COMPOSE_SYSTEM
+            : SYSTEM_PROMPT;
 
   const stream = client.messages.stream({
     model: MODEL,

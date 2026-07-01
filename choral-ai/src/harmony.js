@@ -9,6 +9,7 @@ import {
   QUARTAL_HARMONY_SYSTEM,
   CONTEMPORARY_HARMONY_SYSTEM,
   IMPRESSIONIST_HARMONY_SYSTEM,
+  PERSICHETTI_HARMONY_SYSTEM,
 } from './systems.js';
 
 const MODEL = 'claude-opus-4-8';
@@ -192,7 +193,8 @@ function buildUserPrompt(params) {
   const isQuartal = params.system === 'cuartal';
   const isContemporary = params.system === 'contemporaneo';
   const isImpressionist = params.system === 'impresionista';
-  const nonFunctional = isQuartal || isContemporary || isImpressionist;
+  const isPersichetti = params.system === 'sigloxx';
+  const nonFunctional = isQuartal || isContemporary || isImpressionist || isPersichetti;
   if (isQuartal) {
     lines.push(
       '- SISTEMA: armonía POR CUARTAS (no funcional). Usa calidades quartal3/quartal4/' +
@@ -209,6 +211,15 @@ function buildUserPrompt(params) {
       '- SISTEMA: armonía IMPRESIONISTA modal (no funcional). Color modal y ' +
         'PARALELISMO (planing); usa major/minor/major7/minor7/major_add9/sus2/sus4. ' +
         'Ritmo armónico lento; cierre suspendido, no por dominante.',
+    );
+  } else if (isPersichetti) {
+    lines.push(
+      '- SISTEMA: SIGLO XX por CONTROL DE TENSIÓN (Persichetti, no funcional). Diseña ' +
+        'una CURVA DE TENSIÓN por el contenido interválico: sonoridades poco tensas ' +
+        '(major/minor, quartal3/4/5) al principio, INTENSIFICA hacia el clímax con ' +
+        '2as/7as/tritones (sus2/add9/minor7 → major7/dominant7b5/diminished7/' +
+        'half_diminished7/augmented) y RELAJA al final. Sin cadencias tonales; centro ' +
+        'por reiteración. Cierre por distensión (regreso a consonancia abierta/blanda).',
     );
   }
   if (!nonFunctional && modulate && measures >= 8) {
@@ -243,9 +254,11 @@ function buildUserPrompt(params) {
   }
   const closing = isQuartal
     ? 'el gesto de cierre'
-    : isContemporary || isImpressionist
-      ? 'el reposo final'
-      : 'la cadencia final';
+    : isPersichetti
+      ? 'el cierre por distensión'
+      : isContemporary || isImpressionist
+        ? 'el reposo final'
+        : 'la cadencia final';
   lines.push(`\nDevuelve exactamente ${measures} acordes (measure 1..${measures}) y ${closing}.`);
   return lines.join('\n');
 }
@@ -272,7 +285,9 @@ export async function planHarmony(params) {
         ? CONTEMPORARY_HARMONY_SYSTEM
         : params.system === 'impresionista'
           ? IMPRESSIONIST_HARMONY_SYSTEM
-          : SYSTEM_PROMPT;
+          : params.system === 'sigloxx'
+            ? PERSICHETTI_HARMONY_SYSTEM
+            : SYSTEM_PROMPT;
 
   const stream = client.messages.stream({
     model: MODEL,

@@ -65,3 +65,27 @@ basada en partituras analizadas.
       para abrir el color de la vocal al crecer hacia el clímax.
 - [x] **Sugerencia de `meters` en el prompt** para sistemas impresionista/contemporáneo
       (la prosodia del texto guía los cambios de compás).
+
+---
+
+## Tratado 2 — Persichetti, "Armonía del siglo XX" (en curso)
+
+Estudio incremental para construir el sistema **"Siglo XX · control de tensión"**
+(id `sigloxx` en systems.js).
+
+### Cap. I — Intervalos y tensión (pág. 12–13) — APLICADO
+- Jerarquía de tensión interválica: consonancias ABIERTAS (5ª/8ª J) < BLANDAS
+  (3as/6as) < disonancias SUAVES (2ª M / 7ª m) < FUERTES (2ª m / 7ª M).
+- 4ª JUSTA ambivalente (consonante en entorno disonante y viceversa); TRITONO
+  ambiguo (neutro en cromatismo, inestable en diatonismo).
+- Principio: los intervalos se ORDENAN para formar una CURVA DE TENSIÓN deliberada.
+- [x] Sistema `sigloxx`: `PERSICHETTI_HARMONY_SYSTEM` (fase 1, diseña la curva de
+      tensión con las calidades disponibles) y `PERSICHETTI_COMPOSE_SYSTEM` (fase 2,
+      controla la tensión interválica vertical/horizontal como un arco). No funcional;
+      cierre por distensión. Compás cambiante habilitado.
+
+### Pendiente (siguientes capítulos, cuando lleguen las páginas)
+- Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
+- Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.
+- Escalas/modos sintéticos; centros tonales por afirmación no funcional.
+- (Requerirá ampliar el enum de calidades en harmony.js para clusters/policordes.)
