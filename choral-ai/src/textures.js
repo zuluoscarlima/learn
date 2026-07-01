@@ -62,6 +62,19 @@ export const TEXTURES = {
       'Entradas escalonadas; dinámicas muy tenues (ppp/pp) que abren el color de la ' +
       'vocal al crecer; las capas se superponen y se intercambian.',
   },
+  halo_copas: {
+    label: 'Coro con halo de copas de agua (Ešenvalds "Stars")',
+    sustained: true,
+    prompt:
+      'Textura estilo Ešenvalds "Stars", emulando el brillo de las COPAS AFINADAS CON AGUA con ' +
+      'un HALO vocal sostenido. ALGUNAS voces (o divisi de agudas/internas) mantienen un PEDAL ' +
+      'muy suave y CONTINUO de sonidos ABIERTOS y RESONANTES — QUINTAS justas y color ' +
+      'PENTATÓNICO (p. ej. Re–La con Mi y La añadidos) — tarareando "Mm"/"Oo" en notas LARGAS ' +
+      'LIGADAS entre compases ("tie":true) que NO se cortan en las barras (un brillo que flota ' +
+      'por encima de la métrica). El RESTO del coro canta el TEXTO de forma HOMOFÓNICA, cálida y ' +
+      'expresiva (rubato), muy suave (p–mp), abriendo a acordes sostenidos de "Ah" en el clímax. ' +
+      'Dinámicas con largos reguladores; entradas escalonadas; centro modal/mayor luminoso.',
+  },
   duo_solistas_imitacion: {
     label: 'Dúo de solistas en imitación sobre colchón (Ešenvalds)',
     sustained: true,

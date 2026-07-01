@@ -751,3 +751,24 @@ Sol mayor, 4/4, ♩=69-76. Instrumentación singular: SAXO ALTO solista + COPAS 
 - textures.js `tarareo`: el colchón usa notas largas LIGADAS ("tie":true) y cambia la vocal
   con la armonía; la voz activa puede ser texto o una línea lírica libre.
 (Con esto van 5 obras de Ešenvalds analizadas: Rasa, O Salutaris, Only in Sleep, Trees.)
+
+---
+
+## Obra 6 — Ešenvalds, "Stars" (Sara Teasdale; coro SATB + copas de agua) — ANÁLISIS
+Re mayor (2 #), "Espressivo e rubato" ♩=76-84. Musica Baltica 2012. La obra emblemática de las
+copas afinadas con agua.
+### Rasgos
+- **Halo de copas**: "cada segundo cantante toca una copa"; las copas suenan CONTINUAS, sin
+  parar en las barras (anotación "play glasses w/o stopping, ignore bar line"), formando un
+  BRILLO sostenido de acordes resonantes (pitches abiertos re/mi/la; se pueden añadir cuencos
+  tibetanos en Re-Mi-La para más grave). Menos agua = más resonancia.
+- **Coro homofónico** cantando el texto, cálido, expresivo, rubato, muy suave (p-mp), con hums
+  "Mm" y aperturas a "Ah" sostenido en el clímax ("heaven full of stars"). Divisi.
+### Aplicado (emulación en SATB, sin instrumentos reales)
+- textures.js: NUEVA textura `halo_copas` ("Coro con halo de copas de agua, Stars"): unas voces
+  sostienen un PEDAL continuo de sonidos ABIERTOS/resonantes (quintas justas, pentatónico
+  Re-La-Mi) en "Mm"/"Oo" con notas largas LIGADAS que no se cortan en las barras, mientras el
+  resto canta el texto homofónico y abre a "Ah" en el clímax. sustained:true.
+- systems.js CONTEMPORARY_COMPOSE_SYSTEM: añadido el "halo de copas" (pedal vocal abierto y
+  resonante, ligado, por debajo del coro).
+(Van 6 obras de Ešenvalds: Rasa, O Salutaris, Only in Sleep, Trees, Stars.)

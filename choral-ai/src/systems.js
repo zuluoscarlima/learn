@@ -209,6 +209,10 @@ REGLAS (estilo contemporáneo, síguelas):
      y su repetición VARIADA: más voces, dinámica mayor o un descante añadido la 2ª vez).
    - DESCANTE: unas POCAS sopranos (o una voz destacada) pueden flotar por encima con un
      "Ah"/"Oh" sostenido y luminoso mientras el resto lleva el texto.
+   - HALO DE COPAS (estilo "Stars"): emula el brillo de las copas de agua con un PEDAL vocal
+     muy suave y CONTINUO de sonidos ABIERTOS y resonantes (QUINTAS justas, color pentatónico
+     tipo Re–La–Mi) hummeado "Mm"/"Oo" en notas LARGAS LIGADAS que NO se cortan en las barras,
+     por DEBAJO del coro que canta el texto; brillo que flota por encima de la métrica.
    - COLCHÓN VOCALISE (estilo "Trees"): en pasajes largos el coro entero puede ir SIN TEXTO,
      tarareando un colchón lento de acordes muy SOSTENIDOS y LIGADOS entre compases
      ("tie":true), CAMBIANDO la VOCAL con la armonía — "Mm" (cerrado, íntimo) → "Oo"/"Oh" →
