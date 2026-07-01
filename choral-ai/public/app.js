@@ -13,9 +13,6 @@ function setStatus(msg, kind = 'info') {
   statusEl.className = `status ${kind}`;
 }
 
-// Última composición generada (para «Componer continuación»).
-let lastComposition = null;
-
 // Lee los valores actuales del formulario como objeto para la petición. Es async
 // porque, si hay un MusicXML seleccionado, lee su texto para enviarlo.
 async function readForm() {
@@ -33,19 +30,14 @@ async function readForm() {
   return data;
 }
 
-// Envía la petición de composición y pinta el resultado. `data.continueFrom`,
-// si está, hace que la IA compona una continuación coherente de esa pieza.
+// Envía la petición de composición y pinta el resultado.
 async function compose(data) {
-  const continueBtn = document.getElementById('continue-btn');
   submitBtn.disabled = true;
-  if (continueBtn) continueBtn.disabled = true;
   result.hidden = true;
   setStatus(
-    data.continueFrom
-      ? 'Componiendo la continuación (parte 2)…'
-      : data.melodyXml
-        ? 'Armonizando tu melodía con IA… (suele tardar entre 30 s y 2 min).'
-        : 'Componiendo con IA… (suele tardar entre 30 s y 2 min).',
+    data.melodyXml
+      ? 'Armonizando tu melodía con IA… (suele tardar entre 30 s y 2 min).'
+      : 'Componiendo con IA… (suele tardar entre 30 s y 2 min; más en piezas largas).',
     'info',
   );
 
@@ -64,7 +56,6 @@ async function compose(data) {
     setStatus('Error: ' + err.message, 'error');
   } finally {
     submitBtn.disabled = false;
-    if (continueBtn) continueBtn.disabled = false;
   }
 }
 
@@ -85,19 +76,8 @@ document.getElementById('melodyFile').addEventListener('change', (e) => {
   }
 });
 
-// «Componer continuación»: reenvía el formulario actual adjuntando la pieza
-// anterior como contexto, para que la IA encadene una 2ª parte coherente.
-document.getElementById('continue-btn').addEventListener('click', async () => {
-  if (!lastComposition) return;
-  const data = await readForm();
-  data.continueFrom = lastComposition;
-  compose(data);
-});
-
 function renderResult(payload) {
   const { composition, pdfUrl, midiUrl, lyUrl, voices, texture, harmony, system } = payload;
-  // Recuerda esta pieza para poder pedir una continuación coherente.
-  lastComposition = composition;
   const title = composition.title || 'Pieza coral';
   const bits = [];
   if (system) bits.push(system);

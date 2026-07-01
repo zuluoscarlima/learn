@@ -9,7 +9,6 @@ import { render, hasLilyPond } from './src/lilypond.js';
 import { resolveVoicing, voicingOptions, DEFAULT_VOICING } from './src/voicings.js';
 import { resolveTexture, textureOptions, DEFAULT_TEXTURE } from './src/textures.js';
 import { SYSTEMS, systemOptions, resolveSystems, DEFAULT_SYSTEM } from './src/systems.js';
-import { continuationBrief } from './src/continuation.js';
 import { parseMelody } from './src/musicxml.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -70,19 +69,6 @@ app.post('/api/compose', async (req, res) => {
       params.modulate = false;
     }
     delete params.melodyXml;
-
-    // Continuación (Opción B): si llega la pieza anterior, deriva el brief de
-    // coherencia y fuerza el enlace musical — misma tonalidad y compás que la
-    // parte 1, para que la costura no chirríe. El resto (voces, sistema,
-    // textura, tempo, nº de compases) lo decide el formulario.
-    const prev = params.continueFrom;
-    if (prev && Array.isArray(prev.voices) && prev.voices.length) {
-      params.continuation = continuationBrief(prev);
-      if (prev.key) params.key = prev.key;
-      if (prev.mode) params.mode = prev.mode;
-      if (prev.timeSignature) params.timeSignature = prev.timeSignature;
-    }
-    delete params.continueFrom;
 
     // Fase 1: plan armónico. Fase 2: realización de las voces sobre él.
     const harmony = await planHarmony(params);

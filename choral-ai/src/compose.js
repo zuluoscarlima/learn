@@ -198,10 +198,6 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
         'notas. Si no hay modulación prolongada, omite "keyChanges".',
     );
   }
-  // Continuación (Opción B): material temático y enlace con la parte 1.
-  if (params.continuation) {
-    lines.push('\n' + params.continuation);
-  }
   // En estilos del s.XX la métrica suele CAMBIAR de compás a compás (no en tonal puro).
   const systems = resolveSystems(params.systems ?? params.system);
   const nonTonal = !(systems.length === 1 && systems[0] === 'tonal');
@@ -341,13 +337,16 @@ export async function composeChoral(params, parts, texture, harmonyText) {
 
   const systemPrompt = selectComposeSystem(resolveSystems(params.systems ?? params.system));
 
+  // Techo de salida ADAPTATIVO (Opus 4.8 admite hasta 128k con streaming). Cada
+  // compás × voz genera un bloque de JSON extenso; escalamos con el tamaño de la
+  // pieza para que las obras LARGAS (32–36 compases) se compongan COMPLETAS de una
+  // sola vez sin cortarse por longitud. Suelo de 64k, techo de 128k.
+  const measures = Number(params.measures) || 8;
+  const maxTokens = Math.min(128000, Math.max(64000, Math.round(measures * parts.length * 900)));
+
   const stream = client.messages.stream({
     model: MODEL,
-    // Techo alto de salida (Opus 4.8 admite hasta 128k con streaming). Las
-    // piezas largas a varias voces generan un JSON muy extenso; 64k da margen
-    // para evitar que la respuesta se corte por longitud. Aun así, piezas muy
-    // grandes (32 compases × 4+ voces) pueden necesitar dividirse.
-    max_tokens: 64000,
+    max_tokens: maxTokens,
     // display:summarized hace que el razonamiento fluya en streaming y evita
     // que la conexión se corte por inactividad durante el "pensar".
     thinking: { type: 'adaptive', display: 'summarized' },

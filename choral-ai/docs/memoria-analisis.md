@@ -589,3 +589,17 @@ Feedback: "el tempo aparece 60 cuando debería 92" y "no usa los parámetros ele
   venía de que la IA hacía siempre un colchón de "Ah" (misma pinta visual). Reforzado el
   bloque de melodía fija para EXIGIR seguir la textura (contrapunto = líneas independientes con
   ritmo propio e imitación; no redondas por defecto). Falta validar con API (lo prueba el usuario).
+
+---
+
+## Eliminada la función "Componer continuación (parte 2)" + piezas largas de una vez
+Petición del usuario: quitar el botón de continuación (aparecía siempre, confundía en piezas
+ya completas) y que las obras de 32–36 compases se compongan COMPLETAS en una sola pasada.
+- Eliminado por completo: botón y explicación en index.html; `continue-btn`/`lastComposition`/
+  `continueFrom` en app.js; bloque `continueFrom`/`continuationBrief` en server.js; los bloques
+  `params.continuation` en compose.js y harmony.js; borrado `src/continuation.js`; y el CSS
+  `.continue`. Verificado que no quedan referencias.
+- Compases: el máximo del formulario sube de 32 a 40 (permite 32 y 36).
+- `max_tokens` ADAPTATIVO en compose.js: `min(128000, max(64000, measures*voices*900))`, para
+  que las piezas largas no se corten por longitud (36×4 → 128k; 8×4 → 64k). Nota: piezas muy
+  largas tardan más; el streaming con thinking summarized mantiene viva la conexión.
