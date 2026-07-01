@@ -205,6 +205,32 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
       'palabras importantes; usa MELISMAS para resaltar palabras clave (text painting); ' +
       'respeta el acento natural del texto.',
   );
+  // Grado de MELISMA (control del usuario): cuántas notas por sílaba.
+  const melisma = params.melisma || 'moderado';
+  if (melisma === 'melismatico') {
+    lines.push(
+      '\nMELISMA (MUY FLORIDO): escribe líneas MUY melismáticas — con FRECUENCIA varias ' +
+        'notas por sílaba (grupos de 2 a 6 notas), sobre todo en la VOZ QUE LLEVA EL CANTO / ' +
+        'solista, en las PALABRAS IMPORTANTES y en las CIMAS de frase; adorna con giros por ' +
+        'grado conjunto, bordaduras y pequeñas escalas (text painting). MUY IMPORTANTE para ' +
+        'la letra: pon la sílaba SOLO en la PRIMERA nota del grupo y deja el campo "lyric" ' +
+        'VACÍO ("") en las notas restantes del melisma. Alterna los pasajes floridos con ' +
+        'momentos más silábicos para que el texto siga entendiéndose y para dar respiro.',
+    );
+  } else if (melisma === 'silabico') {
+    lines.push(
+      '\nMELISMA (SILÁBICO): escribe UNA sílaba por nota (estilo silábico, tipo himno/coral). ' +
+        'Evita los melismas salvo un adorno muy puntual en una cadencia o en la palabra más ' +
+        'importante. Prioriza la claridad e inteligibilidad del texto.',
+    );
+  } else {
+    lines.push(
+      '\nMELISMA (MODERADO): mayormente silábico, PERO con MELISMAS expresivos (2–4 notas por ' +
+        'sílaba) en las sílabas ACENTUADAS, las palabras clave y las CIMAS de frase (text ' +
+        'painting). En cada melisma pon la sílaba en la PRIMERA nota y deja el "lyric" VACÍO ' +
+        'en las notas siguientes.',
+    );
+  }
   lines.push('\n' + MOTIVE_DEVELOPMENT);
   lines.push('\n' + PHRASE_CONSTRUCTION);
   lines.push('\n' + EXPRESSIVE_PALETTE);

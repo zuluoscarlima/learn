@@ -400,3 +400,21 @@ Causa: mucha guía de armonía/textura/métrica, pero casi ninguna de escritura 
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.
 - Escalas/modos sintéticos; centros tonales por afirmación no funcional.
 - (Requerirá ampliar el enum de calidades en harmony.js para clusters/policordes.)
+
+---
+
+## Melisma controlable + Contrapunto libre imitativo (petición del usuario) — APLICADO
+- **Melisma con control del usuario**: selector "Melisma" en el formulario con tres niveles:
+  - `silabico` → una sílaba por nota (himno/coral), sin melismas salvo adorno puntual.
+  - `moderado` (por defecto) → mayormente silábico con melismas expresivos (2–4 notas) en
+    sílabas acentuadas, palabras clave y cimas de frase.
+  - `melismatico` → líneas MUY floridas (grupos de 2–6 notas) en la voz principal/solista y
+    palabras importantes; alterna con pasajes silábicos para inteligibilidad.
+  - Regla común: la sílaba va SOLO en la primera nota del grupo; "lyric" VACÍO en el resto.
+- [x] public/index.html: `<select name="melisma">`; app.js lo captura vía FormData.
+- [x] src/compose.js: bloque MELISMA en buildUserPrompt según `params.melisma`.
+- **Contrapunto libre imitativo**: la textura `contrapunto_libre` ahora pide IMITACIÓN entre
+  las voces superiores (una voz presenta un motivo y otra lo imita poco después a la 8ª/5ª/3ª/
+  unísono, eco/pregunta-respuesta, no estricto como canon) y un BAJO más LIBRE e independiente
+  (cimiento armónico con su propia línea, sin obligación de imitar).
+- [x] src/textures.js: prompt de `contrapunto_libre` reescrito con imitación + bajo libre.

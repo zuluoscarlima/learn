@@ -14,12 +14,20 @@ export const TEXTURES = {
   contrapunto_libre: {
     label: 'Contrapunto libre',
     prompt:
-      'Textura de CONTRAPUNTO LIBRE: cada voz es una línea melódica independiente ' +
-      'y cantábile, con ritmos distintos entre sí (independencia rítmica: cuando ' +
-      'una voz se mueve, otra puede sostener o callar). Combina las voces con buena ' +
-      'conducción: trata las disonancias por grado conjunto (notas de paso, ' +
-      'bordaduras, retardos que resuelven hacia abajo), evita quintas y octavas ' +
-      'paralelas y directas, y prefiere el movimiento contrario u oblicuo entre voces.',
+      'Textura de CONTRAPUNTO LIBRE con IMITACIÓN: cada voz es una línea melódica ' +
+      'independiente y cantábile, con ritmos distintos entre sí (independencia rítmica: ' +
+      'cuando una voz se mueve, otra puede sostener o callar). IMITACIÓN entre las voces ' +
+      'superiores: cuando UNA voz presenta un MOTIVO o diseño melódico característico, ' +
+      'haz que OTRA voz lo IMITE poco después (a la octava, la quinta, la tercera o el ' +
+      'unísono, uno o dos tiempos más tarde) — un juego de eco/pregunta-respuesta que ' +
+      'recorre la pieza; no hace falta que la imitación sea estricta como en un canon, ' +
+      'basta con que el diseño se RECONOZCA al reaparecer en otra voz. El BAJO es más ' +
+      'LIBRE e INDEPENDIENTE: funciona como cimiento armónico con su propia línea (notas ' +
+      'más largas, movimiento por saltos de fundamental o líneas que sostienen), sin ' +
+      'obligación de imitar a las demás. Combina las voces con buena conducción: trata ' +
+      'las disonancias por grado conjunto (notas de paso, bordaduras, retardos que ' +
+      'resuelven hacia abajo), evita quintas y octavas paralelas y directas, y prefiere ' +
+      'el movimiento contrario u oblicuo entre voces.',
   },
   imitativo: {
     label: 'Contrapunto imitativo',
