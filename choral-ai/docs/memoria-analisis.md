@@ -456,3 +456,42 @@ Flujo:
       con la melodía fija en soprano (Mib se rinde como `ees''`, letra con melisma correcta).
 - Próximo (cuando lo pida): soporte de armadura con bemoles/sostenidos, anacrusa, ligaduras
   de valor, y opción de elegir en qué voz va la melodía (no solo la superior).
+
+---
+
+## Obra 3 — Ešenvalds, "O Salutaris Hostia" (SS soli + SSAATTBB) — ANÁLISIS MELÓDICO
+Musica Baltica 2009. "Con sentimento" ♩=56, Re mayor (2 #), 4/4. ~39 compases. La obra que
+el usuario quiere como referencia de MELODÍA (sus solos son el modelo a imitar).
+
+### Textura (dos capas, estilo Ešenvalds puro)
+- CAPA SOLISTA: DOS sopranos solistas (Solo I / Solo II) que flotan por encima. Empiezan por
+  IMITACIÓN/ECO (Solo I "O salutaris" → Solo II "Hostia" un poco después) y luego cantan en
+  PARALELO por TERCERAS. Divisi que crece por indicación: "solo → 3-4 soprani → 6-8 soprani".
+- CAPA CORO: SSAATTBB en HOMOFONÍA lenta (blancas/redondas), doblado en 3as/6as, como
+  COLCHÓN. Arco de densidad: T y B entran más tarde (cc. 11-15); clímax hacia el centro (mf) y
+  regreso a pp; cierre "Amen" muy suave y sostenido.
+- Dinámicas: mp/p con largos reguladores; nunca estridente; crece por acumulación de voces.
+- Armonía: Re mayor diatónico con color impresionista/añadidos y suspensiones; ritmo armónico
+  MUY lento (varias notas de melodía por acorde).
+
+### La MELODÍA de los solos (lo que hay que saber imitar)
+1. MUY MELISMÁTICA y ornamentada: varias notas por sílaba con largos slurs ("os-ti-um",
+   "pan-dis", "sem-pi-ter-na", "sine ter-mi-no", "gloria").
+2. RÍTMICA IRREGULAR: TRESILLOS y SEISILLOS por todas partes + ritmos con puntillo y
+   anacrusas → sensación de rubato/improvisación libre sobre el coro estático.
+3. CONTORNO en ONDA en registro central-agudo: sube a una pequeña cima y baja; grados
+   conjuntos con algún salto expresivo relleno después.
+4. IMITACIÓN entre los dos solos (antecedente/consecuente), luego paralelismo por 3as.
+
+### Qué puede y qué NO puede el programa hoy (gap identificado)
+- YA cubierto: la TEXTURA (textura `solistas_coro`), el color (sistemas impresionista/
+  contemporáneo/añadidos), el arco de densidad y dinámicas, el melisma controlable, y la
+  imitación (contrapunto imitativo). Todo esto se acerca al SONIDO de la obra.
+- BLOQUEO real: el modelo de datos NO admite TRESILLOS/SEISILLOS (enum de duración solo
+  binario [1,2,4,8,16] + puntillo). Esa es la causa principal de que los solos salgan
+  "primitivos" frente a Ešenvalds: sin subdivisiones irregulares no hay floritura báltica.
+- PRÓXIMO PASO propuesto: añadir soporte de TUPLETS (tresillo/seisillo, quintillo) en
+  schema.js (campo `tuplet` por nota o agrupación), en el cuadre rítmico (noteBeats/
+  totalBeats/repairRhythm), en lilypond.js (\tuplet 3/2 { ... }) y en la lectura MusicXML
+  (<time-modification>/<tuplet>, que hoy se aproximan a binario). Con eso + una textura
+  dedicada "dos solistas en imitación sobre colchón" los solos podrían acercarse de verdad.
