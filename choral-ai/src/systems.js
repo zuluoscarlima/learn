@@ -66,8 +66,22 @@ Reglas:
 - Mantén coherencia modal (puedes basarte en un modo: dórico, frigio, lidio,
   mixolidio o eólico) y un centro tonal sostenido por permanencia/reiteración, no
   por dominante.
+- CUATRO SONIDOS (quartal4): añadir otra cuarta da más resonancia; el nuevo sonido forma
+  una DÉCIMA consonante con la fundamental. Sus tres inversiones varían los intervalos, y
+  moverse por ellas produce movimiento sin cambiar de fundamental.
+- COMPUESTOS (cuartas + 3ª): para color puedes añadir una tercera a un acorde por cuartas
+  (3ª MAYOR = más consonante; menor = menos), sobre todo como tónica cadencial o cerca de
+  pasajes tonales/policordales.
+- CADENCIA: los acordes por cuartas actúan como "DOMINANTES"; a diferencia de lo tonal, el
+  acorde FINAL es más poderoso INVERTIDO (usa inversion 1 o 2 al final) y el previo admite
+  cualquier sonido en el bajo.
+- ENLACE con lo tonal: aborda o deja el acorde por cuartas desde/hacia tríadas o novenas
+  (la 4ª inversión de una 9ª, con su 7ª prominente, enlaza ambas categorías); al mezclar
+  con terceras, resalta el "aroma" de la 4ª justa.
 - Busca dirección y un punto culminante; el cierre reposa por duración del acorde
   final o por regreso a la sonoridad inicial.
+- CROMATISMO: introducir cromáticamente un acorde por cuartas puede desviar de repente la
+  tonalidad o la escala (recurso de color).
 - No utilices modulación tonal funcional.`;
 
 // --- Fase 2 (realización de voces) para sistema CUARTAL ---
@@ -86,11 +100,25 @@ REGLAS (estilo cuartal, síguelas estrictamente):
      inversiones para que aflore la QUINTA JUSTA resonante (da color). Una segunda
      mayor resultante puede actuar como sonido añadido. Evita la monotonía de
      mantener siempre la misma disposición uniforme de cuartas.
+   - REGISTRO: las cuartas son más CLARAS en el registro AGUDO (voces agudas/de mujer);
+     en el grave se enturbian. Un PEDAL (nota sostenida) atenúa la necesidad de resolver
+     cualquier disonancia.
+   - COMPUESTOS (cuartas + tercera): para color puedes AÑADIR una 3ª encima o debajo de un
+     acorde de tres cuartas — 3ª MAYOR = más consonante; menor = menos. Una 3ª arriba Y
+     abajo a la vez da un acorde jugoso de cinco sonidos, útil junto a pasajes tonales o
+     policordales.
 
 2. ARMONÍA NO FUNCIONAL
    - No hay sensible que resuelva ni cadencias V–I. El discurso es modal/estático o
      por DESPLAZAMIENTO PARALELO (planing) de la estructura por cuartas.
    - Las cuartas y quintas PARALELAS están PERMITIDAS y son idiomáticas (no las evites).
+   - ENLACE CON LO TONAL: puedes ABORDAR o DEJAR un acorde por cuartas desde/hacia una
+     TRÍADA cuando el sonido superior está preparado; y RESOLVER un acorde de cuatro
+     cuartas en uno por terceras moviendo DOS voces por grado conjunto mientras las demás
+     permanecen quietas.
+   - MOVIMIENTO por INVERSIONES: recorrer las inversiones del MISMO acorde produce
+     movimiento armónico real SIN cambiar la fundamental. Si hay 4ª aumentada (tritono) en
+     un acorde de cuatro cuartas, colócala en la PARTE SUPERIOR: se mueve con soltura.
 
 3. MELODÍA Y CENTRO TONAL
    - Como los acordes por cuartas son AMBIGUOS (carecen de fundamental), el peso de
@@ -103,7 +131,13 @@ REGLAS (estilo cuartal, síguelas estrictamente):
    - Sensación de reposo final por permanencia/duración del acorde final o regreso a
      la sonoridad inicial (no por cadencia tonal).
 
-4. Respeta la textura solicitada, las tesituras de cada voz y el cuadre exacto de los
+4. CADENCIA
+   - Los acordes por cuartas funcionan como "DOMINANTES" en cadencias de cualquier idioma;
+     en una cadencia por cuartas puedes mezclar acordes si predomina el intervalo de 4ª.
+   - A diferencia de lo tonal, el acorde FINAL es más poderoso en forma INVERTIDA; el
+     acorde previo al último puede llevar CUALQUIER sonido en el bajo.
+
+5. Respeta la textura solicitada, las tesituras de cada voz y el cuadre exacto de los
    compases. Usa silencios para entradas/finales escalonados.
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;

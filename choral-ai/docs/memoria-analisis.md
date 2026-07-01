@@ -221,6 +221,26 @@ realizarlas por omisión). Añadido al sistema `terceras` (fase 1 y fase 2) y me
   (preparar la 4ª); POLICORDES y SÍNTESIS ARMÓNICA → Cap. 13 (capítulos posteriores).
 - (PROCEDENCIA: Berg, Ravel, Stravinsky, Scriabin, Milhaud, Villa-Lobos… solo repertorio.)
 
+---
+
+## Persichetti cap. 4 "Acordes por cuartas" (pág. 95, 100–105) — APLICADO
+Enriquece el sistema EXISTENTE `cuartal` (no se crea uno nuevo). El enum ya tiene
+quartal3/4/5 y quartal3ja/aj; los compuestos (cuartas+3ª) se realizan como voicing.
+- Origen: ornamentación de la tríada + polifonía medieval (lineal).
+- REGISTRO: cuartas claras en agudo, turbias en grave; un PEDAL atenúa la resolución.
+- 4 sonidos (quartal4): + resonante; el nuevo sonido = DÉCIMA consonante con la fund.;
+  sus 3 inversiones dan movimiento sin cambiar fundamental. Tritono → colocar arriba.
+- COMPUESTOS (cuartas + 3ª): 3ª mayor = más consonante, menor = menos; 3ª arriba+abajo =
+  acorde jugoso de 5 sonidos (bueno junto a terceras/policordes).
+- ENLACE con lo tonal: abordar/dejar desde/hacia tríadas o 9as (4ª inv. de la 9ª, 7ª
+  prominente, enlaza categorías); resolver quartal4→terciario moviendo 2 voces por grado
+  conjunto y dejando las demás quietas; resaltar el "aroma" de la 4ª al mezclar.
+- CADENCIA: cuartas como "dominantes"; el acorde FINAL más poderoso INVERTIDO (al revés
+  que en lo tonal); el previo admite cualquier bajo.
+- CROMATISMO: introducir cromáticamente una cuartal desvía súbitamente la tonalidad.
+- [x] Añadido a QUARTAL_HARMONY_SYSTEM y QUARTAL_COMPOSE_SYSTEM (nueva sección CADENCIA;
+      registro/pedal, compuestos, enlace tonal, inversiones/tritono).
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.
