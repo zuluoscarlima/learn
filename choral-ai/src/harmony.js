@@ -29,9 +29,15 @@ const QUALITIES = {
   major7: [[0, 0], [2, 4], [4, 7], [6, 11]],
   half_diminished7: [[0, 0], [2, 3], [4, 6], [6, 10]],
   diminished7: [[0, 0], [2, 3], [4, 6], [6, 9]],
-  // Acorde de novena de dominante (cinco sonidos; solo sobre el V grado).
+  // Séptimas adicionales (apilado de terceras may/men) — armonía terciaria del s.XX.
+  minor_major7: [[0, 0], [2, 3], [4, 7], [6, 11]], // menor + 7ª mayor (C-E♭-G-B)
+  augmented7: [[0, 0], [2, 4], [4, 8], [6, 10]], // aumentada + 7ª menor (C-E-G♯-B♭)
+  augmented_major7: [[0, 0], [2, 4], [4, 8], [6, 11]], // aumentada + 7ª mayor (C-E-G♯-B)
+  // Acordes de novena (cinco sonidos; en coro a 4 voces se omite un miembro).
   dominant9: [[0, 0], [2, 4], [4, 7], [6, 10], [1, 2]], // novena mayor (C-E-G-B♭-D)
   dominant9min: [[0, 0], [2, 4], [4, 7], [6, 10], [1, 1]], // novena menor (C-E-G-B♭-D♭)
+  major9: [[0, 0], [2, 4], [4, 7], [6, 11], [1, 2]], // 9ª con 7ª mayor (C-E-G-B-D)
+  minor9: [[0, 0], [2, 3], [4, 7], [6, 10], [1, 2]], // menor 9ª (C-E♭-G-B♭-D)
   dominant7b5: [[0, 0], [2, 4], [4, 6], [6, 10]], // 7ª con 5ª rebajada (C-E-G♭-B♭)
   // Acordes por cuartas (siglo XX): superposición de cuartas justas.
   // El de 5 sonidos tiene sabor pentáfono (contiene una escala pentatónica).
@@ -62,6 +68,11 @@ const QUALITY_LABEL = {
   dominant9: '9',
   dominant9min: '7♭9',
   dominant7b5: '7♭5',
+  minor_major7: 'm(maj7)',
+  augmented7: '+7',
+  augmented_major7: '+maj7',
+  major9: 'maj9',
+  minor9: 'm9',
   quartal3: ' (4ª·3 J-J)',
   quartal4: ' (4ª·4)',
   quartal5: ' (4ª·5, pentáfono)',

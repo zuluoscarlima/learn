@@ -168,6 +168,23 @@ Sistema NUEVO `terceras` ("Triádico por ciclos · 2as/3as/5as").
 - (PROCEDENCIA DEL MATERIAL: solo referencias de repertorio — Barber, Britten, Bartók,
   Copland, Prokofiev…; no se codifica.)
 
+### Cap. 3 (pág. 74–79): acordes de 7ª y 9ª — APLICADO (+ ampliación del enum)
+- 7ª/9ª como ENTIDADES ESTABLES: disonancias sin preparación/resolución obligadas
+  (ductilidad de las tríadas); se mueven por los mismos ciclos y por relación de
+  TRITONO entre fundamentales (renueva, sobre todo dominantes).
+- Novena = DOS tríadas apiladas (implicación policordal); gradación OSCURA→BRILLANTE.
+- Color/"relación" por distintas formas de 7ª/9ª sobre la MISMA fundamental.
+- 4 VOCES para 9ª (5 notas) → OMISIÓN: omitir 5ª = riqueza/flexibilidad; omitir 3ª o
+  7ª = menos color. DUPLICACIÓN: fund./5ª = solidez; 3ª/7ª = densidad; 9ª = más tensión
+  (9ª bajo la fundamental = máxima tensión). 1ª inv. en quintas = acorde central del tono.
+- [x] harmony.js: AMPLIADO el enum de calidades — séptimas minor_major7, augmented7,
+      augmented_major7; novenas major9, minor9 (+ etiquetas). Deletreo verificado.
+- [x] systems.js: TERTIAN_HARMONY_SYSTEM (bloque 7ª/9ª, ciclos + tritono, color
+      oscura→brillante); TERTIAN_COMPOSE_SYSTEM nueva sección 2 "ACORDES DE 7ª y 9ª"
+      con reglas de omisión/duplicación para 4 voces (renumeradas 2→6).
+- Pendiente cap. 3: 11as/13as, tríadas con añadidos y espesamiento; policordes (cap.
+  aparte) reutilizarán la idea "novena = dos tríadas".
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.

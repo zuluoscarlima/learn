@@ -363,6 +363,16 @@ Reglas:
 - FORMA: articula los pasajes triádicos largos con CADENCIAS PERIÓDICAS y con el acorde
   de 6/4 (segunda inversión, tensión moderada) como puntuación; las relaciones de 2ª y
   3ª viven en esas cadencias modales circundantes (usa inversion 2 para el 6/4).
+- ACORDES DE 7ª y 9ª (tríadas apiladas): además de tríadas puedes usar SÉPTIMAS y
+  NOVENAS por terceras. Son ENTIDADES ESTABLES: sus disonancias NO exigen preparación ni
+  resolución (tienen la ductilidad de las tríadas). Se mueven por los mismos ciclos
+  (2as/3as/5as) y también por relación de TRITONO entre fundamentales (renueva la
+  actividad, sobre todo con séptimas dominantes). Calidades de 7ª: dominant7, major7,
+  minor7, minor_major7, half_diminished7, diminished7, augmented7, augmented_major7.
+  Calidades de 9ª: major9, minor9, dominant9, dominant9min.
+- COLOR de las novenas: recorre una gradación de OSCURA a BRILLANTE para dar frescura a
+  la progresión; una novena = DOS tríadas apiladas (matiz policordal). Crea sensación de
+  "relación" moviendo las voces por distintas formas de 7ª/9ª sobre una MISMA fundamental.
 - ESCALA: construye los ciclos en CUALQUIER escala —mayor, modal (dórico, frigio,
   lidio, mixolidio, eólico) o SINTÉTICA—. Los colores de los primarios los fija la
   intervalica de la escala (en Do mayor: I mayor, III menor, VI menor; en un modo o
@@ -387,7 +397,18 @@ REGLAS (síguelas):
    - CUIDA LA ORTOGRAFÍA: una tríada con 3ª aumentada o disminuida suena como una 4ª o
      una 2ª; escríbela con las alteraciones correctas para que se LEA como tríada.
 
-2. MOVIMIENTO POR CICLOS (el rasgo del estilo)
+2. ACORDES DE 7ª y 9ª (color estable)
+   - Trátalos como ENTIDADES ESTABLES: la 7ª y la 9ª NO necesitan preparación ni
+     resolución obligadas; son color con la ductilidad de las tríadas.
+   - VOCES LIMITADAS (4 partes) para acordes de 5 sonidos (9ª): OMITE con criterio —
+     omite la 5ª para más RIQUEZA y flexibilidad; omite la 3ª o la 7ª para MENOS color.
+   - DUPLICACIÓN: dobla la fundamental o la 5ª para SOLIDEZ; la 3ª o la 7ª para densidad
+     de color; la 9ª aumenta la TENSIÓN (una 9ª por debajo de la fundamental da la máxima
+     tensión y un acorde menos ágil → realización fluida).
+   - La 1ª inversión de una 7ª dispuesta en QUINTAS puede actuar como acorde CENTRAL del
+     tono (sonoridad peculiar y estable).
+
+3. MOVIMIENTO POR CICLOS (el rasgo del estilo)
    - El color nace del movimiento de fundamentales por 2ª o 3ª (no solo por 5ª). Hazlo
      AUDIBLE: enlaza las tríadas con notas comunes y grados conjuntos para que el oído
      siga el ciclo. La mediante/submediante (3as) o la supertónica/sensible (2as)
@@ -402,7 +423,7 @@ REGLAS (síguelas):
      3ª o 5ª de una tríada mayor o menor (3 mayores + 3 menores por sonido). Aprovecha
      esa libertad para variar el color bajo la melodía.
 
-3. CONDUCCIÓN
+4. CONDUCCIÓN
    - Conducción limpia de tríadas: mantén notas comunes, mueve las voces por grado
      conjunto, evita saltos disonantes y cruces. El PARALELISMO de tríadas (planing) es
      válido como recurso de color.
@@ -415,12 +436,12 @@ REGLAS (síguelas):
    - Usa el acorde de 6/4 (segunda inversión, su 4ª característica, tensión moderada)
      para PUNTUAR cadencias periódicas y articular el arco formal.
 
-4. MELODÍA Y TEXTURA
+5. MELODÍA Y TEXTURA
    - Voz superior con perfil claro que ayude a fijar el centro; líneas cantábiles.
      Respeta la textura solicitada, las tesituras y el cuadre exacto de compases.
      Moldea el arco con dinámicas (con moderación).
 
-5. CIERRE: confirma el centro con la cadencia del ciclo vigente (III–I / VI–I en 3as;
+6. CIERRE: confirma el centro con la cadencia del ciclo vigente (III–I / VI–I en 3as;
    II–I / VII–I en 2as; V–I en 5as), sobre tiempo fuerte.
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;
