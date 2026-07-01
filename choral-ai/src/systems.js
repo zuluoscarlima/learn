@@ -275,6 +275,15 @@ REGLAS (control de tensión, síguelas):
    - INVERSIÓN de intervalos: invertir cambia la cualidad — 5ª justa (estable) ⇄ 4ª
      justa (inestable); 2ª menor (incisiva) ⇄ 7ª mayor (ancha, menos áspera). Úsalo para
      graduar la tensión sin cambiar de sonoridad.
+   - POSICIÓN de los intervalos anchos: intervalos anchos ABAJO dan EQUILIBRIO y
+     estabilidad; intervalos anchos ARRIBA generan TENSIÓN. Coloca la separación según
+     lo que busques en cada punto.
+   - RESONANCIA (serie de armónicos): una disposición que imita la serie —ABIERTA en el
+     grave y CERRADA en el agudo— suena resonante y brillante. EVITA apiñar intervalos
+     pequeños en el registro GRAVE (produce "relaciones turbias", sonido embarrado).
+   - TRANSPARENCIA de sonoridades densas: un cluster de 2as se "relaja" repartiendo sus
+     notas por OCTAVAS para que se oigan como 3as; en divisi, asigna cada tríada/unidad
+     a un grupo de voces distinto (graves vs. agudas) para que la mezcla sea transparente.
 
 4. CONDUCCIÓN NO FUNCIONAL
    - Sin sensibles ni cadencias V–I. Las disonancias NO exigen resolución tonal, pero
@@ -305,6 +314,11 @@ REGLAS (control de tensión, síguelas):
      realzar una nota característica.
    - Evita duplicar TODAS las voces a la vez (produce una armonía percusiva) salvo que
      busques justamente ese efecto.
+   - RESONANCIA por armónicos: la 5ª (armónico grave) es más POTENTE que la 3ª; expón
+     QUINTAS JUSTAS abiertas en la zona grave para dar brillo. Para reforzar el bajo con
+     luminosidad, dóblalo por su 5ª o 9ª por DEBAJO (la 9ª es la 5ª de la 5ª). Al añadir
+     color resonante, prefiere una nota emparentada por QUINTA con un sonido del acorde
+     (armónico de armónico), no una disonancia aguda y débil.
 
 7. CIERRE por DISTENSIÓN: termina relajando la tensión (consonancia abierta o blanda)
    y por permanencia del acorde final, no por cadencia funcional.

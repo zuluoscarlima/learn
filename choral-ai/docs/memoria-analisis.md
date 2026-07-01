@@ -112,6 +112,22 @@ Estudio incremental para construir el sistema **"Siglo XX · control de tensión
       nueva sección "DUPLICACIÓN" (6); cordones interválicos en la conducción.
       Fase 1: estabilidad por tritono (qué calidades empujan / reposan).
 
+### Cap. I — Disposición, armónicos y medio (pág. 20–23) — APLICADO (parte coral)
+- Disposición espacial: intervalos anchos ABAJO → equilibrio; anchos ARRIBA → tensión.
+- Resonancia (serie de armónicos): disposición abierta en grave y cerrada en agudo →
+  brillo; apiñar en el grave = "relaciones turbias" (embarrado).
+- La 5ª (armónico 3) es más potente que la 3ª (armónico 5); reforzar el bajo por su
+  5ª/9ª por debajo da brillantez; añadir color por ARMÓNICOS DE ARMÓNICOS (emparentar
+  por quinta), no por armónicos agudos débiles.
+- Medio/timbre (no aplica a coro a cappella directamente), pero SÍ su consecuencia:
+  clusters de 2as "relajados" repartiéndolos como 3as por octavas; policordes
+  transparentes si cada tríada suena en un grupo de voces distinto (divisi).
+- [x] Fase 2, sección REGISTRO Y DISPOSICIÓN: anchos abajo/arriba, resonancia por
+      serie de armónicos, transparencia de clusters/policordes; sección DUPLICACIÓN:
+      resonancia por armónicos (quintas, refuerzo por 5ª/9ª, armónico de armónico).
+- Nota: acordes por 3as/4as/enteros construidos desde la serie (1-3-5, 1-3-5-7,
+  1-3-5-7-9, tonos enteros 7–11, cuartas 6-8-9) → pendiente al ampliar el enum.
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.
