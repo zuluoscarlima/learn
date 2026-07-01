@@ -201,6 +201,26 @@ Sistema NUEVO `terceras` ("Triádico por ciclos · 2as/3as/5as").
   agrupadas con exclusividad del combo; `readForm` envía `data.systems`.
 - Compatibilidad: `resolveSystems` acepta el antiguo `system` único, así que nada rompe.
 
+---
+
+## Persichetti cap. 3 (pág. 80–89): oncenas/trecenas, 15as/17as, 12 sonidos — APLICADO
+Decisión: NO se amplía el enum con 11as/13as+ (en 4 voces suenan embarradas y el propio
+Persichetti dice que rara vez se realizan enteras). Se aplica vía PROMPT (evocarlas y
+realizarlas por omisión). Añadido al sistema `terceras` (fase 1 y fase 2) y mención en
+`mixto`:
+- 11ª = dos tríadas a 3ª; 13ª = tres tríadas (policordal). Aligerar por OMISIÓN (quitar
+  un sonido de un intervalo fuerte; sin 3ª/7ª/11ª; omitir fundamental de 13ª → 11ª).
+- Evitar dos tríadas sueltas salvo policordio; si predominan cuartas → suena cuartal.
+- Evitar INMOVILIDAD: tocar la extensión con una voz que se mueve desde tríada/7ª
+  (pedal + ornamentación); a menudo la 11ª/13ª es acorde simple + adornos.
+- Sonoridades ricas ≈ una ESCALA (guiar melodía con ella); no sostener mucho.
+- 15as/17as y acordes de muchos sonidos = EFECTO (paralela, acentos, pausas, tensión
+  quieta); aligerar por registro agudo y porciones consonantes en grupos separados
+  (divisi). Acorde de casi 12 sonidos = gesto de acento/clímax, no armonía continua.
+- Pendientes (referencias del propio texto): enlazar 9as con acordes por cuartas
+  (preparar la 4ª); POLICORDES y SÍNTESIS ARMÓNICA → Cap. 13 (capítulos posteriores).
+- (PROCEDENCIA: Berg, Ravel, Stravinsky, Scriabin, Milhaud, Villa-Lobos… solo repertorio.)
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.

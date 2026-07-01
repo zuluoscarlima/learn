@@ -394,6 +394,13 @@ Reglas:
 - COLOR de las novenas: recorre una gradación de OSCURA a BRILLANTE para dar frescura a
   la progresión; una novena = DOS tríadas apiladas (matiz policordal). Crea sensación de
   "relación" moviendo las voces por distintas formas de 7ª/9ª sobre una MISMA fundamental.
+- ACORDES AMPLIOS (11as/13as y mayores): apilando más terceras se obtienen ONCENAS (= dos
+  tríadas a 3ª), TRECENAS (= tres tríadas) y acordes de más sonidos. Añaden densidad pero
+  restan flexibilidad y RARA VEZ se realizan enteros: trátalos como color o como TÓNICA
+  rica (a menudo equivalen a una escala/modo). En el plan represéntalos con la 7ª/9ª
+  disponible más próxima e indica la intención en 'roman' (p. ej. V11, I13); la realización
+  añadirá las extensiones como pedal/ornamento o como policordio. Evita que predominen las
+  cuartas (sonaría cuartal) salvo que busques ese color.
 - ESCALA: construye los ciclos en CUALQUIER escala —mayor, modal (dórico, frigio,
   lidio, mixolidio, eólico) o SINTÉTICA—. Los colores de los primarios los fija la
   intervalica de la escala (en Do mayor: I mayor, III menor, VI menor; en un modo o
@@ -429,7 +436,26 @@ REGLAS (síguelas):
    - La 1ª inversión de una 7ª dispuesta en QUINTAS puede actuar como acorde CENTRAL del
      tono (sonoridad peculiar y estable).
 
-3. MOVIMIENTO POR CICLOS (el rasgo del estilo)
+3. ACORDES AMPLIOS y su realización (11as/13as, 15as/17as, hasta 12 sonidos)
+   - Entiéndelos como TRÍADAS APILADAS: 11ª = dos tríadas a 3ª; 13ª = tres tríadas. Son
+     densos y pesados; ALÍGERALOS por OMISIÓN de sonidos interiores (con 4 voces solo
+     suenan unos pocos).
+   - QUÉ OMITIR: quita uno de los sonidos que forman un intervalo FUERTEMENTE disonante
+     para ganar flexibilidad; opciones típicas: sin 3ª, sin 7ª, sin 11ª (omitir la
+     fundamental de una 13ª deja una 11ª).
+   - Evita dejar DOS tríadas separadas salvo que busques un POLICORDIO; si predominan las
+     cuartas sonará cuartal, no como 11ª/13ª.
+   - EVITA LA INMOVILIDAD: no sueltes el acorde entero en bloque; TOCA la extensión
+     (9ª/11ª/13ª) con UNA voz que se mueve desde una tríada o 7ª (pedal + ornamentación).
+     A menudo la 11ª/13ª es en realidad un acorde más simple + notas de adorno o pedal.
+   - Estas sonoridades ricas suelen equivaler a una ESCALA (modo): guía la melodía con esa
+     escala implícita, y rara vez las sostengas mucho tiempo.
+   - 15as/17as y acordes de MUCHOS sonidos: úsalos como EFECTO —armonía paralela, acentos,
+     pausas, o tensión quieta y sostenida—; alígeralos colocándolos en registro AGUDO y
+     repartiendo las porciones consonantes en grupos de voces separados (divisi). Un acorde
+     de casi todos los sonidos es un gesto de acento/clímax, no una armonía de uso continuo.
+
+4. MOVIMIENTO POR CICLOS (el rasgo del estilo)
    - El color nace del movimiento de fundamentales por 2ª o 3ª (no solo por 5ª). Hazlo
      AUDIBLE: enlaza las tríadas con notas comunes y grados conjuntos para que el oído
      siga el ciclo. La mediante/submediante (3as) o la supertónica/sensible (2as)
@@ -444,7 +470,7 @@ REGLAS (síguelas):
      3ª o 5ª de una tríada mayor o menor (3 mayores + 3 menores por sonido). Aprovecha
      esa libertad para variar el color bajo la melodía.
 
-4. CONDUCCIÓN
+5. CONDUCCIÓN
    - Conducción limpia de tríadas: mantén notas comunes, mueve las voces por grado
      conjunto, evita saltos disonantes y cruces. El PARALELISMO de tríadas (planing) es
      válido como recurso de color.
@@ -457,12 +483,12 @@ REGLAS (síguelas):
    - Usa el acorde de 6/4 (segunda inversión, su 4ª característica, tensión moderada)
      para PUNTUAR cadencias periódicas y articular el arco formal.
 
-5. MELODÍA Y TEXTURA
+6. MELODÍA Y TEXTURA
    - Voz superior con perfil claro que ayude a fijar el centro; líneas cantábiles.
      Respeta la textura solicitada, las tesituras y el cuadre exacto de compases.
      Moldea el arco con dinámicas (con moderación).
 
-6. CIERRE: confirma el centro con la cadencia del ciclo vigente (III–I / VI–I en 3as;
+7. CIERRE: confirma el centro con la cadencia del ciclo vigente (III–I / VI–I en 3as;
    II–I / VII–I en 2as; V–I en 5as), sobre tiempo fuerte.
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;
@@ -494,7 +520,8 @@ cada pasaje, y buscando una textura coral coherente y cantábile:
 
 - Sonoridades TRIÁDICAS y por TERCERAS (7as/9as como color estable, sin resolución
   obligada; en acordes de 5 sonidos omite con criterio —5ª para riqueza; 3ª/7ª para
-  menos color—).
+  menos color—). Los acordes muy amplios (11as/13as+) evócalos como policordios o como
+  acorde simple + pedal/ornamento, y resérvalos como EFECTO (acentos, tensión sostenida).
 - Estructuras por CUARTAS (con quintas/cuartas paralelas idiomáticas) y tríadas con
   AÑADIDOS/suspensiones de sabor luminoso.
 - PARALELISMO modal (planing) como recurso de color.
