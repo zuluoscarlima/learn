@@ -521,3 +521,18 @@ Resuelve el gap identificado con "O Salutaris Hostia": las melodías binarias so
 - Nota v1: el corchete del tuplet se corta por nº de notas del grupo (bien para figuras
   uniformes); grupos mixtos raros podrían mostrar un corchete algo largo, pero la DURACIÓN y
   el MIDI son siempre exactos.
+
+---
+
+## FIX importación MusicXML: elegir la pista de la MELODÍA (no la primera) + confirmación
+Síntoma reportado: al subir una melodía (voz + piano + cuerdas) para armonizar, la salida
+"no tenía nada que ver" con la melodía. Causa: `parseMelody` tomaba SIEMPRE la primera pista
+(`part[0]`); si la voz no era la primera, o si el piano traía notas, se armonizaba la pista
+equivocada.
+- **musicxml.js**: ahora elige la pista MELÓDICA: preferencia por nombre de VOZ/canto
+  (voc|voz|cant|melod|sopran|lead|vox…), penalización a piano/cuerdas/teclado, y a igualdad,
+  la que tiene más notas con altura; descarta pistas sin notas. Verificado con multipista
+  (voz en 3ª posición; y piano denso vs voz corta → elige la voz).
+- **server.js / app.js**: la respuesta incluye `harmonized` + `melodyInfo` (compases,
+  tonalidad, nº de notas) y la UI muestra "🎵 TU melodía armonizada (…)". Así se ve al
+  instante si el modo armonizar-melodía se aplicó (diagnóstico + UX).

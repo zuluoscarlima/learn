@@ -98,6 +98,16 @@ app.post('/api/compose', async (req, res) => {
       system: params.systems.map((id) => SYSTEMS[id].label).join(' + '),
       texture: texture.label,
       harmony: { progression: harmony.chords.map((c) => c.roman), cadence: harmony.cadence },
+      // Confirmación de que se armonizó la melodía SUBIDA por el usuario (para que
+      // se vea claramente en la UI si el modo "armonizar mi melodía" se aplicó).
+      harmonized: Boolean(params.melody),
+      melodyInfo: params.melody
+        ? {
+            measures: params.melody.measures,
+            tonality: params.melody.tonalityName,
+            notes: params.melody.notes.filter((n) => !n.rest).length,
+          }
+        : null,
       pdfUrl: url(result.pdfPath),
       midiUrl: url(result.midiPath),
       lyUrl: url(result.lyPath),

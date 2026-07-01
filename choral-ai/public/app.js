@@ -107,13 +107,19 @@ function renderResult(payload) {
   document.getElementById('result-title').textContent = title + subtitle;
 
   const harmonyEl = document.getElementById('harmony');
+  const parts2 = [];
+  if (payload.harmonized && payload.melodyInfo) {
+    const mi = payload.melodyInfo;
+    parts2.push(
+      `🎵 TU melodía armonizada (${mi.measures} compases, ${mi.tonality}, ${mi.notes} notas)`,
+    );
+  }
   if (harmony && harmony.progression && harmony.progression.length) {
     const prog = harmony.progression.join(' · ');
     const cad = harmony.cadence ? ` — cadencia: ${harmony.cadence}` : '';
-    harmonyEl.textContent = `Plan armónico: ${prog}${cad}`;
-  } else {
-    harmonyEl.textContent = '';
+    parts2.push(`Plan armónico: ${prog}${cad}`);
   }
+  harmonyEl.textContent = parts2.join('  ·  ');
 
   const downloads = document.getElementById('downloads');
   downloads.innerHTML = '';

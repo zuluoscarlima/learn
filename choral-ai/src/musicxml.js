@@ -181,8 +181,42 @@ export function parseMelody(xmlText) {
   }
 
   const score = doc['score-partwise'];
-  const part = asArray(score && score.part)[0];
-  const measureEls = asArray(part && part.measure);
+  const parts = asArray(score && score.part);
+  if (!parts.length) throw new Error('El MusicXML no contiene pistas (parts).');
+
+  // Nombres de pista (para preferir la voz/melodía frente a piano/cuerdas).
+  const partList = score['part-list'];
+  const nameById = {};
+  for (const sp of asArray(partList && partList['score-part'])) {
+    nameById[sp['@_id']] = String(textOf(sp['part-name']) || '');
+  }
+  const VOCAL_RE = /voc|voz|cant|melod|sopran|lead|tiple|descant|vox/i;
+  const PIANO_RE = /pian|keyb|teclad|organ|órgano|guitar|string|cuerda|bass|bajo el/i;
+
+  // Un MusicXML puede traer VARIAS pistas (voz + piano + cuerdas…). Elegimos la
+  // línea MELÓDICA: preferimos la pista cuyo nombre parece de VOZ/canto; si no,
+  // la que tiene más notas con altura. Descartamos pistas sin ninguna nota.
+  let part = null;
+  let bestScore = -1;
+  for (const pt of parts) {
+    let count = 0;
+    for (const m of asArray(pt.measure)) {
+      for (const ne of asArray(m.note)) {
+        if (ne.chord === undefined && ne.rest === undefined && ne.pitch) count++;
+      }
+    }
+    if (count === 0) continue;
+    const name = nameById[pt['@_id']] || '';
+    // Puntuación: gran bonus si el nombre es de voz, penalización si es piano/etc.
+    const bonus = VOCAL_RE.test(name) ? 1e7 : PIANO_RE.test(name) ? -1e6 : 0;
+    const sc = bonus + count;
+    if (sc > bestScore) {
+      bestScore = sc;
+      part = pt;
+    }
+  }
+  if (!part) throw new Error('No se encontró ninguna pista con notas en el MusicXML.');
+  const measureEls = asArray(part.measure);
   if (!measureEls.length) throw new Error('El MusicXML no contiene compases.');
 
   const bars = [];
