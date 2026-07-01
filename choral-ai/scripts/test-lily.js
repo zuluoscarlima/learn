@@ -15,6 +15,7 @@ const n = (step, octave, lyric = '') => ({
   octave,
   duration: 1,
   dotted: false,
+  tuplet: 1,
   lyric,
 });
 

@@ -7,7 +7,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
-import { metersOf, keyChangesOf } from './schema.js';
+import { metersOf, keyChangesOf, TUPLET_RATIO } from './schema.js';
 
 const execFileAsync = promisify(execFile);
 
@@ -74,38 +74,51 @@ function measureSpacer(meter) {
   return `s1*${num}/${den}`;
 }
 
-// Notas de una voz. Los MELISMAS (una sílaba sostenida sobre varias notas: una
-// nota con letra seguida de notas sin letra) se ligan con un slur ( ... ), para
-// que \lyricsto alinee una sola sílaba sobre todo el grupo.
+// Notas de una voz. Dos capas de agrupación, independientes:
+//  1) MELISMAS: una sílaba sostenida sobre varias notas (nota con letra seguida
+//     de notas sin letra) se liga con un slur ( ... ) para que \lyricsto alinee
+//     una sola sílaba sobre el grupo.
+//  2) GRUPOS IRREGULARES (tresillos/seisillos): las notas con el mismo `tuplet`
+//     se envuelven en \tuplet actual/normal { ... }, en tramos del tamaño del
+//     grupo (3 para tresillo, 6 para seisillo…). Los slurs pueden cruzar la llave
+//     del tuplet sin problema (LilyPond lo admite).
 function voiceToLily(notes) {
-  const out = [];
+  // 1) String base de cada nota.
+  const toks = notes.map(pitchToLily);
+
+  // 2) Slurs de melisma: '(' en la nota con letra, ')' en la última sin letra.
   let i = 0;
   while (i < notes.length) {
-    const note = notes[i];
-    if (note.rest) {
-      out.push(pitchToLily(note));
+    if (notes[i].rest || !(notes[i].lyric || '').trim()) {
       i++;
       continue;
     }
-    const hasLyric = (note.lyric || '').trim() !== '';
-    if (hasLyric) {
-      // Grupo: esta nota + notas siguientes sin letra (continuación del melisma).
-      let j = i + 1;
-      while (j < notes.length && !notes[j].rest && !(notes[j].lyric || '').trim()) {
-        j++;
-      }
-      const group = notes.slice(i, j).map(pitchToLily);
-      if (group.length > 1) {
-        group[0] += '(';
-        group[group.length - 1] += ')';
-      }
-      out.push(group.join(' '));
-      i = j;
-    } else {
-      // Nota sin letra que no continúa una sílaba (p. ej. voz sin texto): suelta.
-      out.push(pitchToLily(note));
-      i++;
+    let j = i + 1;
+    while (j < notes.length && !notes[j].rest && !(notes[j].lyric || '').trim()) j++;
+    if (j - i > 1) {
+      toks[i] += '(';
+      toks[j - 1] += ')';
     }
+    i = j;
+  }
+
+  // 3) Envoltura de grupos irregulares (tresillos, seisillos…).
+  const out = [];
+  i = 0;
+  while (i < notes.length) {
+    const tup = notes[i].tuplet;
+    const ratio = TUPLET_RATIO[tup];
+    if (!ratio) {
+      out.push(toks[i]);
+      i++;
+      continue;
+    }
+    // Tramo contiguo con el mismo valor de tuplet; se corta cada `actual` notas
+    // para que cada grupo lleve su propio corchete (p. ej. cada 3 en un tresillo).
+    let j = i;
+    while (j < notes.length && notes[j].tuplet === tup && j - i < ratio.actual) j++;
+    out.push(`\\tuplet ${ratio.actual}/${ratio.normal} { ${toks.slice(i, j).join(' ')} }`);
+    i = j;
   }
   return out.join(' ');
 }

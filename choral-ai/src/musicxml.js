@@ -92,6 +92,16 @@ function convertNote(noteEl, divisions) {
     ({ duration, dotted } = figureFromQuarters(q));
   }
 
+  // Grupo irregular (tresillo/seisillo…): <time-modification><actual-notes>.
+  // Guardamos el número de "actual-notes" si es uno de los soportados; si no,
+  // 1 (nota normal) y la duración ya quedó aproximada por <duration>/<divisions>.
+  let tuplet = 1;
+  const tm = noteEl['time-modification'];
+  if (tm) {
+    const actual = num(tm['actual-notes']);
+    if (actual && [2, 3, 4, 5, 6, 7, 9].includes(actual)) tuplet = actual;
+  }
+
   const note = {
     rest: isRest,
     step: 'C',
@@ -99,6 +109,7 @@ function convertNote(noteEl, divisions) {
     octave: 4,
     duration,
     dotted,
+    tuplet,
     lyric: '',
     dynamic: '',
     text: '',

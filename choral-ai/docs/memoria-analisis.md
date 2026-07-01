@@ -495,3 +495,29 @@ el usuario quiere como referencia de MELODÍA (sus solos son el modelo a imitar)
   totalBeats/repairRhythm), en lilypond.js (\tuplet 3/2 { ... }) y en la lectura MusicXML
   (<time-modification>/<tuplet>, que hoy se aproximan a binario). Con eso + una textura
   dedicada "dos solistas en imitación sobre colchón" los solos podrían acercarse de verdad.
+
+---
+
+## Soporte de GRUPOS IRREGULARES (tresillos/seisillos) + textura dúo Ešenvalds — APLICADO
+Resuelve el gap identificado con "O Salutaris Hostia": las melodías binarias sonaban
+"primitivas" por no admitir subdivisiones irregulares. Implementado en todo el flujo:
+- **schema.js**: campo `tuplet` por nota (enum [1,2,3,4,5,6,7,9]; 1 = normal). `TUPLET_RATIO`
+  mapea nº→{actual,normal} (3→3:2, 6→6:4, 5→5:4…). `tupletFactor` y `noteBeats` aplican el
+  factor normal/actual, así que el cuadre rítmico (`totalBeats`/`repairRhythm`) sigue exacto.
+  `makeRest` incluye `tuplet:1`. Añadido a `required`.
+- **lilypond.js**: `voiceToLily` envuelve tramos de notas con el mismo `tuplet` en
+  `\tuplet actual/normal { ... }`, cortando cada `actual` notas (un corchete por grupo). Los
+  slurs de melisma cruzan la llave sin problema (LilyPond lo admite). Verificado: tresillo de
+  negras → `\tuplet 3/2 { ... }`; dos tresillos seguidos → dos corchetes; seisillo → `6/4`.
+- **musicxml.js**: lee `<time-modification><actual-notes>` → `tuplet` (soportados 2..9); la
+  duración se toma de `<type>`+tuplet, así que los tresillos importados quedan EXACTOS (antes
+  se aproximaban a binario). Verificado con un MusicXML de tresillos.
+- **compose.js**: guía a la IA para usar tresillos/seisillos ("tuplet":3/6) en floreos y
+  melismas ágiles (RITMO con vida + melisma florido) → fraseo ondulante báltico, no todo binario.
+- **textures.js**: nueva textura `duo_solistas_imitacion` ("Dúo de solistas en imitación sobre
+  colchón (Ešenvalds)"): dos solistas floridas con tresillos/seisillos, imitación (eco) y luego
+  paralelo por terceras, sobre colchón coral sostenido con arco de densidad y cierre pp.
+  Se combina con el voicing `soli_satb` (Solo I/II + SATB), ya existente.
+- Nota v1: el corchete del tuplet se corta por nº de notas del grupo (bien para figuras
+  uniformes); grupos mixtos raros podrían mostrar un corchete algo largo, pero la DURACIÓN y
+  el MIDI son siempre exactos.

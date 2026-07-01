@@ -92,6 +92,8 @@ JSON → LilyPond → PDF + MIDI de forma independiente al modelo).
 
 ## Alcance (v1) y posibles ampliaciones
 
+- Grupos irregulares (tresillos, seisillos, quintillos) admitidos en las voces y
+  en la importación de MusicXML → melismas y floreos ágiles (fraseo báltico).
 - Voces fijas SATB (ampliable a número de voces configurable).
 - Reproducción MIDI en el cliente con `html-midi-player` (soundfont); se podría
   añadir render a WAV/MP3 con `fluidsynth`/`timidity`.

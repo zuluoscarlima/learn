@@ -38,6 +38,17 @@ const noteSchema = {
       type: 'boolean',
       description: 'true si la figura va con puntillo',
     },
+    tuplet: {
+      type: 'integer',
+      enum: [1, 2, 3, 4, 5, 6, 7, 9],
+      description:
+        'Grupo irregular (tresillo/seisillo…). 1 = nota NORMAL (lo habitual). 3 = TRESILLO ' +
+        '(3 en el tiempo de 2), 6 = SEISILLO, 5 = quintillo, 7 = septillo, 2 = dosillo, 4 = ' +
+        'cuatrillo, 9 = nonillo. En un tresillo de corcheas escribe 3 notas con duration=8 y ' +
+        'tuplet=3 (juntas duran una negra). Todas las notas de un mismo grupo llevan el mismo ' +
+        'valor de tuplet, en figuras iguales y en número igual al del grupo (3 para tresillo, ' +
+        '6 para seisillo…). Los silencios dentro del grupo también llevan su tuplet.',
+    },
     lyric: {
       type: 'string',
       description: 'Sílaba cantada en esta nota (vacío si no aplica o es silencio)',
@@ -58,7 +69,7 @@ const noteSchema = {
         'expresiva); VARÍA el término y no lo pongas en cada nota (la mayoría van con "").',
     },
   },
-  required: ['rest', 'step', 'alter', 'octave', 'duration', 'dotted', 'lyric', 'dynamic', 'text'],
+  required: ['rest', 'step', 'alter', 'octave', 'duration', 'dotted', 'tuplet', 'lyric', 'dynamic', 'text'],
 };
 
 const voiceSchema = {
@@ -135,11 +146,31 @@ export const COMPOSITION_SCHEMA = {
   required: ['title', 'key', 'mode', 'timeSignature', 'tempo', 'measures', 'voices'],
 };
 
+// Grupos irregulares: número escrito → { actual, normal } (actual notas en el
+// tiempo de "normal"). El factor de duración real de cada nota es normal/actual.
+// P. ej. tresillo 3:2 → cada nota dura 2/3 de su figura escrita.
+export const TUPLET_RATIO = {
+  2: { actual: 2, normal: 3 }, // dosillo (2 en el tiempo de 3)
+  3: { actual: 3, normal: 2 }, // tresillo
+  4: { actual: 4, normal: 3 }, // cuatrillo
+  5: { actual: 5, normal: 4 }, // quintillo
+  6: { actual: 6, normal: 4 }, // seisillo
+  7: { actual: 7, normal: 4 }, // septillo
+  9: { actual: 9, normal: 8 }, // nonillo
+};
+
+// Factor por el que se multiplica la duración escrita si la nota va en un grupo
+// irregular (1 = nota normal). tuplet ausente o 1 → sin efecto.
+export function tupletFactor(note) {
+  const r = note && TUPLET_RATIO[note.tuplet];
+  return r ? r.normal / r.actual : 1;
+}
+
 // Duración de una nota en "negras" (quarter notes). 4 -> 1, 8 -> 0.5, etc.
-// El puntillo añade la mitad.
+// El puntillo añade la mitad; los grupos irregulares aplican su factor.
 export function noteBeats(note) {
   const base = 4 / note.duration;
-  return note.dotted ? base * 1.5 : base;
+  return (note.dotted ? base * 1.5 : base) * tupletFactor(note);
 }
 
 // Negras por compás. Admite compases simples (4/4), de subdivisión (6/8) y
@@ -233,7 +264,7 @@ const FIGURES = [
 ];
 
 function makeRest(duration, dotted) {
-  return { rest: true, step: 'C', alter: 0, octave: 4, duration, dotted, lyric: '', dynamic: '', text: '' };
+  return { rest: true, step: 'C', alter: 0, octave: 4, duration, dotted, tuplet: 1, lyric: '', dynamic: '', text: '' };
 }
 
 // Descompone una cantidad de negras en silencios de figuras válidas (greedy).

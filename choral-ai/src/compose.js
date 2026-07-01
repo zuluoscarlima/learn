@@ -227,8 +227,9 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
       'repetidas estáticas.\n' +
       '- RITMO con VIDA: no muevas todas las voces con el MISMO ritmo ni todo en negras. ' +
       'Contrasta notas LARGAS sostenidas con figuras que fluyen; usa anacrusas, síncopas, ' +
-      'puntillos y ligaduras; aprovecha el vaivén de la métrica. Evita el "una nota por ' +
-      'pulso" monótono.\n' +
+      'puntillos, ligaduras y GRUPOS IRREGULARES (tresillos "tuplet":3, seisillos "tuplet":6, ' +
+      'quintillos "tuplet":5) para floreos y melismas ágiles al estilo báltico; aprovecha el ' +
+      'vaivén de la métrica. Evita el "una nota por pulso" monótono.\n' +
       '- NOTAS EXTRAÑAS expresivas: usa apoyaturas, RETARDOS (suspensiones), notas de paso y ' +
       'bordaduras para dar anhelo y dirección; la melodía NO debe limitarse a arpegiar el ' +
       'acorde (respeta las reglas de resolución del sistema activo).\n' +
@@ -243,7 +244,9 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
       '\nMELISMA (MUY FLORIDO): escribe líneas MUY melismáticas — con FRECUENCIA varias ' +
         'notas por sílaba (grupos de 2 a 6 notas), sobre todo en la VOZ QUE LLEVA EL CANTO / ' +
         'solista, en las PALABRAS IMPORTANTES y en las CIMAS de frase; adorna con giros por ' +
-        'grado conjunto, bordaduras y pequeñas escalas (text painting). MUY IMPORTANTE para ' +
+        'grado conjunto, bordaduras y pequeñas escalas (text painting). Usa TRESILLOS ' +
+        '("tuplet":3) y SEISILLOS ("tuplet":6) para las floritures ágiles (así se logra el ' +
+        'fraseo ondulante báltico, no todo binario). MUY IMPORTANTE para ' +
         'la letra: pon la sílaba SOLO en la PRIMERA nota del grupo y deja el campo "lyric" ' +
         'VACÍO ("") en las notas restantes del melisma. Alterna los pasajes floridos con ' +
         'momentos más silábicos para que el texto siga entendiéndose y para dar respiro.',

@@ -61,6 +61,23 @@ export const TEXTURES = {
       'Entradas escalonadas; dinámicas muy tenues (ppp/pp) que abren el color de la ' +
       'vocal al crecer; las capas se superponen y se intercambian.',
   },
+  duo_solistas_imitacion: {
+    label: 'Dúo de solistas en imitación sobre colchón (Ešenvalds)',
+    prompt:
+      'Textura estilo Ešenvalds ("O Salutaris Hostia"). DOS voces SOLISTAS agudas (las dos ' +
+      'primeras voces, o las marcadas como solistas) cantan por encima líneas MUY floridas y ' +
+      'melismáticas, con TRESILLOS y SEISILLOS ("tuplet":3 y 6), ritmos con puntillo y ' +
+      'anacrusas, en contorno de ONDA (rubato, "Con sentimento"). Trabaja la IMITACIÓN: la ' +
+      'SOLISTA 1 propone un giro/motivo y la SOLISTA 2 lo RESPONDE (eco) uno o dos tiempos ' +
+      'después; tras el juego imitativo, las dos solistas se funden cantando en PARALELO por ' +
+      'TERCERAS (a veces sextas). Debajo, el CORO forma un COLCHÓN homofónico SOSTENIDO en ' +
+      'notas largas (blancas/redondas), doblado en terceras, muy suave (pp/p), sin apenas ' +
+      'moverse (ritmo armónico lento). ACUMULACIÓN: empieza escaso (solistas + voces agudas; ' +
+      'graves en silencio) e incorpora las voces graves GRADUALMENTE hacia un clímax tenue, ' +
+      'aclarando al final (cierre "Amen" pianísimo, sostenido). Entradas escalonadas con ' +
+      'silencios. Pon la sílaba en la primera nota de cada melisma y deja VACÍO el lyric en ' +
+      'las siguientes.',
+  },
   solistas_coro: {
     label: 'Solistas sobre coro sostenido',
     prompt:
