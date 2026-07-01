@@ -22,6 +22,9 @@ function readForm() {
   data.tempo = Number(data.tempo);
   data.measures = Number(data.measures);
   data.modulate = document.getElementById('modulate').checked;
+  // Sistemas: una o varias casillas marcadas (o "mixto" = combinar todo).
+  data.systems = [...document.querySelectorAll('#system input:checked')].map((c) => c.value);
+  delete data.system;
   return data;
 }
 
@@ -140,10 +143,62 @@ function fillSelect(elId, items, def) {
   }
 }
 
-// Pobla los desplegables (sistema, voces, textura) desde el catálogo del servidor.
+// Pobla las casillas de "Sistema armónico", agrupadas por encabezado (Tonal / Siglo XX).
+// Permite marcar varias; la casilla especial "combinar todo" (combo) es EXCLUSIVA.
+function fillSystems(items, def) {
+  const box = document.getElementById('system');
+  box.innerHTML = '';
+  const groups = [];
+  const byGroup = new Map();
+  for (const it of items) {
+    const g = it.group || '';
+    if (!byGroup.has(g)) {
+      byGroup.set(g, []);
+      groups.push(g);
+    }
+    byGroup.get(g).push(it);
+  }
+  for (const g of groups) {
+    if (g) {
+      const h = document.createElement('div');
+      h.className = 'checkbox-group-title';
+      h.textContent = g;
+      box.appendChild(h);
+    }
+    for (const it of byGroup.get(g)) {
+      const label = document.createElement('label');
+      label.className = 'checkbox-item';
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = it.id;
+      cb.dataset.combo = it.combo ? '1' : '';
+      if (it.id === def) cb.checked = true;
+      label.appendChild(cb);
+      label.appendChild(document.createTextNode(' ' + it.label));
+      box.appendChild(label);
+    }
+  }
+  // Exclusividad de "combinar todo": al marcarlo se desmarcan los demás, y viceversa.
+  box.addEventListener('change', (e) => {
+    const t = e.target;
+    if (t.type !== 'checkbox') return;
+    const boxes = [...box.querySelectorAll('input[type=checkbox]')];
+    if (t.dataset.combo && t.checked) {
+      boxes.forEach((c) => c.dataset.combo || (c.checked = false));
+    } else if (t.checked) {
+      boxes.forEach((c) => c.dataset.combo && (c.checked = false));
+    }
+    // Si no queda ninguna marcada, vuelve a la de por defecto.
+    if (!boxes.some((c) => c.checked)) {
+      const d = boxes.find((c) => c.value === def) || boxes[0];
+      if (d) d.checked = true;
+    }
+  });
+}
+
 fetch('/api/systems')
   .then((r) => r.json())
-  .then(({ systems, default: def }) => fillSelect('system', systems, def))
+  .then(({ systems, default: def }) => fillSystems(systems, def))
   .catch(() => {});
 
 fetch('/api/voicings')

@@ -3,13 +3,16 @@
 //           por defecto, con sus reglas de cadencia, resolución y modulación.
 // - cuartal: armonía por cuartas del siglo XX, NO funcional.
 
+// `group` agrupa los sistemas bajo un encabezado (Tonal / Siglo XX). `combo` marca la
+// opción especial "combinar todo": la IA mezcla libremente todas las técnicas del s.XX.
 export const SYSTEMS = {
-  tonal: { label: 'Tonal funcional (estilo severo)' },
-  cuartal: { label: 'Por cuartas (siglo XX)' },
-  contemporaneo: { label: 'Contemporáneo / pandiatónico (Lauridsen–Whitacre–Ešenvalds)' },
-  impresionista: { label: 'Impresionista / modal (Debussy–báltico)' },
-  sigloxx: { label: 'Siglo XX · control de tensión (Persichetti)' },
-  terceras: { label: 'Triádico por ciclos · 2as/3as/5as (Persichetti)' },
+  tonal: { group: 'Tonal', label: 'Tonal funcional (estilo severo)' },
+  mixto: { group: 'Siglo XX', label: '★ Combinar todo (la IA mezcla)', combo: true },
+  sigloxx: { group: 'Siglo XX', label: 'Control de tensión (Persichetti)' },
+  terceras: { group: 'Siglo XX', label: 'Triádico por ciclos (2as/3as/5as)' },
+  cuartal: { group: 'Siglo XX', label: 'Por cuartas' },
+  contemporaneo: { group: 'Siglo XX', label: 'Contemporáneo / pandiatónico (Lauridsen–Whitacre–Ešenvalds)' },
+  impresionista: { group: 'Siglo XX', label: 'Impresionista / modal (Debussy–báltico)' },
 };
 
 export const DEFAULT_SYSTEM = 'tonal';
@@ -18,8 +21,26 @@ export function resolveSystem(id) {
   return SYSTEMS[id] ? id : DEFAULT_SYSTEM;
 }
 
+// Normaliza la selección de sistemas a un array de ids válidos (uno o varios).
+// Acepta array, string único o coma-separado. Si viene "mixto", devuelve solo ["mixto"].
+export function resolveSystems(input) {
+  let ids = Array.isArray(input)
+    ? input
+    : typeof input === 'string' && input
+      ? input.split(',')
+      : [];
+  ids = ids.map((s) => String(s).trim()).filter((id) => SYSTEMS[id]);
+  if (ids.includes('mixto')) return ['mixto'];
+  return ids.length ? ids : [DEFAULT_SYSTEM];
+}
+
 export function systemOptions() {
-  return Object.entries(SYSTEMS).map(([id, s]) => ({ id, label: s.label }));
+  return Object.entries(SYSTEMS).map(([id, s]) => ({
+    id,
+    label: s.label,
+    group: s.group,
+    combo: Boolean(s.combo),
+  }));
 }
 
 // --- Fase 1 (armonía) para sistema CUARTAL ---
@@ -443,5 +464,48 @@ REGLAS (síguelas):
 
 6. CIERRE: confirma el centro con la cadencia del ciclo vigente (III–I / VI–I en 3as;
    II–I / VII–I en 2as; V–I en 5as), sobre tiempo fuerte.
+
+Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;
+
+// --- Fase 1 (armonía) para "COMBINAR TODO" (mixto): la IA mezcla técnicas del s.XX ---
+export const MIXTO_HARMONY_SYSTEM = `Eres un compositor del SIGLO XX con dominio de TODAS
+las técnicas. Diseña la progresión COMBINANDO con libertad y criterio, eligiendo en cada
+pasaje la aproximación que mejor sirva a la música y reconciliándolas con coherencia:
+
+- TRIÁDICO POR CICLOS: tríadas (y 7as/9as por terceras) cuyas fundamentales se mueven por
+  ciclos de 2as/3as/5as, o cromáticamente; también por relación de tritono.
+- POR CUARTAS: estructuras por cuartas (quartal3/4/5) para color abierto no funcional.
+- PANDIATÓNICO / AÑADIDOS: tríadas enriquecidas (major_add9/minor_add9/major_add6/
+  sus2/sus4) de ritmo armónico lento y sabor luminoso.
+- MODAL / IMPRESIONISTA: color modal con paralelismo (planing).
+- CONTROL DE TENSIÓN: ordena las sonoridades por su contenido interválico dibujando una
+  CURVA de tensión (de consonancias abiertas/blandas a 2as/7as/tritonos y de vuelta).
+
+Reglas comunes: discurso NO funcional (sin cadencias V–I obligadas ni sensibles); el
+centro se sostiene por reiteración/afirmación. Usa con libertad las calidades disponibles
+(major/minor/diminished/augmented, séptimas y novenas, cuartas, añadidos y suspensiones)
+e indica la calidad e inversión reales de cada acorde. Da dirección a la pieza con un
+punto culminante; cierra por reposo relativo o por permanencia del acorde final.`;
+
+// --- Fase 2 (realización) para "COMBINAR TODO" (mixto) ---
+export const MIXTO_COMPOSE_SYSTEM = `Eres un compositor coral del SIGLO XX que domina y
+COMBINA todas las técnicas. Realiza las voces mezclando con criterio, según convenga a
+cada pasaje, y buscando una textura coral coherente y cantábile:
+
+- Sonoridades TRIÁDICAS y por TERCERAS (7as/9as como color estable, sin resolución
+  obligada; en acordes de 5 sonidos omite con criterio —5ª para riqueza; 3ª/7ª para
+  menos color—).
+- Estructuras por CUARTAS (con quintas/cuartas paralelas idiomáticas) y tríadas con
+  AÑADIDOS/suspensiones de sabor luminoso.
+- PARALELISMO modal (planing) como recurso de color.
+- CONTROL DE TENSIÓN interválica: modela un ARCO —reposo con consonancias, clímax con
+  2as/7as/tritones, distensión al final—; la DISPOSICIÓN cuenta (anchos abajo =
+  equilibrio, arriba = tensión; abierto en el grave y cerrado en el agudo = resonancia;
+  no apiñes en el grave).
+
+Reglas comunes: conducción limpia (notas comunes, grados conjuntos, evita cruces);
+disonancias tratadas como color, enlazadas con lógica; sin sensibles ni cadencias V–I
+obligadas; centro por reiteración. Respeta la textura solicitada, las tesituras y el
+cuadre exacto de compases; moldea el arco con dinámicas. Cierre por reposo/permanencia.
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;

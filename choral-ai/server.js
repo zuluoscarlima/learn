@@ -8,7 +8,7 @@ import { planHarmony } from './src/harmony.js';
 import { render, hasLilyPond } from './src/lilypond.js';
 import { resolveVoicing, voicingOptions, DEFAULT_VOICING } from './src/voicings.js';
 import { resolveTexture, textureOptions, DEFAULT_TEXTURE } from './src/textures.js';
-import { SYSTEMS, systemOptions, resolveSystem, DEFAULT_SYSTEM } from './src/systems.js';
+import { SYSTEMS, systemOptions, resolveSystems, DEFAULT_SYSTEM } from './src/systems.js';
 import { continuationBrief } from './src/continuation.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -47,7 +47,8 @@ app.get('/api/systems', (_req, res) => {
 app.post('/api/compose', async (req, res) => {
   try {
     const params = req.body || {};
-    params.system = resolveSystem(params.system);
+    // Uno o varios sistemas (o "mixto" = combinar todo). Se normaliza a un array.
+    params.systems = resolveSystems(params.systems ?? params.system);
     const parts = resolveVoicing(params.voicing || DEFAULT_VOICING);
     const texture = resolveTexture(params.texture || DEFAULT_TEXTURE);
 
@@ -76,7 +77,7 @@ app.post('/api/compose', async (req, res) => {
     res.json({
       composition,
       voices: parts.map((p) => p.name),
-      system: SYSTEMS[params.system].label,
+      system: params.systems.map((id) => SYSTEMS[id].label).join(' + '),
       texture: texture.label,
       harmony: { progression: harmony.chords.map((c) => c.roman), cadence: harmony.cadence },
       pdfUrl: url(result.pdfPath),

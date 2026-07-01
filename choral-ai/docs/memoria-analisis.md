@@ -185,6 +185,22 @@ Sistema NUEVO `terceras` ("Triádico por ciclos · 2as/3as/5as").
 - Pendiente cap. 3: 11as/13as, tríadas con añadidos y espesamiento; policordes (cap.
   aparte) reutilizarán la idea "novena = dos tríadas".
 
+---
+
+## UI — Selección múltiple de sistemas + "Combinar todo" — HECHO
+- El "Sistema armónico" pasa de desplegable único a CASILLAS agrupadas por encabezado
+  (Tonal / Siglo XX). Se pueden marcar VARIAS técnicas a la vez → el backend concatena
+  sus prompts con una cabecera de "combina con criterio".
+- Opción especial `mixto` ("★ Combinar todo"): prompt umbrella (MIXTO_HARMONY_SYSTEM /
+  MIXTO_COMPOSE_SYSTEM) donde la IA mezcla libremente todas las técnicas del s.XX. Es
+  EXCLUSIVA (al marcarla se desmarcan las demás).
+- systems.js: `resolveSystems(input)` (array/string/coma; "mixto" gana), `group`/`combo`
+  en systemOptions. harmony.js/compose.js: `selectHarmonySystem`/`selectComposeSystem`
+  (única, combinada o mixto) y flags `multi`/`isMixto` en el prompt de usuario. server.js
+  usa `params.systems` (array) y etiqueta la respuesta con " + ". Frontend: casillas
+  agrupadas con exclusividad del combo; `readForm` envía `data.systems`.
+- Compatibilidad: `resolveSystems` acepta el antiguo `system` único, así que nada rompe.
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.

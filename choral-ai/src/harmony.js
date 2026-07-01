@@ -11,6 +11,8 @@ import {
   IMPRESSIONIST_HARMONY_SYSTEM,
   PERSICHETTI_HARMONY_SYSTEM,
   TERTIAN_HARMONY_SYSTEM,
+  MIXTO_HARMONY_SYSTEM,
+  resolveSystems,
 } from './systems.js';
 
 const MODEL = 'claude-opus-4-8';
@@ -202,14 +204,30 @@ function buildUserPrompt(params) {
     `- Número de compases: ${measures} (un acorde por compás → ${measures} acordes)`,
   ];
   if (theme) lines.push(`- Carácter: ${theme}`);
-  const isQuartal = params.system === 'cuartal';
-  const isContemporary = params.system === 'contemporaneo';
-  const isImpressionist = params.system === 'impresionista';
-  const isPersichetti = params.system === 'sigloxx';
-  const isTertian = params.system === 'terceras';
-  const nonFunctional =
-    isQuartal || isContemporary || isImpressionist || isPersichetti || isTertian;
-  if (isQuartal) {
+  const systems = resolveSystems(params.systems ?? params.system);
+  const isMixto = systems.includes('mixto');
+  const multi = isMixto || systems.length > 1;
+  const only = (id) => !multi && systems[0] === id;
+  const isQuartal = only('cuartal');
+  const isContemporary = only('contemporaneo');
+  const isImpressionist = only('impresionista');
+  const isPersichetti = only('sigloxx');
+  const isTertian = only('terceras');
+  const isTonal = only('tonal');
+  // Solo la tonal pura es funcional; cualquier técnica del s.XX o combinación no lo es.
+  const nonFunctional = !isTonal;
+  if (multi) {
+    lines.push(
+      '- SISTEMA: ' +
+        (isMixto
+          ? 'COMBINA TODAS las técnicas del siglo XX (triádico por ciclos, por cuartas, ' +
+            'pandiatónico, modal/impresionista y control de tensión) con libertad, según ' +
+            'convenga a cada pasaje.'
+          : 'COMBINACIÓN de varias técnicas del siglo XX seleccionadas; intégralas con ' +
+            'coherencia.') +
+        ' Discurso NO funcional; centro por reiteración.',
+    );
+  } else if (isQuartal) {
     lines.push(
       '- SISTEMA: armonía POR CUARTAS (no funcional). Usa calidades quartal3/quartal4/' +
         'quartal5 (y mixtas quartal3ja/quartal3aj). Sin cadencias tonales.',
@@ -276,15 +294,17 @@ function buildUserPrompt(params) {
         'reserva la cadencia conclusiva para el final de ESTA parte.',
     );
   }
-  const closing = isQuartal
-    ? 'el gesto de cierre'
-    : isPersichetti
-      ? 'el cierre por distensión'
-      : isTertian
-        ? 'la confirmación del centro (cadencia del ciclo)'
-        : isContemporary || isImpressionist
-          ? 'el reposo final'
-          : 'la cadencia final';
+  const closing = multi
+    ? 'el cierre (reposo o permanencia)'
+    : isQuartal
+      ? 'el gesto de cierre'
+      : isPersichetti
+        ? 'el cierre por distensión'
+        : isTertian
+          ? 'la confirmación del centro (cadencia del ciclo)'
+          : isContemporary || isImpressionist
+            ? 'el reposo final'
+            : 'la cadencia final';
   lines.push(`\nDevuelve exactamente ${measures} acordes (measure 1..${measures}) y ${closing}.`);
   return lines.join('\n');
 }
@@ -299,23 +319,35 @@ function normalize(chords, measures) {
   return out.map((c, i) => ({ ...c, measure: i + 1 }));
 }
 
+// Selecciona (o COMBINA) el prompt de sistema de la fase 1 según los ids elegidos.
+function selectHarmonySystem(ids) {
+  const map = {
+    tonal: SYSTEM_PROMPT,
+    cuartal: QUARTAL_HARMONY_SYSTEM,
+    contemporaneo: CONTEMPORARY_HARMONY_SYSTEM,
+    impresionista: IMPRESSIONIST_HARMONY_SYSTEM,
+    sigloxx: PERSICHETTI_HARMONY_SYSTEM,
+    terceras: TERTIAN_HARMONY_SYSTEM,
+  };
+  if (ids.includes('mixto')) return MIXTO_HARMONY_SYSTEM;
+  if (ids.length === 1) return map[ids[0]] || SYSTEM_PROMPT;
+  // Varias técnicas: se concatenan con una cabecera que pide integrarlas con criterio.
+  const header =
+    'Eres un compositor del SIGLO XX. COMBINA con criterio las siguientes aproximaciones, ' +
+    'eligiendo en cada pasaje la que mejor sirva a la música y reconciliándolas con ' +
+    'coherencia. Discurso NO funcional; centro por reiteración.\n\n';
+  return (
+    header +
+    ids.map((id, i) => `=== TÉCNICA ${i + 1} ===\n${map[id] || ''}`).join('\n\n')
+  );
+}
+
 // Llama a Claude para planificar la armonía. Devuelve { chords, cadence, text }.
 export async function planHarmony(params) {
   const client = getClient();
   const measures = params.measures || 8;
 
-  const systemPrompt =
-    params.system === 'cuartal'
-      ? QUARTAL_HARMONY_SYSTEM
-      : params.system === 'contemporaneo'
-        ? CONTEMPORARY_HARMONY_SYSTEM
-        : params.system === 'impresionista'
-          ? IMPRESSIONIST_HARMONY_SYSTEM
-          : params.system === 'sigloxx'
-            ? PERSICHETTI_HARMONY_SYSTEM
-            : params.system === 'terceras'
-              ? TERTIAN_HARMONY_SYSTEM
-              : SYSTEM_PROMPT;
+  const systemPrompt = selectHarmonySystem(resolveSystems(params.systems ?? params.system));
 
   const stream = client.messages.stream({
     model: MODEL,

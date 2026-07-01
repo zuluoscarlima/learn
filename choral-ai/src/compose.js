@@ -7,6 +7,8 @@ import {
   IMPRESSIONIST_COMPOSE_SYSTEM,
   PERSICHETTI_COMPOSE_SYSTEM,
   TERTIAN_COMPOSE_SYSTEM,
+  MIXTO_COMPOSE_SYSTEM,
+  resolveSystems,
 } from './systems.js';
 
 const MODEL = 'claude-opus-4-8';
@@ -147,12 +149,10 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
   if (params.continuation) {
     lines.push('\n' + params.continuation);
   }
-  // En estilos báltico/impresionista la métrica suele CAMBIAR de compás a compás.
-  if (
-    params.system === 'impresionista' ||
-    params.system === 'contemporaneo' ||
-    params.system === 'sigloxx'
-  ) {
+  // En estilos del s.XX la métrica suele CAMBIAR de compás a compás (no en tonal puro).
+  const systems = resolveSystems(params.systems ?? params.system);
+  const nonTonal = !(systems.length === 1 && systems[0] === 'tonal');
+  if (nonTonal) {
     lines.push(
       `\nMÉTRICA CAMBIANTE (opcional, estilo báltico/impresionista): si la prosodia ` +
         `del texto lo pide, puedes devolver además un campo "meters" con UN compás ` +
@@ -171,22 +171,34 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
   return lines.join('\n');
 }
 
+// Selecciona (o COMBINA) el prompt de sistema de la fase 2 según los ids elegidos.
+function selectComposeSystem(ids) {
+  const map = {
+    tonal: SYSTEM_PROMPT,
+    cuartal: QUARTAL_COMPOSE_SYSTEM,
+    contemporaneo: CONTEMPORARY_COMPOSE_SYSTEM,
+    impresionista: IMPRESSIONIST_COMPOSE_SYSTEM,
+    sigloxx: PERSICHETTI_COMPOSE_SYSTEM,
+    terceras: TERTIAN_COMPOSE_SYSTEM,
+  };
+  if (ids.includes('mixto')) return MIXTO_COMPOSE_SYSTEM;
+  if (ids.length === 1) return map[ids[0]] || SYSTEM_PROMPT;
+  const header =
+    'Eres un compositor coral del SIGLO XX que domina y COMBINA varias técnicas. ' +
+    'Realiza las voces mezclando con criterio, según convenga a cada pasaje, y buscando ' +
+    'una textura coral coherente y cantábile. Discurso NO funcional; centro por ' +
+    'reiteración. Aplica las reglas de cada técnica:\n\n';
+  return (
+    header +
+    ids.map((id, i) => `=== TÉCNICA ${i + 1} ===\n${map[id] || ''}`).join('\n\n')
+  );
+}
+
 // Realiza las voces sobre el plan armónico. Devuelve el objeto JSON validado.
 export async function composeChoral(params, parts, texture, harmonyText) {
   const client = getClient();
 
-  const systemPrompt =
-    params.system === 'cuartal'
-      ? QUARTAL_COMPOSE_SYSTEM
-      : params.system === 'contemporaneo'
-        ? CONTEMPORARY_COMPOSE_SYSTEM
-        : params.system === 'impresionista'
-          ? IMPRESSIONIST_COMPOSE_SYSTEM
-          : params.system === 'sigloxx'
-            ? PERSICHETTI_COMPOSE_SYSTEM
-            : params.system === 'terceras'
-              ? TERTIAN_COMPOSE_SYSTEM
-              : SYSTEM_PROMPT;
+  const systemPrompt = selectComposeSystem(resolveSystems(params.systems ?? params.system));
 
   const stream = client.messages.stream({
     model: MODEL,
