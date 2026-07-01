@@ -380,8 +380,20 @@ Causa: mucha guía de armonía/textura/métrica, pero casi ninguna de escritura 
   a menudo importa el CONTORNO.
 - [x] src/motive.js: MOTIVE_DEVELOPMENT; inyectado en compose.js (fase 2, todas las
       técnicas) tras el bloque de melodía y antes de la paleta expresiva.
-- Próximo (si llegan páginas): cap. IV+ (la FRASE, el "sentence"/período, cadencias
-  melódicas) → completaría la construcción de temas.
+### Cap. IV "Enlace de motivos" + V "Construcción de temas simples (1)" (pág. 29–37) — APLICADO
+- Contorno en ONDAS: ascensos contrarrestados por descensos; UN clímax por una serie de
+  cimas menores; saltos grandes compensados por grado conjunto; registro central.
+- La armonía se mueve MÁS DESPACIO que la melodía (varias notas por acorde → notas de
+  paso/apoyaturas, no arpegiar); acompañamiento regular de carácter constante unifica.
+- Frase/período: gira en torno a una tónica, FINAL DEFINIDO, número PAR de compases (8+).
+  Comienzo presenta el motivo; continuación = repetición inmediata (idéntica/transpuesta).
+- ANTECEDENTE/CONSECUENTE (forma tónica → dominante, como sujeto/respuesta): mismo ritmo y
+  contorno, contraste en la armonía. Esquemas tonales: I→V, I-V→V-I, I-V-I→V-I-V, I-IV→IV-I,
+  I-II→V-I. En no funcional, mantener la idea pregunta/respuesta.
+- Derivaciones con carácter de FRASE completa; no alejarse tanto que se pierda inteligibilidad.
+- [x] src/phrase.js: PHRASE_CONSTRUCTION; inyectado en compose.js (fase 2) tras el motivo.
+- Próximo (si llegan páginas): resto del cap. V y cap. VI+ (el período completo, cadencias,
+  formas mayores) → completaría la construcción de temas.
 
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
