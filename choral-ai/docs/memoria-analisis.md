@@ -556,3 +556,21 @@ Verificado con el archivo real: los 17 compases cuadran; la soprano queda INTACT
 sin cambios tras repair); el tresillo (c.7), las fusas y las ligaduras (c.8) se renderizan
 correctos en LilyPond. Nota: la selección de pista por nombre/notas ya estaba; aquí la voz era
 la primera igualmente.
+
+---
+
+## FIX regresión "C en cada compás" + anacrusa por relleno + textura en modo armonizar
+Feedback del usuario sobre la armonización de su melodía:
+1. **Cifra de compás (4/4 "C") repetida en TODOS los compases**: regresión del fix de anacrusa
+   (meters por barra activaba el modo "timeline" que re-emitía \time en cada barra). Fix doble:
+   (a) lilypond.js solo declara \time cuando CAMBIA respecto al compás anterior (verificado que
+   la métrica cambiante báltica sigue mostrando el cambio solo donde toca); (b) musicxml.js
+   trata la ANACRUSA rellenando por DELANTE con silencios hasta completar el 1er compás
+   (`restsForBeats`), así la pieza queda UNIFORME (meters=null) con una sola cifra al principio.
+   Verificado con el archivo real: bar 1 = "r2. r4", meters=null, 68 pulsos, soprano intacta.
+2. **Tempo**: se toma del archivo (metronome) y se fija en la composición; el "Pop ballad" es
+   ♩=60 y la salida sale a 60 (correcto). Confirmado en el flujo server→applyGivenMelody.
+3. **Textura no respetada** (salía colchón de redondas en vez de contrapunto): reforzado el
+   bloque de melodía fija para EXIGIR que las voces de acompañamiento sigan la textura elegida
+   (contrapunto = líneas independientes con ritmo propio e imitación; homofonía = acordes;
+   colchón = notas largas), sin convertir todo en redondas por defecto.

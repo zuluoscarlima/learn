@@ -167,8 +167,14 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
         `ninguna nota de la voz 1.\n` +
         `- Tu trabajo es COMPONER las demás voces por DEBAJO para armonizarla siguiendo el ` +
         `plan armónico, con conducción de voces impecable (evita 5as/8as paralelas, resuelve ` +
-        `las disonancias, buen bajo). Ajusta el ritmo de las voces de acompañamiento a la ` +
-        `melodía y la textura pedida.\n` +
+        `las disonancias, buen bajo).\n` +
+        `- RESPETA LA TEXTURA elegida${texture ? ` ("${texture.label}")` : ''} en las voces de ` +
+        `acompañamiento: NO las conviertas por defecto en un colchón de redondas. Si la ` +
+        `textura es de CONTRAPUNTO, cada voz de acompañamiento debe ser una LÍNEA melódica ` +
+        `INDEPENDIENTE, con su propio ritmo y movimiento (corcheas, negras, notas de paso, ` +
+        `imitaciones del motivo de la melodía), dialogando con la melodía; si es homofonía, ` +
+        `acordes homorrítmicos; si es colchón/tarareo, notas largas sostenidas. Da VIDA ` +
+        `rítmica al acompañamiento acorde a la textura.\n` +
         `- Melodía compás por compás (nota+octava/figura; 4=negra, 8=corchea, 2=blanca, ` +
         `"."=puntillo):\n` +
         melodyByMeasures(params.melody, { withDuration: true }),

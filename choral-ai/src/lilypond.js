@@ -168,11 +168,15 @@ export function jsonToLily(comp, parts = []) {
     // Con métrica fija, el compás se fija una vez al principio.
     if (!changing) head.push(timeDirective(comp.timeSignature));
     const bars = [];
+    let prevMeter = null;
     for (let i = 0; i < list.length; i++) {
       const seg = [];
       const kc = keyAt.get(i + 1);
       if (kc) seg.push(`\\key ${kc.key.toLowerCase()} ${KEY_MODE[kc.mode] || '\\major'}`);
-      if (changing) seg.push(timeDirective(list[i]));
+      // Solo se declara \time cuando el compás CAMBIA respecto al anterior (en el
+      // primero siempre); si no, LilyPond lo repetiría en cada barra.
+      if (changing && list[i] !== prevMeter) seg.push(timeDirective(list[i]));
+      prevMeter = list[i];
       seg.push(measureSpacer(list[i]));
       bars.push(seg.join(' '));
     }

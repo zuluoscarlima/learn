@@ -39,7 +39,25 @@ const TYPE_DENOM = {
 const FIGS = [
   [4, 1, false], [3, 2, true], [2, 2, false], [1.5, 4, true], [1, 4, false],
   [0.75, 8, true], [0.5, 8, false], [0.375, 16, true], [0.25, 16, false],
+  [0.1875, 32, true], [0.125, 32, false],
 ];
+
+// Descompone una cantidad de negras en silencios de figuras válidas (greedy).
+// Se usa para rellenar la anacrusa por delante.
+function restsForBeats(beats) {
+  const out = [];
+  let rem = Math.round(beats * 8) / 8; // cuantiza a fusa (0.125)
+  while (rem > 1e-6) {
+    const f = FIGS.find(([b]) => b <= rem + 1e-6);
+    if (!f) break;
+    out.push({
+      rest: true, step: 'C', alter: 0, octave: 4, duration: f[1], dotted: f[2],
+      tie: false, tuplet: 1, lyric: '', dynamic: '', text: '',
+    });
+    rem -= f[0];
+  }
+  return out;
+}
 
 // Aproxima una duración en negras a la figura representable más cercana.
 function figureFromQuarters(q) {
@@ -276,6 +294,16 @@ export function parseMelody(xmlText) {
     }
     bars.push(barNotes);
     meters.push(`${beats}/${beatType}`);
+  }
+
+  // ANACRUSA (pickup): si el PRIMER compás es más corto que su cifra (típico
+  // upbeat), rellenamos por DELANTE con silencios hasta completarlo. Así la
+  // anacrusa queda como final de un primer compás completo y toda la pieza es
+  // uniforme (sin cifras de compás raras por barra ni desalineación).
+  const firstBeats = bars[0].reduce((s, n) => s + noteBeats(n), 0);
+  const nominal0 = beatsPerMeasure(meters[0]);
+  if (nominal0 && firstBeats > 0 && firstBeats < nominal0 - 1e-6) {
+    bars[0] = [...restsForBeats(nominal0 - firstBeats), ...bars[0]];
   }
 
   const notes = bars.flat();
