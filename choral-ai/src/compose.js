@@ -322,14 +322,34 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
   }
   lines.push('\n' + EXPRESSIVE_PALETTE);
   // DIVISI: cualquier voz puede dividirse en un acorde en su propio pentagrama.
-  lines.push(
-    '\nDIVISI (cualquier voz puede dividirse): para DIVIDIR una voz en su pentagrama (divisi ' +
-      'a2/a3), añade a la nota el campo "chord" con las alturas ADICIONALES que suenan a la vez ' +
-      '(mismo ritmo). Sirve para cualquier voz (Soprano, Contralto, Tenor o Bajo). Úsalo para ' +
-      'ENRIQUECER acordes en los clímax, aperturas o colchones (p. ej. una soprano divisi a 2, ' +
-      'un bajo que abre a octavas), respetando la tesitura de esa voz. No abuses: divisi con ' +
-      'intención, no en toda la pieza.',
-  );
+  // Lo controla el usuario (params.divisi): auto (con criterio) / generoso / no.
+  const divisi = params.divisi || 'auto';
+  const divisiExample =
+    'EJEMPLO — una soprano en La4 dividida a2 con Re5: {"step":"A","alter":0,"octave":4,' +
+    '"chord":[{"step":"D","alter":0,"octave":5}], …}.';
+  if (divisi === 'no') {
+    lines.push(
+      '\nDIVISI: NO dividas las voces. UNA sola nota por voz en toda la pieza (no uses el campo ' +
+        '"chord").',
+    );
+  } else if (divisi === 'generoso') {
+    lines.push(
+      '\nDIVISI GENEROSO (¡ÚSALO A MENUDO!): ENRIQUECE la armonía DIVIDIENDO las voces en acordes ' +
+        'con el campo "chord" de la nota (alturas ADICIONALES simultáneas, mismo ritmo). Busca ' +
+        'sonoridades AMPLIAS de 6 a 8 sonidos reales repartiendo divisi entre varias voces (la ' +
+        'S, la A, el T y el B pueden dividirse a2 o a3), sobre todo en clímax, aperturas, ' +
+        'colchones sostenidos y el ACORDE FINAL. Cada divisi respeta la tesitura de su voz. ' +
+        divisiExample,
+    );
+  } else {
+    lines.push(
+      '\nDIVISI (úsalo con criterio, pero ÚSALO): para ENRIQUECER la armonía, DIVIDE alguna voz ' +
+        'en un acorde con el campo "chord" (alturas ADICIONALES simultáneas, mismo ritmo) en los ' +
+        'CLÍMAX, las APERTURAS y los COLCHONES sostenidos. CUALQUIER voz (S/A/T/B) puede ' +
+        'dividirse, respetando su tesitura. ' +
+        divisiExample,
+    );
+  }
   // COHERENCIA HASTA EL FINAL: evita el error de que, cuando la melodía ya
   // terminó, las voces sigan con cromatismo sin criterio hasta rellenar los
   // compases pedidos. La pieza debe cerrar con lógica, no con "relleno".

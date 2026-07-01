@@ -828,3 +828,16 @@ muy suave (ppp–p). Coro con divisi (S I/II, A I/II, T, B).
 - systems.js CONTEMPORARY_COMPOSE_SYSTEM (sección ARCO Y CIERRE): "colchón que respira" con
   reguladores encadenados y vocal que morfa con la dinámica.
 (Van 8 obras de Ešenvalds: Rasa, O Salutaris, Only in Sleep, Trees, Stars, Lux Aeterna, In Paradisum.)
+
+---
+
+## FIX divisi: el prompt lo DESANIMABA + control de usuario
+Síntoma: la IA no producía divisi. Causa: el prompt decía literalmente "No abuses: divisi con
+intención" → lo frenaba. Corregido:
+- Nuevo desplegable "Divisi" (`params.divisi`): "Con criterio (clímax y colchones)" [auto,
+  defecto] / "Generoso (sonoridades amplias a6-a8)" / "Sin divisi".
+- compose.js: bloque de divisi según el control. En 'auto' ANIMA a usarlo (clímax/aperturas/
+  colchones) con EJEMPLO JSON del campo "chord"; en 'generoso' lo pide A MENUDO (6-8 sonidos
+  reales repartidos entre voces, incluido el acorde final); en 'no' lo prohíbe. Se quitó la
+  frase que lo desincentivaba.
+- (La mecánica del campo "chord" ya estaba y renderiza bien; el problema era de adherencia.)
