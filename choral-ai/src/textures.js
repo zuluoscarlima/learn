@@ -21,10 +21,10 @@ export const TEXTURES = {
       'haz que OTRA voz lo IMITE poco después (a la octava, la quinta, la tercera o el ' +
       'unísono, uno o dos tiempos más tarde) — un juego de eco/pregunta-respuesta que ' +
       'recorre la pieza; no hace falta que la imitación sea estricta como en un canon, ' +
-      'basta con que el diseño se RECONOZCA al reaparecer en otra voz. El BAJO es más ' +
-      'LIBRE e INDEPENDIENTE: funciona como cimiento armónico con su propia línea (notas ' +
-      'más largas, movimiento por saltos de fundamental o líneas que sostienen), sin ' +
-      'obligación de imitar a las demás. Combina las voces con buena conducción: trata ' +
+      'basta con que el diseño se RECONOZCA al reaparecer en otra voz. El BAJO es una VOZ ' +
+      'MÁS, con su propia línea ACTIVA y cantábile (negras y corcheas, notas de paso, ' +
+      'arpegios, contramelodía) — NO un pedal de redondas; es más libre e independiente pero ' +
+      'igual de vivo rítmicamente que las demás. Combina las voces con buena conducción: trata ' +
       'las disonancias por grado conjunto (notas de paso, bordaduras, retardos que ' +
       'resuelven hacia abajo), evita quintas y octavas paralelas y directas, y prefiere ' +
       'el movimiento contrario u oblicuo entre voces.',
@@ -50,6 +50,7 @@ export const TEXTURES = {
   },
   tarareo: {
     label: 'Coro con tarareo (Mm / Oh / Ah)',
+    sustained: true,
     prompt:
       'Textura báltica/impresionista de COLCHÓN con tarareo: ALGUNAS voces (p. ej. ' +
       'las graves o las internas) sostienen notas largas sin texto silábico cantadas ' +
@@ -63,6 +64,7 @@ export const TEXTURES = {
   },
   duo_solistas_imitacion: {
     label: 'Dúo de solistas en imitación sobre colchón (Ešenvalds)',
+    sustained: true,
     prompt:
       'Textura estilo Ešenvalds ("O Salutaris Hostia"). DOS voces SOLISTAS agudas (las dos ' +
       'primeras voces, o las marcadas como solistas) cantan por encima líneas MUY floridas y ' +
@@ -80,6 +82,7 @@ export const TEXTURES = {
   },
   solistas_coro: {
     label: 'Solistas sobre coro sostenido',
+    sustained: true,
     prompt:
       'Estratificación en dos capas (estilo Ešenvalds). CAPA SOLISTA: la(s) voz(ces) ' +
       'SUPERIOR(ES) cantan líneas FLORIDAS, ornamentadas y MELISMÁTICAS — ritmos más ' +

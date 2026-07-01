@@ -186,6 +186,27 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
       );
     }
   }
+  // MOVIMIENTO RÍTMICO de las voces de acompañamiento. Salvo en texturas de
+  // COLCHÓN (sustained), ninguna voz —y menos el BAJO— debe ir solo en redondas y
+  // blancas: deben tener vida rítmica e IMITAR las figuras de la melodía.
+  if (!(texture && texture.sustained)) {
+    lines.push(
+      '\nMOVIMIENTO RÍTMICO DE TODAS LAS VOCES (¡IMPRESCINDIBLE!): NINGUNA voz puede ir solo ' +
+        'en redondas y blancas. El CONTRALTO, el TENOR y —SOBRE TODO— el BAJO deben tener VIDA ' +
+        'rítmica igual que la soprano: negras, corcheas, ritmos con puntillo, síncopas, notas ' +
+        'de paso y bordaduras, arpegios del acorde y silencios que dejan respirar.\n' +
+        '- IMITACIÓN (sobre todo en CONTRAPUNTO): las voces de acompañamiento RETOMAN e IMITAN ' +
+        'las FIGURAS rítmico-melódicas (el MOTIVO) de la soprano/contralto — un diseño aparece ' +
+        'en una voz y REAPARECE en otra poco después (eco/pregunta-respuesta). En HOMOFONÍA, ' +
+        'las voces se mueven JUNTAS pero con ese mismo ritmo ACTIVO (no en redondas).\n' +
+        '- BAJO ESPECÍFICAMENTE: NO se limita a sostener la fundamental una nota por compás. ' +
+        'Camina por grados conjuntos (bajo "andante"/walking), arpegia fundamental–quinta– ' +
+        'tercera, usa notas de paso entre un acorde y el siguiente, y dibuja su propia ' +
+        'contramelodía con movimiento. Es una LÍNEA, no un pedal.\n' +
+        '- Reserva las notas LARGAS para puntos de reposo, finales de frase y cadencias — no ' +
+        'para toda la pieza. Contrasta densidades: cuando una voz se para, otra se mueve.',
+    );
+  }
   // Cambio de armadura solo en modulaciones LARGAS (no en tonicizaciones breves).
   // Con melodía fija, la tonalidad la manda el archivo: no invitamos a modular.
   if (!params.melody) {

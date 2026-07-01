@@ -603,3 +603,18 @@ ya completas) y que las obras de 32–36 compases se compongan COMPLETAS en una 
 - `max_tokens` ADAPTATIVO en compose.js: `min(128000, max(64000, measures*voices*900))`, para
   que las piezas largas no se corten por longitud (36×4 → 128k; 8×4 → 64k). Nota: piezas muy
   largas tardan más; el streaming con thinking summarized mantiene viva la conexión.
+
+---
+
+## Vida rítmica de las voces graves (bajo/tenor/alto) — no redondas/blancas
+Feedback: al armonizar/contrapuntear, el alto, el tenor y SOBRE TODO el bajo salían casi
+siempre en redondas y blancas; deben moverse e IMITAR las figuras de soprano/alto.
+- **textures.js**: flag `sustained:true` en las texturas de COLCHÓN (tarareo, solistas_coro,
+  duo_solistas_imitacion) donde las notas largas SÍ son el objetivo. Corregido el prompt de
+  `contrapunto_libre`, que contradictoriamente pedía al bajo "notas más largas": ahora el bajo
+  es una voz ACTIVA (negras/corcheas, notas de paso, arpegios, contramelodía), no un pedal.
+- **compose.js**: nuevo bloque FUERTE en fase 2 (salvo texturas `sustained`): NINGUNA voz en
+  solo redondas/blancas; alto/tenor/BAJO con vida rítmica comparable a la soprano; el bajo
+  camina/arpegia/usa notas de paso (línea, no pedal); imitación de las figuras de las voces
+  agudas (en contrapunto) o mismo ritmo activo junto a ellas (en homofonía); notas largas solo
+  en reposos/cadencias. Verificado que el flag fluye (contrapunto/homofonía aplican; colchones no).
