@@ -857,3 +857,18 @@ intención" → lo frenaba. Corregido:
 - Aplicado a `policordes`: fase 1 (concepto multi-unidad, uso breve en clímax/rápido-suave);
   fase 2 (realizar con DIVISI —campo "chord"— repartiendo unidades entre voces, base espaciada,
   duplicaciones/acoplamientos por octava, breve). Enlaza con la función de divisi recién añadida.
+
+---
+
+## FIX divisi (2): el campo "chord" era OPCIONAL → structured outputs no lo rellenaba
+Síntoma persistente: ni un divisi ni con "Divisi = Generoso". El prompt ya lo animaba y el
+render del campo `chord` estaba verificado (soprano `<e'' g''>`, bajo `<c c,>` → PDF+MIDI OK),
+así que el fallo era que el modelo NUNCA emitía `chord`.
+Causa raíz: en `schema.js`, `chord` estaba en `properties` pero OMITIDO de `noteSchema.required`
+(a diferencia de `tie`/`tuplet`, que SÍ están en `required` y funcionan). Con
+`additionalProperties:false`, los structured outputs de la API tienden a NO rellenar las
+propiedades opcionales.
+Corrección: añadido `'chord'` a `noteSchema.required`; descripción reforzada ("OBLIGATORIO,
+casi siempre VACÍO []"); `makeRest` incluye `chord: []`. Verificado: render determinista de una
+pieza con divisi en soprano (a2 y a3) y bajo (a2) → PDF+MIDI sin avisos. Pendiente que el
+usuario confirme el resultado musical con la API real.
