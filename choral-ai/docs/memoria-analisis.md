@@ -668,3 +668,21 @@ acordes con criterio — relleno caótico para completar los compases pedidos.
   del plan (ninguna "se va por libre").
 - **harmony.js (fase 1)**: el plan debe llevar acorde con sentido en TODOS los compases (nada al
   azar, sobre todo al final) y conducir a un reposo final claro y estable.
+
+---
+
+## Persichetti Cap. VII (poliacordes) — pág. 147–150, cierre del capítulo — APLICADO
+Últimos matices de poliacordes, integrados en `policordes`:
+- **Esqueleto lineal de fundamentales**: el contrapunto a dos partes se traza con las
+  FUNDAMENTALES de las dos unidades; esos dos sonidos van en las voces externas o se mueven
+  libremente entre internas y externas. Cualquier nota de una línea puede ser fundamental/3ª/5ª
+  de una tríada may/men/aum/dism → muchas texturas, tensión que fluctúa.
+- **Centro tonal**: la escala no lo fija; se establece por una LÍNEA MELÓDICA predominante o por
+  gravitación a un acorde característico. La TÓNICA/reposo conviene que sea un poliacorde
+  RESONANTE; las combinaciones densas/disonantes se reservan para el interior y la tensión (no
+  para el centro ni el cierre).
+- **Refrescar la textura** (poliacordes puros prolongados = masa pesada que sofoca las voces
+  internas): (a) ORNAMENTAR las líneas con actividad melódica individual; (b) INTERRUPCIONES al
+  unísono o a dos voces; (c) OMITIR de vez en cuando una de las dos unidades para iluminar;
+  (d) contrastar los poliacordes con otros tipos de armonía (pilares arquitectónicos).
+Con esto queda cubierto el capítulo de poliacordes (Ej. 7-1 a 7-28).

@@ -771,8 +771,15 @@ Reglas:
 - SEPARACIÓN CLARA (imprescindible): las dos áreas deben quedar bien SEPARADAS; si se acercan
   o se mezclan, el poliacorde COLAPSA en un simple acorde con sonido añadido y deja de existir.
 - Generación LINEAL: la dirección de la poliarmonía la marca el MOVIMIENTO LINEAL — concibe
-  las voces EXTERNAS (la más grave y la más aguda) como un CONTRAPUNTO a dos partes bien
-  trazado, y deja que las dos áreas acordales se muevan colgadas de esas líneas.
+  un CONTRAPUNTO a dos partes con las FUNDAMENTALES de las dos unidades (su esqueleto básico),
+  y cuelga de él las dos áreas acordales. Cualquier sonido de una línea melódica puede ser la
+  fundamental, la 3ª o la 5ª de una tríada mayor/menor/aumentada/disminuida: eso da muchas
+  texturas y una tensión que FLUCTÚA.
+- CENTRO TONAL (si se desea uno firme): la escala no basta para fijarlo; se establece por las
+  implicaciones de una LÍNEA MELÓDICA predominante o por gravitación a un acorde característico.
+  Usa un poliacorde RESONANTE (mayor sobre mayor, intervalos 1/5) como TÓNICA/reposo, y reserva
+  las combinaciones más densas/disonantes para el interior y la tensión, no para el centro ni el
+  cierre.
 - Un SONIDO COMÚN entre las dos unidades ayuda a mezclarlas.
 - POLITONALIDAD (rara): solo si las unidades se adhieren a CENTROS TONALES separados
   (p. ej. área Re mayor sobre área Fa mayor). Los poliacordes NO politonales son más
@@ -815,9 +822,16 @@ REGLAS:
      la formación suena más consonante; externas disonantes → al revés.
 
 3. CONDUCCIÓN Y TEXTURA
-   - GENERACIÓN LINEAL: la dirección de la poliarmonía la marca el MOVIMIENTO LINEAL. Traza
-     las voces EXTERNAS (la más grave y la más aguda) como un CONTRAPUNTO a dos partes limpio
-     y cantábile, y deja que las dos áreas acordales se muevan colgadas de esas líneas.
+   - GENERACIÓN LINEAL: la dirección de la poliarmonía la marca el MOVIMIENTO LINEAL. Traza un
+     CONTRAPUNTO a dos partes con las FUNDAMENTALES de las dos unidades (el esqueleto básico);
+     esos dos sonidos pueden ir en las voces EXTERNAS o moverse LIBREMENTE entre voces internas
+     y externas, y las dos áreas acordales cuelgan de ese esqueleto.
+   - REFRESCAR LA TEXTURA (importante): un pasaje LARGO de poliacordes puros crea una masa
+     pesada que SOFOCA las voces internas. Aligera y refresca: (a) ORNAMENTA las líneas (da
+     actividad melódica a voces individuales — notas de paso, bordaduras, pequeños diseños);
+     (b) intercala INTERRUPCIONES al UNÍSONO o a DOS VOCES; (c) OMITE de vez en cuando una de
+     las dos unidades (deja solo una tríada) para iluminar; (d) contrasta los poliacordes con
+     otros tipos de armonía como pilares arquitectónicos.
    - Cada unidad se conduce con limpieza; sin sensibles ni cadencias V–I; centro por
      reiteración. Los poliacordes pueden nacer de PEDALES dobles/triples (una voz sostiene
      mientras otras forman la segunda unidad). Líneas cantábiles; respeta tesituras y cuadre.
