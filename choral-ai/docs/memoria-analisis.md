@@ -713,3 +713,19 @@ roll pp). Refuerza y amplía el "kit Ešenvalds".
 - **textures.js `solistas_coro`**: el colchón usa notas largas LIGADAS ("tie":true) sobre Mm/Oh;
   la solista usa tresillos, rubato y vocalise sin texto (final tipo "Only in Sleep").
 - (Percusión: no la modela nuestro esquema SATB; se omite.)
+
+---
+
+## Combinación TONAL + Siglo XX = base tonal funcional + color (no "batiburrillo no funcional")
+Antes, marcar "Tonal funcional" junto con una técnica del s.XX se trataba como una combinación
+del siglo XX "NO funcional", contradiciendo a la tonal (que sí es funcional). Ahora:
+- `hasTonal = systems.includes('tonal')` → la pieza es FUNCIONAL siempre que esté la tonal
+  (sola o como base). `tonalPlusColor = hasTonal && multi && !isMixto`.
+- harmony.js: si `tonalPlusColor`, la línea de SISTEMA dice "BASE TONAL FUNCIONAL enriquecida
+  con el COLOR del s.XX" (mantiene T–S–D–T, cadencias, resolución de sensibles/7as; el color
+  adorna). `nonFunctional=!hasTonal` → se habilita la MODULACIÓN funcional y el cierre es
+  "cadencia final (tonal)". `selectHarmonySystem`: cabecera de armonista tonal + SYSTEM_PROMPT
+  como "=== BASE TONAL (manda) ===" y las demás como "=== COLOR n ===".
+- compose.js: `selectComposeSystem` igual (base tonal + color); la MÉTRICA CAMBIANTE ya no se
+  ofrece si hay tonal (`nonTonal = !systems.includes('tonal')`), para mantener compás estable.
+- "Combinar todo" (mixto) y las combinaciones solo-s.XX siguen igual (no funcionales).

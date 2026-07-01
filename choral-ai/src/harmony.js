@@ -233,7 +233,10 @@ function buildUserPrompt(params) {
   }
   const systems = resolveSystems(params.systems ?? params.system);
   const isMixto = systems.includes('mixto');
+  const hasTonal = systems.includes('tonal');
   const multi = isMixto || systems.length > 1;
+  // Tonal combinada con técnicas del s.XX = BASE TONAL FUNCIONAL + color del s.XX.
+  const tonalPlusColor = hasTonal && multi && !isMixto;
   const only = (id) => !multi && systems[0] === id;
   const isQuartal = only('cuartal');
   const isContemporary = only('contemporaneo');
@@ -244,9 +247,17 @@ function buildUserPrompt(params) {
   const isSecundal = only('segundas');
   const isPolychord = only('policordes');
   const isTonal = only('tonal');
-  // Solo la tonal pura es funcional; cualquier técnica del s.XX o combinación no lo es.
-  const nonFunctional = !isTonal;
-  if (multi) {
+  // Es FUNCIONAL siempre que esté la tonal (sola o como base de una combinación).
+  const nonFunctional = !hasTonal;
+  if (tonalPlusColor) {
+    lines.push(
+      '- SISTEMA: BASE TONAL FUNCIONAL (estilo severo) ENRIQUECIDA con el COLOR de la(s) ' +
+        'técnica(s) del siglo XX seleccionada(s). MANTÉN la funcionalidad tonal como ESQUELETO ' +
+        '(progresión T–S–D–T, cadencias y resolución de sensibles/7as) y AÑADE el color de las ' +
+        'otras técnicas (acordes enriquecidos, cuartas, 2as, añadidos, poliacordes…) como MATIZ ' +
+        'sobre esa base. El centro es una TÓNICA de verdad; la funcionalidad manda, el color adorna.',
+    );
+  } else if (multi) {
     lines.push(
       '- SISTEMA: ' +
         (isMixto
@@ -339,7 +350,9 @@ function buildUserPrompt(params) {
         'a la tonalidad vigente en cada momento.',
     );
   }
-  const closing = multi
+  const closing = tonalPlusColor
+    ? 'la cadencia final (tonal, auténtica perfecta)'
+    : multi
     ? 'el cierre (reposo o permanencia)'
     : isQuartal
       ? 'el gesto de cierre'
@@ -385,7 +398,26 @@ function selectHarmonySystem(ids) {
   };
   if (ids.includes('mixto')) return MIXTO_HARMONY_SYSTEM;
   if (ids.length === 1) return map[ids[0]] || SYSTEM_PROMPT;
-  // Varias técnicas: se concatenan con una cabecera que pide integrarlas con criterio.
+  // TONAL + técnicas del s.XX = BASE TONAL FUNCIONAL enriquecida con color.
+  if (ids.includes('tonal')) {
+    const others = ids.filter((id) => id !== 'tonal');
+    const header =
+      'Eres un ARMONISTA TONAL de estilo severo que ENRIQUECE su lenguaje con color del ' +
+      'siglo XX. La BASE manda y es FUNCIONAL (progresión T–S–D–T, cadencias, resolución de ' +
+      'sensibles y séptimas); sobre ese esqueleto AÑADES, con criterio y sin abandonar el ' +
+      'centro tonal, el color de la(s) técnica(s) indicada(s). La funcionalidad manda, el ' +
+      'color adorna.\n\n';
+    return (
+      header +
+      '=== BASE TONAL (manda) ===\n' +
+      SYSTEM_PROMPT +
+      '\n\n' +
+      others
+        .map((id, i) => `=== COLOR ${i + 1} (técnica del siglo XX, como matiz) ===\n${map[id] || ''}`)
+        .join('\n\n')
+    );
+  }
+  // Varias técnicas del s.XX: se concatenan con una cabecera no funcional.
   const header =
     'Eres un compositor del SIGLO XX. COMBINA con criterio las siguientes aproximaciones, ' +
     'eligiendo en cada pasaje la que mejor sirva a la música y reconciliándolas con ' +

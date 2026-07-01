@@ -221,9 +221,10 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
         'notas. Si no hay modulación prolongada, omite "keyChanges".',
     );
   }
-  // En estilos del s.XX la métrica suele CAMBIAR de compás a compás (no en tonal puro).
+  // La métrica cambiante es un recurso del s.XX; NO se ofrece si hay base tonal
+  // (ni tonal pura ni tonal+color): con centro tonal el compás se mantiene estable.
   const systems = resolveSystems(params.systems ?? params.system);
-  const nonTonal = !(systems.length === 1 && systems[0] === 'tonal');
+  const nonTonal = !systems.includes('tonal');
   if (nonTonal && !params.melody) {
     lines.push(
       `\nMÉTRICA CAMBIANTE (opcional, estilo báltico/impresionista): si la prosodia ` +
@@ -360,6 +361,26 @@ function selectComposeSystem(ids) {
   };
   if (ids.includes('mixto')) return MIXTO_COMPOSE_SYSTEM;
   if (ids.length === 1) return map[ids[0]] || SYSTEM_PROMPT;
+  // TONAL + técnicas del s.XX = realiza sobre BASE TONAL FUNCIONAL con color.
+  if (ids.includes('tonal')) {
+    const others = ids.filter((id) => id !== 'tonal');
+    const header =
+      'Eres un compositor coral de ESTILO SEVERO (tonal, funcional) que ENRIQUECE la ' +
+      'sonoridad con color del siglo XX. Realiza las voces con la CONDUCCIÓN y las ' +
+      'RESOLUCIONES tonales del estilo severo como base (sensibles y séptimas resueltas, sin ' +
+      '5as/8as paralelas, cadencias), y AÑADE con criterio el color de la(s) técnica(s) ' +
+      'indicada(s) (acordes enriquecidos, cuartas, 2as, añadidos, poliacordes…) como matiz, ' +
+      'sin abandonar el centro tonal:\n\n';
+    return (
+      header +
+      '=== BASE TONAL (manda) ===\n' +
+      SYSTEM_PROMPT +
+      '\n\n' +
+      others
+        .map((id, i) => `=== COLOR ${i + 1} (técnica del siglo XX, como matiz) ===\n${map[id] || ''}`)
+        .join('\n\n')
+    );
+  }
   const header =
     'Eres un compositor coral del SIGLO XX que domina y COMBINA varias técnicas. ' +
     'Realiza las voces mezclando con criterio, según convenga a cada pasaje, y buscando ' +
