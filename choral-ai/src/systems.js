@@ -813,6 +813,12 @@ Reglas:
   las combinaciones más densas/disonantes para el interior y la tensión, no para el centro ni el
   cierre.
 - Un SONIDO COMÚN entre las dos unidades ayuda a mezclarlas.
+- POLIACORDES MULTI-UNIDAD (3 o más tríadas): las unidades superiores se apilan sobre la 3ª y
+  la 5ª de la tríada de BASE (rara vez sobre su fundamental), o sobre los ARMÓNICOS —y armónicos
+  de armónicos— de esa 3ª/5ª, o sobre armónicos de tríadas que NO son la de base. Son sonoridades
+  MASIVAS: úsalas SOLO por BREVES instantes y en su hábitat natural — una SECCIÓN CLIMÁTICA
+  (potente) o un pasaje RÁPIDO pero suave (leggiero). Al superponer 3 unidades, una puede
+  "evaporarse" y quedar de hecho un poliacorde de 2 unidades.
 - POLITONALIDAD (rara): solo si las unidades se adhieren a CENTROS TONALES separados
   (p. ej. área Re mayor sobre área Fa mayor). Los poliacordes NO politonales son más
   flexibles y sus áreas varían a menudo. Discurso NO funcional; centro por reiteración.
@@ -850,6 +856,11 @@ REGLAS:
    - SEPARACIÓN CLARA: si las dos unidades se juntan tanto que el oído las FUNDE, deja de
      haber poliacorde (se vuelve un acorde con sonido añadido). Mantén las dos áreas separadas
      por REGISTRO y, si puedes, por color.
+   - MULTI-UNIDAD (3+ tríadas): para 3 o más unidades hacen falta muchos sonidos → usa DIVISI
+     (campo "chord") repartiendo las unidades entre las voces. Como es una masa densa, PON
+     APARTE (bien espaciada) la tríada de base; unas unidades se superponen y otras dejan un
+     amplio hueco entre sí. DUPLICAR sonidos y ACOPLAR por octavas AGRANDA el poliacorde sin
+     añadir complejidad. Resérvalo para un CLÍMAX potente o un pasaje rápido y suave, BREVE.
    - La relación de la voz MÁS GRAVE con la MÁS AGUDA gobierna: externas consonantes → toda
      la formación suena más consonante; externas disonantes → al revés.
 

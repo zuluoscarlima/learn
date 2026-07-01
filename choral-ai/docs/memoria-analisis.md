@@ -841,3 +841,19 @@ intención" → lo frenaba. Corregido:
   reales repartidos entre voces, incluido el acorde final); en 'no' lo prohíbe. Se quitó la
   frase que lo desincentivaba.
 - (La mecánica del campo "chord" ya estaba y renderiza bien; el problema era de adherencia.)
+
+---
+
+## Persichetti Cap. VII — pág. 152–154: poliacordes MULTI-UNIDAD (3+ tríadas) — APLICADO
+- Cuatro clases de poliacordes de 3+ unidades: las unidades superiores se apilan sobre la 3ª y
+  5ª de la tríada de BASE (rara vez la fundamental); o sobre ARMÓNICOS (a cualquier octava) de
+  esa 3ª/5ª; o sobre armónicos de armónicos; o sobre armónicos de tríadas que NO son la de base.
+- Masivos y complejos: la tríada de base se pone APARTE (bien espaciada); unas unidades se
+  superponen y otras dejan amplio hueco. DUPLICACIONES y ACOPLAMIENTOS (octavas) alargan el
+  poliacorde SIN añadir complejidad. Al superponer 3 unidades, una puede "evaporarse" → queda
+  de hecho un poliacorde de 2 unidades.
+- Uso: por BREVES períodos; hábitat natural = sección CLIMÁTICA (potente) o pasaje RÁPIDO pero
+  suave (leggiero).
+- Aplicado a `policordes`: fase 1 (concepto multi-unidad, uso breve en clímax/rápido-suave);
+  fase 2 (realizar con DIVISI —campo "chord"— repartiendo unidades entre voces, base espaciada,
+  duplicaciones/acoplamientos por octava, breve). Enlaza con la función de divisi recién añadida.
