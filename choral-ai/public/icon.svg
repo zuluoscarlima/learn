@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="ChorAI">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a2336"/>
+      <stop offset="1" stop-color="#0c111d"/>
+    </linearGradient>
+    <linearGradient id="fig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6f93da"/>
+      <stop offset="1" stop-color="#3a4a91"/>
+    </linearGradient>
+    <linearGradient id="figc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#efe7d6"/>
+      <stop offset="1" stop-color="#cdbf9f"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7d5cc6"/>
+      <stop offset="0.5" stop-color="#4f6fd0"/>
+      <stop offset="1" stop-color="#2bb4e6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- fondo -->
+  <rect x="24" y="24" width="464" height="464" rx="104" fill="url(#bg)"/>
+  <rect x="25" y="25" width="462" height="462" rx="103" fill="none" stroke="#39466b" stroke-width="3"/>
+
+  <!-- coro: 5 figuras (cabeza + cuerpo), la central en color crema -->
+  <g>
+    <!-- laterales -->
+    <g fill="url(#fig)">
+      <circle cx="118" cy="196" r="30"/>
+      <path d="M84 250 q34 -34 68 0 v70 q0 14 -14 14 h-40 q-14 0 -14 -14 z"/>
+      <circle cx="187" cy="172" r="34"/>
+      <path d="M149 232 q38 -38 76 0 v88 q0 14 -14 14 h-48 q-14 0 -14 -14 z"/>
+      <circle cx="325" cy="172" r="34"/>
+      <path d="M287 232 q38 -38 76 0 v88 q0 14 -14 14 h-48 q-14 0 -14 -14 z"/>
+      <circle cx="394" cy="196" r="30"/>
+      <path d="M360 250 q34 -34 68 0 v70 q0 14 -14 14 h-40 q-14 0 -14 -14 z"/>
+    </g>
+    <!-- central (destacada) -->
+    <g fill="url(#figc)">
+      <circle cx="256" cy="150" r="40"/>
+      <path d="M212 216 q44 -44 88 0 v104 q0 16 -16 16 h-56 q-16 0 -16 -16 z"/>
+    </g>
+  </g>
+
+  <!-- onda sonora -->
+  <path d="M40 356 q70 -46 140 0 t140 0 140 0 v56 q-70 46 -140 0 t-140 0 -140 0 z"
+        fill="url(#wave)" opacity="0.95"/>
+
+  <!-- nota musical dorada sobre la onda -->
+  <g fill="#d8b877">
+    <rect x="196" y="300" width="9" height="86" rx="3"/>
+    <path d="M205 300 q40 6 40 30 q-14 -14 -40 -6 z"/>
+    <ellipse cx="188" cy="388" rx="20" ry="14" transform="rotate(-20 188 388)"/>
+  </g>
+
+  <!-- nodos/circuito a la derecha -->
+  <g stroke="#d8b877" stroke-width="4" fill="#d8b877">
+    <path d="M330 384 q40 -22 70 -6" fill="none"/>
+    <path d="M360 396 q30 -8 56 6" fill="none"/>
+    <circle cx="402" cy="374" r="7"/>
+    <circle cx="420" cy="404" r="7"/>
+    <circle cx="356" cy="396" r="6"/>
+  </g>
+
+  <!-- "AI" -->
+  <g>
+    <path d="M256 430 l16 16 l-16 16 l-16 -16 z" fill="none" stroke="#d8b877" stroke-width="3"/>
+    <text x="256" y="452" text-anchor="middle" font-family="Arial, sans-serif" font-size="18"
+          font-weight="700" fill="#d8b877">AI</text>
+  </g>
+</svg>
