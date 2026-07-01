@@ -12,6 +12,7 @@ import {
   PERSICHETTI_HARMONY_SYSTEM,
   TERTIAN_HARMONY_SYSTEM,
   ADDED_HARMONY_SYSTEM,
+  SECUNDAL_HARMONY_SYSTEM,
   MIXTO_HARMONY_SYSTEM,
   resolveSystems,
 } from './systems.js';
@@ -56,6 +57,11 @@ const QUALITIES = {
   major_add6: [[0, 0], [2, 4], [4, 7], [5, 9]], // p. ej. C-E-G-A
   sus2: [[0, 0], [1, 2], [4, 7]], // p. ej. C-D-G
   sus4: [[0, 0], [3, 5], [4, 7]], // p. ej. C-F-G
+  // Acordes por SEGUNDAS (tres sonidos) — armonía secundal del s.XX.
+  secundal_MM: [[0, 0], [1, 2], [2, 4]], // 2ª mayor + mayor (C-D-E)
+  secundal_Mm: [[0, 0], [1, 2], [2, 3]], // mayor + menor (C-D-E♭)
+  secundal_mM: [[0, 0], [1, 1], [2, 3]], // menor + mayor (C-D♭-E♭)
+  secundal_mm: [[0, 0], [1, 1], [2, 2]], // menor + menor (C-D♭-E♭♭)
 };
 
 const QUALITY_LABEL = {
@@ -76,6 +82,10 @@ const QUALITY_LABEL = {
   augmented_major7: '+maj7',
   major9: 'maj9',
   minor9: 'm9',
+  secundal_MM: ' (2ª M+M)',
+  secundal_Mm: ' (2ª M+m)',
+  secundal_mM: ' (2ª m+M)',
+  secundal_mm: ' (2ª m+m)',
   quartal3: ' (4ª·3 J-J)',
   quartal4: ' (4ª·4)',
   quartal5: ' (4ª·5, pentáfono)',
@@ -215,6 +225,7 @@ function buildUserPrompt(params) {
   const isPersichetti = only('sigloxx');
   const isTertian = only('terceras');
   const isAdded = only('anadidos');
+  const isSecundal = only('segundas');
   const isTonal = only('tonal');
   // Solo la tonal pura es funcional; cualquier técnica del s.XX o combinación no lo es.
   const nonFunctional = !isTonal;
@@ -273,6 +284,14 @@ function buildUserPrompt(params) {
         'grave el añadido, menos resonante. El color manda; centro por reiteración; reposo ' +
         'por permanencia.',
     );
+  } else if (isSecundal) {
+    lines.push(
+      '- SISTEMA: POR SEGUNDAS / clusters (Persichetti, no funcional). Acordes de tres ' +
+        'sonidos por 2as: usa las calidades secundal_MM/secundal_Mm/secundal_mM/' +
+        'secundal_mm (de consonante a disonante). Dispón las notas ABIERTAS (en 7as/9as) ' +
+        'para líneas cantábiles; el cluster cerrado, solo como efecto percusivo. Centro ' +
+        'por reiteración; reposo por permanencia.',
+    );
   }
   if (!nonFunctional && modulate && measures >= 8) {
     lines.push(
@@ -312,7 +331,7 @@ function buildUserPrompt(params) {
         ? 'el cierre por distensión'
         : isTertian
           ? 'la confirmación del centro (cadencia del ciclo)'
-          : isContemporary || isImpressionist || isAdded
+          : isContemporary || isImpressionist || isAdded || isSecundal
             ? 'el reposo final'
             : 'la cadencia final';
   lines.push(`\nDevuelve exactamente ${measures} acordes (measure 1..${measures}) y ${closing}.`);
@@ -339,6 +358,7 @@ function selectHarmonySystem(ids) {
     sigloxx: PERSICHETTI_HARMONY_SYSTEM,
     terceras: TERTIAN_HARMONY_SYSTEM,
     anadidos: ADDED_HARMONY_SYSTEM,
+    segundas: SECUNDAL_HARMONY_SYSTEM,
   };
   if (ids.includes('mixto')) return MIXTO_HARMONY_SYSTEM;
   if (ids.length === 1) return map[ids[0]] || SYSTEM_PROMPT;

@@ -269,6 +269,29 @@ adornos); modifican textura más que función.
       mapas, branch de prompt (isAdded) y cierre por reposo. Enum sin cambios (add9/add6/
       sus2/sus4 ya existen; los añadidos libres se realizan como voicing).
 
+### Cap. 5 final (pág. 116–122): texturas y procedimiento — APLICADO (a `anadidos`)
+- Dos texturas: SUAVE (sin disonancia fuerte) vs FUERTE. Los suaves paran el flujo →
+  mezclar suaves y fuertes para mantener el movimiento.
+- El movimiento lo gobierna la ARMONÍA BÁSICA; protégela con cadencias/progresiones;
+  los añadidos solo funcionan con relación armónica definida por los acordes básicos.
+- Añadidos fuera de la escala original → más libertad y más claridad del disonante.
+- Tríada en posición cerrada (voces superiores) + 2ª encima/debajo, doblada en octavas
+  abajo; la MELODÍA gobierna, el bajo va a una 2ª de un miembro triádico.
+
+## Persichetti cap. 6 "Acordes por segundas" (pág. 123–125) — SISTEMA NUEVO
+Sistema `segundas` ("Por segundas / clusters"). Tercera categoría de construcción.
+- 4 tipos de acordes de 3 sonidos: MM, Mm, mM, mm (consonante→disonante). AÑADIDO al
+  enum: secundal_MM/Mm/mM/mm (+ etiquetas). Deletreo verificado (mm = C-D♭-E♭♭, doble
+  bemol; renderiza bien en LilyPond).
+- Solo MM aparece natural en mayor/menor/modos; mm de escalas cromáticas/sintéticas.
+- DISPOSICIÓN: cerrada = cluster percusivo (turbio en grave); abierta en 7as/9as = líneas
+  libres y activas. Cluster cerrado solo como efecto.
+- DUPLICACIÓN: consolidar → doblar el bajo; suave → doblar el más consonante sobre el
+  bajo; áspera → el más disonante.
+- Disonante = 2ª del acorde (fund. y 2ª inv.); 3ª en 1ª inv. (salvo mM 1ª inv. = la fund.).
+- [x] systems.js: SECUNDAL_HARMONY_SYSTEM + SECUNDAL_COMPOSE_SYSTEM. harmony.js/compose.js:
+      enum, mapas, branch (isSecundal) y cierre por reposo.
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.
