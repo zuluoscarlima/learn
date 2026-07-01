@@ -202,6 +202,14 @@ REGLAS (estilo contemporáneo, síguelas):
      resuelven despacio por grado conjunto, y algún SALTO expresivo (6ª/8ª) en el clímax.
      Emplea un MOTIVO recurrente que se desarrolla y PASA entre secciones (voice exchange).
      Sobre el colchón de tarareo, líneas que fluyen con naturalidad prosódica del texto.
+   - CUERPO HOMOFÓNICO (estilo "Only in Sleep"): gran parte de la pieza es el CORO cantando
+     el texto casi HOMOFÓNICO (todas las voces con el mismo ritmo, tipo himno cálido),
+     alternando pasajes en DIVISI (acordes ricos y llenos) con pasajes al UNÍSONO o a pocas
+     voces (para aclarar y contrastar la densidad). Estructura a menudo ESTRÓFICA (una estrofa
+     y su repetición VARIADA: más voces, dinámica mayor o un descante añadido la 2ª vez).
+   - DESCANTE: unas POCAS sopranos (o una voz destacada) pueden flotar por encima con un
+     "Ah"/"Oh" sostenido y luminoso mientras el resto lleva el texto.
+   - Las tonalidades con BEMOLES (Reb, Lab, Mib…) dan una calidez especial a este estilo.
 
 4. ARCO Y CIERRE
    - Construye un ARCO de toda la pieza: comienza suave y con textura ESCASA, crece
@@ -209,6 +217,13 @@ REGLAS (estilo contemporáneo, síguelas):
      recede hacia el final. Usa silencios para las entradas escalonadas.
    - Cierre SERENO y SOSTENIDO (tipo "Amen" en textos sacros): acorde final largo,
      homofónico, suave, conclusivo por permanencia (tónica con añadidos).
+   - CODA CON SOLO (firma de Ešenvalds, "Only in Sleep"): en el tramo final, una SOLISTA
+     soprano puede elevarse con una VOCALISE SIN TEXTO ("Oh"/"Ah") — melismática, con
+     TRESILLOS ("tuplet":3), rubato y algún gesto que se desliza (portamento/glissando de
+     efecto) — flotando muy por encima, mientras el CORO sostiene un COLCHÓN muy suave de
+     acordes en notas LARGAS LIGADAS entre compases (tarareo "Mm"/"Oh"). Todo se apaga a
+     ppp con calderón final. (La solista se realiza como la voz superior o una voz marcada
+     como solo; si el voicing no la tiene, usa la soprano para el gesto.)
    - Resalta las palabras importantes del texto (text painting): melismas o el punto
      culminante melódico sobre ellas.
    - Moldea el arco con DINÁMICAS (campo dynamic): empieza p/pp, reguladores "<"

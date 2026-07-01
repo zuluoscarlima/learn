@@ -686,3 +686,30 @@ acordes con criterio — relleno caótico para completar los compases pedidos.
   unísono o a dos voces; (c) OMITIR de vez en cuando una de las dos unidades para iluminar;
   (d) contrastar los poliacordes con otros tipos de armonía (pilares arquitectónicos).
 Con esto queda cubierto el capítulo de poliacordes (Ej. 7-1 a 7-28).
+
+---
+
+## Obra 4 — Ešenvalds, "Only in Sleep" (SATB div. + solo sop. + perc., 2010) — ANÁLISIS
+Texto de Sara Teasdale. Reb mayor (5 bemoles), a cappella con leve percusión suave (glasses/
+roll pp). Refuerza y amplía el "kit Ešenvalds".
+
+### Rasgos
+- **Cuerpo HOMOFÓNICO estrófico**: el coro canta el texto casi homofónico (todas las voces con
+  el mismo ritmo, himno cálido), alternando DIVISI (acordes ricos) con UNÍSONO/pocas voces para
+  contrastar densidad. Forma estrófica con repetición VARIADA ("2nd time only": más voces/
+  dinámica/descante la 2ª vez).
+- **Descante**: "a few S" (unas pocas sopranos) flotan sobre "Ah"/"Oh" mientras el resto lleva el texto.
+- **Tonalidad con bemoles** (Reb) → calidez.
+- **Rubato**: allarg. / a tempo / rit. constantes; dinámicas muy suaves (pp–mf) con largos reguladores.
+- **CODA firma de Ešenvalds**: SOLISTA soprano con VOCALISE SIN TEXTO ("Oh/Ah"), melismática,
+  con TRESILLOS y GLISSANDO, rubato, elevándose por encima; el CORO sostiene un COLCHÓN de
+  acordes en notas LARGAS LIGADAS entre compases (tarareo Mm/Oh); todo se apaga a ppp con calderón.
+
+### Aplicado
+- **systems.js CONTEMPORARY_COMPOSE_SYSTEM**: añadido el cuerpo homofónico estrófico (divisi↔
+  unísono), el descante de pocas sopranos, la calidez de tonalidades con bemoles, y la CODA con
+  solista (vocalise Oh/Ah, tresillos, rubato, glissando de efecto) sobre colchón ligado que se
+  apaga a ppp con calderón.
+- **textures.js `solistas_coro`**: el colchón usa notas largas LIGADAS ("tie":true) sobre Mm/Oh;
+  la solista usa tresillos, rubato y vocalise sin texto (final tipo "Only in Sleep").
+- (Percusión: no la modela nuestro esquema SATB; se omite.)

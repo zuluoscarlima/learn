@@ -89,7 +89,11 @@ export const TEXTURES = {
       'nota y deja VACÍO el campo lyric en las notas siguientes) — flotando por encima; ' +
       'alarga las PALABRAS IMPORTANTES con melismas (text painting). CAPA CORO: las ' +
       'voces restantes forman un COLCHÓN homofónico SOSTENIDO de acordes en notas ' +
-      'largas (blancas/redondas), muy suave. Contrasta claramente las dos velocidades. ' +
+      'largas LIGADAS entre compases (blancas/redondas con ligadura de valor, campo ' +
+      '"tie":true), muy suave, sobre "Mm"/"Oh". Contrasta claramente las dos velocidades. ' +
+      'La SOLISTA usa TRESILLOS ("tuplet":3) y rubato, y puede rematar palabras con una ' +
+      'VOCALISE SIN TEXTO ("Oh"/"Ah") — como en el final de "Only in Sleep": la solista se ' +
+      'eleva libre mientras el coro sostiene el colchón, apagándose a ppp con calderón. ' +
       'ACUMULACIÓN TEXTURAL: empieza con textura ESCASA (voces agudas + solistas; las ' +
       'graves en silencio) e incorpora las voces graves GRADUALMENTE para crecer hacia ' +
       'un clímax, aclarando luego la textura hacia el final (arco de densidad). Usa ' +
