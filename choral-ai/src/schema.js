@@ -101,6 +101,28 @@ export const COMPOSITION_SCHEMA = {
         '["3/4","2+3+3/8","2+3/8","2+2/8"]). Si se omite, se usa timeSignature para ' +
         'todos los compases.',
     },
+    keyChanges: {
+      type: 'array',
+      description:
+        'OPCIONAL. Cambios de ARMADURA para modulaciones LARGAS (la nueva tonalidad ' +
+        'dura varios compases, ~4 o más). Cada entrada indica el compás donde EMPIEZA ' +
+        'la nueva armadura, su tónica y su modo. Para tonicizaciones o cambios BREVES ' +
+        '(1–2 compases) NO añadas cambios: deja las alteraciones sueltas en las notas. ' +
+        'Omite el array si la pieza no modula de forma prolongada.',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          measure: {
+            type: 'integer',
+            description: 'Compás (2..measures) donde empieza la nueva armadura',
+          },
+          key: { type: 'string', enum: ['A', 'B', 'C', 'D', 'E', 'F', 'G'] },
+          mode: { type: 'string', enum: ['major', 'minor'] },
+        },
+        required: ['measure', 'key', 'mode'],
+      },
+    },
     tempo: { type: 'integer', description: 'Pulsos por minuto (negra = bpm)' },
     measures: { type: 'integer', description: 'Número de compases' },
     voices: {
@@ -151,6 +173,23 @@ export function metersOf(comp) {
 // métrica cambiante (comp.meters) y compases simples/aditivos.
 export function totalBeats(comp) {
   return metersOf(comp).reduce((sum, m) => sum + (beatsPerMeasure(m) || 0), 0);
+}
+
+// Cambios de armadura VÁLIDOS y ordenados: compás en 2..measures, tónica A–G,
+// modo major/minor, uno por compás (el último gana). Para render de modulaciones.
+export function keyChangesOf(comp) {
+  const n = Number(comp.measures) || 0;
+  const list = Array.isArray(comp.keyChanges) ? comp.keyChanges : [];
+  const byMeasure = new Map();
+  for (const kc of list) {
+    const m = Number(kc && kc.measure);
+    const key = kc && String(kc.key || '').toUpperCase();
+    const mode = kc && kc.mode === 'minor' ? 'minor' : 'major';
+    if (!Number.isInteger(m) || m < 2 || m > n) continue;
+    if (!['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(key)) continue;
+    byMeasure.set(m, { measure: m, key, mode });
+  }
+  return [...byMeasure.values()].sort((a, b) => a.measure - b.measure);
 }
 
 // Valida estructura y cuadre rítmico. Lanza Error con mensaje legible.

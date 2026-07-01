@@ -311,6 +311,19 @@ Sistema `segundas` ("Por segundas / clusters"). Tercera categoría de construcci
       SECUNDAL_COMPOSE_SYSTEM (regla del disonante fuerte + nueva sección CLUSTERS).
 - FIN del capítulo 6. Próximo: cap. 7+ (policordes/síntesis, escalas sintéticas…).
 
+---
+
+## Cambio de ARMADURA en modulaciones largas — HECHO
+- schema.js: campo opcional `keyChanges` [{measure, key, mode}]; helper `keyChangesOf`
+  (filtra a compás 2..measures, tónica A–G, uno por compás, ordenado).
+- lilypond.js: `useTimeline = métrica cambiante || keyChanges`; el `global` en paralelo
+  coloca `\key` en el compás indicado con skips por compás (con métrica fija, el \time se
+  fija una vez). Verificado: Do mayor → La mayor en el compás 3 cambia la armadura en
+  todas las pautas (PDF+MIDI). Regresión OK.
+- compose.js: guía de prompt — declarar keyChanges solo en modulaciones que se sostienen
+  ~4+ compases; tonicizaciones breves (1–2) con alteraciones sueltas, sin cambio de
+  armadura. "key"/"mode" siguen siendo la tonalidad inicial.
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.

@@ -7,7 +7,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
-import { metersOf } from './schema.js';
+import { metersOf, keyChangesOf } from './schema.js';
 
 const execFileAsync = promisify(execFile);
 
@@ -137,23 +137,38 @@ export function jsonToLily(comp, parts = []) {
   const mode = KEY_MODE[comp.mode] || '\\major';
   const title = (comp.title || 'Pieza coral').replace(/"/g, '\\"');
 
-  // ¿Métrica cambiante? (comp.meters con compases distintos por bar). En ese
-  // caso, `global` define la sucesión de compases (directiva + skip por bar) y
-  // corre en PARALELO con cada voz; las voces no incluyen \time.
+  // Usamos una línea temporal `global` en PARALELO a las voces cuando hay
+  // MÉTRICA CAMBIANTE (comp.meters) o CAMBIOS DE ARMADURA (comp.keyChanges):
+  // el `global` coloca directivas (\time, \key) con skips por compás. Sin
+  // ninguna de las dos, se mantiene el `global` simple embebido en cada voz.
   const list = metersOf(comp);
   const changing = Array.isArray(comp.meters) && comp.meters.length > 0;
+  const keyChanges = keyChangesOf(comp);
+  const useTimeline = changing || keyChanges.length > 0;
 
-  const global = changing
-    ? `global = {
-  \\key ${key} ${mode}
-  \\tempo 4 = ${comp.tempo}
-  ${list.map((m) => `${timeDirective(m)} ${measureSpacer(m)}`).join('\n  ')}
-}`
-    : `global = {
+  let global;
+  if (useTimeline) {
+    const keyAt = new Map(keyChanges.map((kc) => [kc.measure, kc]));
+    const head = [`\\key ${key} ${mode}`, `\\tempo 4 = ${comp.tempo}`];
+    // Con métrica fija, el compás se fija una vez al principio.
+    if (!changing) head.push(timeDirective(comp.timeSignature));
+    const bars = [];
+    for (let i = 0; i < list.length; i++) {
+      const seg = [];
+      const kc = keyAt.get(i + 1);
+      if (kc) seg.push(`\\key ${kc.key.toLowerCase()} ${KEY_MODE[kc.mode] || '\\major'}`);
+      if (changing) seg.push(timeDirective(list[i]));
+      seg.push(measureSpacer(list[i]));
+      bars.push(seg.join(' '));
+    }
+    global = `global = {\n  ${head.join('\n  ')}\n  ${bars.join('\n  ')}\n}`;
+  } else {
+    global = `global = {
   \\key ${key} ${mode}
   ${timeDirective(comp.timeSignature)}
   \\tempo 4 = ${comp.tempo}
 }`;
+  }
 
   const defs = [];
   const staves = [];
@@ -165,15 +180,15 @@ export function jsonToLily(comp, parts = []) {
     const name = (part.name || voice.name || `Voz ${i + 1}`).replace(/"/g, '\\"');
     const lyr = lyricsToLily(voice.notes);
 
-    // Con métrica cambiante, \global va en paralelo a la voz (no dentro de ella).
-    const inlineGlobal = changing ? '' : '\\global ';
+    // Con línea temporal, \global va en paralelo a la voz (no dentro de ella).
+    const inlineGlobal = useTimeline ? '' : '\\global ';
     defs.push(`music${L} = { ${inlineGlobal}\\clef "${clef}" ${voiceToLily(voice.notes)} }`);
     if (lyr) defs.push(`words${L} = \\lyricmode { ${lyr} }`);
 
     const lyricsLine = lyr
       ? `\n    \\new Lyrics \\lyricsto "v${L}" \\words${L}`
       : '';
-    const voiceBody = changing
+    const voiceBody = useTimeline
       ? `\\global \\new Voice = "v${L}" { \\music${L} }`
       : `\\new Voice = "v${L}" { \\music${L} }`;
     staves.push(

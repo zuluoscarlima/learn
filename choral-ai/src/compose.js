@@ -147,6 +147,15 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
   if (harmonyText) {
     lines.push(`\nPLAN ARMÓNICO (un acorde por compás — respétalo):\n${harmonyText}`);
   }
+  // Cambio de armadura solo en modulaciones LARGAS (no en tonicizaciones breves).
+  lines.push(
+    '\nARMADURA: si la pieza MODULA a una nueva tonalidad que se SOSTIENE varios ' +
+      'compases (aprox. 4 o más), declara el cambio de armadura en "keyChanges" con el ' +
+      'compás donde empieza la nueva tonalidad, su tónica y su modo (puede haber varios). ' +
+      'Mantén "key"/"mode" como la tonalidad INICIAL. Para tonicizaciones o desvíos ' +
+      'BREVES (1–2 compases) NO cambies la armadura: deja las alteraciones sueltas en las ' +
+      'notas. Si no hay modulación prolongada, omite "keyChanges".',
+  );
   // Continuación (Opción B): material temático y enlace con la parte 1.
   if (params.continuation) {
     lines.push('\n' + params.continuation);
