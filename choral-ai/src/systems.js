@@ -216,6 +216,10 @@ Reglas:
 - El REPOSO es RELATIVO: la "consonancia" de referencia la fija el nivel de tensión
   predominante de la pieza. En un discurso muy disonante, una sonoridad tensa puede
   servir de punto de reposo; manda el CONTRASTE, no el intervalo absoluto.
+- ESTABILIDAD por contenido: los acordes CON tritono (dominant7b5, diminished7,
+  half_diminished7, augmented) son INESTABLES y empujan; los SIN tritono (major/minor,
+  quartal3/4/5, sus2/sus4, major_add9/minor_add9/major_add6, major7/minor7) son
+  ESTABLES aunque disuenen y sirven de reposo relativo. Colócalos según la curva.
 - Realiza la curva con las calidades disponibles: para POCA tensión, tríadas
   major/minor y estructuras por cuartas (quartal3/quartal4/quartal5); para tensión
   MEDIA, sus2/sus4/major_add9/minor_add9/major_add6/minor7 (2as y 7ª menor añadidas);
@@ -238,9 +242,14 @@ REGLAS (control de tensión, síguelas):
    - ABIERTAS (5ª/8ª justas) y BLANDAS (3as/6as) → reposo.
    - SUAVES (2ª mayor / 7ª menor) → tensión media, color.
    - FUERTES (2ª menor / 7ª mayor) → tensión máxima, aristas.
-   - 4ª JUSTA: consonante en entorno disonante, disonante en entorno consonante —
-     elígela según el color que busques en cada punto.
+   - 4ª JUSTA: ambigua. Su carácter DENTRO de un acorde lo fija el intervalo entre el
+     BAJO y la nota NO implicada en la cuarta: si ese intervalo es disonancia suave o
+     fuerte, la 4ª suena como CONSONANCIA ABIERTA; si es consonancia blanda (3ª/6ª), la
+     4ª suena LEVEMENTE DISONANTE.
    - TRITONO: neutro entre cromatismo, inestable entre diatonismo.
+   - ESTABILIDAD por contenido: un acorde CON tritono tiende a ser INESTABLE (empuja
+     hacia adelante); uno SIN tritono es ESTABLE aunque sea muy disonante y sirve de
+     reposo relativo. Colócalos según la curva de tensión.
 
 2. CURVA DE TENSIÓN
    - Da forma a la pieza como un ARCO de tensión: los pasajes de reposo usan
@@ -274,6 +283,9 @@ REGLAS (control de tensión, síguelas):
      y audible, no aleatoria.
    - Quintas/octavas paralelas: permitidas con criterio (color abierto); evítalas si
      buscas independencia de líneas.
+   - CORDONES INTERVÁLICOS: puedes agrupar las voces en bloques que mantienen un
+     intervalo fijo (p. ej. dos parejas a 3ª o a 4ª) y moverlos en MOVIMIENTO CONTRARIO
+     entre sí; recurso idiomático de textura.
 
 5. MELODÍA Y TEXTURA
    - Líneas con perfil claro y un único punto culminante por frase; la voz superior
@@ -284,7 +296,17 @@ REGLAS (control de tensión, síguelas):
      arco alineando el matiz con la tensión (regulador "<" hacia el clímax disonante,
      ">" hacia la distensión), o créale un contraste expresivo deliberado.
 
-6. CIERRE por DISTENSIÓN: termina relajando la tensión (consonancia abierta o blanda)
+6. DUPLICACIÓN (con qué voz se dobla cada sonido)
+   - Por defecto, duplicación NATURAL de la clase de acorde (p. ej. la fundamental en
+     las tríadas mayores). Pero cualquier sonido puede DUPLICARSE, TRIPLICARSE u
+     OMITIRSE con fines de textura.
+   - Es una herramienta de COLOR y TENSIÓN: duplicar la 3ª MAYOR añade color; duplicar
+     una DISONANCIA aumenta la mordacidad; úsala para enriquecer acordes simples o
+     realzar una nota característica.
+   - Evita duplicar TODAS las voces a la vez (produce una armonía percusiva) salvo que
+     busques justamente ese efecto.
+
+7. CIERRE por DISTENSIÓN: termina relajando la tensión (consonancia abierta o blanda)
    y por permanencia del acorde final, no por cadencia funcional.
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;

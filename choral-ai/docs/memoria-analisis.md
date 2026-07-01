@@ -98,6 +98,20 @@ Estudio incremental para construir el sistema **"Siglo XX · control de tensión
       reposo relativo, curva reversible y refuerzo/contraste con dinámica y tempo;
       y nota de norma relativa en `PERSICHETTI_HARMONY_SYSTEM`.
 
+### Cap. I — Clasificación de acordes y duplicación (pág. 18–19) — APLICADO
+- Clasificación por contenido: con/sin disonancia fuerte, con/sin tritono.
+  CON tritono → INESTABLE; SIN tritono → ESTABLE aunque muy disonante.
+- Regla precisa de la 4ª justa en un acorde: su carácter lo fija el intervalo entre
+  el BAJO y la nota ajena a la 4ª (disonancia suave/fuerte → 4ª = consonancia abierta;
+  consonancia blanda → 4ª = levemente disonante).
+- DUPLICACIÓN como color/tensión: doblar la 3ª mayor = color; doblar disonancia =
+  más mordacidad; duplicar todas las voces = percusivo. Se puede duplicar/triplicar/
+  omitir cualquier miembro por textura; por defecto, duplicación natural.
+- CORDONES INTERVÁLICOS: bloques de voces con intervalo fijo en movimiento contrario.
+- [x] Fase 2: regla exacta de la 4ª y estabilidad por tritono en la jerarquía;
+      nueva sección "DUPLICACIÓN" (6); cordones interválicos en la conducción.
+      Fase 1: estabilidad por tritono (qué calidades empujan / reposan).
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.
