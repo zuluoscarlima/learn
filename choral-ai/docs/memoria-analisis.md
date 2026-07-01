@@ -574,3 +574,18 @@ Feedback del usuario sobre la armonización de su melodía:
    bloque de melodía fija para EXIGIR que las voces de acompañamiento sigan la textura elegida
    (contrapunto = líneas independientes con ritmo propio e imitación; homofonía = acordes;
    colchón = notas largas), sin convertir todo en redondas por defecto.
+
+---
+
+## Tempo lo manda el FORMULARIO + reforzar textura en modo armonizar
+Feedback: "el tempo aparece 60 cuando debería 92" y "no usa los parámetros elegidos".
+- **Comprobado**: el archivo `Pop ballad.musicxml` trae metronome ♩=60 (no 92); el programa lo
+  leía bien. El usuario esperaba 92. Cambio: en modo armonizar-melodía el TEMPO lo decide el
+  FORMULARIO (params.tempo), NO el archivo; el del archivo se muestra como info en la UI
+  ("el archivo indicaba ♩=60; cámbialo en Tempo"). server.js ya no pisa params.tempo;
+  applyGivenMelody recibe el tempo del form.
+- **Comprobado en código**: el sistema armónico SÍ entra en el prompt de fase 1 (tras la
+  melodía) y la textura en fase 2 — los parámetros se pasan. La sensación de "no se usan"
+  venía de que la IA hacía siempre un colchón de "Ah" (misma pinta visual). Reforzado el
+  bloque de melodía fija para EXIGIR seguir la textura (contrapunto = líneas independientes con
+  ritmo propio e imitación; no redondas por defecto). Falta validar con API (lo prueba el usuario).

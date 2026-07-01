@@ -110,9 +110,14 @@ function renderResult(payload) {
   const parts2 = [];
   if (payload.harmonized && payload.melodyInfo) {
     const mi = payload.melodyInfo;
-    parts2.push(
-      `🎵 TU melodía armonizada (${mi.measures} compases, ${mi.tonality}, ${mi.notes} notas)`,
-    );
+    let msg = `🎵 TU melodía armonizada (${mi.measures} compases, ${mi.tonality}, ${mi.notes} notas)`;
+    // Aviso de tempo: se usa el del FORMULARIO; si el archivo traía otro, se indica.
+    if (mi.fileTempo && mi.fileTempo !== mi.usedTempo) {
+      msg += ` · tempo usado ♩=${mi.usedTempo} (el archivo indicaba ♩=${mi.fileTempo}; cámbialo en «Tempo»)`;
+    } else {
+      msg += ` · tempo ♩=${mi.usedTempo}`;
+    }
+    parts2.push(msg);
   }
   if (harmony && harmony.progression && harmony.progression.length) {
     const prog = harmony.progression.join(' · ');

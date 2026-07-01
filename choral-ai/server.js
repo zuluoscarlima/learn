@@ -64,7 +64,8 @@ app.post('/api/compose', async (req, res) => {
       params.mode = melody.mode;
       params.timeSignature = melody.timeSignature;
       params.measures = melody.measures;
-      if (melody.tempo) params.tempo = melody.tempo;
+      // El TEMPO lo manda el FORMULARIO (el usuario decide): no lo pisamos con el
+      // del archivo. El del archivo (si lo trae) se ofrece solo como información.
       // Con melodía fija no tiene sentido modular libremente ni continuar.
       params.modulate = false;
     }
@@ -106,6 +107,8 @@ app.post('/api/compose', async (req, res) => {
             measures: params.melody.measures,
             tonality: params.melody.tonalityName,
             notes: params.melody.notes.filter((n) => !n.rest).length,
+            fileTempo: params.melody.tempo || null,
+            usedTempo: params.tempo,
           }
         : null,
       pdfUrl: url(result.pdfPath),

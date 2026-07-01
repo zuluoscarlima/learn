@@ -374,7 +374,7 @@ export async function composeChoral(params, parts, texture, harmonyText) {
   // Modo "armonizar mi melodía": la voz superior la manda el usuario, no la IA.
   // Sobrescribimos la voz 1 con la melodía dada EXACTA y fijamos la metadata
   // (tonalidad/compás/tempo/compases) desde el archivo, para que nada la altere.
-  if (params.melody) applyGivenMelody(composition, params.melody, parts);
+  if (params.melody) applyGivenMelody(composition, params.melody, parts, params.tempo);
   validateComposition(composition, parts.length);
   // Repara descuadres rítmicos menores (recorta/rellena) en vez de fallar.
   repairRhythm(composition);
@@ -383,12 +383,13 @@ export async function composeChoral(params, parts, texture, harmonyText) {
 
 // Fija la melodía del usuario como voz 1 (intacta) y alinea la metadata de la
 // composición con el MusicXML. La IA solo aporta las voces de acompañamiento.
-function applyGivenMelody(composition, melody, parts) {
+function applyGivenMelody(composition, melody, parts, tempo) {
   composition.key = melody.keyLetter;
   composition.mode = melody.mode;
   composition.timeSignature = melody.timeSignature;
   composition.measures = melody.measures;
-  if (melody.tempo) composition.tempo = melody.tempo;
+  // El tempo lo decide el formulario (params.tempo); el del archivo es solo informativo.
+  if (tempo) composition.tempo = tempo;
   if (melody.meters) composition.meters = melody.meters;
   else delete composition.meters;
   if (melody.title && !composition.title) composition.title = melody.title;
