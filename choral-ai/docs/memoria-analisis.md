@@ -365,8 +365,23 @@ Causa: mucha guía de armonía/textura/métrica, pero casi ninguna de escritura 
 - schema.js: descripción del campo `text` actualizada (usar en inicios de frase, cambios
   de sección/tempo y clímax; variar el término; mayoría "").
 - Render verificado con marcas multi-palabra y caracteres especiales (con anima, skanīgāk).
-- Pendiente (opción B): estudiar un tratado de melodía (Schoenberg, Fundamentals of
-  Musical Composition) cuando lleguen las páginas.
+## Tratado 3 — Schoenberg, "Fundamentals of Musical Composition" (opción B)
+
+### Cap. III "El Motivo" (pág. 19–27) — APLICADO
+- El motivo = germen (intervalos + ritmo); su uso DEBE variarse conservando lo más
+  característico (a menudo el ritmo) y cambiando lo menos importante.
+- Repetición EXACTA (transposición, inversión, retrogradación, disminución, aumentación)
+  vs MODIFICADA (variación → formas del motivo).
+- Caja de herramientas de variación por RITMO (duración, repetición, desplazamiento,
+  anacrusas), INTERVALOS (orden/dirección, añadir/omitir, rellenar con notas de paso,
+  reducir, deslizar), ARMONÍA (inversiones, añadir al final, insertar en el centro,
+  sustituir) y MELODÍA (transponer, acordes de paso, semi-contrapunto).
+- Un motivo no necesita muchos intervalos (Brahms 4ª = terceras; Beethoven 5ª = repetidos);
+  a menudo importa el CONTORNO.
+- [x] src/motive.js: MOTIVE_DEVELOPMENT; inyectado en compose.js (fase 2, todas las
+      técnicas) tras el bloque de melodía y antes de la paleta expresiva.
+- Próximo (si llegan páginas): cap. IV+ (la FRASE, el "sentence"/período, cadencias
+  melódicas) → completaría la construcción de temas.
 
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
