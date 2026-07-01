@@ -13,6 +13,7 @@ import {
   TERTIAN_HARMONY_SYSTEM,
   ADDED_HARMONY_SYSTEM,
   SECUNDAL_HARMONY_SYSTEM,
+  POLYCHORD_HARMONY_SYSTEM,
   MIXTO_HARMONY_SYSTEM,
   resolveSystems,
 } from './systems.js';
@@ -226,6 +227,7 @@ function buildUserPrompt(params) {
   const isTertian = only('terceras');
   const isAdded = only('anadidos');
   const isSecundal = only('segundas');
+  const isPolychord = only('policordes');
   const isTonal = only('tonal');
   // Solo la tonal pura es funcional; cualquier técnica del s.XX o combinación no lo es.
   const nonFunctional = !isTonal;
@@ -292,6 +294,14 @@ function buildUserPrompt(params) {
         'para líneas cantábiles; el cluster cerrado, solo como efecto percusivo. Centro ' +
         'por reiteración; reposo por permanencia.',
     );
+  } else if (isPolychord) {
+    lines.push(
+      '- SISTEMA: POLIACORDES (Persichetti, no funcional). Cada sonoridad es un POLIACORDE ' +
+        '= dos unidades de áreas distintas (BASE grave + SUPERIOR aguda). Indica la unidad ' +
+        'BASE en root/alter/quality/inversion y el poliacorde completo en el cifrado como ' +
+        '"SUPERIOR / BASE". Base más resonante = tríada mayor en 6/4; un sonido común ayuda ' +
+        'a fundir. Centro por reiteración; reposo por permanencia.',
+    );
   }
   if (!nonFunctional && modulate && measures >= 8) {
     lines.push(
@@ -331,7 +341,7 @@ function buildUserPrompt(params) {
         ? 'el cierre por distensión'
         : isTertian
           ? 'la confirmación del centro (cadencia del ciclo)'
-          : isContemporary || isImpressionist || isAdded || isSecundal
+          : isContemporary || isImpressionist || isAdded || isSecundal || isPolychord
             ? 'el reposo final'
             : 'la cadencia final';
   lines.push(`\nDevuelve exactamente ${measures} acordes (measure 1..${measures}) y ${closing}.`);
@@ -359,6 +369,7 @@ function selectHarmonySystem(ids) {
     terceras: TERTIAN_HARMONY_SYSTEM,
     anadidos: ADDED_HARMONY_SYSTEM,
     segundas: SECUNDAL_HARMONY_SYSTEM,
+    policordes: POLYCHORD_HARMONY_SYSTEM,
   };
   if (ids.includes('mixto')) return MIXTO_HARMONY_SYSTEM;
   if (ids.length === 1) return map[ids[0]] || SYSTEM_PROMPT;

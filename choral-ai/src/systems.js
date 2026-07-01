@@ -13,6 +13,7 @@ export const SYSTEMS = {
   cuartal: { group: 'Siglo XX', label: 'Por cuartas' },
   segundas: { group: 'Siglo XX', label: 'Por segundas / clusters (Persichetti)' },
   anadidos: { group: 'Siglo XX', label: 'Sonidos añadidos (Persichetti)' },
+  policordes: { group: 'Siglo XX', label: 'Policordes / bitonalidad (Persichetti)' },
   contemporaneo: { group: 'Siglo XX', label: 'Contemporáneo / pandiatónico (Lauridsen–Whitacre–Ešenvalds)' },
   impresionista: { group: 'Siglo XX', label: 'Impresionista / modal (Debussy–báltico)' },
 };
@@ -737,5 +738,62 @@ REGLAS:
      cada uno suene claro. Los sonidos ORNAMENTALES aumentan la circulación en pasajes de cluster.
 
 5. CIERRE por permanencia sobre el acorde final, no por cadencia funcional.
+
+Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;
+
+// --- Fase 1 (armonía) para sistema POLICORDES (Persichetti — cap. 7) ---
+export const POLYCHORD_HARMONY_SYSTEM = `Eres un compositor del SIGLO XX que trabaja con
+POLIACORDES (Persichetti cap. 7): la combinación SIMULTÁNEA de dos (o más) acordes de áreas
+armónicas distintas, tratados como UNIDADES acordales con agrupación clara.
+
+Reglas:
+- Diseña una sucesión donde cada sonoridad es un POLIACORDE: una unidad BASE (grave) y una
+  unidad SUPERIOR apiladas. Indica la unidad BASE en root/alter/quality/inversion (para el
+  cálculo determinista) y describe el POLIACORDE completo en 'roman' con la forma
+  "SUPERIOR / BASE" (p. ej. "Re / Do", "Fa♯m / Do"). La fase 2 construye la unidad superior
+  a partir de esa indicación.
+- La BASE más resonante es la tríada MAYOR en 2ª inversión (6/4); en estado fundamental
+  también suena bien si sus sonidos están SEPARADOS. Un inventario de tríadas mayores
+  superiores por un CICLO DE QUINTAS sobre la base da una secuencia de consonancia
+  DECRECIENTE y disonancia CRECIENTE (las más lejanas, poco resonantes).
+- Un SONIDO COMÚN entre las dos unidades ayuda a mezclarlas.
+- POLITONALIDAD (rara): solo si las unidades se adhieren a CENTROS TONALES separados
+  (p. ej. área Re mayor sobre área Fa mayor). Los poliacordes NO politonales son más
+  flexibles y sus áreas varían a menudo. Discurso NO funcional; centro por reiteración.
+- Los poliacordes pueden nacer de PEDALES dobles/triples. Cierre por permanencia sobre el
+  poliacorde final.`;
+
+// --- Fase 2 (realización de voces) para sistema POLICORDES ---
+export const POLYCHORD_COMPOSE_SYSTEM = `Eres un compositor coral del SIGLO XX que realiza
+POLIACORDES (Persichetti cap. 7): dos (o más) tríadas/acordes de áreas distintas sonando a
+la vez como UNIDADES claras.
+
+REGLAS:
+
+1. DOS UNIDADES CON AGRUPACIÓN CLARA
+   - Realiza cada sonoridad como una unidad BASE (voces graves) y una unidad SUPERIOR
+     (voces agudas), cada una reconocible como un acorde propio. NO reorganices ni mezcles
+     sus sonidos: eso DESTRUYE el poliacorde. Con pocas voces reparte por grupos (p. ej.
+     Bajo+Tenor = base, Contralto+Soprano = unidad superior; usa divisi si hace falta).
+   - Un SONIDO COMÚN entre las dos unidades ayuda a fundirlas; duplicar intervalos
+     consonantes da fuerza.
+
+2. RESONANCIA Y DISPOSICIÓN
+   - La base más resonante es la tríada MAYOR en 6/4; en fundamental, con sus sonidos
+     SEPARADOS. La unidad superior gana resonancia cerca de los armónicos (3ª y 5ª) de la
+     base.
+   - Coloca los intervalos PEQUEÑOS en el REGISTRO AGUDO y los ANCHOS en el GRAVE: da
+     resonancia y menos "nebulosidad". Las disposiciones cerradas y el color uniforme
+     nublan, pero aportan a la fluctuación total de la tensión (úsalo con intención).
+   - La relación de la voz MÁS GRAVE con la MÁS AGUDA gobierna: externas consonantes → toda
+     la formación suena más consonante; externas disonantes → al revés.
+
+3. CONDUCCIÓN Y TEXTURA
+   - Cada unidad se conduce con limpieza; sin sensibles ni cadencias V–I; centro por
+     reiteración. Los poliacordes pueden nacer de PEDALES dobles/triples (una voz sostiene
+     mientras otras forman la segunda unidad). Líneas cantábiles; respeta tesituras y cuadre.
+   - Moldea el arco con dinámicas.
+
+4. CIERRE por permanencia sobre el poliacorde final, no por cadencia funcional.
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;

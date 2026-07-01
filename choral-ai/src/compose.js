@@ -9,6 +9,7 @@ import {
   TERTIAN_COMPOSE_SYSTEM,
   ADDED_COMPOSE_SYSTEM,
   SECUNDAL_COMPOSE_SYSTEM,
+  POLYCHORD_COMPOSE_SYSTEM,
   MIXTO_COMPOSE_SYSTEM,
   resolveSystems,
 } from './systems.js';
@@ -193,6 +194,7 @@ function selectComposeSystem(ids) {
     terceras: TERTIAN_COMPOSE_SYSTEM,
     anadidos: ADDED_COMPOSE_SYSTEM,
     segundas: SECUNDAL_COMPOSE_SYSTEM,
+    policordes: POLYCHORD_COMPOSE_SYSTEM,
   };
   if (ids.includes('mixto')) return MIXTO_COMPOSE_SYSTEM;
   if (ids.length === 1) return map[ids[0]] || SYSTEM_PROMPT;

@@ -324,6 +324,24 @@ Sistema `segundas` ("Por segundas / clusters"). Tercera categoría de construcci
   ~4+ compases; tonicizaciones breves (1–2) con alteraciones sueltas, sin cambio de
   armadura. "key"/"mode" siguen siendo la tonalidad inicial.
 
+## Persichetti cap. 7 "Poliacordes" (pág. 137–141) — SISTEMA NUEVO
+Sistema `policordes` ("Policordes / bitonalidad"). Combinación simultánea de 2+ acordes de
+áreas distintas como UNIDADES con agrupación clara.
+- Politonalidad SOLO si las unidades tienen centros tonales separados (raro); los no
+  politonales son más flexibles. Origen en pedales dobles/triples.
+- Agrupación clara obligatoria: reorganizar/mezclar los sonidos DESTRUYE el poliacorde.
+- Resonancia: base más resonante = tríada mayor en 6/4 (o fundamental separada); unidad
+  superior cerca de los armónicos (3ª/5ª) de la base; inventario por ciclo de 5as
+  (consonancia decreciente). Intervalos pequeños arriba, anchos abajo; sonido común funde.
+- Relación de la voz más grave con la más aguda gobierna la consonancia global.
+- Decisión: SIN cambios de enum/esquema. La base la da el plan (calidad existente); la
+  unidad superior la construye la fase 2 según el cifrado "SUPERIOR / BASE". Con pocas
+  voces se reparte por grupos (Bajo+Tenor / Contralto+Soprano) o divisi.
+- [x] systems.js: POLYCHORD_HARMONY_SYSTEM + POLYCHORD_COMPOSE_SYSTEM. harmony.js/
+      compose.js: mapas, branch (isPolychord), cierre por reposo.
+- Nota: enum de calidades NO cubre "dos tríadas"; si se quisiera plan determinista de la
+  unidad superior, habría que añadir un campo `poly` al HARMONY_SCHEMA (pendiente, opcional).
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.
