@@ -59,8 +59,12 @@ export const TEXTURES = {
       'colchón armónico muy suave con notas LARGAS LIGADAS entre compases ("tie":true; pon la ' +
       'sílaba en la primera nota y deja VACÍO el lyric en las siguientes para sostenerla). ' +
       'Las DEMÁS voces llevan el TEXTO (o una línea lírica libre) de forma más activa por encima. ' +
-      'Entradas escalonadas; dinámicas muy tenues (ppp/pp) que abren el color de la ' +
-      'vocal al crecer; las capas se superponen y se intercambian.',
+      'RESPIRACIÓN con MORPHING de VOCAL (estilo "In Paradisum"): el colchón respira con ' +
+      'reguladores continuos (pon en el campo "dynamic" un "<" al empezar a crecer y ">" al ' +
+      'menguar) y la vocal MORFA con la dinámica — cerrada "Mm" en lo suave, ABRIENDO a "Ah" en ' +
+      'la CIMA del regulador y cerrando otra vez a "Mm" al recogerse (coloca "Ah" en la nota de ' +
+      'la cima y "Mm" al volver a lo tenue). Entradas escalonadas; muy tenue (ppp/pp); las ' +
+      'capas se superponen y se intercambian.',
   },
   halo_copas: {
     label: 'Coro con halo de copas de agua (Ešenvalds "Stars")',

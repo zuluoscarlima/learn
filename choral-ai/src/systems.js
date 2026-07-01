@@ -228,6 +228,10 @@ REGLAS (estilo contemporáneo, síguelas):
    - Construye un ARCO de toda la pieza: comienza suave y con textura ESCASA, crece
      en densidad (incorporando voces gradualmente) hacia un punto culminante, y
      recede hacia el final. Usa silencios para las entradas escalonadas.
+   - COLCHÓN QUE RESPIRA (estilo "In Paradisum"): sobre notas sostenidas y ligadas, encadena
+     REGULADORES continuos (dynamic "<" al crecer, ">" al menguar; ppp–pp–p) creando una
+     RESPIRACIÓN; y MORFA la vocal con la dinámica — cerrada "Mm" en lo suave, ABRIENDO a "Ah"
+     en la cima del regulador y volviendo a "Mm" al recogerse (pon "Ah" en la nota de la cima).
    - Cierre SERENO y SOSTENIDO (tipo "Amen" en textos sacros): acorde final largo,
      homofónico, suave, conclusivo por permanencia (tónica con añadidos).
    - CODA CON SOLO (firma de Ešenvalds, "Only in Sleep"): en el tramo final, una SOLISTA

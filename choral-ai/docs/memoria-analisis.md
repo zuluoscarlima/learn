@@ -810,3 +810,21 @@ Mib mayor, "Con anima" ♩=52 (luego "Sonante" ♩=80-84). Homofonía cálida y 
   - (El divisi ya se implementó en el commit anterior; esta obra lo motivó.)
 Con esto van 7 obras de Ešenvalds analizadas (Rasa, O Salutaris, Only in Sleep, Trees, Stars,
 Lux Aeterna) — el acervo báltico/Ešenvalds está muy completo.
+
+---
+
+## Obra 8 — Ešenvalds, "In Paradisum" (coro divisi, 2013; en memoria de su abuela) — APLICADO
+Texto sacro del responsorio "In paradisum deducant angeli". "Espressivo, rubato" ♩=63-69, 3/4,
+muy suave (ppp–p). Coro con divisi (S I/II, A I/II, T, B).
+### Rasgo distintivo
+- **Colchón que RESPIRA con morphing de VOCAL**: sobre notas sostenidas/ligadas, reguladores
+  CONTINUOS (pp<p>pp<mp…) y la VOCAL morfa con la dinámica, indicado con flechas en la
+  partitura: "Mm ---> Ah ---> Mm" — cerrada en lo suave, ABRE a "Ah" en la cima del regulador,
+  cierra a "Mm" al recogerse. Una respiración viva del colchón.
+- El coro también canta el texto homofónico, cálido, pp, con esos mismos reguladores y rubato.
+### Aplicado
+- textures.js `tarareo`: añadida la RESPIRACIÓN con morphing de vocal (dynamic "<"/">" y
+  "Ah" en la cima / "Mm" en lo tenue).
+- systems.js CONTEMPORARY_COMPOSE_SYSTEM (sección ARCO Y CIERRE): "colchón que respira" con
+  reguladores encadenados y vocal que morfa con la dinámica.
+(Van 8 obras de Ešenvalds: Rasa, O Salutaris, Only in Sleep, Trees, Stars, Lux Aeterna, In Paradisum.)
