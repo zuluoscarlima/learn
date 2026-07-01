@@ -1,6 +1,7 @@
 // Fase 2 del proceso compositivo: realización de las voces sobre el plan armónico.
 import { getClient, extractJson, effortForQuality } from './llm.js';
 import { COMPOSITION_SCHEMA, validateComposition, repairRhythm } from './schema.js';
+import { EXPRESSIVE_PALETTE } from './expressive.js';
 import {
   QUARTAL_COMPOSE_SYSTEM,
   CONTEMPORARY_COMPOSE_SYSTEM,
@@ -202,6 +203,7 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
       'palabras importantes; usa MELISMAS para resaltar palabras clave (text painting); ' +
       'respeta el acento natural del texto.',
   );
+  lines.push('\n' + EXPRESSIVE_PALETTE);
   lines.push(
     `\nDevuelve un array "voices" con EXACTAMENTE ${parts.length} voces, en ese ` +
       `orden y con esos nombres. Cada voz debe sumar ${measures} compases (usando ` +

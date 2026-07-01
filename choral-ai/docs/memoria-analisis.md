@@ -355,6 +355,19 @@ Causa: mucha guía de armonía/textura/métrica, pero casi ninguna de escritura 
 - Pendiente si sigue plano: variar el RITMO ARMÓNICO y las progresiones en fase 1
   (harmony.js) para dar más apoyo melódico.
 
+## Paleta expresiva (opción A) — HECHO
+- src/expressive.js: EXPRESSIVE_PALETTE = vocabulario curado de CARÁCTER (íntimo/tierno,
+  cálido/expansivo, clímax, cierre, articulación), TEMPO/rubato y REGLAS de cuándo usarlas
+  (coordinar carácter+dinámica; rit./allargando antes de reposos; idioma según estilo).
+  Incluye términos bálticos (maigi/skanīgāk).
+- compose.js: importa e inyecta EXPRESSIVE_PALETTE en el prompt de la fase 2 tras el
+  bloque de melodía.
+- schema.js: descripción del campo `text` actualizada (usar en inicios de frase, cambios
+  de sección/tempo y clímax; variar el término; mayoría "").
+- Render verificado con marcas multi-palabra y caracteres especiales (con anima, skanīgāk).
+- Pendiente (opción B): estudiar un tratado de melodía (Schoenberg, Fundamentals of
+  Musical Composition) cuando lleguen las páginas.
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.

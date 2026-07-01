@@ -52,9 +52,10 @@ const noteSchema = {
     text: {
       type: 'string',
       description:
-        'Marca expresiva o de tempo sobre la nota: "" (ninguna), o p. ej. "rall.", ' +
-        '"a tempo", "accel.", "dolce", "maigi". Úsalo MUY rara vez (cambios de ' +
-        'sección/tempo), normalmente "".',
+        'Marca expresiva o de tempo sobre la nota: "" (ninguna), o p. ej. "dolce", ' +
+        '"cantabile", "appassionato", "morendo", "rall.", "a tempo", "accel.", "maigi". ' +
+        'Úsalo en INICIOS de frase, cambios de sección/tempo y en el CLÍMAX (ver la paleta ' +
+        'expresiva); VARÍA el término y no lo pongas en cada nota (la mayoría van con "").',
     },
   },
   required: ['rest', 'step', 'alter', 'octave', 'duration', 'dotted', 'lyric', 'dynamic', 'text'],
