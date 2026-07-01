@@ -213,6 +213,9 @@ Reglas:
   (abiertas/blandas), INTENSIFICA hacia el punto culminante (añade 2as, 7as, tritones)
   y RELAJA hacia el cierre. Cualquier ordenación vale (subir, bajar, oleadas) mientras
   sea intencionada.
+- El REPOSO es RELATIVO: la "consonancia" de referencia la fija el nivel de tensión
+  predominante de la pieza. En un discurso muy disonante, una sonoridad tensa puede
+  servir de punto de reposo; manda el CONTRASTE, no el intervalo absoluto.
 - Realiza la curva con las calidades disponibles: para POCA tensión, tríadas
   major/minor y estructuras por cuartas (quartal3/quartal4/quartal5); para tensión
   MEDIA, sus2/sus4/major_add9/minor_add9/major_add6/minor7 (2as y 7ª menor añadidas);
@@ -245,8 +248,26 @@ REGLAS (control de tensión, síguelas):
      7as y tritones; RELAJA hacia el final volviendo a consonancias abiertas/blandas.
    - En los tiempos fuertes suenan las notas de la sonoridad indicada; las disonancias
      de paso caen en tiempos débiles, salvo cuando busques una apoyatura tensa.
+   - El punto de REPOSO es RELATIVO al nivel de tensión predominante: en una pieza
+     densamente disonante, una disonancia fuerte puede funcionar como "consonancia" de
+     referencia. Manda el CONTRASTE relativo, no el intervalo absoluto.
+   - El diseño de la curva puede INVERTIRSE (empezar tensa y relajar) o formar oleadas;
+     cualquier ordenación intencionada vale. Al final, los tritonos tienden a sonar
+     neutros al descargarse la tensión.
 
-3. CONDUCCIÓN NO FUNCIONAL
+3. REGISTRO Y DISPOSICIÓN (modulan la tensión, no solo el intervalo)
+   - La DISTANCIA entre voces cambia la aspereza: en disposición CERRADA las disonancias
+     (sobre todo la 2ª menor) son incisivas y ásperas; al SEPARAR las voces más de una
+     OCTAVA (disposición abierta/compuesta) esas mismas disonancias se vuelven MENOS
+     mordientes aunque más brillantes, las 3as/6as se enriquecen y las 5as/8as y la 4ª
+     justa se refuerzan.
+   - Elige la disposición según la tensión buscada: CIERRA la textura para los clímax
+     ásperos (2as menores chocantes); ÁBRELA para una disonancia luminosa y menos dura.
+   - INVERSIÓN de intervalos: invertir cambia la cualidad — 5ª justa (estable) ⇄ 4ª
+     justa (inestable); 2ª menor (incisiva) ⇄ 7ª mayor (ancha, menos áspera). Úsalo para
+     graduar la tensión sin cambiar de sonoridad.
+
+4. CONDUCCIÓN NO FUNCIONAL
    - Sin sensibles ni cadencias V–I. Las disonancias NO exigen resolución tonal, pero
      se ENLAZAN con lógica de conducción: preferentemente por grado conjunto y
      movimiento contrario/oblicuo, para que la tensión suba y baje de forma CONTROLADA
@@ -254,14 +275,16 @@ REGLAS (control de tensión, síguelas):
    - Quintas/octavas paralelas: permitidas con criterio (color abierto); evítalas si
      buscas independencia de líneas.
 
-4. MELODÍA Y TEXTURA
+5. MELODÍA Y TEXTURA
    - Líneas con perfil claro y un único punto culminante por frase; la voz superior
      bien definida fija el centro por reiteración. Evita notas repetidas estáticas.
    - Respeta la textura solicitada, las tesituras y el cuadre exacto de compases.
-     Moldea el arco con DINÁMICAS: más tensión → regulador/matiz hacia el clímax, y
-     distensión hacia el cierre.
+   - La tensión interválica se REFUERZA o se CONTRASTA con la DINÁMICA y el TEMPO: la
+     misma 2ª suena BRONCA en f/marcato y velada/introspectiva en pp/dolce. Refuerza el
+     arco alineando el matiz con la tensión (regulador "<" hacia el clímax disonante,
+     ">" hacia la distensión), o créale un contraste expresivo deliberado.
 
-5. CIERRE por DISTENSIÓN: termina relajando la tensión (consonancia abierta o blanda)
+6. CIERRE por DISTENSIÓN: termina relajando la tensión (consonancia abierta o blanda)
    y por permanencia del acorde final, no por cadencia funcional.
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;

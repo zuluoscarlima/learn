@@ -84,6 +84,20 @@ Estudio incremental para construir el sistema **"Siglo XX · control de tensión
       controla la tensión interválica vertical/horizontal como un arco). No funcional;
       cierre por distensión. Compás cambiante habilitado.
 
+### Cap. I — Uso de la tensión, inversión y disposición (pág. 14–15) — APLICADO
+- La curva de tensión puede INVERTIRSE (tensa→reposo); los tritonos finales quedan
+  neutros al descargarse la tensión.
+- Consonancia/disonancia RELATIVA: la norma la fija el nivel de tensión predominante
+  (en un contexto disonante, una disonancia fuerte puede ser el reposo).
+- Interacción con TIMBRE/DINÁMICA/TEMPO: la misma 2ª es "bronca" en f y velada en pp.
+- INVERSIÓN de intervalos cambia su cualidad: 5ª J ⇄ 4ª J (estable⇄inestable);
+  2ª m incisiva ⇄ 7ª M ancha (menos áspera).
+- DISPOSICIÓN/registro: separar las voces > 1 octava suaviza las disonancias (menos
+  mordientes, más brillantes) y enriquece 3as/6as; refuerza 5as/8as y 4ª justa.
+- [x] Añadido a `PERSICHETTI_COMPOSE_SYSTEM`: sección "REGISTRO Y DISPOSICIÓN",
+      reposo relativo, curva reversible y refuerzo/contraste con dinámica y tempo;
+      y nota de norma relativa en `PERSICHETTI_HARMONY_SYSTEM`.
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.
