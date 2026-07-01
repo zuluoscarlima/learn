@@ -675,6 +675,17 @@ Reglas:
   dispuesto en intervalos de 7ª y 9ª (abierto) gana libertad lineal y actividad de las
   partes. Prefiere lo abierto para escritura cantábile; reserva el cluster cerrado para el
   efecto percusivo.
+- MULTISONIDOS (4–5 sonidos por 2as): se mueven contrapuntísticamente con DIFICULTAD;
+  intercala acordes de TRES sonidos por 2as o acordes por CUARTAS (sus 7as, que son 2as
+  invertidas, se mezclan con las 2as y dejan espacio al movimiento de las partes).
+- Un acorde por 2as puede ALARGARSE hasta abarcar una ESCALA entera (diatónica, cromática
+  u original): será o no un "cluster" según la armonía que lo rodee. La escala CROMÁTICA es
+  la menos útil (apiñada se hace pesada enseguida).
+- CLUSTERS: se mueven por EXPANSIÓN y CONTRACCIÓN (variando la construcción interválica,
+  omitiendo miembros); los AMPLIOS son potentes para acentos dramáticos, los PEQUEÑOS más
+  ágiles. Evita rellenar el espacio de forma arbitraria (suena calculado). Mezclados con
+  acordes por 3as o 4as, los acordes por 2as y los clusters pueden tomar parte en
+  progresiones de relaciones funcionales de fundamentales.
 - Discurso NO funcional; centro por reiteración. El sonido disonante puede sostenerse como
   color o resolverse por grado conjunto.
 - Da dirección y punto culminante; cierre por permanencia sobre el acorde final.`;
@@ -703,9 +714,28 @@ REGLAS:
      1ª inversión —salvo en menor-mayor 1ª inv., donde la fundamental es la más disonante—)
      es inestable: sostenlo como color o resuélvelo por grado conjunto. Sin sensibles ni
      cadencias V–I; centro por reiteración.
+   - Si el disonante forma un intervalo FUERTE (7ª mayor / 2ª menor), aborda y deja uno de
+     sus miembros por GRADO CONJUNTO o por repetición (suavidad de línea); si no forma
+     intervalo fuerte, abórdalo y déjalo con libertad.
    - Líneas cantábiles; voz superior con perfil claro. Respeta la textura solicitada, las
      tesituras y el cuadre de compases; moldea con dinámicas.
 
-4. CIERRE por permanencia sobre el acorde final, no por cadencia funcional.
+4. CLUSTERS (racimos)
+   - Un CLUSTER es un acorde por 2as sin invertir con la mayoría de voces a distancia de
+     2ª. Realízalo tratando las dos voces EXTERNAS como un contrapunto y ABRIENDO/CERRANDO
+     (expansión-contracción) el racimo para dar vida a las voces internas.
+   - Los clusters PEQUEÑOS son más ágiles; los AMPLIOS, para acentos dramáticos. Su carácter
+     consonante/disonante puede ir PARALELO u OPUESTO al de las voces externas.
+   - CLUSTER PARALELO = progresión puramente melódica; varía UNA voz a un movimiento distinto
+     para dar interés, y usa octavas ocasionales en las voces externas para acentuar el color.
+   - ARPEGIADO (cluster roto): introduce las notas del racimo CONSECUTIVAMENTE, cada una
+     SOSTENIDA hasta que suena la última (de arriba abajo, de abajo arriba o del centro a los
+     extremos). Solo suena a cluster si el contexto está establecido; si no, sonará a escala.
+     La entrada CONSONANTE o DISONANTE acentúa su carácter.
+   - Con DIVISI, POLI-CLUSTERS: dos racimos simultáneos cuyas fundamentales forman un acorde
+     por 2as, una tríada o un acorde por cuartas; deja ESPACIO entre los racimos para que
+     cada uno suene claro. Los sonidos ORNAMENTALES aumentan la circulación en pasajes de cluster.
+
+5. CIERRE por permanencia sobre el acorde final, no por cadencia funcional.
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;

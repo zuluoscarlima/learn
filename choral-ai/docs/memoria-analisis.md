@@ -292,6 +292,25 @@ Sistema `segundas` ("Por segundas / clusters"). Tercera categoría de construcci
 - [x] systems.js: SECUNDAL_HARMONY_SYSTEM + SECUNDAL_COMPOSE_SYSTEM. harmony.js/compose.js:
       enum, mapas, branch (isSecundal) y cierre por reposo.
 
+### Cap. 6 final (pág. 126–135): clusters — APLICADO (a `segundas`)
+- Sonido disonante que forma intervalo FUERTE (7ª M / 2ª m): abordar/dejar por grado
+  conjunto o repetición; si no, libremente.
+- Multisonidos (4–5 por 2as) se mueven con dificultad → intercalar 3 sonidos por 2as o
+  acordes por cuartas (sus 7as dejan espacio). Un acorde por 2as puede alargarse a una
+  escala entera; la cromática es la menos útil (se apiña/pesa).
+- CLUSTERS: acorde por 2as sin invertir, mayoría de voces a 2ª. Realizar tratando las 2
+  voces EXTERNAS como contrapunto y expandiendo/contrayendo el racimo (voces internas).
+  Pequeños = ágiles; amplios = acentos dramáticos. Paralelo = melódico (variar una voz;
+  octavas en externas). Evitar rellenar arbitrariamente.
+- ARPEGIADO (roto): notas consecutivas sostenidas (arriba-abajo, abajo-arriba, centro-
+  extremos); solo suena a cluster si el contexto está establecido; entrada consonante/
+  disonante acentúa. POLI-CLUSTERS (divisi): fundamentales forman 2as/tríada/cuartas;
+  dejar espacio. Ornamentales aumentan la circulación.
+- Mezclados con 3as/4as pueden entrar en progresiones funcionales de fundamentales.
+- [x] Añadido a SECUNDAL_HARMONY_SYSTEM (multisonidos, escala, clusters) y a
+      SECUNDAL_COMPOSE_SYSTEM (regla del disonante fuerte + nueva sección CLUSTERS).
+- FIN del capítulo 6. Próximo: cap. 7+ (policordes/síntesis, escalas sintéticas…).
+
 ### Pendiente (siguientes capítulos, cuando lleguen las páginas)
 - Acordes por 3as (novenas, oncenas, trecenas), por 4as y por 2as (clusters).
 - Acordes de sonoridad AÑADIDA y de tono agregado; policordes/bitonalidad.
