@@ -634,3 +634,23 @@ de conducción de voces. Se convierte en una ELECCIÓN suya y se garantiza que r
 - **textures.js**: `contrapunto_libre` vuelve a una descripción NEUTRA del bajo (voz
   independiente), sin prescribir ni "notas largas" ni "negras/corcheas": por defecto se mantiene
   el contrapunto previo; el empuje de "todas activas" vive solo en la opción.
+
+---
+
+## Persichetti Cap. VII (poliacordes) — pág. 142–146, profundización — APLICADO
+Más matices sobre poliacordes, integrados en el sistema `policordes` (harmony.js/compose.js
+via systems.js). No requiere cambios de esquema.
+- **Separación clara**: si las dos áreas se acercan/mezclan, el poliacorde COLAPSA en un
+  acorde con sonido añadido y deja de existir; hay que mantenerlas separadas por registro/color.
+- **Registro / "turbio"**: no bajar el sonido más grave por debajo del Fa grave de la clave de
+  fa (queda turbio, solo para efecto dramático); si la base es aumentada/disminuida, ABRIR las
+  voces de la tríada grave. Transponer al agudo aclara y da brillo (menos cuerpo); al grave da
+  cuerpo pero enturbia.
+- **Resonancia por tipo de tríada**: MAYOR > menor > aumentada > disminuida. MENOR sobre MAYOR
+  es más rico que mayor sobre menor. Intervalos 4,5,6,9,12 del ciclo de 5ªs = los más resonantes.
+- **Poliacordes cromáticos**: los que llevan una tríada aum./dism.; más flexibles: ma+aum,
+  ma+dism, me+aum, me+dism.
+- **Generación LINEAL (clave)**: la dirección de la poliarmonía la marca el MOVIMIENTO LINEAL;
+  se traza un CONTRAPUNTO a dos partes en las voces EXTERNAS (grave y aguda) y las dos áreas
+  acordales se cuelgan de esas líneas. (La pág. 146 seguía con las técnicas contra-acordales;
+  pendiente si llegan más páginas.)

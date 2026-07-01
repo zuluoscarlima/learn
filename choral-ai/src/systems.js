@@ -760,7 +760,19 @@ Reglas:
 - La BASE más resonante es la tríada MAYOR en 2ª inversión (6/4); en estado fundamental
   también suena bien si sus sonidos están SEPARADOS. Un inventario de tríadas mayores
   superiores por un CICLO DE QUINTAS sobre la base da una secuencia de consonancia
-  DECRECIENTE y disonancia CRECIENTE (las más lejanas, poco resonantes).
+  DECRECIENTE y disonancia CRECIENTE (las más lejanas, poco resonantes); los intervalos
+  4, 5, 6, 9 y 12 del ciclo son los MÁS RESONANTES y útiles.
+- RESONANCIA por TIPO de tríada (de más a menos resonante): MAYOR > menor > aumentada >
+  disminuida. Un poliacorde MENOR sobre MAYOR es más RICO que mayor sobre menor (la unidad
+  superior recibe apoyo de los armónicos de la base). Prefiere estas combinaciones salvo que
+  busques tensión.
+- Poliacordes CROMÁTICOS: los que incluyen al menos una tríada AUMENTADA o DISMINUIDA. Los
+  más flexibles son mayor+aumentada, mayor+disminuida, menor+aumentada y menor+disminuida.
+- SEPARACIÓN CLARA (imprescindible): las dos áreas deben quedar bien SEPARADAS; si se acercan
+  o se mezclan, el poliacorde COLAPSA en un simple acorde con sonido añadido y deja de existir.
+- Generación LINEAL: la dirección de la poliarmonía la marca el MOVIMIENTO LINEAL — concibe
+  las voces EXTERNAS (la más grave y la más aguda) como un CONTRAPUNTO a dos partes bien
+  trazado, y deja que las dos áreas acordales se muevan colgadas de esas líneas.
 - Un SONIDO COMÚN entre las dos unidades ayuda a mezclarlas.
 - POLITONALIDAD (rara): solo si las unidades se adhieren a CENTROS TONALES separados
   (p. ej. área Re mayor sobre área Fa mayor). Los poliacordes NO politonales son más
@@ -786,14 +798,26 @@ REGLAS:
 2. RESONANCIA Y DISPOSICIÓN
    - La base más resonante es la tríada MAYOR en 6/4; en fundamental, con sus sonidos
      SEPARADOS. La unidad superior gana resonancia cerca de los armónicos (3ª y 5ª) de la
-     base.
+     base. RESONANCIA por tipo de tríada: MAYOR > menor > aumentada > disminuida; y MENOR
+     sobre MAYOR es más rico que mayor sobre menor.
    - Coloca los intervalos PEQUEÑOS en el REGISTRO AGUDO y los ANCHOS en el GRAVE: da
      resonancia y menos "nebulosidad". Las disposiciones cerradas y el color uniforme
      nublan, pero aportan a la fluctuación total de la tensión (úsalo con intención).
+   - REGISTRO: no coloques el sonido MÁS GRAVE por debajo del Fa grave de la clave de fa
+     (queda "TURBIO"); resérvalo solo para efectos dramáticos. Si la unidad BASE es
+     AUMENTADA o DISMINUIDA, ABRE/separa las voces de la tríada grave para no amontonarla en
+     el registro grave. Transponer hacia el agudo ACLARA y da brillo (menos cuerpo); hacia el
+     grave da cuerpo pero puede enturbiar.
+   - SEPARACIÓN CLARA: si las dos unidades se juntan tanto que el oído las FUNDE, deja de
+     haber poliacorde (se vuelve un acorde con sonido añadido). Mantén las dos áreas separadas
+     por REGISTRO y, si puedes, por color.
    - La relación de la voz MÁS GRAVE con la MÁS AGUDA gobierna: externas consonantes → toda
      la formación suena más consonante; externas disonantes → al revés.
 
 3. CONDUCCIÓN Y TEXTURA
+   - GENERACIÓN LINEAL: la dirección de la poliarmonía la marca el MOVIMIENTO LINEAL. Traza
+     las voces EXTERNAS (la más grave y la más aguda) como un CONTRAPUNTO a dos partes limpio
+     y cantábile, y deja que las dos áreas acordales se muevan colgadas de esas líneas.
    - Cada unidad se conduce con limpieza; sin sensibles ni cadencias V–I; centro por
      reiteración. Los poliacordes pueden nacer de PEDALES dobles/triples (una voz sostiene
      mientras otras forman la segunda unidad). Líneas cantábiles; respeta tesituras y cuadre.
