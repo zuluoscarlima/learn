@@ -654,3 +654,17 @@ via systems.js). No requiere cambios de esquema.
   se traza un CONTRAPUNTO a dos partes en las voces EXTERNAS (grave y aguda) y las dos áreas
   acordales se cuelgan de esas líneas. (La pág. 146 seguía con las técnicas contra-acordales;
   pendiente si llegan más páginas.)
+
+---
+
+## FIX: cierres/finales incoherentes (cromatismo sin criterio tras acabar la melodía)
+Feedback con la pieza "Contrapunto en Fa": la soprano acababa el texto (~c.11) y la pieza
+seguía con un tramo cromático "appassionato/con forza" en las voces graves que no formaba
+acordes con criterio — relleno caótico para completar los compases pedidos.
+- **compose.js (fase 2)**: bloque "COHERENCIA HASTA EL ÚLTIMO COMPÁS": toda nota pertenece al
+  acorde del plan o es nota extraña que resuelve; PROHIBIDO el relleno cromático; si la pieza es
+  más larga que el material, DESARROLLARLO (no improvisar relleno); los últimos 1–2 compases
+  REPOSAN en una sonoridad clara y estable; cuando una voz calla, las demás mantienen el acorde
+  del plan (ninguna "se va por libre").
+- **harmony.js (fase 1)**: el plan debe llevar acorde con sentido en TODOS los compases (nada al
+  azar, sobre todo al final) y conducir a un reposo final claro y estable.

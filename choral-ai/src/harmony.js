@@ -351,6 +351,12 @@ function buildUserPrompt(params) {
             ? 'el reposo final'
             : 'la cadencia final';
   lines.push(`\nDevuelve exactamente ${measures} acordes (measure 1..${measures}) y ${closing}.`);
+  lines.push(
+    'COHERENCIA: TODOS los compases llevan un acorde CON SENTIDO dentro del sistema (nada de ' +
+      'acordes al azar ni cromatismo sin criterio, sobre todo en los últimos compases). El plan ' +
+      'conduce con lógica hasta un REPOSO FINAL claro y estable sobre el centro; el último acorde ' +
+      'es limpio y reconocible.',
+  );
   return lines.join('\n');
 }
 

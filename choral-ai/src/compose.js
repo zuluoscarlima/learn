@@ -320,6 +320,23 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
   lines.push('\n' + PHRASE_CONSTRUCTION);
   }
   lines.push('\n' + EXPRESSIVE_PALETTE);
+  // COHERENCIA HASTA EL FINAL: evita el error de que, cuando la melodía ya
+  // terminó, las voces sigan con cromatismo sin criterio hasta rellenar los
+  // compases pedidos. La pieza debe cerrar con lógica, no con "relleno".
+  lines.push(
+    '\nCOHERENCIA HASTA EL ÚLTIMO COMPÁS (¡MUY IMPORTANTE!): TODA nota de TODOS los compases ' +
+      'pertenece al acorde vigente del PLAN ARMÓNICO o es una nota extraña (paso, bordadura, ' +
+      'retardo, apoyatura, anticipación) que RESUELVE. PROHIBIDO el "relleno" cromático sin ' +
+      'criterio: nada de notas sueltas ni acordes que no salgan del plan, sobre todo al final.\n' +
+      '- SI LA PIEZA ES MÁS LARGA que el material temático, NO improvises un tramo de relleno: ' +
+      'DESARROLLA el material (repetición, secuencia/transposición, variación, imitación entre ' +
+      'voces) manteniéndote SIEMPRE dentro del plan armónico.\n' +
+      '- CIERRE: los ÚLTIMOS 1–2 compases deben REPOSAR en una sonoridad CLARA y estable (la ' +
+      'tónica/centro), preparada con lógica (cadencia en tonal; reposo/permanencia en s.XX). ' +
+      'El acorde final es limpio y reconocible, NUNCA un amontonamiento cromático.\n' +
+      '- Cuando una voz calla o sostiene, las demás siguen dibujando el MISMO acorde del plan; ' +
+      'ninguna voz "se va por libre" con notas ajenas.',
+  );
   lines.push(
     `\nDevuelve un array "voices" con EXACTAMENTE ${parts.length} voces, en ese ` +
       `orden y con esos nombres. Cada voz debe sumar ${measures} compases (usando ` +
