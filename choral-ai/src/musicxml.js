@@ -9,7 +9,7 @@
 // Se toma la PRIMERA parte y su PRIMERA voz; se ignoran acordes (solo la línea
 // melódica), notas de adorno y tresillos exóticos. Evita compases de anacrusa.
 import { XMLParser } from 'fast-xml-parser';
-import { noteBeats, beatsPerMeasure } from './schema.js';
+import { noteBeats, beatsPerMeasure, metersOf, keyChangesOf, TUPLET_RATIO } from './schema.js';
 
 const parser = new XMLParser({
   ignoreAttributes: false,
@@ -360,6 +360,299 @@ function noteName(n) {
   if (n.rest) return 'silencio';
   const acc = n.alter > 0 ? '#'.repeat(n.alter) : n.alter < 0 ? 'b'.repeat(-n.alter) : '';
   return `${n.step}${acc}${n.octave}`;
+}
+
+// ===========================================================================
+//  EXPORTACIÓN: composición (JSON de N voces) → MusicXML "partwise" 4.0
+// ---------------------------------------------------------------------------
+//  Traducción DETERMINISTA para abrir la pieza en MuseScore/Sibelius/Finale.
+//  Una PARTE por voz; soporta divisi (acordes en el pentagrama), tresillos/
+//  seisillos, ligaduras de valor, letra, métrica cambiante y cambios de
+//  armadura. Reparte las notas en compases y PARTE las que cruzan la barra en
+//  notas ligadas (las voces bien formadas rara vez la cruzan).
+// ===========================================================================
+
+// Divisiones por negra. 5040 = LCM(16,9,7,5) → deja enteras TODAS nuestras
+// figuras (hasta fusa), con puntillo y grupos irregulares (2,3,4,5,6,7,9).
+const XML_DIVISIONS = 5040;
+
+const XML_TYPE = { 1: 'whole', 2: 'half', 4: 'quarter', 8: 'eighth', 16: '16th', 32: '32nd' };
+
+// Fifths (posición en el ciclo de quintas) por tónica natural + modo, para la
+// armadura. La tónica del esquema es una letra A–G sin alteración.
+const MAJOR_FIFTHS = { C: 0, G: 1, D: 2, A: 3, E: 4, B: 5, F: -1 };
+const MINOR_FIFTHS = { A: 0, E: 1, B: 2, D: -1, G: -2, C: -3, F: -4 };
+
+function fifthsOf(keyLetter, mode) {
+  const k = String(keyLetter || 'C').toUpperCase();
+  const table = mode === 'minor' ? MINOR_FIFTHS : MAJOR_FIFTHS;
+  return table[k] != null ? table[k] : 0;
+}
+
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+}
+
+// Figuras [negras, denominador, conPuntillo] de mayor a menor, para descomponer
+// el trozo de una nota que cruza la barra en figuras válidas ligadas.
+const XML_FIGS = [
+  [4, 1, false], [3, 2, true], [2, 2, false], [1.5, 4, true], [1, 4, false],
+  [0.75, 8, true], [0.5, 8, false], [0.375, 16, true], [0.25, 16, false],
+  [0.1875, 32, true], [0.125, 32, false],
+];
+
+function beatsToFigures(beats) {
+  const out = [];
+  let rem = Math.round(beats * 8) / 8;
+  while (rem > 1e-6) {
+    const f = XML_FIGS.find(([b]) => b <= rem + 1e-6);
+    if (!f) break;
+    out.push({ duration: f[1], dotted: f[2], beats: f[0] });
+    rem -= f[0];
+  }
+  return out;
+}
+
+// Marca el inicio/fin de cada grupo irregular (para el corchete de tresillo).
+function annotateTuplets(notes) {
+  const ev = notes.map((note) => ({ note, tStart: false, tStop: false }));
+  let i = 0;
+  while (i < ev.length) {
+    const t = ev[i].note.tuplet;
+    if (t && t > 1) {
+      const ratio = TUPLET_RATIO[t];
+      const actual = ratio ? ratio.actual : t;
+      let j = i;
+      while (j < ev.length && ev[j].note.tuplet === t) j++;
+      for (let k = i; k < j; k += actual) {
+        ev[k].tStart = true;
+        ev[Math.min(k + actual - 1, j - 1)].tStop = true;
+      }
+      i = j;
+    } else i++;
+  }
+  return ev;
+}
+
+// Alturas de una nota (principal + divisi), o [] si es silencio.
+function pitchesOf(note) {
+  if (note.rest) return [];
+  const main = { step: note.step, alter: Number(note.alter) || 0, octave: note.octave };
+  const extra = Array.isArray(note.chord)
+    ? note.chord.filter((c) => c && c.step).map((c) => ({ step: c.step, alter: Number(c.alter) || 0, octave: c.octave }))
+    : [];
+  return [main, ...extra];
+}
+
+// Reparte los eventos de una voz en compases (array de arrays de "renderNotes").
+// Un renderNote = { rest, pitches, duration, dotted, tuplet, tStart, tStop,
+// tieStart, tieStop, lyric, dynamic, text }.
+function splitVoiceIntoMeasures(events, meters) {
+  const measures = [];
+  let cur = [];
+  let mi = 0;
+  let remain = beatsPerMeasure(meters[0]) || 4;
+  const advance = () => {
+    measures.push(cur);
+    cur = [];
+    mi += 1;
+    remain = beatsPerMeasure(meters[mi]) || remain;
+  };
+
+  for (const ev of events) {
+    const beats = noteBeats(ev.note);
+    const pitches = pitchesOf(ev.note);
+    const isTuplet = ev.note.tuplet && ev.note.tuplet > 1;
+    // Cabe en el compás (o es un grupo irregular: no se parte nunca).
+    if (isTuplet || beats <= remain + 1e-6) {
+      cur.push({
+        rest: Boolean(ev.note.rest), pitches, duration: ev.note.duration,
+        dotted: Boolean(ev.note.dotted), tuplet: ev.note.tuplet || 1,
+        tStart: ev.tStart, tStop: ev.tStop,
+        tieStart: Boolean(ev.note.tie), tieStop: false,
+        lyric: ev.note.lyric || '', dynamic: ev.note.dynamic || '', text: ev.note.text || '',
+      });
+      remain -= beats;
+      if (remain <= 1e-6 && measures.length < meters.length - 1) advance();
+      continue;
+    }
+    // Cruza la barra: parte en figuras ligadas por compás.
+    let left = beats;
+    let first = true;
+    while (left > 1e-6) {
+      const chunk = Math.min(left, remain);
+      const figs = beatsToFigures(chunk);
+      figs.forEach((f, idx) => {
+        const isLastPieceOverall = left - f.beats <= 1e-6 && idx === figs.length - 1;
+        cur.push({
+          rest: Boolean(ev.note.rest), pitches, duration: f.duration, dotted: f.dotted,
+          tuplet: 1, tStart: false, tStop: false,
+          // Encadena las ligaduras; la última hereda el tie original de la nota.
+          tieStart: !isLastPieceOverall || Boolean(ev.note.tie),
+          tieStop: !first || idx > 0,
+          lyric: first && idx === 0 ? ev.note.lyric || '' : '',
+          dynamic: first && idx === 0 ? ev.note.dynamic || '' : '',
+          text: first && idx === 0 ? ev.note.text || '' : '',
+        });
+      });
+      left -= chunk;
+      remain -= chunk;
+      first = false;
+      if (remain <= 1e-6 && left > 1e-6) advance();
+    }
+    if (remain <= 1e-6 && measures.length < meters.length - 1) advance();
+  }
+  measures.push(cur);
+  // Asegura una entrada por compás pedido (rellena vacíos por si acaso).
+  while (measures.length < meters.length) measures.push([]);
+  return measures;
+}
+
+// Clave MusicXML a partir del identificador interno.
+function clefXml(clef) {
+  if (clef === 'bass') return '<clef><sign>F</sign><line>4</line></clef>';
+  if (clef === 'treble_8')
+    return '<clef><sign>G</sign><line>2</line><clef-octave-change>-1</clef-octave-change></clef>';
+  return '<clef><sign>G</sign><line>2</line></clef>';
+}
+
+// Elemento <time> (admite compases aditivos "3+3+2/8").
+function timeXml(meter) {
+  const [num, den] = String(meter).split('/');
+  return `<time><beats>${esc(num)}</beats><beat-type>${esc(den)}</beat-type></time>`;
+}
+
+function renderNoteToXml(rn, voiceNum) {
+  const dur = Math.max(1, Math.round(noteBeatsOfRender(rn) * XML_DIVISIONS));
+  const type = XML_TYPE[rn.duration] || 'quarter';
+  const dots = rn.dotted ? '<dot/>' : '';
+  const ratio = rn.tuplet > 1 ? TUPLET_RATIO[rn.tuplet] : null;
+  const timeMod = ratio
+    ? `<time-modification><actual-notes>${ratio.actual}</actual-notes><normal-notes>${ratio.normal}</normal-notes></time-modification>`
+    : '';
+  const out = [];
+
+  if (rn.rest) {
+    const notat = rn.tStart || rn.tStop
+      ? `<notations>${rn.tStart ? '<tuplet type="start" bracket="yes"/>' : ''}${rn.tStop ? '<tuplet type="stop"/>' : ''}</notations>`
+      : '';
+    out.push(
+      `<note><rest/><duration>${dur}</duration><voice>${voiceNum}</voice>` +
+        `<type>${type}</type>${dots}${timeMod}${notat}</note>`,
+    );
+    return out.join('');
+  }
+
+  const [main, ...extra] = rn.pitches;
+  const pitchXml = (p) =>
+    `<pitch><step>${esc(p.step)}</step>${p.alter ? `<alter>${p.alter}</alter>` : ''}<octave>${p.octave}</octave></pitch>`;
+  const tieSound =
+    (rn.tieStop ? '<tie type="stop"/>' : '') + (rn.tieStart ? '<tie type="start"/>' : '');
+  // Notaciones: ligaduras (visual) + corchete de grupo irregular.
+  const tiedVis = (rn.tieStop ? '<tied type="stop"/>' : '') + (rn.tieStart ? '<tied type="start"/>' : '');
+  const tupVis = (rn.tStart ? '<tuplet type="start" bracket="yes"/>' : '') + (rn.tStop ? '<tuplet type="stop"/>' : '');
+  const notations = tiedVis || tupVis ? `<notations>${tiedVis}${tupVis}</notations>` : '';
+  const lyric = rn.lyric
+    ? `<lyric><syllabic>single</syllabic><text>${esc(rn.lyric)}</text></lyric>`
+    : '';
+
+  out.push(
+    `<note>${pitchXml(main)}<duration>${dur}</duration>${tieSound}` +
+      `<voice>${voiceNum}</voice><type>${type}</type>${dots}${timeMod}${notations}${lyric}</note>`,
+  );
+  // Divisi: las alturas adicionales van como notas <chord/> (mismo ritmo).
+  for (const p of extra) {
+    out.push(
+      `<note><chord/>${pitchXml(p)}<duration>${dur}</duration>` +
+        `<voice>${voiceNum}</voice><type>${type}</type>${dots}${timeMod}</note>`,
+    );
+  }
+  return out.join('');
+}
+
+// Duración en negras de un renderNote (aplica puntillo y grupo irregular).
+function noteBeatsOfRender(rn) {
+  const base = 4 / rn.duration;
+  const withDot = rn.dotted ? base * 1.5 : base;
+  const ratio = rn.tuplet > 1 ? TUPLET_RATIO[rn.tuplet] : null;
+  return ratio ? withDot * (ratio.normal / ratio.actual) : withDot;
+}
+
+// Convierte la composición a una cadena MusicXML 4.0 partwise.
+export function compositionToMusicXML(comp, parts = []) {
+  const meters = metersOf(comp);
+  const keyChanges = keyChangesOf(comp);
+  const keyAt = new Map(keyChanges.map((kc) => [kc.measure, kc]));
+  const baseFifths = fifthsOf(comp.key, comp.mode);
+
+  const partIds = comp.voices.map((_, i) => `P${i + 1}`);
+  const scoreParts = comp.voices
+    .map((voice, i) => {
+      const name = (parts[i] && parts[i].name) || voice.name || `Voz ${i + 1}`;
+      return `    <score-part id="${partIds[i]}"><part-name>${esc(name)}</part-name></score-part>`;
+    })
+    .join('\n');
+
+  const partsXml = comp.voices
+    .map((voice, i) => {
+      const clef = (parts[i] && parts[i].clef) || 'treble';
+      const events = annotateTuplets(Array.isArray(voice.notes) ? voice.notes : []);
+      const measures = splitVoiceIntoMeasures(events, meters);
+      let prevMeter = null;
+      let prevFifths = null;
+
+      const measuresXml = measures
+        .map((rns, m) => {
+          const attrs = [];
+          const kc = keyAt.get(m + 1);
+          const meter = meters[m];
+          const fifths = kc ? fifthsOf(kc.key, kc.mode) : baseFifths;
+          if (m === 0) {
+            attrs.push(`<divisions>${XML_DIVISIONS}</divisions>`);
+            attrs.push(`<key><fifths>${fifths}</fifths><mode>${comp.mode === 'minor' ? 'minor' : 'major'}</mode></key>`);
+            attrs.push(timeXml(meter));
+            attrs.push(clefXml(clef));
+          } else {
+            if (fifths !== prevFifths) {
+              const md = kc ? (kc.mode === 'minor' ? 'minor' : 'major') : comp.mode === 'minor' ? 'minor' : 'major';
+              attrs.push(`<key><fifths>${fifths}</fifths><mode>${md}</mode></key>`);
+            }
+            if (meter !== prevMeter) attrs.push(timeXml(meter));
+          }
+          prevMeter = meter;
+          prevFifths = fifths;
+          const attrXml = attrs.length ? `<attributes>${attrs.join('')}</attributes>` : '';
+          // Tempo: al principio de la primera parte, primer compás.
+          const tempoXml =
+            i === 0 && m === 0
+              ? `<direction placement="above"><direction-type><metronome><beat-unit>quarter</beat-unit><per-minute>${comp.tempo || 72}</per-minute></metronome></direction-type><sound tempo="${comp.tempo || 72}"/></direction>`
+              : '';
+          const notesXml = rns.length
+            ? rns.map((rn) => renderNoteToXml(rn, 1)).join('')
+            : `<note><rest measure="yes"/><duration>${Math.round((beatsPerMeasure(meter) || 4) * XML_DIVISIONS)}</duration><voice>1</voice></note>`;
+          return `    <measure number="${m + 1}">${attrXml}${tempoXml}${notesXml}</measure>`;
+        })
+        .join('\n');
+
+      return `  <part id="${partIds[i]}">\n${measuresXml}\n  </part>`;
+    })
+    .join('\n');
+
+  const title = esc(comp.title || 'Pieza coral');
+  return (
+    '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">\n' +
+    '<score-partwise version="4.0">\n' +
+    `  <work><work-title>${title}</work-title></work>\n` +
+    '  <identification><encoding><software>ChorAI</software></encoding></identification>\n' +
+    '  <part-list>\n' +
+    scoreParts +
+    '\n  </part-list>\n' +
+    partsXml +
+    '\n</score-partwise>\n'
+  );
 }
 
 // Melodía dada, listada compás por compás, para inyectar en los prompts.

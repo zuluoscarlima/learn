@@ -1,6 +1,7 @@
 // Servidor de la app de composición coral con IA.
 import express from 'express';
 import { randomUUID } from 'node:crypto';
+import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { composeChoral } from './src/compose.js';
@@ -9,7 +10,7 @@ import { render, hasLilyPond } from './src/lilypond.js';
 import { resolveVoicing, voicingOptions, DEFAULT_VOICING } from './src/voicings.js';
 import { resolveTexture, textureOptions, DEFAULT_TEXTURE } from './src/textures.js';
 import { SYSTEMS, systemOptions, resolveSystems, DEFAULT_SYSTEM } from './src/systems.js';
-import { parseMelody } from './src/musicxml.js';
+import { parseMelody, compositionToMusicXML } from './src/musicxml.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = path.join(__dirname, 'output');
@@ -78,6 +79,18 @@ app.post('/api/compose', async (req, res) => {
     const outDir = path.join(OUTPUT_DIR, id);
     const result = await render(composition, parts, outDir);
 
+    // Exportación a MusicXML (determinista, independiente de LilyPond): permite
+    // abrir y editar la pieza en MuseScore/Sibelius/Finale.
+    let xmlPath = null;
+    try {
+      const xml = compositionToMusicXML(composition, parts);
+      xmlPath = path.join(outDir, 'piece.musicxml');
+      await writeFile(xmlPath, xml, 'utf8');
+    } catch (e) {
+      console.error('No se pudo generar el MusicXML:', e);
+      xmlPath = null;
+    }
+
     const url = (p) => (p ? `/output/${id}/${path.basename(p)}` : null);
     res.json({
       composition,
@@ -100,6 +113,7 @@ app.post('/api/compose', async (req, res) => {
       pdfUrl: url(result.pdfPath),
       midiUrl: url(result.midiPath),
       lyUrl: url(result.lyPath),
+      xmlUrl: url(xmlPath),
       warning: result.warning,
     });
   } catch (err) {

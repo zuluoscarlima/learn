@@ -14,6 +14,10 @@ descargables desde el navegador.
 3. `src/lilypond.js` traduce ese JSON de forma determinista a un archivo `.ly`
    con bloques `\layout` y `\midi`.
 4. Una sola invocación de **LilyPond** produce el **PDF** y el **MIDI**.
+5. `src/musicxml.js` traduce el mismo JSON a **MusicXML 4.0** (determinista, sin
+   depender de LilyPond): un archivo `.musicxml` descargable para abrir y editar
+   la pieza en **MuseScore, Sibelius o Finale** (voces, divisi, tresillos,
+   ligaduras, letra, métrica cambiante y cambios de armadura).
 
 ```
 public/        frontend (formulario, visor PDF, reproductor MIDI)
@@ -21,6 +25,7 @@ server.js      Express: estáticos + POST /api/compose
 src/compose.js llamada a Claude (structured outputs)
 src/schema.js  esquema JSON de la composición + validación rítmica
 src/lilypond.js JSON -> .ly -> PDF + MIDI
+src/musicxml.js JSON <-> MusicXML (importa melodías / exporta la pieza)
 ```
 
 ## Requisitos

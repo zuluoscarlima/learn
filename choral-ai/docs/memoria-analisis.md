@@ -1166,3 +1166,25 @@ Continúa el cap. IX.
   NUEVA serie de acordes paralelos (p. ej. por cuartas) BAJO los sonidos melódicos del acorde
   roto (3as con añadidos arriba / 4as paralelas debajo).
 Continúa el cap. IX.
+
+---
+
+## NUEVA FUNCIÓN: exportación a MusicXML
+Se añade exportación determinista de la composición (JSON de N voces) a **MusicXML 4.0
+partwise**, para abrir/editar la pieza en MuseScore/Sibelius/Finale.
+- `src/musicxml.js` → nueva `compositionToMusicXML(comp, parts)`. Una PARTE por voz;
+  soporta: DIVISI (alturas de `chord` como notas `<chord/>` que no avanzan el tiempo),
+  TRESILLOS/seisillos (`<time-modification>` + corchete `<tuplet>`, con `annotateTuplets`
+  chunk-eando por `actual`), LIGADURAS de valor (`<tie>`+`<tied>`), LETRA (`<lyric>`),
+  MÉTRICA CAMBIANTE (`<time>` solo cuando cambia) y CAMBIOS DE ARMADURA (fifths por compás).
+  `XML_DIVISIONS = 5040` (=LCM(16,9,7,5)) deja ENTERAS todas nuestras figuras (hasta fusa)
+  con puntillo y grupos 2..9. `splitVoiceIntoMeasures` reparte la voz en compases y PARTE en
+  notas ligadas las que cruzan la barra (los grupos irregulares no se parten). Fifths por
+  tónica natural (MAJOR_FIFTHS/MINOR_FIFTHS). Escapado XML.
+- `server.js`: tras render, escribe `output/<id>/piece.musicxml` y devuelve `xmlUrl` (con
+  try/catch: si fallara, no rompe el PDF/MIDI).
+- `public/app.js`: nuevo enlace de descarga "MusicXML" en la lista de descargas.
+- README: documentado el paso 5 y el archivo.
+Verificado (deterministas, sin API): XML bien formado (xmllint), cuadre exacto por compás
+con divisi + métrica cambiante 4/4→3/4 (4 y 3 negras), round-trip con parseMelody, y partido
+correcto de una nota que cruza la barra (redonda en 3/4 → blanca-puntillo ~ negra ligada).

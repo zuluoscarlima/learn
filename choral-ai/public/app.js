@@ -77,7 +77,7 @@ document.getElementById('melodyFile').addEventListener('change', (e) => {
 });
 
 function renderResult(payload) {
-  const { composition, pdfUrl, midiUrl, lyUrl, voices, texture, harmony, system } = payload;
+  const { composition, pdfUrl, midiUrl, lyUrl, xmlUrl, voices, texture, harmony, system } = payload;
   const title = composition.title || 'Pieza coral';
   const bits = [];
   if (system) bits.push(system);
@@ -111,6 +111,7 @@ function renderResult(payload) {
   const links = [
     ['PDF', pdfUrl],
     ['MIDI', midiUrl],
+    ['MusicXML', xmlUrl],
     ['LilyPond (.ly)', lyUrl],
   ];
   for (const [label, url] of links) {
