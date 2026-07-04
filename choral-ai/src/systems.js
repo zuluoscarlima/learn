@@ -171,6 +171,19 @@ Reglas:
 - Ritmo armónico LENTO (acordes sostenidos). Encadena por movimiento suave: notas
   comunes mantenidas, desplazamiento paralelo (planing) y enlaces por 3ª o 2ª.
 - inversion 0–2 según convenga al bajo.
+- ESCRITURA PANDIATÓNICA ESTRICTA (Persichetti cap. 10): la carencia de ritmo armónico
+  (un acorde estático) crea una armonía ESTÁTICA con sensación de RESPIRACIÓN/relajación;
+  útil bajo un motivo rítmico o en acordes repetidos que anuncian el ritmo de una melodía por
+  venir. En pandiatonismo, las verticales son combinaciones de CUALQUIER número de sonidos de
+  la ESCALA prevaleciente, en disposiciones VARIADAS; la sucesión horizontal NO tiene dirección
+  tonal (los grados de la escala son material acordal en bruto y el movimiento ocurre POR FUERA
+  de la escala, que permanece FIJA e inalterada). Sin funciones características.
+- CADA acorde sucesivo trae SONIDOS NUEVOS de la escala (en armonía a 3 voces, ~3 nuevos cada
+  vez) hasta hacer sonar los 7 grados en la conciencia auditiva; si usas sonidos ornamentales,
+  reaparecen como miembros del acorde SIGUIENTE.
+- VARÍA LA COLECCIÓN: rara vez uses un solo modo para una sección pandiatónica ENTERA, y menos
+  aún un modo SIN bemoles ni sostenidos (blanco puro); cambia de colección/modo para renovar el
+  color. CUALQUIER escala (incluidas las sintéticas) sirve de base pandiatónica.
 - Reposo FINAL sobre la TÓNICA con añadidos (p. ej. tónica add9 o add6): suave y
   suspendido, no por dominante.`;
 
@@ -188,6 +201,14 @@ REGLAS (estilo contemporáneo, síguelas):
      inmediato; las suspensiones resuelven muy despacio, por grado conjunto y hacia
      abajo. No fuerces resoluciones de sensible.
    - Disposiciones ABIERTAS y registro amplio: un colchón armónico cálido.
+   - DISPOSICIÓN PANDIATÓNICA (Persichetti cap. 10), clave para el color luminoso:
+     · en el BAJO, las QUINTAS y DÉCIMAS fluyen mejor que las 3as apretadas o las 4as rígidas;
+     · las CUARTAS tienden a predominar en la parte SUPERIOR del acorde;
+     · las 2as y 7as ENSANCHAN la textura al acercarse a una llegada cadencial;
+     · la DUPLICACIÓN se emplea RARÍSIMA vez, incluso a 5 o 6 voces: da a CADA voz un grado
+       DISTINTO de la escala (con divisi, a 7 voces suenan los 7 grados a la vez — máximo brillo);
+     · realza las combinaciones con un INTERVALO PERSISTENTE u ostinato en las voces GRAVES
+       (pedal/ostinato que ancla mientras las agudas cambian de color).
 
 2. CONDUCCIÓN
    - Movimiento suave, mayoritariamente por grados conjuntos y notas comunes

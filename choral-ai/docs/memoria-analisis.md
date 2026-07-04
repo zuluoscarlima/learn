@@ -1255,3 +1255,28 @@ Las 5as justas paralelas como RECURSO expresivo del s.XX → añadido a CHORD_CO
   algunas 5as (9-47b); partes externas contrarias con 5as internas (9-48a); ABLANDAR una 5ª
   aguda poniendo su TERCERA en voz inferior (9-48b); 5as por SALTO dominadas si saltan a miembros
   del mismo acorde (9-49a). Como parte de un cuerpo acordal en movimiento, se usan sin dominar.
+
+---
+
+## Persichetti Cap. X — pp. 225–227: ESCRITURA PANDIATÓNICA — APLICADO (colchón báltico)
+El capítulo que da la base teórica del colchón Ešenvalds. Integrado en el sistema `contemporaneo`
+("Pandiatónico luminoso (Whitacre–Ešenvalds)"), en las dos fases.
+- ARMONÍA ESTÁTICA (10-19/10-20): la carencia de ritmo armónico (un acorde) crea armonía estática
+  y sensación de RESPIRACIÓN/relajación; útil bajo un motivo rítmico o en acordes repetidos que
+  anuncian el ritmo de una melodía por venir.
+- PANDIATONISMO: las verticales son combinaciones de CUALQUIER número de sonidos de la escala
+  prevaleciente, en disposiciones variadas; la sucesión horizontal NO tiene dirección tonal (los
+  grados son material acordal en bruto; el movimiento ocurre POR FUERA de la escala fija e
+  inalterada). Sin funciones. Contrapunto rítmicamente activo, acorde dispuesto "accidentalmente".
+- DISPOSICIÓN (→ CONTEMPORARY_COMPOSE_SYSTEM): en el BAJO, 5as y DÉCIMAS fluyen mejor que 3as
+  apretadas o 4as rígidas; las CUARTAS predominan en la parte SUPERIOR; 2as y 7as ENSANCHAN la
+  textura hacia una llegada cadencial; realzar con un INTERVALO PERSISTENTE/ostinato en las voces
+  graves.
+- A 3 voces cada acorde trae ~3 sonidos NUEVOS hasta sonar los 7 grados en la conciencia; los
+  ornamentales reaparecen como miembros del acorde siguiente (10-21).
+- DUPLICACIÓN rarísima, aún a 5–6 voces (10-22): cada voz un grado distinto; a 7 voces suenan los
+  7 grados constantemente (10-23) → enlaza con la función de DIVISI.
+- VARIAR LA COLECCIÓN: rara vez un solo modo para una sección entera, y menos un modo blanco puro
+  (sin bemoles/sostenidos); cualquier escala (incl. sintéticas) sirve de base pandiatónica.
+- Procedencia (armonía estática): Bartók, El castillo de Barba Azul.
+Continúa el cap. X.
