@@ -114,12 +114,14 @@ function renderResult(payload) {
     ['MusicXML', xmlUrl],
     ['LilyPond (.ly)', lyUrl],
   ];
+  // Nombre de archivo = TÍTULO de la obra (con su extensión real).
+  const baseName = fileNameFromTitle(title);
   for (const [label, url] of links) {
     if (!url) continue;
     const a = document.createElement('a');
     a.href = url;
     a.textContent = `⬇ ${label}`;
-    a.download = '';
+    a.download = `${baseName}.${extOf(url)}`;
     downloads.appendChild(a);
   }
 
@@ -139,6 +141,23 @@ function renderResult(payload) {
   }
 
   result.hidden = false;
+}
+
+// Extensión real de una URL de descarga (pdf, midi, musicxml, ly).
+function extOf(url) {
+  const m = String(url).match(/\.([a-z0-9]+)(?:\?|#|$)/i);
+  return m ? m[1].toLowerCase() : 'dat';
+}
+
+// Convierte el título de la obra en un nombre de archivo seguro (conserva letras
+// acentuadas y espacios; quita solo los caracteres no válidos en nombres).
+function fileNameFromTitle(title) {
+  const base = String(title || 'Pieza coral')
+    .replace(/[\\/:*?"<>|]+/g, ' ') // caracteres prohibidos en nombres de archivo
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 120);
+  return base || 'Pieza coral';
 }
 
 // Rellena un <select> con una lista de {id, label}, marcando el por defecto.
