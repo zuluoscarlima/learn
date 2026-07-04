@@ -1237,3 +1237,21 @@ en compose.js, llamada tras repairRhythm en composeChoral.
 Verificado (deterministas): modos no/auto/generoso → 0/3/8; con melodía fija la soprano queda
 intacta; render completo LilyPond (PDF+MIDI sin avisos) y MusicXML bien formado con los divisi
 repartidos por compases distintos y voces distintas.
+
+---
+
+## Persichetti Cap. IX — pp. 204–207: QUINTAS JUSTAS SUCESIVAS — APLICADO
+(Subsección entre la armonía paralela (200–203) y las cadencias (208–211, ya integradas).)
+Las 5as justas paralelas como RECURSO expresivo del s.XX → añadido a CHORD_CONNECTION (fase 2):
+- Carácter: emocionalmente INMENSAS — vagas y distantes, o desnudas y dominantes; ingrediente
+  importante del lenguaje contemporáneo. Aparecen (9-40 a 9-44) en escritura a DOS PARTES
+  (entrometidas en movimiento oblicuo libre), acoplamientos a dos, armonía PARALELA, final de un
+  modelo en marcha + comienzo de su repetición, y conexión de frases. Usar con IMAGINACIÓN (la
+  uniformidad interválica cansa).
+- Dificultan la INDEPENDENCIA de las partes; para EMPUJARLAS AL FONDO sin que dominen (9-45 a
+  9-49): 5as conjuntas en las partes GRAVES con otras en contrario/oblicuo (9-45); 5as agudas
+  prominentes → desviar con acompañamiento ÁGIL (9-46) o partes internas FLORIDAS (9-49b); 5as
+  cromáticas más libres si una parte va en CONTRARIO (9-47a) e insertando otros intervalos entre
+  algunas 5as (9-47b); partes externas contrarias con 5as internas (9-48a); ABLANDAR una 5ª
+  aguda poniendo su TERCERA en voz inferior (9-48b); 5as por SALTO dominadas si saltan a miembros
+  del mismo acorde (9-49a). Como parte de un cuerpo acordal en movimiento, se usan sin dominar.

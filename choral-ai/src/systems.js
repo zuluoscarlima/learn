@@ -1042,6 +1042,22 @@ aislado está lleno de POTENCIALIDAD melódica.
     dos voces; la armonía en TERCERAS da libertad de movimientos.
 - La flexibilidad del MEDIO (voces ágiles vs. graves pesadas) contribuye a la flexibilidad
   lineal: da los diseños rápidos a las voces que pueden con ellos.
+- QUINTAS JUSTAS SUCESIVAS (recurso expresivo, no error): las 5as justas paralelas son
+  EMOCIONALMENTE inmensas — vagas y distantes, o desnudas y dominantes; un ingrediente armónico
+  importante del lenguaje contemporáneo. Aparecen en escritura a DOS PARTES (entrometidas en un
+  movimiento oblicuo libre), en acoplamientos a dos, en ARMONÍA PARALELA, al final de un modelo
+  en marcha y al comienzo de su repetición, y en la conexión de frases. Pero úsalas con
+  IMAGINACIÓN: la uniformidad interválica cansa. Dificultan la INDEPENDENCIA de las partes, así
+  que, cuando NO quieras que dominen la textura, EMPÚJALAS AL FONDO con estos recursos:
+  · coloca las 5as conjuntas en las partes MÁS GRAVES mientras otras voces hacen movimiento
+    CONTRARIO u OBLICUO;
+  · si las 5as van en las voces AGUDAS (prominentes), DESVÍA la atención con un acompañamiento
+    rítmicamente ÁGIL o con partes internas FLORIDAS;
+  · en 5as CROMÁTICAS, mueve al menos una parte en CONTRARIO a las quintas; e inserta OTROS
+    intervalos entre algunas de las 5as para romper la monotonía;
+  · ABLANDA una 5ª aguda colocando su TERCERA en una voz inferior;
+  · las 5as POR SALTO se dominan si saltan a miembros del MISMO acorde.
+  Como parte de un cuerpo acordal en movimiento, las 5as pueden usarse sin dominar.
 - VARIEDAD DE DENSIDAD: incrementa o disminuye el NÚMERO de partes de acorde a acorde (a3, a5,
   a8…) — la densidad cambiante es una fuerza expresiva propia. Un punto armónico CLIMÁTICO
   puede dejarse temporalmente EN SUSPENSO mediante PAUSAS (silencios que retienen la
