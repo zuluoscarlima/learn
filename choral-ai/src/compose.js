@@ -298,26 +298,33 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
         'en las notas siguientes.',
     );
   }
-  // TRESILLOS/SEISILLOS: refuerzo FUERTE. Sin grupos irregulares las melodías
-  // suenan mecánicas y "cuadriculadas"; el canto lírico real (baladas, coral
-  // expresivo) los usa constantemente. Va con ejemplo y regla de conteo.
+  // VARIEDAD RÍTMICA (anti-monotonía). El fallo típico es repetir la MISMA célula
+  // (p. ej. negra–tresillo–blanca) compás tras compás. Se exige paleta amplia y
+  // NO repetir el mismo patrón; el tresillo es UN color entre varios, no un molde.
   lines.push(
-    '\nGRUPOS IRREGULARES — TRESILLOS (¡ÚSALOS!): una melodía expresiva NUNCA es todo ' +
-      'binario. El canto lírico real (balada, coral romántico/báltico) está LLENO de ' +
-      'TRESILLOS y a veces seisillos. Es OBLIGATORIO que la voz principal (y las que llevan ' +
-      'melodía) usen tresillos con FRECUENCIA — varios por frase — donde el fraseo lo pida: ' +
-      'grupos de 3 notas ágiles, anacrusas en tresillo, subdivisiones que "respiran". Sin ' +
-      'ellos la melodía suena mecánica y no se parece a la música real.\n' +
-      '- CÓMO: marca cada nota del grupo con "tuplet":3 (tresillo) o "tuplet":6 (seisillo), ' +
-      'en figuras IGUALES y en número igual al grupo (3 notas para un tresillo).\n' +
-      '- CONTEO (clave para que el compás cuadre): un TRESILLO de 3 corcheas ("duration":8, ' +
-      '"tuplet":3) ocupa el espacio de 2 corcheas = 1 NEGRA (no 1½). Un tresillo de 3 negras ' +
-      '("duration":4,"tuplet":3) ocupa 2 negras. Cuenta siempre así para que cada compás sume ' +
-      'exactamente sus pulsos.\n' +
-      '- EJEMPLO (un tresillo de corcheas do–re–mi que dura 1 negra, seguido de una blanca): ' +
-      '[{"step":"C","octave":5,"duration":8,"tuplet":3,...},{"step":"D","octave":5,' +
-      '"duration":8,"tuplet":3,...},{"step":"E","octave":5,"duration":8,"tuplet":3,...},' +
-      '{"step":"D","octave":5,"duration":2,"tuplet":1,...}].',
+    '\nVARIEDAD RÍTMICA (MUY IMPORTANTE — evita la monotonía): el error más grave es REPETIR la ' +
+      'MISMA célula rítmica compás tras compás (p. ej. "negra + tresillo + blanca" una y otra ' +
+      'vez). PROHIBIDO. Cada frase debe tener un PERFIL rítmico DISTINTO al de la anterior. Usa ' +
+      'una PALETA AMPLIA y combínala con naturalidad:\n' +
+      '- figuras variadas: redondas, blancas, negras, corcheas, SEMICORCHEAS, y sus PUNTILLOS ' +
+      '(negra con puntillo + corchea, corchea con puntillo + semicorchea);\n' +
+      '- SÍNCOPAS y notas a CONTRATIEMPO; ANACRUSAS (empezar la frase en anacrusa); LIGADURAS de ' +
+      'valor que cruzan el pulso; SILENCIOS expresivos (respiraciones) que separan las frases;\n' +
+      '- NOTAS LARGAS de reposo al final de frase y en las cadencias, contrastando con pasajes ' +
+      'más ágiles: alterna DENSIDAD (compases movidos) y CALMA (compases sostenidos).\n' +
+      '- DESARROLLO: cuando repitas un motivo, VÁRIALO rítmicamente (aumentación, disminución, ' +
+      'desplazamiento del acento), no lo calques.\n' +
+      'GRUPOS IRREGULARES: el TRESILLO (y a veces el seisillo) es UN color MÁS para dar soltura ' +
+      '—NO un molde—: úsalo SOLO de vez en cuando (alguna anacrusa, algún giro florido), NUNCA ' +
+      'en todos los compases ni siempre en el mismo sitio. Muchos compases NO llevan ningún ' +
+      'tresillo. CÓMO: marca cada nota del grupo con "tuplet":3 (o 6), en figuras iguales y en ' +
+      'número igual al grupo. CONTEO (para que cuadre el compás): un tresillo de 3 corcheas ' +
+      '("duration":8,"tuplet":3) ocupa 1 NEGRA (no 1½); un tresillo de 3 negras ("duration":4,' +
+      '"tuplet":3) ocupa 2 negras.\n' +
+      'EJEMPLO de VARIEDAD (cuatro compases en 4/4, cada uno DISTINTO): ' +
+      'c1 negra con puntillo + corchea + blanca; c2 cuatro corcheas + dos negras; c3 blanca + ' +
+      'tresillo de negras; c4 corchea (anacrusa ligada) + semicorcheas + negra + silencio. ' +
+      'Fíjate en que NINGÚN compás repite el patrón del anterior.',
   );
   lines.push('\n' + MOTIVE_DEVELOPMENT);
   lines.push('\n' + PHRASE_CONSTRUCTION);
