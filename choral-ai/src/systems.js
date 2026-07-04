@@ -819,6 +819,21 @@ Reglas:
   MASIVAS: úsalas SOLO por BREVES instantes y en su hábitat natural — una SECCIÓN CLIMÁTICA
   (potente) o un pasaje RÁPIDO pero suave (leggiero). Al superponer 3 unidades, una puede
   "evaporarse" y quedar de hecho un poliacorde de 2 unidades.
+- UNIDADES NO TRIÁDICAS (pp. 155–159): las unidades no tienen por qué ser tríadas.
+  · UNIDADES de SÉPTIMA: rara vez en pasajes extensos; úsalas en GRUPOS BREVES que intensifican
+    una sola línea o un estamento a dos partes, o como un acorde SFORZANDO/acento. Si las
+    unidades de séptima comparten uno o más SONIDOS COMUNES, la sonoridad es más HOMOGÉNEA;
+    sin sonidos comunes, más áspera.
+  · UNIDADES por CUARTAS / SEGUNDAS: un poliacorde de acordes por cuartas = versión AMPLIADA de
+    un acorde de tres sonidos por cuartas. Si TODAS las unidades son acordes por SEGUNDAS →
+    "POLICLUSTER". Unidades por cuartas y por segundas se combinan con las triádicas en un
+    poliacorde de UNIDADES MIXTAS; el acorde por SEGUNDAS funciona bien como la unidad MÁS ALTA.
+    Con unidades no triádicas la CLARIDAD TEXTURAL es más difícil: mantén los grupos muy
+    separados por registro.
+  · TRÍADA + CUARTAL: al combinar acordes por cuartas con una tríada, coloca la TRÍADA ABAJO
+    para dar LIBERTAD LINEAL mientras las cuartas son JUSTAS o AUMENTADAS (sonoridad más
+    resonante y brillante); coloca la TRÍADA ENCIMA para acordes MENOS resonantes pero sutiles
+    y prácticos, de textura más OSCURA.
 - POLITONALIDAD (rara): solo si las unidades se adhieren a CENTROS TONALES separados
   (p. ej. área Re mayor sobre área Fa mayor). Los poliacordes NO politonales son más
   flexibles y sus áreas varían a menudo. Discurso NO funcional; centro por reiteración.
@@ -863,6 +878,14 @@ REGLAS:
      añadir complejidad. Resérvalo para un CLÍMAX potente o un pasaje rápido y suave, BREVE.
    - La relación de la voz MÁS GRAVE con la MÁS AGUDA gobierna: externas consonantes → toda
      la formación suena más consonante; externas disonantes → al revés.
+   - UNIDADES NO TRIÁDICAS: las unidades pueden ser SÉPTIMAS, CUARTAS o SEGUNDAS, no solo
+     tríadas. Séptimas: úsalas BREVEMENTE (grupos cortos que intensifican una línea, o como
+     acento sforzando), no en pasajes largos; si las dos séptimas comparten SONIDOS COMUNES se
+     funden mejor. Cuartas/segundas (con divisi): un grupo por cuartas suena cuartal-abierto;
+     si un grupo es por SEGUNDAS colócalo como unidad MÁS AGUDA (funciona bien arriba). Al
+     mezclar una TRÍADA con un grupo por CUARTAS: tríada ABAJO + cuartas justas/aumentadas =
+     más brillante y con libertad lineal; tríada ARRIBA = más oscuro y sutil. Con unidades no
+     triádicas cuida MÁS la separación por registro (la claridad textural cuesta más).
 
 3. CONDUCCIÓN Y TEXTURA
    - GENERACIÓN LINEAL: la dirección de la poliarmonía la marca el MOVIMIENTO LINEAL. Traza un

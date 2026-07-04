@@ -872,3 +872,29 @@ Corrección: añadido `'chord'` a `noteSchema.required`; descripción reforzada 
 casi siempre VACÍO []"); `makeRest` incluye `chord: []`. Verificado: render determinista de una
 pieza con divisi en soprano (a2 y a3) y bajo (a2) → PDF+MIDI sin avisos. Pendiente que el
 usuario confirme el resultado musical con la API real.
+
+---
+
+## Persichetti Cap. VII — pp. 155–159: UNIDADES NO TRIÁDICAS — APLICADO
+Las unidades de un poliacorde no tienen por qué ser tríadas:
+- **Unidades de SÉPTIMA** (7-37/7-38): raras en pasajes extensos; se usan en GRUPOS BREVES que
+  intensifican una sola línea o un estamento a dos partes, o como acorde SFORZANDO/acento.
+  Si las séptimas comparten SONIDOS COMUNES (7-39: 3, 2, 1 o ninguno) la sonoridad es más
+  HOMOGÉNEA; sin comunes, más áspera.
+- **Cuartas / segundas** (7-40): un poliacorde por cuartas = versión AMPLIADA de un acorde de
+  3 sonidos por cuartas. Todas las unidades por SEGUNDAS → "POLICLUSTER". Unidades por cuartas
+  y segundas se combinan con las triádicas → poliacorde de UNIDADES MIXTAS; el acorde por
+  SEGUNDAS funciona bien como la unidad MÁS ALTA. Con unidades no triádicas la CLARIDAD
+  TEXTURAL cuesta más → separar bien por registro.
+- **Tríada + cuartal** (7-41 a 7-45): tríada ABAJO + cuartas justas/aumentadas → libertad lineal,
+  más resonante/brillante; tríada ARRIBA → menos resonante pero sutil y práctico, textura más
+  OSCURA. Son posibles otras combinaciones (2ª+tríada mayor, 7ª incompleta+tríada, cuartal+tríada
+  menor, etc.).
+- Procedencia (repertorio citado): poliacordes de 3+ unidades — Honegger *Cris du Monde*, Ives
+  *Sonata pf. 2*, Messiaen *Visions de l'Amen*, Milhaud *Cinq symphonies*, Searle *Sinf. 2*;
+  unidades mixtas — Bartók *Sonata vl. 2*, Copland *Piano Fantasy*, Hindemith *Sonata pf. 2*,
+  Ibert *Divertimento*, Kirchner *Duo*, Mihalovici, Milhaud *Les Choéphores*, Schoenberg
+  *De Profundis*, Stravinsky *Sinf. en 3 mov.*, Toch.
+Integrado en POLYCHORD_HARMONY_SYSTEM (bullet "UNIDADES NO TRIÁDICAS") y POLYCHORD_COMPOSE_SYSTEM
+(punto 2, realización con divisi/registro). Enlaza con las funciones de divisi (campo "chord")
+y cuartal ya existentes.
