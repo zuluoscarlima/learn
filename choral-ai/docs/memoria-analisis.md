@@ -1188,3 +1188,34 @@ partwise**, para abrir/editar la pieza en MuseScore/Sibelius/Finale.
 Verificado (deterministas, sin API): XML bien formado (xmllint), cuadre exacto por compás
 con divisi + métrica cambiante 4/4→3/4 (4 y 3 negras), round-trip con parseMelody, y partido
 correcto de una nota que cruza la barra (redonda en 3/4 → blanca-puntillo ~ negra ligada).
+
+---
+
+## Persichetti Cap. IX — pp. 208–211: MECANISMOS CADENCIALES — CAPÍTULO IX COMPLETO
+Cierra el cap. IX con las cadencias del s.XX → añadido a HARMONIC_DIRECTION (fase 1):
+- Una cadencia organiza melodía+armonía con connotación de REPOSO; se crea por un modelo de
+  acordes y por la dirección de cada parte, y solo es fuerza positiva si el RITMO la confirma
+  (final de frases, secciones, pieza). Bajo ciertas condiciones puede haber cadencia de dos o
+  más tonalidades SIMULTÁNEAS.
+- RITMO (9-52/9-53): finalidad si el último acorde cae en parte FUERTE; si cae en DÉBIL,
+  reforzar con notas repetidas, ligaduras u ornamentación.
+- Cadencia de DOS ACORDES por relación cíclica (9-50/9-51): las dos últimas fundamentales fijan
+  el sentimiento cadencial; auténticas V→I (5ª), III→I (3ª), II→I (2ª); plagales IV→I, VI→I,
+  VII→I.
+- PASIVIDAD si un disonante queda estacionario. Cadencias CROMÁTICAS (9-54): evitar sonidos
+  comunes para fortalecer la tónica final. Si la tónica final fija tonalidad, pueden añadirse
+  sonidos libremente (incl. armónicos inferiores); el acorde final puede ser IDÉNTICO al del
+  comienzo.
+- Cadencias TRANSITORIAS/rotas (9-55): descansan breve en armonía inestable; intervalo de
+  fundamental NO característico del ciclo — en ciclo de 5as → 2ª abajo (a); de 3as → 5ª
+  ascendente (b); de 2as → 3ª ascendente (c). También: acorde fuera de la región modal,
+  cromatismo de la fundamental, u obstrucción de todas las partes menos una (o percusión sin
+  afinación).
+- MATERIAL (9-56): la cadencia admite cualquier armonía — 3as, 4as, añadidos, 2as, poliacordal,
+  compuesta, espejo, PANDIATÓNICA (cap. 10) o doce sonidos.
+- Procedencia: duplicaciones/omisiones (Copland, Milhaud, Nono, Stravinsky, Webern); retrógrada
+  (Bartók, Berg, Dallapiccola, Hindemith, Messiaen, Milhaud, Webern); paralela real (Bentzon,
+  Berg, Gershwin, Hartmann, Jolivet).
+**Cap. IX COMPLETO** (dirección/progresión, conexión, disonancia, paralela, cadencias). El
+propio libro remite al cap. 10 para la PANDIATÓNICA → siguiente objetivo natural (encaja con el
+colchón Ešenvalds pendiente).

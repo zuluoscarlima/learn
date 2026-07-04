@@ -983,7 +983,33 @@ tiene función FORMAL. La meta puede alcanzarse o ABANDONARSE; una tonalidad, fi
   · PARALELO TONAL (intervalos ajustados a la escala en vigor): tiende a PRESERVAR la
     MODALIDAD.
   · El paralelo MOMENTÁNEO acentúa una subida o caída de la línea melódica o introduce un área
-    tonal NUEVA; el paralelo EXTENSO cansa pronto (renuévalo — ver los recursos de conexión).`;
+    tonal NUEVA; el paralelo EXTENSO cansa pronto (renuévalo — ver los recursos de conexión).
+- MECANISMOS CADENCIALES: una cadencia organiza melodía y armonía a la vez con connotación de
+  REPOSO — se crea armónicamente por un modelo de acordes y melódicamente por la dirección de
+  cada parte, y solo es fuerza positiva si el RITMO la confirma (colócala al final de frases,
+  secciones y de la pieza).
+  · RITMO cadencial: la finalidad depende de que el último acorde caiga en parte FUERTE; si cae
+    en parte DÉBIL, refuérzalo con sonidos REPETIDOS, ligaduras u ornamentación melódica para
+    equilibrar.
+  · CADENCIA DE DOS ACORDES por relación cíclica: las dos últimas fundamentales fijan el
+    sentimiento cadencial; el primer acorde se mueve "perfectamente" a una tónica situada al
+    intervalo del ciclo. Modelos AUTÉNTICOS: V→I (rel. de 5ª), III→I (rel. de 3ª), II→I (rel.
+    de 2ª). Modelos PLAGALES equivalentes: IV→I (5ª), VI→I (3ª), VII→I (2ª).
+  · PASIVIDAD: cualquier cadencia se vuelve pasiva/suspendida si un sonido DISONANTE permanece
+    ESTACIONARIO. En cadencias CROMÁTICAS, EVITA los sonidos comunes para fortalecer la tónica
+    final. Si la tónica final establece una tonalidad precisa, pueden añadirse sonidos
+    libremente (incluidos armónicos inferiores) sin perturbar su significado; el acorde final
+    puede ser IDÉNTICO al del comienzo, indiferente a las relaciones tonales.
+  · CADENCIAS TRANSITORIAS (rotas): descansan BREVEMENTE en una armonía INESTABLE, creando
+    necesidad de continuación. Se obtienen moviendo a un acorde cuya relación de fundamental con
+    el primero forma un intervalo NO característico del ciclo prevaleciente: en ciclo de 5as, el
+    acorde de impulso débil va a un acorde cuya fundamental está una 2ª BAJO la suya; en ciclo
+    de 3as, movimiento de fundamental una 5ª ASCENDENTE; en ciclo de 2as, una 3ª ASCENDENTE.
+    También: mover a un acorde FUERA de la región modal/tonal, movimiento CROMÁTICO de la
+    fundamental, u OBSTRUIR todas las partes menos una (o todas salvo un sonido percutido sin
+    afinación definida).
+  · MATERIAL: la cadencia puede usar CUALQUIER tipo de armonía — por 3as, 4as, sonidos añadidos,
+    2as, poliacordal, compuesta, espejo, pandiatónica o de doce sonidos.`;
 
 // --- Bloque TRANSVERSAL de fase 2: conexión de los acordes (Persichetti cap. 9) ---
 // Se añade al prompt de realización de voces de cualquier selección con técnicas
