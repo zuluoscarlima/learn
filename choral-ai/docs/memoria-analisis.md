@@ -898,3 +898,32 @@ Las unidades de un poliacorde no tienen por qué ser tríadas:
 Integrado en POLYCHORD_HARMONY_SYSTEM (bullet "UNIDADES NO TRIÁDICAS") y POLYCHORD_COMPOSE_SYSTEM
 (punto 2, realización con divisi/registro). Enlaza con las funciones de divisi (campo "chord")
 y cuartal ya existentes.
+
+---
+
+## Persichetti Cap. VIII — pp. 165–169: ARMONÍA COMPUESTA (intervalos mixtos) — NUEVO SISTEMA
+Empieza el cap. 8 "Armonía compuesta y en espejo". Estas páginas cubren el ACORDE COMPUESTO:
+superposición SIMULTÁNEA de intervalos DIVERSOS (3as+4as+2as en UNA columna), NO agrupados como
+unidades poliacordales. Diferencia clave con el poliacorde: no son dos tríadas separadas, sino
+una sola masa de intervalos mixtos. NO cuenta como compuesta lo que salga de INVERTIR una
+estructura por 3as/4as/2as (conserva su fundamental).
+- 8-1/8-2: los intervalos se colocan en cualquier combinación de tensiones; se distribuyen para
+  crear ÁREAS consonantes/disonantes (porción base, media o superior).
+- 8-3/8-4: PLAN GRÁFICO INTERNO — la lógica de construcción interna importa más que la tensión:
+  intervalos simétricamente INVERTIBLES; los 12 sonidos cromáticos con 11 intervalos invertibles;
+  series de intervalos numeradas en semitonos.
+- 8-5/8-6: amoldados a la SERIE DE ARMÓNICOS; tipo PIRAMIDAL = intervalos que DISMINUYEN de la
+  base hacia arriba (grandes abajo, pequeños arriba); puede contener los 12 intervalos sin 12
+  sonidos distintos.
+- 8-7: la textura poli-interválica mueve las áreas en cualquier dirección; se mueve bien bajo un
+  esquema de tensión DEFINIDO. Reparto eficaz: consonantes blandos + disonantes suaves ARRIBA,
+  consonantes abiertos + disonantes fuertes en la BASE. Si el sonido superior de un intervalo
+  disonante fuerte se DUPLICA una 5ª o 10ª más abajo → tensión y brillantez.
+- 8-8/8-9: acordes GRANDES = cuerpo resonante potente (clímax); PEQUEÑOS de 5–6 sonidos =
+  ELÁSTICOS y ágiles (pasajes móviles).
+Implementación: NUEVO sistema seleccionable `compuesta` ("Armonía compuesta (intervalos mixtos,
+Persichetti)"), con COMPOSITE_HARMONY_SYSTEM (fase 1) y COMPOSITE_COMPOSE_SYSTEM (fase 2, realiza
+la columna con divisi/campo "chord"), cableado en los mapas de harmony.js y compose.js. Aparece
+solo en el frontend vía systemOptions(). Sigue el patrón de los no terciarios: el plan da un
+acorde de referencia en root/quality (parte grave) y describe el compuesto en 'roman'. PENDIENTE:
+la parte de ARMONÍA EN ESPEJO del mismo capítulo (páginas siguientes).

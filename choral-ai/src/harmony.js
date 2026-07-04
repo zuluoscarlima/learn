@@ -14,6 +14,7 @@ import {
   ADDED_HARMONY_SYSTEM,
   SECUNDAL_HARMONY_SYSTEM,
   POLYCHORD_HARMONY_SYSTEM,
+  COMPOSITE_HARMONY_SYSTEM,
   MIXTO_HARMONY_SYSTEM,
   resolveSystems,
 } from './systems.js';
@@ -395,6 +396,7 @@ function selectHarmonySystem(ids) {
     anadidos: ADDED_HARMONY_SYSTEM,
     segundas: SECUNDAL_HARMONY_SYSTEM,
     policordes: POLYCHORD_HARMONY_SYSTEM,
+    compuesta: COMPOSITE_HARMONY_SYSTEM,
   };
   if (ids.includes('mixto')) return MIXTO_HARMONY_SYSTEM;
   if (ids.length === 1) return map[ids[0]] || SYSTEM_PROMPT;
