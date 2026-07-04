@@ -993,7 +993,20 @@ Reglas:
   mixolidio↔eolio, y el DÓRICO se refleja en SÍ MISMO. Cualquier escala puede reflejarse
   (sintéticas: Oriental↔Húngara menor; la DOBLE ARMÓNICA es inversamente idéntica; Locria
   mayor↔Lidia menor). Dos escalas reflejadas moviéndose por MOVIMIENTO CONTRARIO, intervalo a
-  intervalo, implican armonía en espejo (p. ej. Do mayor arriba sobre Do frigio abajo).
+  intervalo, implican armonía en espejo (p. ej. Do mayor arriba sobre Do frigio abajo). Las
+  tónicas pueden estar a NIVELES DISTINTOS (p. ej. Mi mixolidio arriba sobre Do eolio abajo):
+  también producen acordes en espejo, y el AROMA de cada acorde reflexivo se hace MÁS
+  pronunciado cuanto MAYOR es el espacio entre los sonidos generadores (eje ancho = color más
+  marcado; eje estrecho = más fundido).
+- ESPEJO ESTRICTO vs. PARCIAL: en el espejo ESTRICTO hasta los sonidos ORNAMENTALES (paso,
+  bordaduras) mantienen la relación reflexiva. Para MÁS LIBERTAD armónica usa la reflexión
+  PARCIAL: solo las voces EXTERNAS se espejan mientras las INTERNAS se mueven libremente.
+- ESPEJO TEMÁTICO: la escritura en espejo puede contener elementos TEMÁTICOS — construye la
+  melodía inicial de modo que UNA PARTE de ella sea la INVERSIÓN de OTRA parte; el uso
+  SIMULTÁNEO posterior de la melodía original y su inversión engendra las estructuras
+  verticales en espejo a partir de los propios elementos temáticos de la obra (forma y armonía
+  nacen del mismo material). La inversión simultánea desde CUALQUIERA de los doce puntos
+  pivote produce un espejo estricto, sea cual sea el tipo de armonía.
 - Discurso NO funcional: sin sensibles ni cadencias V–I; la dirección la da el MOVIMIENTO
   LINEAL y el esquema de tensión. Centro tonal por reiteración/gravitación a un acorde
   compuesto característico (resonante) como reposo; guarda los más densos para la tensión
@@ -1065,7 +1078,17 @@ REGLAS:
      cluster) y usa ENARMONÍAS si la lectura pesa. El espejo de ESCALAS da pasajes lineales:
      dos voces (o bloques) recorren escalas reflejadas por movimiento contrario, intervalo a
      intervalo (dórico contra dórico funciona siempre; mayor contra frigio, lidio contra
-     locrio…). Ideal para aperturas/cierres en abanico ("estamentos que se abren y cierran").
+     locrio…); las tónicas pueden ir a NIVELES DISTINTOS (Mi mixolidio sobre Do eolio), y el
+     color reflexivo se acentúa cuanto MÁS SEPARADOS estén los generadores. Ideal para
+     aperturas/cierres en abanico ("estamentos que se abren y cierran").
+     ESTRICTO vs. PARCIAL: en el espejo estricto TAMBIÉN las notas ORNAMENTALES (paso,
+     bordaduras) se reflejan; para textura coral más libre y cantábile usa el espejo PARCIAL —
+     SOLO las voces EXTERNAS (soprano/bajo) en reflexión exacta y las INTERNAS moviéndose
+     libremente (es la variante más práctica a 4 voces).
+     ESPEJO TEMÁTICO: diseña la melodía de modo que una FRASE sea la INVERSIÓN de otra; luego
+     superpón original + inversión (p. ej. soprano canta el original y el bajo su inversión
+     simultánea, o entradas imitativas por movimiento contrario): las verticales en espejo
+     nacen del propio TEMA — forma y armonía del mismo material.
    - REFRESCAR: un pasaje largo de acordes compuestos densos pesa; aligera con ornamentación
      de las líneas, interrupciones al unísono o a dos voces, y contraste con otras armonías.
    - Sin sensibles ni cadencias V–I; centro por reiteración. Puede nacer de pedales. Moldea el

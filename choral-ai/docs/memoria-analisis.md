@@ -992,3 +992,26 @@ realización coral en COMPOSITE_COMPOSE_SYSTEM (bajo espejo de soprano / tenor d
 4 tipos a-b-c-d, tabla de lo que genera cada espejo, escalas reflejadas para pasajes lineales y
 aperturas/cierres en abanico). Etiqueta del sistema actualizada: "Armonía compuesta y en espejo
 (Persichetti)". Puede quedar alguna página más del capítulo (usos del espejo/procedencia).
+
+---
+
+## Persichetti Cap. VIII — pp. 179–181: espejo (final) — CAPÍTULO VIII COMPLETO
+- **Espejos a niveles distintos** (8-24): escalas reflejadas con las tónicas a DIFERENTES
+  niveles (Mi mixolidio sobre Do eolio) también producen acordes en espejo; el AROMA de cada
+  acorde reflexivo se pronuncia MÁS cuanto MAYOR es el espacio entre los sonidos generadores.
+- **Espejo estricto** (8-25): los sonidos ORNAMENTALES también se mantienen en relación
+  reflexiva. **Reflexión PARCIAL** (8-26): mayor libertad — solo las voces EXTERNAS se espejan
+  y las internas se mueven libremente (la variante más práctica a 4 voces).
+- **Espejo TEMÁTICO** (8-27): la melodía inicial se construye de modo que parte de ella sea
+  INVERSIÓN de otra parte; el uso simultáneo de original + inversión engendra las estructuras
+  verticales en espejo desde los elementos temáticos (forma y armonía del mismo material).
+- **Espejo de teclado** (8-28, informativo): ejes Re y Sol#; tabla de correspondencias
+  cromáticas; la inversión simultánea desde CUALQUIERA de los 12 puntos pivote produce espejo
+  estricto con cualquier armonía (digitación idéntica en ambas manos — técnica pianística).
+- Procedencia (escritura en espejo): Bartók *Concierto para orquesta*, Blomdahl *Concierto de
+  cámara*, Copland *Vitebsk*, Dallapiccola *Quaderno di Annalibera*, Hartmann *Concierto para
+  piano, viento y percusión*, Milhaud *Les Choéphores*.
+Integrado en COMPOSITE_HARMONY_SYSTEM y COMPOSITE_COMPOSE_SYSTEM (niveles distintos + aroma por
+separación, estricto con ornamentos vs. parcial externas/internas, espejo temático con
+original+inversión simultáneos, 12 puntos pivote). **Cap. VIII cerrado** (armonía compuesta +
+fundida + escritura en espejo). Siguiente en el libro: Cap. IX.
