@@ -336,19 +336,25 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
     );
   } else if (divisi === 'generoso') {
     lines.push(
-      '\nDIVISI GENEROSO (¡ÚSALO A MENUDO!): ENRIQUECE la armonía DIVIDIENDO las voces en acordes ' +
-        'con el campo "chord" de la nota (alturas ADICIONALES simultáneas, mismo ritmo). Busca ' +
-        'sonoridades AMPLIAS de 6 a 8 sonidos reales repartiendo divisi entre varias voces (la ' +
-        'S, la A, el T y el B pueden dividirse a2 o a3), sobre todo en clímax, aperturas, ' +
-        'colchones sostenidos y el ACORDE FINAL. Cada divisi respeta la tesitura de su voz. ' +
+      '\nDIVISI GENEROSO (¡ÚSALO A MENUDO Y A LO LARGO DE TODA LA OBRA!): ENRIQUECE la armonía ' +
+        'DIVIDIENDO las voces en acordes con el campo "chord" de la nota (alturas ADICIONALES ' +
+        'simultáneas, mismo ritmo). Busca sonoridades AMPLIAS de 6 a 8 sonidos reales repartiendo ' +
+        'divisi entre varias voces (la S, la A, el T y el B pueden dividirse a2 o a3). ' +
+        'REPARTE el divisi por VARIOS momentos DISTINTOS de la pieza (NO SOLO en el acorde final): ' +
+        'úsalo en el primer TERCIO, en el CENTRO y en el ÚLTIMO tercio, en cada clímax de frase, en ' +
+        'las aperturas de sección y en los colchones sostenidos. Como mínimo divide alguna voz en ' +
+        'VARIOS compases interiores repartidos, no solo al cerrar. Cada divisi respeta la tesitura ' +
+        'de su voz. ' +
         divisiExample,
     );
   } else {
     lines.push(
-      '\nDIVISI (úsalo con criterio, pero ÚSALO): para ENRIQUECER la armonía, DIVIDE alguna voz ' +
-        'en un acorde con el campo "chord" (alturas ADICIONALES simultáneas, mismo ritmo) en los ' +
-        'CLÍMAX, las APERTURAS y los COLCHONES sostenidos. CUALQUIER voz (S/A/T/B) puede ' +
-        'dividirse, respetando su tesitura. ' +
+      '\nDIVISI (úsalo con criterio, pero ÚSALO EN VARIOS PUNTOS): para ENRIQUECER la armonía, ' +
+        'DIVIDE alguna voz en un acorde con el campo "chord" (alturas ADICIONALES simultáneas, ' +
+        'mismo ritmo). REPÁRTELO a lo largo de la obra —en distintos CLÍMAX de frase, APERTURAS de ' +
+        'sección y COLCHONES sostenidos del interior— y NO SOLO en el acorde final: que haya divisi ' +
+        'también en compases INTERIORES. CUALQUIER voz (S/A/T/B) puede dividirse, respetando su ' +
+        'tesitura. ' +
         divisiExample,
     );
   }
