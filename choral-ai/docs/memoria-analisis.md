@@ -1219,3 +1219,21 @@ Cierra el cap. IX con las cadencias del s.XX → añadido a HARMONIC_DIRECTION (
 **Cap. IX COMPLETO** (dirección/progresión, conexión, disonancia, paralela, cadencias). El
 propio libro remite al cap. 10 para la PANDIATÓNICA → siguiente objetivo natural (encaja con el
 colchón Ešenvalds pendiente).
+
+---
+
+## FIX divisi (3): GARANTÍA determinista de divisi repartido por toda la obra
+El usuario reportó que, pese al prompt, el divisi seguía apareciendo SOLO en el acorde final.
+Solución determinista (no depende del modelo): `distributeDivisi(comp, parts, mode, melodyFixed)`
+en compose.js, llamada tras repairRhythm en composeChoral.
+- Selecciona notas LARGAS (≥ negra con puntillo) SIN divisi previo, ni la última de cada voz,
+  excluyendo la melodía fija del usuario (voz 0 si params.melody).
+- Reparte los puntos de forma UNIFORME por el eje temporal (evita amontonar): 'auto'→3 puntos,
+  'generoso'→8, 'no'→0.
+- La altura añadida es SIEMPRE un TONO REAL DEL ACORDE: la toma de otra voz que suena en ese
+  instante (solapamiento de segmentos [inicio,fin) en negras), colocada POR DEBAJO de la
+  principal a 3ª–6ª (3–9 st, tope 1 octava), dentro de la TESITURA de la voz (parts.low/high).
+  Así nunca introduce notas ajenas a la armonía; solo dobla/ensancha.
+Verificado (deterministas): modos no/auto/generoso → 0/3/8; con melodía fija la soprano queda
+intacta; render completo LilyPond (PDF+MIDI sin avisos) y MusicXML bien formado con los divisi
+repartidos por compases distintos y voces distintas.

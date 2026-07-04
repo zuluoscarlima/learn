@@ -1,6 +1,6 @@
 // Fase 2 del proceso compositivo: realización de las voces sobre el plan armónico.
 import { getClient, extractJson, effortForQuality } from './llm.js';
-import { COMPOSITION_SCHEMA, validateComposition, repairRhythm } from './schema.js';
+import { COMPOSITION_SCHEMA, validateComposition, repairRhythm, noteBeats } from './schema.js';
 import { EXPRESSIVE_PALETTE } from './expressive.js';
 import { MOTIVE_DEVELOPMENT } from './motive.js';
 import { PHRASE_CONSTRUCTION } from './phrase.js';
@@ -485,7 +485,117 @@ export async function composeChoral(params, parts, texture, harmonyText) {
   validateComposition(composition, parts.length);
   // Repara descuadres rítmicos menores (recorta/rellena) en vez de fallar.
   repairRhythm(composition);
+  // GARANTÍA de divisi repartido: si el usuario pidió divisi (auto/generoso) y el
+  // modelo lo concentró solo al final (o no lo puso), inyectamos divisi en varios
+  // puntos INTERIORES doblando notas del propio acorde (nunca notas ajenas).
+  distributeDivisi(composition, parts, params.divisi || 'auto', Boolean(params.melody));
   return composition;
+}
+
+// --- Reparto DETERMINISTA de divisi a lo largo de la obra ---
+const LETTER_SEMI = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+
+function pitchMidi(p) {
+  return 12 * ((Number(p.octave) || 4) + 1) + (LETTER_SEMI[String(p.step).toUpperCase()] || 0) + (Number(p.alter) || 0);
+}
+
+function rangeMidi(s) {
+  const m = String(s || '').match(/^([A-Ga-g])(#|b)?(-?\d+)$/);
+  if (!m) return null;
+  const semi = LETTER_SEMI[m[1].toUpperCase()] + (m[2] === '#' ? 1 : m[2] === 'b' ? -1 : 0);
+  return 12 * (Number(m[3]) + 1) + semi;
+}
+
+// Segmentos [inicio,fin) en negras de cada nota de una voz.
+function voiceSegments(notes) {
+  let t = 0;
+  return notes.map((note) => {
+    const s = t;
+    t += noteBeats(note);
+    return { note, s, e: t };
+  });
+}
+
+// Inyecta divisi (campo "chord") en varias notas LARGAS interiores, repartidas por
+// toda la pieza. La altura añadida es SIEMPRE una nota que ya suena en el acorde
+// (la toma de otra voz) colocada por debajo, a distancia consonante y en tesitura.
+export function distributeDivisi(comp, parts, mode, melodyFixed) {
+  if (mode === 'no' || !Array.isArray(comp.voices) || comp.voices.length < 2) return 0;
+  const target = mode === 'generoso' ? 8 : 3;
+
+  const segsByVoice = comp.voices.map((v) => voiceSegments(v.notes || []));
+  const ranges = parts.map((p) => ({ low: rangeMidi(p && p.low), high: rangeMidi(p && p.high) }));
+
+  // Candidatos: notas largas (≥ negra con puntillo), sin divisi previo, no la última.
+  const cands = [];
+  comp.voices.forEach((v, vi) => {
+    if (melodyFixed && vi === 0) return; // no dividir la melodía fija del usuario
+    const segs = segsByVoice[vi];
+    segs.forEach((seg, ni) => {
+      const n = seg.note;
+      if (n.rest) return;
+      if (Array.isArray(n.chord) && n.chord.length) return; // ya tiene divisi
+      if (ni === segs.length - 1) return; // deja la última al modelo
+      if (noteBeats(n) < 1.5) return; // solo notas sostenidas
+      cands.push({ vi, ni, s: seg.s });
+    });
+  });
+  if (!cands.length) return 0;
+
+  // Reparto uniforme por el eje temporal (evita amontonar).
+  cands.sort((a, b) => a.s - b.s || a.vi - b.vi);
+  const chosen = [];
+  const N = Math.min(target, cands.length);
+  const used = new Set();
+  for (let i = 0; i < N; i++) {
+    let idx = Math.round((i * (cands.length - 1)) / Math.max(1, N - 1));
+    while (used.has(idx) && idx < cands.length) idx++;
+    if (idx >= cands.length) break;
+    used.add(idx);
+    chosen.push(cands[idx]);
+  }
+
+  let added = 0;
+  for (const c of chosen) {
+    const seg = segsByVoice[c.vi][c.ni];
+    const main = seg.note;
+    const mainMidi = pitchMidi(main);
+    // Alturas que YA suenan en ese instante en las OTRAS voces (tonos del acorde).
+    const pool = [];
+    comp.voices.forEach((_, oi) => {
+      if (oi === c.vi) return;
+      const s = segsByVoice[oi].find((g) => g.s <= seg.s + 1e-6 && g.e > seg.s + 1e-6);
+      if (!s || s.note.rest) return;
+      pool.push({ step: s.note.step, alter: Number(s.note.alter) || 0, octave: s.note.octave });
+      (Array.isArray(s.note.chord) ? s.note.chord : []).forEach((ch) => {
+        if (ch && ch.step) pool.push({ step: ch.step, alter: Number(ch.alter) || 0, octave: ch.octave });
+      });
+    });
+    if (!pool.length) continue;
+    const range = ranges[c.vi] || {};
+
+    // Busca la mejor altura POR DEBAJO de la principal (3ª a 6ª ≈ 3–9 semitonos),
+    // dentro de la tesitura, tomada de un tono real del acorde.
+    let best = null;
+    for (const cand of pool) {
+      for (let oct = 1; oct <= 7; oct++) {
+        const pitch = { step: cand.step, alter: cand.alter, octave: oct };
+        const midi = pitchMidi(pitch);
+        const below = mainMidi - midi;
+        if (below < 2 || below > 12) continue; // ni unísono ni más de una octava
+        if (range.low != null && midi < range.low) continue;
+        if (range.high != null && midi > range.high) continue;
+        // Puntuación: preferimos 3ª–6ª (3–9 st); penalizamos extremos.
+        const score = Math.abs(below - 6);
+        if (!best || score < best.score) best = { pitch, score };
+      }
+    }
+    if (best) {
+      main.chord = [best.pitch];
+      added++;
+    }
+  }
+  return added;
 }
 
 // Fija la melodía del usuario como voz 1 (intacta) y alinea la metadata de la
