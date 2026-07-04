@@ -927,3 +927,35 @@ la columna con divisi/campo "chord"), cableado en los mapas de harmony.js y comp
 solo en el frontend vía systemOptions(). Sigue el patrón de los no terciarios: el plan da un
 acorde de referencia en root/quality (parte grave) y describe el compuesto en 'roman'. PENDIENTE:
 la parte de ARMONÍA EN ESPEJO del mismo capítulo (páginas siguientes).
+
+---
+
+## Persichetti Cap. VIII — pp. 170–173: compuesta (usos, cadencia) + ARMONÍA FUNDIDA — APLICADO
+- **¿Compuesto o sonido añadido?** Se decide por el CONTEXTO: fuertes tendencias a moverse en
+  esfera TONAL → sonido añadido (modifica fuerzas funcionales); si no → COMPUESTO. Los
+  compuestos apenas se subordinan a la regulación tonal: fundamental leve o nula, se manejan
+  como MASAS DE SONIDO. Centro armónico por TENSIÓN RELATIVA frente a los circundantes (los
+  adyacentes gravitan hacia él). Movimiento = DENSIDAD FLUCTUANTE (agudo↔grave) + tensión
+  interválica variable; las velocidades de la densidad crean el ritmo armónico.
+- **Usos** (8-10/8-11/8-12): declamaciones, puntos de llegada, estamentos que se abren/cierran;
+  PERCUSIVOS cuando los intervalos pequeños van en la parte GRAVE; las formaciones anchas son
+  poco flexibles (acentos percusivos, fondos, cadencias). Texturas: (a) DOS NIVELES (uno
+  compuesto percusivo + otro por 3as/4as/2as); (b) FONDO sin sujeción armónica con VOZ A SOLO
+  en primer plano (→ enlaza con el colchón Ešenvalds).
+- **Cadencia** (8-13): el compuesto de LLEGADA se precede de una estructura de DENSIDAD MAYOR;
+  los acordes conducentes no tienen por qué ser compuestos.
+- **Precisión**: cada miembro se manipula con exactitud; cuidar intervalo/color del registro
+  MEDIO → sonoridad homogénea. El compuesto más usado: 3 sonidos por CUARTAS + TERCERA añadida
+  (flexible, funciona en contextos por 3as o 4as).
+- **ARMONÍA FUNDIDA** (8-14/8-15/8-16, categoría especial): fusión de DOS tríadas distintas con
+  2 de los 6 sonidos DUPLICADOS → acorde de 4 sonidos de intervalos mixtos; duplicados en las
+  VOCES CENTRALES, comunes a ambas tríadas; se designa de abajo arriba. Se desgrana de la tríada
+  con SEGUNDAS añadidas en el BAJO (híbrido añadido+poliacorde en posición abierta). SEIS acordes
+  PRIMARIOS (me.-ma., ma.-me., ma.-A., dis.-me., me.-dis., dis.-Ma.; cifrados 6/3, 6/4, 5/3…),
+  completamente INTERCAMBIABLES en cualquier orden. SECUNDARIOS (no compuestos): 7as/9as/11as con
+  un intervalo disonante FUERTE como agente de unión. FLUYE LIBREMENTE A CUATRO VOCES (sin
+  divisi); cadencias a secundario o a primario.
+- Procedencia: Blackwood Sinfonía nº1, Boulez Sonata pf. nº2.
+Integrado en COMPOSITE_HARMONY_SYSTEM y COMPOSITE_COMPOSE_SYSTEM (la fundida como variante
+FLUIDA a 4 voces para pasajes cantábiles; los compuestos masivos con divisi para clímax).
+PENDIENTE del cap. VIII: la ARMONÍA EN ESPEJO (páginas siguientes).

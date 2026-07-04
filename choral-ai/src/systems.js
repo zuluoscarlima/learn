@@ -941,6 +941,40 @@ Reglas:
 - TAMAÑO: los acordes compuestos GRANDES son un cuerpo resonante potente (clímax); los
   PEQUEÑOS (5–6 sonidos bien colocados) son ELÁSTICOS y ágiles (pasajes móviles). Alterna
   según la función dramática.
+- ¿COMPUESTO o SONIDO AÑADIDO? Se decide por el CONTEXTO armónico: si el acorde muestra
+  fuertes tendencias a moverse en una esfera TONAL, es un acorde con sonido añadido (modifica
+  una estructura funcional); si no, es COMPUESTO. Los compuestos apenas se subordinan a la
+  regulación tonal de fundamentales: tienen un significado de fundamental LEVE o nulo y se
+  manejan como MASAS DE SONIDO.
+- CENTRO ARMÓNICO: cualquier estructura compuesta puede establecerse como acorde CENTRAL por
+  la TENSIÓN RELATIVA frente a los acordes circundantes, y servir de centro alrededor del cual
+  GRAVITAN los adyacentes. El movimiento armónico lo crea la DENSIDAD FLUCTUANTE (entre voz
+  más aguda y más grave) y los grados variables de tensión interválica; las velocidades
+  cambiantes de la densidad crean el RITMO ARMÓNICO que relaciona los acordes.
+- USOS típicos de los compuestos amplios: DECLAMACIONES, PUNTOS DE LLEGADA, estamentos que se
+  ABREN y CIERRAN, acentuación PERCUSIVA (percusivos, sobre todo, con los intervalos PEQUEÑOS
+  en la parte GRAVE), fondos sostenidos y cadencias. Las formaciones anchas son poco flexibles.
+  Dos usos texturales: (a) DOS NIVELES — un nivel de acordes compuestos percusivos y otro nivel
+  por 3as/4as/2as; (b) FONDO sin sujeción armónica con una VOZ (o voces) A SOLO en primer plano.
+- CADENCIA: el acorde compuesto de LLEGADA se precede normalmente de una estructura de DENSIDAD
+  MAYOR (los acordes que conducen a la cadencia no tienen por qué ser compuestos): densidad que
+  se descarga en el acorde final.
+- PRECISIÓN: cada miembro del acorde debe manipularse con exactitud (el menor error cambia el
+  resultado); cuidando intervalo y color del registro MEDIO se logra una sonoridad homogénea e
+  inteligible. El compuesto más usado: acorde de 3 sonidos por CUARTAS + una TERCERA añadida —
+  flexible, colorido, funciona bien en contextos por terceras o por cuartas.
+- ARMONÍA FUNDIDA (categoría especial, ideal para coro a 4 voces): FUSIÓN de dos tríadas
+  DISTINTAS de modo que 2 de los 6 sonidos son DUPLICACIONES → resulta un acorde de CUATRO
+  sonidos de intervalos mixtos. Los sonidos duplicados van en las VOCES CENTRALES y son comunes
+  a ambas tríadas; el acorde se designa DE ABAJO ARRIBA. Se desgrana de la tríada con SEGUNDAS
+  añadidas colocadas en el BAJO; en posición ABIERTA la formación híbrida (sonido añadido +
+  poliacorde) produce este único tipo de armonía fundida. Hay SEIS acordes PRIMARIOS de esta
+  variedad (me.-ma., ma.-me., ma.-A., dis.-me., me.-dis., dis.-Ma., cifrados 6/3, 6/4, 5/3…):
+  completamente INTERCAMBIABLES y libres de moverse de uno a otro en CUALQUIER orden. Los
+  acordes SECUNDARIOS no son compuestos: séptimas, novenas y oncenas (fundamentales o
+  invertidas) que contienen un intervalo disonante FUERTE como agente de unión. La armonía
+  fundida FLUYE LIBREMENTE A CUATRO VOCES (sin divisi); se puede cadenciar a un secundario o a
+  un primario.
 - Discurso NO funcional: sin sensibles ni cadencias V–I; la dirección la da el MOVIMIENTO
   LINEAL y el esquema de tensión. Centro tonal por reiteración/gravitación a un acorde
   compuesto característico (resonante) como reposo; guarda los más densos para la tensión
@@ -975,6 +1009,28 @@ REGLAS:
 3. CONDUCCIÓN Y TEXTURA
    - TEXTURA POLI-INTERVÁLICA: las áreas del acorde pueden moverse fácilmente en CUALQUIER
      dirección; conduce las voces con líneas cantábiles bajo el esquema de tensión definido.
+   - Los compuestos se manejan como MASAS DE SONIDO (fundamental leve o nula): el movimiento lo
+     crea la DENSIDAD FLUCTUANTE (ámbito entre la voz más aguda y la más grave) y la tensión
+     interválica variable; las velocidades de cambio de densidad crean el ritmo armónico.
+   - USOS: los compuestos amplios funcionan como DECLAMACIONES, PUNTOS DE LLEGADA, estamentos
+     que se ABREN y CIERRAN, acentos PERCUSIVOS (intervalos pequeños en la parte GRAVE = acorde
+     percusivo) y fondos sostenidos. Dos texturas eficaces: (a) DOS NIVELES — un nivel percusivo
+     de compuestos y otro nivel por 3as/4as/2as; (b) FONDO de compuestos sostenidos (colchón)
+     con una VOZ A SOLO en primer plano (asigna el fondo a las voces graves/internas con divisi
+     y la línea sola a una voz aguda).
+   - CADENCIA: precede el acorde compuesto de LLEGADA con una estructura de DENSIDAD MAYOR que
+     se descarga en él; los acordes que conducen no tienen por qué ser compuestos.
+   - PRECISIÓN: coloca cada sonido con exactitud y cuida el REGISTRO MEDIO (intervalo y color)
+     para lograr una sonoridad homogénea e inteligible. Compuesto comodín: 3 sonidos por
+     CUARTAS + una TERCERA añadida (flexible y colorido).
+   - ARMONÍA FUNDIDA (ideal a 4 voces SIN divisi): realiza acordes de CUATRO sonidos que funden
+     DOS tríadas distintas con 2 duplicaciones; los sonidos DUPLICADOS/comunes van en las VOCES
+     CENTRALES (contralto y tenor) y las tríadas se leen de abajo arriba. Los SEIS primarios
+     (men.-may., may.-men., may.-aum., dis.-men., men.-dis., dis.-May.) son intercambiables en
+     cualquier orden; mezcla con SECUNDARIOS (7as/9as/11as con un intervalo disonante fuerte
+     como agente de unión) y cadencia a un secundario o a un primario. Es la variante FLUIDA de
+     este sistema: úsala en los pasajes cantábiles y guarda los compuestos masivos con divisi
+     para clímax y puntos de llegada.
    - REFRESCAR: un pasaje largo de acordes compuestos densos pesa; aligera con ornamentación
      de las líneas, interrupciones al unísono o a dos voces, y contraste con otras armonías.
    - Sin sensibles ni cadencias V–I; centro por reiteración. Puede nacer de pedales. Moldea el
