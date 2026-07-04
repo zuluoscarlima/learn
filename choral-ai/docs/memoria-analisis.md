@@ -959,3 +959,36 @@ la parte de ARMONÍA EN ESPEJO del mismo capítulo (páginas siguientes).
 Integrado en COMPOSITE_HARMONY_SYSTEM y COMPOSITE_COMPOSE_SYSTEM (la fundida como variante
 FLUIDA a 4 voces para pasajes cantábiles; los compuestos masivos con divisi para clímax).
 PENDIENTE del cap. VIII: la ARMONÍA EN ESPEJO (páginas siguientes).
+
+---
+
+## Persichetti Cap. VIII — pp. 174–178: ESCRITURA EN ESPEJO — APLICADO
+(Antes, en p. 174, cierra la "Procedencia" de la armonía compuesta: Britten *Turn of the Screw*,
+Carter *Cuarteto 1*, Ives *Sonata pf. 2*, Schoenberg *Op. 33a*, W. Schuman *Sinfonía 6*,
+Skalkottas, Stockhausen *Kontra-Punkte*, Stravinsky *Consagración*, Varèse *Octandre*, Webern
+*Cantata Op. 29* — además de Blackwood y Boulez de p. 173.)
+- **Concepto** (8-17): cualquier acorde (3as, 4as, 2as, poliacordal o compuesto) se reproduce EN
+  ESPEJO añadiendo DEBAJO sus intervalos estrictamente INVERTIDOS (inversión simétrica y
+  simultánea). Textura peculiar: la reflexión se opone a la acústica (los armónicos nacen de la
+  base, no del centro); la "serie inferior de armónicos" es teórica, no auditiva.
+- **Qué genera el espejo** (8-18): tríada fund. → NOVENA; tríada invertida → POLIACORDE; 7ª
+  fund. → 13ª; 7ª invertida → poliacorde; por 4as → por 4as; por 2as → CLUSTER; poliacorde →
+  poliacorde; compuesto → compuesto (versiones más complejas de la misma categoría).
+- **Cuatro tipos de escritura** (8-19): (a) sonido ESTACIONARIO genera la reflexión; (b) sonido
+  MÓVIL genera la reflexión; (c) los GENERADORES se vuelven reflexivos moviéndose en sentido
+  CONTRARIO; (d) generadores LIBRES.
+- **Doble reflejo** (8-20): un espejo puede reflejarse doblemente (usar sobre todo con compuestos
+  amplios no espejados); ENARMONÍAS cuando la lectura pesa.
+- El GENERADOR (eje) nunca se oye como fundamental: la MASA entera emerge como acorde propio,
+  normalmente con carácter de acorde base.
+- **Escalas en espejo** (8-21/8-22/8-23): el sistema diatónico es simétricamente invertible; los
+  modos se espejan en orden INVERSO de gradación de color — lidio↔locrio, jónico↔frigio,
+  mixolidio↔eolio, DÓRICO↔dórico (auto-espejo). Sintéticas: Oriental↔Húngara menor; DOBLE
+  ARMÓNICA inversamente idéntica (auto-espejo); Locria mayor↔Lidia menor. Dos escalas reflejadas
+  por MOVIMIENTO CONTRARIO, intervalo a intervalo, implican armonía en espejo (Do mayor sobre Do
+  frigio; Do dórico sobre Do dórico).
+Implementación: bloque "ESCRITURA EN ESPEJO" + "ESCALAS EN ESPEJO" en COMPOSITE_HARMONY_SYSTEM;
+realización coral en COMPOSITE_COMPOSE_SYSTEM (bajo espejo de soprano / tenor de contralto, los
+4 tipos a-b-c-d, tabla de lo que genera cada espejo, escalas reflejadas para pasajes lineales y
+aperturas/cierres en abanico). Etiqueta del sistema actualizada: "Armonía compuesta y en espejo
+(Persichetti)". Puede quedar alguna página más del capítulo (usos del espejo/procedencia).

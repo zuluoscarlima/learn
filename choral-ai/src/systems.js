@@ -14,7 +14,7 @@ export const SYSTEMS = {
   segundas: { group: 'Siglo XX', label: 'Por segundas / clusters (Persichetti)' },
   anadidos: { group: 'Siglo XX', label: 'Sonidos añadidos (Persichetti)' },
   policordes: { group: 'Siglo XX', label: 'Policordes / bitonalidad (Persichetti)' },
-  compuesta: { group: 'Siglo XX', label: 'Armonía compuesta (intervalos mixtos, Persichetti)' },
+  compuesta: { group: 'Siglo XX', label: 'Armonía compuesta y en espejo (Persichetti)' },
   contemporaneo: { group: 'Siglo XX', label: 'Contemporáneo / pandiatónico (Lauridsen–Whitacre–Ešenvalds)' },
   impresionista: { group: 'Siglo XX', label: 'Impresionista / modal (Debussy–báltico)' },
 };
@@ -975,6 +975,25 @@ Reglas:
   invertidas) que contienen un intervalo disonante FUERTE como agente de unión. La armonía
   fundida FLUYE LIBREMENTE A CUATRO VOCES (sin divisi); se puede cadenciar a un secundario o a
   un primario.
+- ESCRITURA EN ESPEJO: cualquier acorde (por 3as, 4as, 2as, poliacordal o compuesto) puede
+  REPRODUCIRSE EN ESPEJO añadiendo DEBAJO de la formación original sus intervalos estrictamente
+  INVERTIDOS (inversión simétrica): la mitad inferior es la inversión exacta y SIMULTÁNEA de la
+  superior. Textura característica: la reflexión se opone a la acústica natural (los armónicos
+  nacen de la BASE, no del centro), de ahí su color peculiar.
+  · Qué GENERA el espejo: tríada fundamental → acorde de NOVENA; tríada invertida → POLIACORDE;
+    7ª fundamental → acorde de 13ª; 7ª invertida → poliacorde; acorde por 4as → por 4as; por
+    2as → CLUSTER; poliacorde → poliacorde; compuesto → compuesto (versión más compleja de la
+    misma categoría).
+  · El sonido GENERADOR (el eje central) NUNCA funciona auditivamente como fundamental: la MASA
+    entera emerge como un acorde por derecho propio, normalmente con carácter de acorde base.
+  · Los espejos pueden reflejarse DOBLEMENTE (estructuras complejas, sobre todo con compuestos
+    amplios no espejados); usa ENARMONÍAS cuando la lectura se vuelva pesada.
+- ESCALAS EN ESPEJO: el sistema diatónico completo es simétricamente invertible; los modos se
+  espejan en orden INVERSO de gradación de color — lidio↔locrio, jónico↔frigio,
+  mixolidio↔eolio, y el DÓRICO se refleja en SÍ MISMO. Cualquier escala puede reflejarse
+  (sintéticas: Oriental↔Húngara menor; la DOBLE ARMÓNICA es inversamente idéntica; Locria
+  mayor↔Lidia menor). Dos escalas reflejadas moviéndose por MOVIMIENTO CONTRARIO, intervalo a
+  intervalo, implican armonía en espejo (p. ej. Do mayor arriba sobre Do frigio abajo).
 - Discurso NO funcional: sin sensibles ni cadencias V–I; la dirección la da el MOVIMIENTO
   LINEAL y el esquema de tensión. Centro tonal por reiteración/gravitación a un acorde
   compuesto característico (resonante) como reposo; guarda los más densos para la tensión
@@ -1031,6 +1050,22 @@ REGLAS:
      como agente de unión) y cadencia a un secundario o a un primario. Es la variante FLUIDA de
      este sistema: úsala en los pasajes cantábiles y guarda los compuestos masivos con divisi
      para clímax y puntos de llegada.
+   - ESCRITURA EN ESPEJO (muy coral: simetría por movimiento contrario). Las voces GRAVES
+     reproducen ESTRICTAMENTE INVERTIDAS, y a la vez, los intervalos de las AGUDAS alrededor de
+     un EJE central (p. ej. bajo = espejo de la soprano, tenor = espejo de la contralto). El
+     eje/generador no se oye como fundamental: la masa entera es el acorde. CUATRO tipos de
+     escritura (elige y mantén uno por pasaje):
+     (a) un sonido ESTACIONARIO (eje quieto, p. ej. en las voces centrales o un pedal) genera
+         la reflexión mientras las demás se abren/cierran simétricamente;
+     (b) un sonido MÓVIL genera la reflexión (el eje se desplaza y el espejo lo sigue);
+     (c) los GENERADORES mismos se vuelven reflexivos moviéndose en SENTIDO CONTRARIO
+         (soprano y bajo en espejo exacto, las internas completan);
+     (d) los generadores se usan LIBREMENTE (espejo aproximado, con licencias).
+     Recuerda lo que genera cada espejo (tríada→9ª, 7ª→13ª, invertidas→poliacordes, 2as→
+     cluster) y usa ENARMONÍAS si la lectura pesa. El espejo de ESCALAS da pasajes lineales:
+     dos voces (o bloques) recorren escalas reflejadas por movimiento contrario, intervalo a
+     intervalo (dórico contra dórico funciona siempre; mayor contra frigio, lidio contra
+     locrio…). Ideal para aperturas/cierres en abanico ("estamentos que se abren y cierran").
    - REFRESCAR: un pasaje largo de acordes compuestos densos pesa; aligera con ornamentación
      de las líneas, interrupciones al unísono o a dos voces, y contraste con otras armonías.
    - Sin sensibles ni cadencias V–I; centro por reiteración. Puede nacer de pedales. Moldea el
