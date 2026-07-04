@@ -945,7 +945,46 @@ tiene función FORMAL. La meta puede alcanzarse o ABANDONARSE; una tonalidad, fi
 - MOVIMIENTOS ESPECIALES: el INTERCAMBIO oscilante de 2–3 acordes sirve para pasajes
   ATMOSFÉRICOS (sin tonalidad definida ni movimiento armónico: colchones, brumas) o de raíz
   FOLKLÓRICA. Cualquier acorde puede RETORNAR al que le precede, y los sucesivos pueden
-  retornar a una formación ORIGINAL (el retorno como principio direccional).`;
+  retornar a una formación ORIGINAL (el retorno como principio direccional).
+- MÁS ARTIFICIOS DE FRESCURA: un pasaje entero de acordes puede establecerse LENTAMENTE hasta
+  que REAPAREZCA el acorde original; las progresiones RETRÓGRADAS (deshacer el camino) dan
+  nuevo significado al establecimiento armónico original. Acordes INESPERADOS en los puntos de
+  RESOLUCIÓN refrescan el fluir. ELISIÓN: omite un acorde ESPERADO (por pasajes previamente
+  establecidos o sucesiones secuenciales/tradicionales fuertes) para crear relaciones nuevas.
+  PROGRESIÓN DESMEMBRADA: si un pasaje es temáticamente significativo y fácil de retener de
+  oído, sus acordes pueden OMITIRSE o DESORDENARSE al reexponerlo (el oído completa el resto).`;
+
+// --- Bloque TRANSVERSAL de fase 2: conexión de los acordes (Persichetti cap. 9) ---
+// Se añade al prompt de realización de voces de cualquier selección con técnicas
+// del siglo XX (el tonal severo puro conserva su conducción Kórsakov sin mezcla).
+export const CHORD_CONNECTION = `CONEXIÓN DE LOS ACORDES: importan DOS factores inseparables —
+QUÉ acorde sigue a cuál, y CÓMO se conectan. Cuando las melodías suenan juntas se forman
+acordes; cuando los acordes se suceden se implica movimiento melódico: hasta el acorde más
+aislado está lleno de POTENCIALIDAD melódica.
+- REPARTO DE PAPELES: las partes EXTERNAS (soprano y bajo) gobiernan la DIRECCIÓN armónica;
+  las INTERNAS aseguran la RELACIÓN entre los acordes. Para un movimiento armónico TRANQUILO,
+  las internas se mueven LO MENOS POSIBLE y los sonidos comunes quedan TENIDOS.
+- Los intervalos PARALELOS atenúan la individualidad de las partes; el movimiento CONTRARIO y
+  OBLICUO les da INDEPENDENCIA. La fuerza de unas líneas independientes identificables puede
+  llegar a SOBREPONERSE al impulso armónico (elige según lo que mande: masa o líneas).
+- Las relaciones tranquilas son solo UNA faceta: peligro de UNIFORMIDAD. También son técnica
+  armónica legítima las partes por SALTO, las disonancias dispersas, los sonidos comunes
+  ESCAPADOS, las tergiversaciones modulatorias y los cromatismos atrevidos.
+- ARTIFICIOS DE FRESCURA en la conducción:
+  · INVERTIR o transportar los intervalos manteniendo los sonidos COMUNES → expande el ámbito
+    del registro sin cambiar la armonía.
+  · SOLAPAMIENTO (overlapping): mover una parte a un sonido MÁS AGUDO que el que acaba de dejar
+    la voz de ENCIMA (o más grave que el que dejó la de abajo) → empuje de SUBIDA o DESCENSO
+    armónico del pasaje entero.
+  · DESVÍO DE OCTAVA: anima una voz transportando uno o más sonidos de su melodía una octava
+    arriba o abajo (desvío puntual de la línea); y el ámbito de la MASA armónica entera puede
+    desviarse REPENTINAMENTE a otra octava (cambio de iluminación).
+  · REFUERZO: las subidas y bajadas melódicas pueden reforzarse con OCTAVAS sucesivas, QUINTAS
+    y ARMONÍA PARALELA (planing) — en coro, dobla la línea en octavas o muévela en bloque.
+  · A DOS PARTES: las quintas y octavas ESCONDIDAS dan fuerza textural a la armonía acoplada a
+    dos voces; la armonía en TERCERAS da libertad de movimientos.
+- La flexibilidad del MEDIO (voces ágiles vs. graves pesadas) contribuye a la flexibilidad
+  lineal: da los diseños rápidos a las voces que pueden con ellos.`;
 
 // --- Fase 1 (armonía) para sistema ARMONÍA COMPUESTA ---
 export const COMPOSITE_HARMONY_SYSTEM = `Eres un compositor del SIGLO XX que trabaja con

@@ -15,6 +15,7 @@ import {
   POLYCHORD_COMPOSE_SYSTEM,
   COMPOSITE_COMPOSE_SYSTEM,
   MIXTO_COMPOSE_SYSTEM,
+  CHORD_CONNECTION,
   resolveSystems,
 } from './systems.js';
 import { melodyByMeasures } from './musicxml.js';
@@ -377,7 +378,16 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
 }
 
 // Selecciona (o COMBINA) el prompt de sistema de la fase 2 según los ids elegidos.
+// A toda selección con técnicas del s.XX se añade el bloque transversal de
+// CONEXIÓN DE LOS ACORDES (Persichetti cap. 9); el tonal severo puro queda intacto.
 function selectComposeSystem(ids) {
+  const base = selectComposeSystemBase(ids);
+  const onlyTonal = ids.length === 1 && ids[0] === 'tonal';
+  if (onlyTonal) return base;
+  return `${base}\n\n=== CONEXIÓN DE LOS ACORDES (transversal, Persichetti cap. 9) ===\n${CHORD_CONNECTION}`;
+}
+
+function selectComposeSystemBase(ids) {
   const map = {
     tonal: SYSTEM_PROMPT,
     cuartal: QUARTAL_COMPOSE_SYSTEM,

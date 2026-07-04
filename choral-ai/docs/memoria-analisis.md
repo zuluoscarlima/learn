@@ -1058,3 +1058,36 @@ Implementación: nuevo bloque transversal HARMONIC_DIRECTION en systems.js, inye
 selectHarmonySystem (harmony.js) en TODA selección con técnicas del s.XX ("=== DIRECCIÓN
 ARMÓNICA (transversal, Persichetti cap. 9) ==="); el tonal severo PURO queda intacto (sus
 reglas Kórsakov de cadencia no se mezclan). Continúa el cap. IX en páginas siguientes.
+
+---
+
+## Persichetti Cap. IX — pp. 190–194: artificios de progresión + CONEXIÓN DE LOS ACORDES
+**Cierre de "Progresión"** (9-10 a 9-13), añadido a HARMONIC_DIRECTION (fase 1):
+- Un pasaje entero puede establecerse LENTAMENTE hasta que REAPAREZCA el acorde original; las
+  progresiones RETRÓGRADAS dan nuevo significado al establecimiento original (9-10).
+- Acordes INESPERADOS en los puntos de RESOLUCIÓN → frescura (9-11).
+- ELISIÓN: omitir un acorde ESPERADO (por pasajes previos o sucesiones secuenciales/
+  tradicionales fuertes) crea relaciones nuevas (9-12).
+- PROGRESIÓN DESMEMBRADA: si el pasaje es temáticamente significativo y retenible de oído, sus
+  acordes pueden OMITIRSE o DESORDENARSE al reexponer (9-13).
+
+**Nueva sección "CONEXIÓN DE LOS ACORDES"** (pp. 191–194) → NUEVO bloque transversal de FASE 2
+`CHORD_CONNECTION` (systems.js), inyectado por selectComposeSystem (compose.js) en toda
+selección con técnicas del s.XX; el tonal severo puro conserva su conducción Kórsakov.
+- Dos factores inseparables: QUÉ acorde sigue a cuál y CÓMO se conectan. Melodías juntas forman
+  acordes; acordes sucesivos implican melodía (raramente hay armonía o contrapunto puros);
+  hasta el acorde más aislado está lleno de POTENCIALIDAD melódica.
+- Las partes EXTERNAS gobiernan la DIRECCIÓN armónica; las INTERNAS aseguran la RELACIÓN. Para
+  movimiento tranquilo: internas quietas y sonidos comunes TENIDOS. Paralelas = menos
+  individualidad; contrario/oblicuo = independencia; unas líneas independientes identificables
+  pueden SOBREPONERSE al impulso armónico.
+- Contra la uniformidad: partes por salto, disonancias dispersas, sonidos comunes ESCAPADOS,
+  tergiversaciones modulatorias y cromatismos atrevidos — todo es técnica armónica.
+- Artificios (9-14 a 9-19): invertir/transportar intervalos con sonidos comunes (expande el
+  ámbito); SOLAPAMIENTO de voces (nota más aguda que la que dejó la voz superior → subida
+  armónica; simétrico hacia abajo); DESVÍO de octava de sonidos de una melodía (anima la voz);
+  desvío REPENTINO de la masa entera a otra octava; refuerzo de subidas/bajadas con octavas
+  sucesivas, quintas y armonía PARALELA; a dos partes, las 5as/8as ESCONDIDAS dan fuerza
+  textural y las TERCERAS libertad. La flexibilidad del medio contribuye a la flexibilidad
+  lineal (dar los diseños rápidos a las voces ágiles).
+Continúa el cap. IX (páginas siguientes).
