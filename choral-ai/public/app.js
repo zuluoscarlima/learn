@@ -212,10 +212,46 @@ fetch('/api/systems')
   .then(({ systems, default: def }) => fillSystems(systems, def))
   .catch(() => {});
 
+// Nº de voces por voicing (para estimar el tamaño de la pieza y avisar).
+const voiceCount = {};
+
 fetch('/api/voicings')
   .then((r) => r.json())
-  .then(({ voicings, default: def }) => fillSelect('voicing', voicings, def))
+  .then(({ voicings, default: def }) => {
+    voicings.forEach((v) => (voiceCount[v.id] = v.voices || 4));
+    fillSelect('voicing', voicings, def);
+    updateSizeWarning();
+  })
   .catch(() => {});
+
+// Aviso cuando compases × voces se acerca al límite de tokens de la API
+// (el presupuesto es ~compases × voces × 900, con techo de 128.000): la pieza
+// podría cortarse. Es orientativo; no bloquea el envío.
+function updateSizeWarning() {
+  const warn = document.getElementById('measures-warn');
+  if (!warn) return;
+  const measures = Number(document.getElementById('measures')?.value) || 0;
+  const vid = document.getElementById('voicing')?.value;
+  const voices = voiceCount[vid] || 4;
+  // Presupuesto de la fase 2 (mismo cálculo que el servidor), techo 128.000.
+  const est = measures * voices * 900;
+  if (est > 125000) {
+    warn.hidden = false;
+    warn.textContent =
+      `⚠️ ${measures} compases × ${voices} voces roza el límite de la IA: la pieza podría ` +
+      `cortarse antes del final. Si ocurre, reduce los compases o elige menos voces.`;
+  } else if (est > 90000) {
+    warn.hidden = false;
+    warn.textContent =
+      `ℹ️ Pieza larga (${measures} compases × ${voices} voces): tardará más y va algo justa de ` +
+      `margen.`;
+  } else {
+    warn.hidden = true;
+  }
+}
+
+document.getElementById('measures')?.addEventListener('input', updateSizeWarning);
+document.getElementById('voicing')?.addEventListener('change', updateSizeWarning);
 
 fetch('/api/textures')
   .then((r) => r.json())

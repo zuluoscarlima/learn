@@ -184,3 +184,12 @@ iframe#pdf {
   border-radius: 8px;
   background: #fff;
 }
+
+/* Aviso de tamaño de pieza (compases × voces cerca del límite de tokens). */
+.field-warn {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: #e0a86b;
+}
