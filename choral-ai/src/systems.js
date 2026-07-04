@@ -908,6 +908,45 @@ REGLAS:
 
 Devuelve ÚNICAMENTE la composición conforme al esquema solicitado.`;
 
+// --- Bloque TRANSVERSAL de fase 1: dirección armónica (Persichetti cap. 9) ---
+// Se añade al prompt del plan armónico de cualquier selección con técnicas del
+// siglo XX (el tonal severo puro conserva sus reglas de cadencia sin mezcla).
+export const HARMONIC_DIRECTION = `PROGRESIÓN: una sucesión de acordes con DIRECCIÓN definida
+tiene función FORMAL. La meta puede alcanzarse o ABANDONARSE; una tonalidad, fijarse o dejarse.
+- DOS FACTORES direccionales: la acción de la FUNDAMENTAL y la localización del BAJO. La
+  fundamental (no necesariamente en el bajo) puede descender mientras el bajo sube, subir
+  mientras baja, o concordar. Diseña AMBAS curvas, no solo el bajo. Las líneas de tensión
+  (melodía, tensión de la textura, bajo, fundamentales implícitas) van en relación VARIABLE:
+  no tienen por qué culminar a la vez.
+- El ÁMBITO/registro de la masa entera afecta a la dirección del sonido; una armonía con
+  fuerte tendencia descendente puede RESISTIR un ámbito elevado.
+- CARÁCTER del movimiento de fundamentales: por 5ª JUSTA = FUERZA; por 3ª = SUAVIDAD; por
+  2ª = BLANDURA; por TRITONO = AMBIGÜEDAD (juntos abarcan los doce sonidos). Dirección:
+  I→V, I→III, I→II ascienden (sea cual sea la inversión); I→IV, I→VI, I→VII descienden;
+  el tritono es indefinido.
+- CICLOS: fija la distancia de fundamentales entre los acordes IMPORTANTES de la frase o
+  cadencia según el ciclo constructivo de la pieza — ciclo de 5as justas, de 3as (mayores y
+  menores alternadas: círculo cromático) o de 2as (mayores y menores). La escritura puede
+  basarse en UNA relación (5ª, 3ª o 2ª), en la TENSIÓN de pasar de una clase de relación a
+  otra, o en el puro movimiento HORIZONTAL de las voces (con fundamentales cromáticamente
+  libres manda la conducción, no la escala).
+- ACORDES DE ENLACE (fundamental indefinida que se desvanece): tríada AUMENTADA, 7ª
+  DISMINUIDA, acordes por 4as justas o por 2as mayores — únelos entre texturas/contextos
+  armónicos distintos como bisagras versátiles.
+- LÍNEA MELÓDICA como guía: una línea (externa O interna) puede dirigir la progresión. Sus
+  elementos deben poder RETENERSE de oído; lo que tenga significado formal debe volverse
+  característica melódica Y armónica. Vigila puntos culminantes, diseño, fraseo, dinámica y
+  el peso rítmico de cada sonido. Un pasaje temático VITAL puede transponerse a varios
+  niveles tonales (la transposición aclara y da brillo); el menor cambio de ámbito puede
+  transformar el significado de la idea. Recupera el EQUILIBRIO armónico tras cambios rápidos.
+- Sin línea dada: céntrate en las partes EXTERNAS; si dudas de la superior, fija antes unos
+  sonidos del bajo (y viceversa). Si todo arranca demasiado deprisa, DILATA la mayoría de las
+  partes con sonidos largos y deja que una se mueva con un fragmento del tema.
+- MOVIMIENTOS ESPECIALES: el INTERCAMBIO oscilante de 2–3 acordes sirve para pasajes
+  ATMOSFÉRICOS (sin tonalidad definida ni movimiento armónico: colchones, brumas) o de raíz
+  FOLKLÓRICA. Cualquier acorde puede RETORNAR al que le precede, y los sucesivos pueden
+  retornar a una formación ORIGINAL (el retorno como principio direccional).`;
+
 // --- Fase 1 (armonía) para sistema ARMONÍA COMPUESTA ---
 export const COMPOSITE_HARMONY_SYSTEM = `Eres un compositor del SIGLO XX que trabaja con
 ARMONÍA COMPUESTA (Persichetti cap. 8): acordes construidos por la superposición SIMULTÁNEA

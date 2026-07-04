@@ -16,6 +16,7 @@ import {
   POLYCHORD_HARMONY_SYSTEM,
   COMPOSITE_HARMONY_SYSTEM,
   MIXTO_HARMONY_SYSTEM,
+  HARMONIC_DIRECTION,
   resolveSystems,
 } from './systems.js';
 import { melodyByMeasures } from './musicxml.js';
@@ -385,7 +386,16 @@ function normalize(chords, measures) {
 }
 
 // Selecciona (o COMBINA) el prompt de sistema de la fase 1 según los ids elegidos.
+// A toda selección con técnicas del s.XX se añade el bloque transversal de
+// DIRECCIÓN ARMÓNICA (Persichetti cap. 9); el tonal severo puro queda intacto.
 function selectHarmonySystem(ids) {
+  const base = selectHarmonySystemBase(ids);
+  const onlyTonal = ids.length === 1 && ids[0] === 'tonal';
+  if (onlyTonal) return base;
+  return `${base}\n\n=== DIRECCIÓN ARMÓNICA (transversal, Persichetti cap. 9) ===\n${HARMONIC_DIRECTION}`;
+}
+
+function selectHarmonySystemBase(ids) {
   const map = {
     tonal: SYSTEM_PROMPT,
     cuartal: QUARTAL_HARMONY_SYSTEM,

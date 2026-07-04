@@ -1015,3 +1015,46 @@ Integrado en COMPOSITE_HARMONY_SYSTEM y COMPOSITE_COMPOSE_SYSTEM (niveles distin
 separación, estricto con ornamentos vs. parcial externas/internas, espejo temático con
 original+inversión simultáneos, 12 puntos pivote). **Cap. VIII cerrado** (armonía compuesta +
 fundida + escritura en espejo). Siguiente en el libro: Cap. IX.
+
+---
+
+## Persichetti Cap. IX — pp. 185–189: DIRECCIÓN ARMÓNICA (Progresión) — BLOQUE TRANSVERSAL
+Capítulo transversal (no una técnica): cómo dar DIRECCIÓN a cualquier progresión del s.XX.
+- **Progresión** = sucesión con dirección definida → función FORMAL; su meta puede alcanzarse o
+  ABANDONARSE, una tonalidad fijarse o dejarse. (Nota: "progresión" en sentido amplio de serie
+  de relaciones, no necesariamente por modelo/marcha.)
+- **Dos factores direccionales** (9-1): acción de la FUNDAMENTAL y localización del BAJO; pueden
+  divergir (fundamental baja mientras el bajo sube, etc.) o concordar. (9-2) Las líneas de
+  tensión — melodía, tensión de textura, bajo, fundamentales implícitas — van en relación
+  VARIABLE (curvas independientes). (9-3/9-4) El ÁMBITO de la masa afecta la dirección; una
+  armonía muy descendente resiste un ámbito elevado.
+- **Carácter por intervalo de fundamentales** (9-5): 5ª justa = FUERZA; 3ª = SUAVIDAD; 2ª =
+  BLANDURA; tritono = AMBIGÜEDAD (juntos: los 12 sonidos). Dirección: I→V, I→III, I→II
+  ascendente (independiente de inversión/colocación); I→IV, I→VI, I→VII descendente; tritono
+  indefinido.
+- **Ciclos** (9-6): la distancia de fundamentales entre acordes importantes de frase/cadencia la
+  determina el CICLO constructivo: de 5as justas (12 sonidos), de 3as (may./men. alternadas →
+  círculo cromático), de 2as (may./men.). La escritura puede basarse en una relación (5ª/3ª/2ª),
+  en la TENSIÓN de pasar de una clase a otra, o en el movimiento horizontal de las voces.
+- Relaciones dentro o fuera de una escala prevaleciente; con fundamentales cromáticamente libres
+  manda el movimiento HORIZONTAL. El cromatismo generoso en todas las voces BORRA la
+  construcción interválica. **ACORDES DE ENLACE** (fundamental indefinida que se desvanece):
+  tríada aumentada, 7ª disminuida, por 4as justas, por 2as mayores — bisagras entre texturas
+  ("síntesis de contextos armónicos").
+- **Línea melódica como guía** (interna o externa): el oído debe RETENER sus elementos; lo
+  formalmente significativo se vuelve característica melódica Y armónica. Vigilancia constante:
+  culminaciones, diseño, articulación, fraseo, dinámica, peso rítmico, texturas interválicas,
+  medio. Otros factores: tritono horizontal/vertical, centro rector o fugaz, RECUPERACIÓN del
+  equilibrio tras cambios rápidos. La TRANSPOSICIÓN a varios niveles da brillo; el mínimo cambio
+  de ámbito transforma la idea.
+- **Sin línea dada**: atención a las EXTERNAS; si dudas de la superior, fija antes unos sonidos
+  del bajo (y viceversa). Si todo arranca deprisa: DILATA la mayoría con sonidos largos y deja
+  una voz moverse con un fragmento del tema.
+- **Movimientos especiales** (9-7/9-8/9-9): INTERCAMBIO oscilante de 2–3 acordes para pasajes
+  ATMOSFÉRICOS (sin tonalidad ni movimiento armónico — ¡el fundamento teórico del COLCHÓN tipo
+  Ešenvalds!) o de raíz folklórica; retorno al acorde precedente (a) y retorno de los sucesivos
+  a una formación original (b) como principio direccional.
+Implementación: nuevo bloque transversal HARMONIC_DIRECTION en systems.js, inyectado por
+selectHarmonySystem (harmony.js) en TODA selección con técnicas del s.XX ("=== DIRECCIÓN
+ARMÓNICA (transversal, Persichetti cap. 9) ==="); el tonal severo PURO queda intacto (sus
+reglas Kórsakov de cadencia no se mezclan). Continúa el cap. IX en páginas siguientes.
