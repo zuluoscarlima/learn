@@ -15,8 +15,8 @@ export const SYSTEMS = {
   anadidos: { group: 'Siglo XX', label: 'Sonidos añadidos (Persichetti)' },
   policordes: { group: 'Siglo XX', label: 'Policordes / bitonalidad (Persichetti)' },
   compuesta: { group: 'Siglo XX', label: 'Armonía compuesta y en espejo (Persichetti)' },
-  contemporaneo: { group: 'Siglo XX', label: 'Contemporáneo / pandiatónico (Lauridsen–Whitacre–Ešenvalds)' },
-  impresionista: { group: 'Siglo XX', label: 'Impresionista / modal (Debussy–báltico)' },
+  contemporaneo: { group: 'Siglo XX', label: 'Pandiatónico luminoso (Whitacre–Ešenvalds)' },
+  impresionista: { group: 'Siglo XX', label: 'Modal / impresionista (planing, Debussy)' },
 };
 
 export const DEFAULT_SYSTEM = 'tonal';
