@@ -970,7 +970,20 @@ tiene función FORMAL. La meta puede alcanzarse o ABANDONARSE; una tonalidad, fi
   ERRADICA la necesidad de resolución. Las combinaciones armónicas disonantes a menudo producen
   una MELODÍA DIATÓNICA (fuerza lineal legítima, no mezcla artificial); en la armonía
   desgranada del pensamiento HORIZONTAL (contrapunto de acordes, acordes ornamentales,
-  reflexión de partes) los choques pesan menos al oído.`;
+  reflexión de partes) los choques pesan menos al oído.
+- ARMONÍA PARALELA (planing): todas las voces moviéndose en la MISMA dirección — desde el
+  paralelismo ESTRICTO (acordes idénticos) hasta el movimiento SIMILAR (los acordes varían,
+  la dirección se comparte). Es una "MELODÍA ACORDAL": la extensión textural de una línea
+  melódica — su dirección la gobiernan consideraciones MELÓDICAS y su construcción interválica
+  la clase de textura que pida la forma dramática. En paralelo, las 4as y 5as son tan
+  transparentes como las 3as y 6as, y las 2as y 7as encuentran libertad horizontal.
+  · PARALELO REAL (transposición exacta): tiende a ROMPER el centro tonal — sirve para
+    introducir o abandonar la ATONALIDAD, para transiciones modulatorias y exposiciones donde
+    la tonalidad deba quedar OSCURA.
+  · PARALELO TONAL (intervalos ajustados a la escala en vigor): tiende a PRESERVAR la
+    MODALIDAD.
+  · El paralelo MOMENTÁNEO acentúa una subida o caída de la línea melódica o introduce un área
+    tonal NUEVA; el paralelo EXTENSO cansa pronto (renuévalo — ver los recursos de conexión).`;
 
 // --- Bloque TRANSVERSAL de fase 2: conexión de los acordes (Persichetti cap. 9) ---
 // Se añade al prompt de realización de voces de cualquier selección con técnicas
@@ -1027,7 +1040,31 @@ aislado está lleno de POTENCIALIDAD melódica.
     progresiva mueve las disonancias SIN resolución. Para una subida REPENTINA de tensión, el
     sonido disonante puede resolver EN OTRA VOZ.
   · COLOR: acoplarlo con intervalos CONSONANTES lo SUAVIZA; DUPLICARLO aumenta la tensión (y
-    duplicado en un acorde simple, le permite funcionar con formaciones complejas).`;
+    duplicado en un acorde simple, le permite funcionar con formaciones complejas). Para
+    ABLANDAR disonancias DUPLICADAS: las voces que ENVUELVEN la disonancia se mueven en forma
+    CONTRARIA, o uno de los sonidos duplicados se mueve ANTES de que el otro resuelva.
+  · DISPOSICIÓN: a 3–4 partes, la disposición busca la MÁXIMA SONORIDAD; a MÁS de 4 partes
+    (divisi), duplicación y disposición buscan VARIEDAD DE TEXTURA — colores y pesos por
+    OMISIÓN y DUPLICACIÓN de miembros consonantes y disonantes según el momento dramático. En
+    una cadencia de material disonante sobre clima CONSONANTE, duplica EXTENSAMENTE todos los
+    miembros del acorde consonante para no perder sonoridad.
+- ARMONÍA PARALELA (planing) — recursos para RENOVARLA antes de que canse (el movimiento
+  similar extenso FATIGA pronto, aun con acordes complejos):
+  · movimiento CONTRARIO en UNA voz contra la sucesión paralela general;
+  · convertir el paralelo TONAL en REAL (o viceversa);
+  · pasar del paralelismo estricto al movimiento SIMILAR (los acordes varían, la dirección se
+    mantiene);
+  · que las FUNDAMENTALES de los acordes paralelos se muevan en dirección OPUESTA a la masa;
+  · cambiar DIRECCIÓN y REGISTRO; soltar SONIDOS SUELTOS mientras continúa el paralelo;
+  · desviar la atención con ORNAMENTACIÓN e IMITACIÓN; cambiar de OCTAVA una parte;
+  · cambiar el COLOR/reparto vocal (qué voces llevan el bloque, timbres distintos por sonido);
+  · GOTEO: emitir los sonidos SUCESIVAMENTE (uno a uno) hasta reproducir el acorde en otro
+    grado;
+  · insertar fragmentos NO paralelos; o DOS series paralelas en movimiento CONTRARIO (el
+    resultado puede ser o no reflexivo/espejo);
+  · ARMONÍA OBLICUA: romper MELÓDICAMENTE el acorde dominante de la sucesión y colocar una
+    NUEVA serie de acordes paralelos (p. ej. por cuartas) BAJO los sonidos melódicos del acorde
+    roto.`;
 
 // --- Fase 1 (armonía) para sistema ARMONÍA COMPUESTA ---
 export const COMPOSITE_HARMONY_SYSTEM = `Eres un compositor del SIGLO XX que trabaja con

@@ -1130,3 +1130,39 @@ Continúa el cap. IX (páginas siguientes).
   intervalos consonantes; DUPLICAR el sonido disonante AUMENTA la tensión y permite al acorde
   simple funcionar con formaciones complejas (9-31).
 Continúa el cap. IX.
+
+---
+
+## Persichetti Cap. IX — pp. 200–203: fin de disonancia + ARMONÍA PARALELA — APLICADO
+**Remate de "Disonancia"** (p. 200, → CHORD_CONNECTION):
+- ABLANDAR disonancias DUPLICADAS: las voces que ENVUELVEN la disonancia van en movimiento
+  contrario, o un duplicado se mueve ANTES de que el otro resuelva.
+- DISPOSICIÓN: a 3–4 partes se busca máxima SONORIDAD; a MÁS de 4 (divisi), VARIEDAD DE
+  TEXTURA (colores/pesos por omisión y duplicación de miembros consonantes y disonantes).
+  Cadencia de material disonante sobre clima consonante → duplicar extensamente el acorde
+  consonante para no perder sonoridad.
+
+**Nueva sección "ARMONÍA PARALELA"** (pp. 200–203) — el planing sistematizado:
+- Definición (9-32): todas las voces en la MISMA dirección; incluye el paralelismo ESTRICTO
+  (acordes idénticos) y el movimiento SIMILAR (acordes varían, dirección compartida);
+  antecedentes: sucesiones de sextas (s. XVIII) y de 7ª disminuida (s. XIX). Transposiciones
+  REALES o TONALES.
+- PARALELO REAL (transposición exacta) → rompe el centro tonal; introduce/abandona la
+  ATONALIDAD; transiciones modulatorias, exposiciones de tonalidad oscura. PARALELO TONAL
+  (intervalos según la escala en vigor) → preserva la MODALIDAD. (→ HARMONIC_DIRECTION.)
+- "MELODÍA ACORDAL": la armonía paralela es la extensión textural de una línea melódica; su
+  dirección la gobiernan consideraciones MELÓDICAS y su interválica la textura que pida la
+  forma dramática. En paralelo las 4as/5as son tan transparentes como 3as/6as; las 2as/7as
+  ganan libertad horizontal.
+- El paralelo MOMENTÁNEO acentúa subidas/caídas de la línea o introduce un área tonal nueva;
+  el EXTENSO cansa pronto aun con acordes complejos.
+- RECURSOS DE RENOVACIÓN (9-33 a 9-38, → CHORD_CONNECTION): contrario en UNA voz contra la masa;
+  tonal→real; estricto→similar; FUNDAMENTALES en dirección opuesta a la masa; cambio de
+  dirección y registro; sonidos SUELTOS mientras sigue el paralelo; ornamentación e imitación
+  que desvían la atención; cambio de octava en una parte; cambio de instrumentación/reparto;
+  GOTEO (sonidos emitidos sucesivamente hasta reproducir el acorde en otro grado); fragmentos
+  NO paralelos intercalados; DOS series paralelas en movimiento CONTRARIO (reflexivo o no).
+- ARMONÍA OBLICUA (9-39): romper melódicamente el acorde dominante de la sucesión y colocar una
+  NUEVA serie de acordes paralelos (p. ej. por cuartas) BAJO los sonidos melódicos del acorde
+  roto (3as con añadidos arriba / 4as paralelas debajo).
+Continúa el cap. IX.
