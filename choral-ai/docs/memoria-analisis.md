@@ -1091,3 +1091,42 @@ selección con técnicas del s.XX; el tonal severo puro conserva su conducción 
   textural y las TERCERAS libertad. La flexibilidad del medio contribuye a la flexibilidad
   lineal (dar los diseños rápidos a las voces ágiles).
 Continúa el cap. IX (páginas siguientes).
+
+---
+
+## Persichetti Cap. IX — pp. 195–199: fin de conexión + DISONANCIA — APLICADO
+**Cierre de "Conexión de los acordes"** (9-20 a 9-24), añadido a CHORD_CONNECTION (fase 2):
+- VARIEDAD DE DENSIDAD: incrementar/disminuir el número de partes en acordes sucesivos (9-21).
+- Un punto armónico CLIMÁTICO puede dejarse EN SUSPENSO temporalmente mediante PAUSAS (9-22).
+- MELODÍA ALTERNADA entre las partes (la línea salta de voz en voz) → implicaciones TEMÁTICAS
+  en la armonía (9-23).
+- CROMATISMO TOTAL: cuando TODAS las voces se mueven por semitono, cualquier combinación de
+  disonancias tiene significado y dirección; las partes con los intervalos disonantes más
+  fuertes, mejor SEPARADAS (9-24).
+
+**Nueva sección "DISONANCIA"** (pp. 196–199):
+- Marco CONTEXTUAL (→ HARMONIC_DIRECTION, fase 1): cualquier combinación es relativamente
+  consonante si hay otra MÁS disonante alrededor; la disonancia solo existe donde hay una NORMA
+  de consonancia implicada/establecida (la novena: inestable entre tríadas, consonante entre
+  novenas/oncenas/poliacordes). La tensión se relaja hacia acordes del MISMO valor; yuxtaponer
+  valores DISTINTOS crea tensión. Inversión de papeles (9-25): el "consonante" tiende a MOVERSE
+  y el "disonante" queda TRANQUILO. El flujo cons↔dis da forma de frase, cadencias firmes y
+  articulación seccional. El oído del compositor decide (criterio estético). NORMA en contexto
+  disonante: empezar y TERMINAR con acorde disonante; la consonancia puede resolver EN
+  disonancia. Los extremadamente disonantes: para modelos secuenciales, líneas predominantes,
+  intervalos característicos; un acorde disonante puede REPRESENTAR una tonalidad y generar una
+  obra larga. Usos especiales (9-26): cerrar una frase siendo el INICIO de la siguiente
+  (elisión de frases, transpuesto o no); o repetirse tan intensamente que se ERRADICA la
+  necesidad de resolver. Las combinaciones disonantes a menudo producen MELODÍA DIATÓNICA
+  (9-27; fuerza lineal genuina, no mezcla artificial); en el pensamiento HORIZONTAL (contrapunto
+  de acordes, ornamentales, reflexión) los choques pesan menos.
+- TRATAMIENTO del sonido disonante (→ CHORD_CONNECTION, fase 2): resolución SUAVE en el sonido
+  MÁS CERCANO de la escala prevaleciente (9-28); RESISTIR por grados en dirección OPUESTA (si
+  equidistan, ambas naturales); PASIVIDAD: estacionario o salto de OCTAVA en el cambio;
+  EVAPORARSE saltando a otro miembro del mismo acorde (9-29); CONGELARSE en armonía paralela sin
+  resolver hasta el final del pasaje; SALTAR LIBRE (propósito melódico, alta tensión mixta,
+  motivos fuertes que oscurecen la resolución; la marcha progresiva mueve disonancias sin
+  resolver); subida repentina de tensión = resolver EN OTRA VOZ (9-30); SUAVIZAR acoplando con
+  intervalos consonantes; DUPLICAR el sonido disonante AUMENTA la tensión y permite al acorde
+  simple funcionar con formaciones complejas (9-31).
+Continúa el cap. IX.

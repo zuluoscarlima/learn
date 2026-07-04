@@ -952,7 +952,25 @@ tiene función FORMAL. La meta puede alcanzarse o ABANDONARSE; una tonalidad, fi
   RESOLUCIÓN refrescan el fluir. ELISIÓN: omite un acorde ESPERADO (por pasajes previamente
   establecidos o sucesiones secuenciales/tradicionales fuertes) para crear relaciones nuevas.
   PROGRESIÓN DESMEMBRADA: si un pasaje es temáticamente significativo y fácil de retener de
-  oído, sus acordes pueden OMITIRSE o DESORDENARSE al reexponerlo (el oído completa el resto).`;
+  oído, sus acordes pueden OMITIRSE o DESORDENARSE al reexponerlo (el oído completa el resto).
+- DISONANCIA CONTEXTUAL (no absoluta): un acorde es disonante SOLO en relación con el esquema
+  armónico total y con una NORMA de consonancia implicada o establecida — una novena es
+  inestable entre tríadas, pero perfectamente CONSONANTE entre novenas, oncenas y poliacordes.
+  La tensión se relaja hacia acordes del MISMO valor; la YUXTAPOSICIÓN de acordes de valores
+  DISTINTOS crea fuerte tensión. Incluso los papeles pueden invertirse: el acorde "consonante"
+  tiende a MOVERSE (impulso melódico y parentescos) mientras el "disonante" permanece
+  TRANQUILO. El flujo de consonancia↔disonancia da FORMA a las frases, firmeza a las cadencias
+  y articulación a las secciones.
+- USOS del acorde disonante: como NORMA en contexto disonante, empieza y TERMINA con un acorde
+  disonante (la consonancia puede entonces "resolver" EN disonancia). Reserva los
+  extremadamente disonantes para modelos secuenciales, líneas melódicas predominantes e
+  intervalos característicos. Un acorde disonante puede REPRESENTAR una tonalidad y generar la
+  forma de una obra. Fuera de contexto disonante: puede CERRAR una frase siendo a la vez el
+  INICIO de la siguiente (transpuesto o no), o repetirse tan dinámica e intensamente que se
+  ERRADICA la necesidad de resolución. Las combinaciones armónicas disonantes a menudo producen
+  una MELODÍA DIATÓNICA (fuerza lineal legítima, no mezcla artificial); en la armonía
+  desgranada del pensamiento HORIZONTAL (contrapunto de acordes, acordes ornamentales,
+  reflexión de partes) los choques pesan menos al oído.`;
 
 // --- Bloque TRANSVERSAL de fase 2: conexión de los acordes (Persichetti cap. 9) ---
 // Se añade al prompt de realización de voces de cualquier selección con técnicas
@@ -984,7 +1002,32 @@ aislado está lleno de POTENCIALIDAD melódica.
   · A DOS PARTES: las quintas y octavas ESCONDIDAS dan fuerza textural a la armonía acoplada a
     dos voces; la armonía en TERCERAS da libertad de movimientos.
 - La flexibilidad del MEDIO (voces ágiles vs. graves pesadas) contribuye a la flexibilidad
-  lineal: da los diseños rápidos a las voces que pueden con ellos.`;
+  lineal: da los diseños rápidos a las voces que pueden con ellos.
+- VARIEDAD DE DENSIDAD: incrementa o disminuye el NÚMERO de partes de acorde a acorde (a3, a5,
+  a8…) — la densidad cambiante es una fuerza expresiva propia. Un punto armónico CLIMÁTICO
+  puede dejarse temporalmente EN SUSPENSO mediante PAUSAS (silencios que retienen la
+  resolución).
+- MELODÍA ALTERNADA: las partes pueden TURNARSE en la producción de la melodía (la línea salta
+  de voz en voz); cuando las partes participan así de una melodía, la armonía adquiere
+  implicaciones TEMÁTICAS.
+- CROMATISMO TOTAL: cada parte puede moverse CROMÁTICAMENTE hacia acordes complejos atrevidos —
+  cuando TODAS las voces se mueven por SEMITONO, cualquier combinación de disonancias tiene
+  significado y dirección. Mantén mejor SEPARADAS las partes que contienen los intervalos
+  disonantes más fuertes.
+- TRATAMIENTO DEL SONIDO DISONANTE (disonancia contextual, no absoluta):
+  · Resolución SUAVE: el sonido disonante resuelve en el sonido MÁS CERCANO de la escala
+    prevaleciente (movimiento de las partes que contienen los sonidos más disonantes).
+  · RESISTIR: puede desafiar su tendencia moviéndose por grados en la dirección OPUESTA (si
+    los sonidos adyacentes equidistan, ambas direcciones son naturales); para PASIVIDAD sin
+    compromiso, queda ESTACIONARIO o salta una OCTAVA en el cambio de acorde.
+  · EVAPORARSE: saltar a otro miembro del MISMO acorde; o CONGELARSE en armonía paralela y no
+    resolver hasta el final del pasaje.
+  · SALTAR LIBRE: con propósitos melódicos, en alta tensión de formaciones mixtas, o cuando
+    motivos melódicos fuertes OSCURECEN su necesidad de resolver; el impulso de la marcha
+    progresiva mueve las disonancias SIN resolución. Para una subida REPENTINA de tensión, el
+    sonido disonante puede resolver EN OTRA VOZ.
+  · COLOR: acoplarlo con intervalos CONSONANTES lo SUAVIZA; DUPLICARLO aumenta la tensión (y
+    duplicado en un acorde simple, le permite funcionar con formaciones complejas).`;
 
 // --- Fase 1 (armonía) para sistema ARMONÍA COMPUESTA ---
 export const COMPOSITE_HARMONY_SYSTEM = `Eres un compositor del SIGLO XX que trabaja con
