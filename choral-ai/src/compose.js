@@ -486,13 +486,15 @@ export async function composeChoral(params, parts, texture, harmonyText) {
     return stream.finalMessage();
   };
 
-  let message = await runOnce(maxTokens, effortForQuality(params.quality));
+  const firstEffort = effortForQuality(params.quality);
+  let message = await runOnce(maxTokens, firstEffort);
   if (message.stop_reason === 'refusal') {
     throw new Error('El modelo rechazó la solicitud por motivos de seguridad.');
   }
-  // REINTENTO automático si se cortó por longitud: sube el presupuesto al máximo
-  // (128k) y baja el esfuerzo a "low" para dejar el máximo de tokens al JSON.
-  if (message.stop_reason === 'max_tokens' && maxTokens < 128000) {
+  // REINTENTO automático si se cortó por longitud: presupuesto al MÁXIMO (128k) y
+  // esfuerzo "low" (menos "pensar" = más tokens libres para el JSON). Sirve incluso
+  // si el primer intento ya iba a 128k, porque al pensar menos cabe más partitura.
+  if (message.stop_reason === 'max_tokens' && !(maxTokens >= 128000 && firstEffort === 'low')) {
     message = await runOnce(128000, 'low');
     if (message.stop_reason === 'refusal') {
       throw new Error('El modelo rechazó la solicitud por motivos de seguridad.');
