@@ -454,33 +454,49 @@ export async function composeChoral(params, parts, texture, harmonyText) {
 
   // Techo de salida ADAPTATIVO (Opus 4.8 admite hasta 128k con streaming). Cada
   // compás × voz genera un bloque de JSON extenso; escalamos con el tamaño de la
-  // pieza para que las obras LARGAS (32–36 compases) se compongan COMPLETAS de una
-  // sola vez sin cortarse por longitud. Suelo de 64k, techo de 128k.
+  // pieza para que las obras LARGAS se compongan COMPLETAS de una sola vez sin
+  // cortarse. Las texturas MELISMÁTICAS/floridas y el divisi multiplican las notas
+  // por compás, así que aumentamos el presupuesto en esos casos. Suelo 72k, techo 128k.
   const measures = Number(params.measures) || 8;
-  const maxTokens = Math.min(128000, Math.max(64000, Math.round(measures * parts.length * 900)));
+  let perCell = 900;
+  if (params.melisma === 'melismatico') perCell *= 1.6; // muchas notas por sílaba
+  if (texture && texture.sustained) perCell *= 1.15; // solistas floridos + colchón
+  if (params.divisi === 'generoso') perCell *= 1.15; // acordes de divisi = más datos
+  const budget = Math.round(measures * parts.length * perCell);
+  const maxTokens = Math.min(128000, Math.max(72000, budget));
 
-  const stream = client.messages.stream({
-    model: MODEL,
-    max_tokens: maxTokens,
-    // display:summarized hace que el razonamiento fluya en streaming y evita
-    // que la conexión se corte por inactividad durante el "pensar".
-    thinking: { type: 'adaptive', display: 'summarized' },
-    output_config: {
-      // El esfuerzo lo decide el selector de calidad/velocidad: low (rápida),
-      // medium (equilibrada) o high (alta calidad, más lento y preciso).
-      effort: effortForQuality(params.quality),
-      format: { type: 'json_schema', schema: COMPOSITION_SCHEMA },
-    },
-    system: systemPrompt,
-    messages: [
-      { role: 'user', content: buildUserPrompt(params, parts, texture, harmonyText) },
-    ],
-  });
+  const userContent = buildUserPrompt(params, parts, texture, harmonyText);
 
-  const message = await stream.finalMessage();
+  // Lanza una petición de realización. `effort` controla cuánto "piensa" (menos
+  // pensar = más tokens libres para el JSON de salida).
+  const runOnce = async (maxOut, effort) => {
+    const stream = client.messages.stream({
+      model: MODEL,
+      max_tokens: maxOut,
+      // display:summarized hace que el razonamiento fluya en streaming y evita
+      // que la conexión se corte por inactividad durante el "pensar".
+      thinking: { type: 'adaptive', display: 'summarized' },
+      output_config: {
+        effort,
+        format: { type: 'json_schema', schema: COMPOSITION_SCHEMA },
+      },
+      system: systemPrompt,
+      messages: [{ role: 'user', content: userContent }],
+    });
+    return stream.finalMessage();
+  };
 
+  let message = await runOnce(maxTokens, effortForQuality(params.quality));
   if (message.stop_reason === 'refusal') {
     throw new Error('El modelo rechazó la solicitud por motivos de seguridad.');
+  }
+  // REINTENTO automático si se cortó por longitud: sube el presupuesto al máximo
+  // (128k) y baja el esfuerzo a "low" para dejar el máximo de tokens al JSON.
+  if (message.stop_reason === 'max_tokens' && maxTokens < 128000) {
+    message = await runOnce(128000, 'low');
+    if (message.stop_reason === 'refusal') {
+      throw new Error('El modelo rechazó la solicitud por motivos de seguridad.');
+    }
   }
 
   const composition = extractJson(message);
