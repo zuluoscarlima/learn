@@ -1313,3 +1313,37 @@ compases para cuadrarla (solo fuera del modo melodía).
   la línea de armonía ("📝 La letra no cabía en X compases: se ampliaron a Y…"; si supera 64,
   avisa que divida el texto). El presupuesto de tokens de la fase 2 usa el nº ya ampliado y el
   reintento automático cubre las piezas grandes.
+
+---
+
+## ANÁLISIS PROFUNDO: Ešenvalds, "O Salutaris Hostia" (Musica Baltica MB 0993, 2009)
+Partitura completa analizada (SS soli + SSAATTBB, 38 compases). NUEVA textura dedicada
+`o_salutaris` ("apartado independiente" pedido por el usuario) + este análisis.
+DATOS:
+- Tonalidad RE MAYOR (2 sostenidos), compás C (4/4), "Con sentimento", NEGRA = 56. Toda la obra
+  en dinámicas SUAVES (p–mf; pp al final).
+- Plantilla: DOS SOLISTAS SOPRANO (Solo I, Solo II) por encima del coro SSAATTBB.
+CREDO DE EŠENVALDS (impreso en la propia edición): "For me, harmony is most important – how it
+flows and becomes a new harmony. The melodic line is secondary." → prioridad al FLUJO ARMÓNICO;
+melodía al servicio de la armonía; ritmo armónico muy lento.
+FORMA / TEXTURA:
+- Apertura (c.1-5): SOLO I entra solo (mp) "O salutaris" con giro florido + TRESILLO; SOLO II
+  responde IMITANDO (eco) 1-2 tiempos después "Hostia". Debajo, S+A del coro sostienen un
+  COLCHÓN homofónico p en 3ras/6tas, notas largas; TENOR y BAJO CALLAN (tacent).
+- c.11-20: los dos solos se funden en PARALELO por TERCERAS, muy triplet-heavy ("Da robur, fer
+  auxilium"); el coro crece por ACUMULACIÓN — entra el TENOR (c.11, "Da robur") y luego el BAJO,
+  de p a mf. En c.16 la línea solista se marca "6-8 soprani" (pasa de solista a pequeño grupo
+  para hinchar la dinámica).
+- c.21-35: sigue el diálogo imitativo/paralelo de los solos ("Uni trinoque Domino… Nobis donet
+  in patria"); marcas alternas "3-4 soprani" / "Solo I" / "Solo II" / "unis." en las líneas
+  agudas (DIVISI DE GRUPO como recurso dinámico, firma notacional de la obra).
+- Cierre (c.36-38): los solos terminan "patria" y callan; el CORO sostiene un "A-men" larguísimo
+  en redondas ligadas, pp, conclusivo por PERMANENCIA (no cadencia funcional); calderón.
+RECURSOS CLAVE (ya reflejados en la textura `o_salutaris`):
+1) Dúo de solistas: imitación (eco) → fusión en 3ras paralelas; melismas con tresillos/seisillos,
+   puntillos, anacrusas, rubato, contorno de onda.
+2) Colchón coral homofónico sostenido (notas largas ligadas, 3ras/6tas), ritmo armónico lento.
+3) ACUMULACIÓN de densidad: S+A → +T → +B, arco dinámico suave.
+4) DIVISI DE GRUPO ("3-4 soprani", "6-8 soprani", "unis.", "Solo") como control dinámico.
+5) Armonía PRIMARIA, diatónica luminosa con color añadido; cierre "Amen" pp por permanencia.
+(9ª obra de Ešenvalds en el acervo; refuerza y precisa la textura duo_solistas_imitacion.)

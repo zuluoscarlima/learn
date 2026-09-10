@@ -97,6 +97,38 @@ export const TEXTURES = {
       'silencios. Pon la sílaba en la primera nota de cada melisma y deja VACÍO el lyric en ' +
       'las siguientes.',
   },
+  o_salutaris: {
+    label: 'O Salutaris Hostia — modelo Ešenvalds (dúo de solistas + colchón)',
+    sustained: true,
+    prompt:
+      'Reproduce fielmente el MODELO de "O Salutaris Hostia" de Ēriks Ešenvalds (SS soli sobre ' +
+      'SSAATTBB), "Con sentimento", muy sereno y lento (negra ≈ 52–58), diatónico y luminoso, ' +
+      'todo en dinámicas SUAVES (pp–mf). CREDO de Ešenvalds que DEBES respetar: "la ARMONÍA es ' +
+      'lo más importante — cómo fluye y se transforma en una nueva armonía; la línea melódica es ' +
+      'secundaria"; por tanto prioriza el FLUJO ARMÓNICO cálido (acordes diatónicos con algún ' +
+      'color de 2ª/6ª/9ª añadida, enlaces suaves por nota común y planing), ritmo armónico MUY ' +
+      'LENTO, y deja que la melodía sirva a la armonía.\n' +
+      'DOS SOLISTAS SOPRANO (Solo I y Solo II) por encima del coro:\n' +
+      '- APERTURA: entra SOLO I solo (mp) con un giro florido; SOLO II responde IMITÁNDOLO (eco) ' +
+      'uno o dos tiempos después. Las dos líneas son MELISMÁTICAS y muy ondulantes, LLENAS de ' +
+      'TRESILLOS ("tuplet":3) y algún seisillo, con puntillos y anacrusas (rubato).\n' +
+      '- Tras el juego imitativo, las dos solistas se FUNDEN cantando en PARALELO por TERCERAS ' +
+      '(a veces sextas).\n' +
+      '- DIVISI DE GRUPO (firma notacional de la obra): la línea solista puede convertirse en un ' +
+      'PEQUEÑO GRUPO — "3-4 soprani" o "6-8 soprani" — para hinchar la dinámica de forma ' +
+      'controlada, y volver a "unis."/solo después. Realiza esos momentos con DIVISI (campo ' +
+      '"chord") en la voz aguda e indícalo en el campo "text" ("3-4 soprani", "6-8 soprani", ' +
+      '"unis.", "Solo").\n' +
+      'COLCHÓN DEL CORO por debajo: acordes SOSTENIDOS homofónicos en notas largas (blancas/' +
+      'redondas ligadas entre compases, "tie":true), doblados en 3ras/6tas, muy suaves, sin ' +
+      'apenas moverse. ACUMULACIÓN (arco de densidad): empieza con S+A del coro (p) mientras ' +
+      'TENOR y BAJO CALLAN; incorpora el TENOR y luego el BAJO GRADUALMENTE para crecer a mf, y ' +
+      'aclara de nuevo hacia el final.\n' +
+      'CIERRE: el CORO sostiene un "Amen" LARGUÍSIMO, pianísimo, conclusivo por PERMANENCIA ' +
+      '(acorde diatónico pleno), mientras las solistas se apagan; calderón final.\n' +
+      'Pon la sílaba SOLO en la primera nota de cada melisma y deja VACÍO el "lyric" en las ' +
+      'siguientes. Entradas escalonadas con silencios.',
+  },
   solistas_coro: {
     label: 'Solistas sobre coro sostenido',
     sustained: true,
