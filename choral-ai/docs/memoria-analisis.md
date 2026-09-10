@@ -1280,3 +1280,22 @@ El capítulo que da la base teórica del colchón Ešenvalds. Integrado en el si
   (sin bemoles/sostenidos); cualquier escala (incl. sintéticas) sirve de base pandiatónica.
 - Procedencia (armonía estática): Bartók, El castillo de Barba Azul.
 Continúa el cap. X.
+
+---
+
+## NUEVO SISTEMA: "Modal báltico sobre bordón (Ešenvalds)"
+Sistema armónico seleccionable `modal_esenvalds`, distinto del pandiatónico (Whitacre) y del
+modal/impresionista (Debussy): música MODAL folclórica letona sobre PEDAL/BORDÓN, estilo
+Ešenvalds. Dos fases nuevas en systems.js, cableadas en harmony.js y compose.js.
+- Fase 1 (MODAL_ESENVALDS_HARMONY_SYSTEM): modo folk/eclesiástico (dórico/eólico/mixolidio/
+  frigio/lidio) sin sensible; resaltar el grado característico (6ª may. dórica, 7ª men.
+  mixolidia, 4ª aum. lidia, 2ª men. frigia); BORDÓN de tónica(+5ª abierta) en el grave;
+  acordes modales con añadidos 2/6/9, sus, quintas abiertas; movimiento por reiteración sobre
+  el pedal y planing diatónico; mutación modal opcional; cadencias modales (doble tónica
+  i-VII-i / i-IV-i, plagal) NUNCA con sensible; cierre por permanencia.
+- Fase 2 (MODAL_ESENVALDS_COMPOSE_SYSTEM): 1-2 voces graves sostienen el bordón (5ª abierta,
+  notas largas ligadas / tarareo Mm-Oo); el resto teje modalmente encima; melodía folk de onda
+  con giros pentatónicos y el grado característico; planing diatónico (5as/8as paralelas
+  permitidas); colchón/tarareo con morphing de vocal; divisi para enriquecer; arco amplio,
+  dinámicas suaves, calidez de bemoles; cierre sereno por permanencia sobre la tónica modal.
+Verificado: aparece en el menú, resolveSystems OK, sintaxis OK y maps cableados en las dos fases.

@@ -14,6 +14,7 @@ import {
   SECUNDAL_COMPOSE_SYSTEM,
   POLYCHORD_COMPOSE_SYSTEM,
   COMPOSITE_COMPOSE_SYSTEM,
+  MODAL_ESENVALDS_COMPOSE_SYSTEM,
   MIXTO_COMPOSE_SYSTEM,
   CHORD_CONNECTION,
   resolveSystems,
@@ -412,6 +413,7 @@ function selectComposeSystemBase(ids) {
     segundas: SECUNDAL_COMPOSE_SYSTEM,
     policordes: POLYCHORD_COMPOSE_SYSTEM,
     compuesta: COMPOSITE_COMPOSE_SYSTEM,
+    modal_esenvalds: MODAL_ESENVALDS_COMPOSE_SYSTEM,
   };
   if (ids.includes('mixto')) return MIXTO_COMPOSE_SYSTEM;
   if (ids.length === 1) return map[ids[0]] || SYSTEM_PROMPT;

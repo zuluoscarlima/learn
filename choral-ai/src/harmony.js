@@ -15,6 +15,7 @@ import {
   SECUNDAL_HARMONY_SYSTEM,
   POLYCHORD_HARMONY_SYSTEM,
   COMPOSITE_HARMONY_SYSTEM,
+  MODAL_ESENVALDS_HARMONY_SYSTEM,
   MIXTO_HARMONY_SYSTEM,
   HARMONIC_DIRECTION,
   resolveSystems,
@@ -407,6 +408,7 @@ function selectHarmonySystemBase(ids) {
     segundas: SECUNDAL_HARMONY_SYSTEM,
     policordes: POLYCHORD_HARMONY_SYSTEM,
     compuesta: COMPOSITE_HARMONY_SYSTEM,
+    modal_esenvalds: MODAL_ESENVALDS_HARMONY_SYSTEM,
   };
   if (ids.includes('mixto')) return MIXTO_HARMONY_SYSTEM;
   if (ids.length === 1) return map[ids[0]] || SYSTEM_PROMPT;
