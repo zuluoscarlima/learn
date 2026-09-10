@@ -99,6 +99,13 @@ function renderResult(payload) {
     }
     parts2.push(msg);
   }
+  // Aviso si se ampliaron los compases para que cupiera la letra.
+  if (payload.lyricsFit) {
+    const lf = payload.lyricsFit;
+    let msg = `📝 La letra no cabía en ${lf.from} compases: se ampliaron a ${lf.to} para que cuadre`;
+    if (lf.capped) msg += ` (el texto pedía ${lf.needed}; limitado a ${lf.to} por tamaño — divide el texto si necesitas más)`;
+    parts2.push(msg + '.');
+  }
   if (harmony && harmony.progression && harmony.progression.length) {
     const prog = harmony.progression.join(' · ');
     const cad = harmony.cadence ? ` — cadencia: ${harmony.cadence}` : '';

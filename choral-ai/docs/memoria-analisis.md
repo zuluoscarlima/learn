@@ -1299,3 +1299,17 @@ Ešenvalds. Dos fases nuevas en systems.js, cableadas en harmony.js y compose.js
   permitidas); colchón/tarareo con morphing de vocal; divisi para enriquecer; arco amplio,
   dinámicas suaves, calidez de bemoles; cierre sereno por permanencia sobre la tónica modal.
 Verificado: aparece en el menú, resolveSystems OK, sintaxis OK y maps cableados en las dos fases.
+
+---
+
+## NUEVA FUNCIÓN: ampliar compases automáticamente para que quepa la LETRA
+Si el usuario pone letra que no cabe en los compases pedidos, el servidor amplía el nº de
+compases para cuadrarla (solo fuera del modo melodía).
+- server.js: countSyllables() (grupos de vocales por palabra, ≥1) y measuresForLyrics(lyrics,
+  timeSignature, {melisma, sustained}) → nº de compases necesarios (~1 sílaba/pulso, ×0.6 si
+  melismático, ×1.2 si silábico, ×0.7 si textura sostenida). Si needed > measures, se sube
+  params.measures = min(needed, MAX_AUTO_MEASURES=64). Solo AMPLÍA, nunca reduce (respeta si el
+  usuario puso más). Se devuelve `lyricsFit {from,to,needed,capped}` y el frontend lo avisa en
+  la línea de armonía ("📝 La letra no cabía en X compases: se ampliaron a Y…"; si supera 64,
+  avisa que divida el texto). El presupuesto de tokens de la fase 2 usa el nº ya ampliado y el
+  reintento automático cubre las piezas grandes.

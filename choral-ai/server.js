@@ -11,6 +11,37 @@ import { resolveVoicing, voicingOptions, DEFAULT_VOICING } from './src/voicings.
 import { resolveTexture, textureOptions, DEFAULT_TEXTURE } from './src/textures.js';
 import { SYSTEMS, systemOptions, resolveSystems, DEFAULT_SYSTEM } from './src/systems.js';
 import { parseMelody, compositionToMusicXML } from './src/musicxml.js';
+import { beatsPerMeasure } from './src/schema.js';
+
+// Cuenta APROXIMADA de sílabas de un texto (grupos de vocales por palabra; al
+// menos 1 por palabra). Sirve para estimar cuánta letra hay que repartir.
+function countSyllables(text) {
+  const words = String(text || '').toLowerCase().match(/[a-záéíóúüñ]+/gi) || [];
+  let syl = 0;
+  for (const w of words) {
+    const groups = w.match(/[aeiouáéíóúü]+/g);
+    syl += groups ? groups.length : 1;
+  }
+  return syl;
+}
+
+// Nº de compases NECESARIOS para que quepa la letra con holgura cantable, según
+// el compás y la densidad (melisma y textura). Devuelve 0 si no hay letra.
+function measuresForLyrics(lyrics, timeSignature, { melisma, sustained } = {}) {
+  const syl = countSyllables(lyrics);
+  if (!syl) return 0;
+  const bpm = beatsPerMeasure(timeSignature) || 4;
+  let perBeat = 1; // ~1 sílaba por pulso en un canto fluido
+  if (melisma === 'melismatico') perBeat *= 0.6; // varias notas por sílaba → menos texto/compás
+  else if (melisma === 'silabico') perBeat *= 1.2;
+  if (sustained) perBeat *= 0.7; // colchones/solistas reparten menos texto por compás
+  const perMeasure = Math.max(1, bpm * perBeat);
+  return Math.ceil(syl / perMeasure);
+}
+
+// Tope de seguridad para la expansión automática por letra (evita cortes por
+// longitud en piezas enormes; el usuario puede dividir el texto si hace falta).
+const MAX_AUTO_MEASURES = 64;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = path.join(__dirname, 'output');
@@ -71,6 +102,22 @@ app.post('/api/compose', async (req, res) => {
     }
     delete params.melodyXml;
 
+    // AJUSTE AUTOMÁTICO por LETRA: si el texto no cabe en los compases pedidos,
+    // ampliamos el nº de compases para que quepa (solo fuera del modo melodía).
+    let lyricsFit = null;
+    if (!params.melody && params.lyrics && String(params.lyrics).trim()) {
+      const needed = measuresForLyrics(params.lyrics, params.timeSignature, {
+        melisma: params.melisma,
+        sustained: Boolean(texture.sustained),
+      });
+      const current = Number(params.measures) || 8;
+      if (needed > current) {
+        const to = Math.min(needed, MAX_AUTO_MEASURES);
+        params.measures = to;
+        lyricsFit = { from: current, to, needed, capped: needed > MAX_AUTO_MEASURES };
+      }
+    }
+
     // Fase 1: plan armónico. Fase 2: realización de las voces sobre él.
     const harmony = await planHarmony(params);
     const composition = await composeChoral(params, parts, texture, harmony.text);
@@ -98,6 +145,8 @@ app.post('/api/compose', async (req, res) => {
       system: params.systems.map((id) => SYSTEMS[id].label).join(' + '),
       texture: texture.label,
       harmony: { progression: harmony.chords.map((c) => c.roman), cadence: harmony.cadence },
+      // Aviso si se AMPLIARON los compases automáticamente para que quepa la letra.
+      lyricsFit,
       // Confirmación de que se armonizó la melodía SUBIDA por el usuario (para que
       // se vea claramente en la UI si el modo "armonizar mi melodía" se aplicó).
       harmonized: Boolean(params.melody),
