@@ -222,7 +222,8 @@ REGLAS (estilo contemporáneo, síguelas):
      lento y sostenido (blancas/redondas), salvo que la textura pida líneas floridas.
    - ESTILO ESENVALDS/báltico: la soprano traza un ARCO amplio y ASCENDENTE hacia una nota
      culminante luminosa y luego desciende; crea ANHELO con SUSPENSIONES y APOYATURAS que
-     resuelven despacio por grado conjunto, y algún SALTO expresivo (6ª/8ª) en el clímax.
+     resuelven despacio por grado conjunto, y como mucho UN salto expresivo moderado (hasta 6ª,
+     NUNCA de octava) en el clímax, recuperado por grado conjunto.
      Emplea un MOTIVO recurrente que se desarrolla y PASA entre secciones (voice exchange).
      Sobre el colchón de tarareo, líneas que fluyen con naturalidad prosódica del texto.
    - CUERPO HOMOFÓNICO (estilo "Only in Sleep"): gran parte de la pieza es el CORO cantando
@@ -368,9 +369,10 @@ REGLAS:
      (5as y 8as paralelas PERMITIDAS, son idiomáticas del folk báltico).
 
 3. MELODÍA DE AIRE FOLK
-   - Línea cantábile de contorno de ONDA, mayormente por grados conjuntos, con giros
-     PENTATÓNICOS y el grado característico del modo bien presente; algún salto expresivo hacia
-     una nota culminante luminosa y luego descenso.
+   - Línea cantábile de contorno de ONDA, MAYORMENTE por grados conjuntos, con giros
+     PENTATÓNICOS y el grado característico del modo bien presente; asciende a la nota
+     culminante luminosa PASO A PASO (a lo sumo un salto moderado, hasta 6ª y nunca de octava,
+     recuperado por grado conjunto) y luego desciende.
    - Ritmo con naturalidad prosódica del texto; alterna notas sostenidas (reposo) con giros
      más ágiles. Evita la monotonía rítmica.
 

@@ -255,10 +255,14 @@ function buildUserPrompt(params, parts, texture, harmonyText) {
       'la que se asciende y desde la que se relaja; encadena antecedente–consecuente ' +
       '(pregunta/respuesta) y RESPIRA entre frases (silencios o notas largas). La pieza ' +
       'entera tiene UN clímax, preparado y luego liberado.\n' +
-      '- CONTORNO: mayormente por grados conjuntos, pero con algún SALTO EXPRESIVO (6ª, 8ª o ' +
-      'un intervalo llamativo) en el punto emotivo, COMPENSADO después por grado conjunto en ' +
-      'dirección contraria (rellena el hueco). Evita el vagar sin rumbo y las notas ' +
-      'repetidas estáticas.\n' +
+      '- CONTORNO CANTABLE Y ESTRICTO (MUY IMPORTANTE, en TODAS las voces): las líneas se ' +
+      'mueven PREDOMINANTEMENTE por GRADO CONJUNTO (2ª) y con saltos PEQUEÑOS (3ª). Los saltos ' +
+      'de 4ª o 5ª son OCASIONALES y siempre se COMPENSAN de inmediato por grado conjunto en ' +
+      'dirección CONTRARIA (rellenando el hueco). NO uses saltos de 6ª ni 7ª salvo, como mucho, ' +
+      'UN salto de 6ª en la ÚNICA cima de la voz principal; y NO uses saltos de OCTAVA ni ' +
+      'mayores en ninguna voz. Las voces internas y el bajo son AÚN más conjuntas que la ' +
+      'melodía. Nada de contornos "en zigzag" con saltos grandes seguidos: canta como cantaría ' +
+      'una persona. Evita el vagar sin rumbo y las notas repetidas estáticas.\n' +
       '- RITMO con VIDA: no muevas todas las voces con el MISMO ritmo ni todo en negras. ' +
       'Contrasta notas LARGAS sostenidas con figuras que fluyen; usa anacrusas, síncopas, ' +
       'puntillos, ligaduras y GRUPOS IRREGULARES (tresillos "tuplet":3, seisillos "tuplet":6, ' +
